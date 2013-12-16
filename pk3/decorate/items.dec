@@ -1,0 +1,26 @@
+ACTOR MissileAmmo : Ammo replaces Shell
+{
+    Inventory.PickupMessage "Picked up a Missile."
+    Inventory.Amount 1
+    Inventory.MaxAmount 5
+    Ammo.BackpackAmount 1
+    Ammo.BackpackMaxAmount 5
+    Inventory.Icon "ROCKA0"
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+        MPKU A 10 BRIGHT
+        MPKU B 4 BRIGHT
+        loop
+    }
+}
+
+ACTOR MissileAmmo2 : MissileAmmo replaces ShellBox {}
+ACTOR MissileAmmo3 : MissileAmmo replaces RocketAmmo {}
+ACTOR MissileAmmo4 : MissileAmmo replaces RocketBox {}
+
+ACTOR NothingAmmo1 : BulletPuff replaces Clip {}
+ACTOR NothingAmmo2 : BulletPuff replaces ClipBox {}
+ACTOR NothingAmmo3 : BulletPuff replaces Cell {}
+ACTOR NothingAmmo4 : BulletPuff replaces CellPack {}

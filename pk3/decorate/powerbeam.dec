@@ -1,0 +1,362 @@
+ACTOR PowerBeamChargeLevel : Counter { Inventory.MaxAmount 31 }
+ACTOR PowerBeamIdle : Counter { Inventory.MaxAmount 26 }
+ACTOR PowerBeamCharged : Boolean {}
+
+ACTOR "Power Beam" : Weapon
+{
+    Weapon.SelectionOrder 3000
+	Inventory.PickupMessage "Got the Power Beam!"
+	Obituary "%k shot %o a lot."
+    Weapon.AmmoType ""
+    Weapon.AmmoUse 0
+    Weapon.AmmoType2 "MissileAmmo"
+    Weapon.SlotNumber 1
+    Weapon.AmmoUse2 1
+	+AMMO_OPTIONAL
+    +ALT_AMMO_OPTIONAL
+    +NOAUTOFIRE
+    +NOALERT
+	States
+	{
+    Spawn:
+	    MGUN A -1
+        Stop
+	Ready:
+		PBEM A 1 A_WeaponReady
+		Loop
+	Select:
+		PBEM A 1 A_Raise
+		PBEM AA 0 A_Raise
+		Loop
+	Deselect:
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
+		PBEM A 1 A_Lower
+		PBEM AA 0 A_Lower
+		Loop
+	Fire:
+		TNT1 A 0 A_PlayWeaponSound("pbeam/fire")
+	    TNT1 A 0 A_Recoil(0.05)
+		TNT1 A 0 A_FireCustomMissile("PowerBolt",random(-75,75)/100.00,0,12,-2,0,random(-50,50)/100.00)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		PBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
+        PBEM A 6 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire
+		Goto Ready
+    Hold:
+        TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"HoldFinal2")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",26,"Hold7")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",21,"Hold6")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",16,"Hold5")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",11,"Hold4")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",6,"Hold3")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",1,"Hold2")
+        TNT1 A 0 A_PlaySoundEx("pbeam/charge","soundslot5")
+    Hold2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging1",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+    HoldFire:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
+		TNT1 A 0 A_PlayWeaponSound("pbeam/fire")
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+	    TNT1 A 0 A_Recoil(0.05)
+		TNT1 A 0 A_FireCustomMissile("PowerBolt",random(-75,75)/100.00,0,12,-2,0,random(-50,50)/100.00)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		PBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
+        PBEM A 6 A_WeaponReady(WRF_NOSWITCH)
+		Goto Ready
+    Hold3:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging2",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold4:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging3",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold5:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging4",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold6:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging5",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold7:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging6",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    HoldFinal:
+        TNT1 A 0
+        TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
+    HoldFinal2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3") // The shit I do because A_StopSoundEx doesn't work online.
+        TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
+		PBEM AA 1 BRIGHT A_SpawnItemEx("PowerBeamCharging7",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot7")//A_StopSoundEx("soundslot7")
+		TNT1 A 0 A_PlayWeaponSound("pbeam/chfire")
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_ClearRefire
+	    TNT1 A 0 A_Recoil(2)
+	    TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+	    TNT1 A 0 Radius_Quake(1,8,0,1,0)
+		TNT1 A 0 A_FireCustomMissile("PowerBoltCharged",random(-75,75)/100.00,0,12,-2,0,random(-50,50)/100.00)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		PBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
+        PBEM A 6 A_WeaponReady(WRF_NOSWITCH)
+		Goto Ready
+    HoldFinal3:
+        TNT1 A 0
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",99)
+        TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
+        goto HoldFinal2
+    AltFire:
+        TNT1 A 0 A_JumpIfNoAmmo("Ready")
+		TNT1 A 0 A_PlayWeaponSound("missile/fire")
+	    TNT1 A 0 A_Recoil(2)
+	    TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+	    TNT1 A 0 Radius_Quake(1,8,0,1,0)
+		TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		PBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        PBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+		Goto Ready
+	}
+}
+
+actor PowerBolt : FastProjectile
+{
+    Radius 6
+    Height 4
+    Projectile
+    Speed 90
+    Damage (15)
+    Scale 0.75
+    RenderStyle Add
+    Alpha 0.85
+    DeathSound "pbeam/hit"
+    Decal DoomImpScorch
+    +NODAMAGETHRUST
+    States
+    {
+    Spawn:
+        PBSH AABBCCDDEEFF 1 BRIGHT A_CustomMissile("PowerTrail",0,0,0)
+        Loop
+
+    Death:
+        TNT1 A 0
+        PBXP A 2 BRIGHT A_Scream
+        PBXP BCDEF 2 BRIGHT 
+        Stop
+    }
+}
+
+actor PowerTrail
+{ 
+    Alpha 0.4
+    Scale 0.6
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    RenderStyle Add
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PBSH ABC 1 BRIGHT A_CustomMissile("PowerSpark",0,0,Random(-180,180),2,Random(-100,100))
+        PBSH DEF 1 BRIGHT
+        Stop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor PowerSpark
+{
+    Scale 0.065
+    Gravity 0.01
+    Speed 1
+    Renderstyle Add
+    PROJECTILE
+    +NOTELEPORT
+    +EXPLODEONWATER
+    -CANBOUNCEWATER
+    +DONTSPLASH
+    -SOLID
+    -NOGRAVITY
+    +DOOMBOUNCE
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PBSH ABCDEF 1 BRIGHT A_FadeOut(0.03)
+        loop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+
+
+actor PowerBoltCharged : PowerBolt
+{
+    Radius 12
+    Height 8
+    Speed 75
+    Damage (80)
+    Scale 0.25
+    Alpha 0.95
+    DeathSound "pbeam/chhit"
+    Decal Scorch
+    States
+    {
+    Spawn:
+        PBCS AABB 1 BRIGHT A_CustomMissile("PowerTrailCharged",0,0,0)
+        Loop
+
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Explode(128,128,0)
+        TNT1 A 0 A_Scream
+        TNT1 A 0 A_SpawnItemEx("PowerBoltChargedExplosion",0,0,0,0,0,0,0,160,0)
+        TNT1 A 1
+        Stop
+    }
+}
+
+actor PowerTrailCharged
+{ 
+    Alpha 0.75
+    Scale 1.75
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    RenderStyle Add
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PBSH ABCDEF 1 BRIGHT A_CustomMissile("PowerSparkCharged",0,0,Random(-180,180),2,Random(-100,100))
+        Stop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor PowerBoltChargedExplosion
+{
+    Radius 0
+    Height 0
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    Renderstyle Add
+    Alpha 0.95
+    Scale 0.55
+    States
+    {
+    Spawn:
+        PBCX BCDEFFGGHHIIJJKKLM 1 BRIGHT A_CustomMissile("PowerSparkCharged",0,0,Random(-180,180),2,Random(-100,100))
+        stop
+    }
+}
+
+actor PowerSparkCharged : PowerSpark { Scale 0.15 }
+
+actor PowerBeamCharging1
+{
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.07
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    +NOTIMEFREEZE
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
+        TNT1 A 1
+        loop
+    Spawn1:
+        PBCH A 2 bright
+        stop
+    Spawn2:
+        PBCH B 2 bright
+        stop
+    Spawn3:
+        PBCH C 2 bright
+        stop
+    Spawn4:
+        PBCH D 2 bright
+        stop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor PowerBeamCharging2 : PowerBeamCharging1 { scale 0.08 }
+actor PowerBeamCharging3 : PowerBeamCharging1 { scale 0.09 }
+actor PowerBeamCharging4 : PowerBeamCharging1 { scale 0.105 }
+actor PowerBeamCharging5 : PowerBeamCharging1 { scale 0.12 }
+actor PowerBeamCharging6 : PowerBeamCharging1 { scale 0.135 }
+actor PowerBeamCharging7 : PowerBeamCharging1 { scale 0.15 }
