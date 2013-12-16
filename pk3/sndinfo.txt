@@ -1,0 +1,75 @@
+silence                 QUIET
+
+// Samus Aran
+$playeralias	 Hunter   male	*death			QUIET
+$playersounddup	 Hunter   male	*xdeath			*death
+$playersounddup	 Hunter   male	*burndeath		*death
+$playersounddup	 Hunter   male	*crazydeath		*death
+$playersounddup  Hunter   male  *wimpydeath 	*death
+$playersounddup	 Hunter   male	*gibbed			*death
+$playeralias	 Hunter   male	*pain100		samus/hurt
+$playersounddup	 Hunter   male	*pain75			*pain100
+$playersounddup	 Hunter   male	*pain50			*pain100
+$playersounddup	 Hunter   male	*pain25			*pain100
+$playersound	 Hunter   male	*grunt			QUIET
+$playeralias	 Hunter   male	*land			samus/land
+$playersound	 Hunter   male	*usefail		SAMNOPE // Taken from Smash Bros. Brawl
+$playersound	 Hunter   male	*taunt			SAMTAUNT // Taken from Smash Bros. Brawl
+$playersound	 Hunter   male	*jump			QUIET
+
+$random samus/hurt { sam/hurt1 sam/hurt2 sam/hurt3 sam/hurt4 } // Taken from Smash Bros. Brawl
+sam/hurt1               SAMHURT1
+sam/hurt2               SAMHURT2
+sam/hurt3               SAMHURT3
+sam/hurt4               SAMHURT4
+
+$random samus/land { sam/land1 sam/land2 sam/land3 } // Taken from Smash Bros. Brawl
+sam/land1               SAMLAND1
+sam/land2               SAMLAND2
+sam/land3               SAMLAND3
+
+$random samus/step { sam/step1 sam/step2 sam/step3 sam/step4 } // Taken from Unreal Championship 2
+sam/step1               SAMSTEP1
+sam/step2               SAMSTEP2
+sam/step3               SAMSTEP3
+sam/step4               SAMSTEP4
+
+$volume sam/step1 0.35
+$volume sam/step2 0.35
+$volume sam/step3 0.35
+$volume sam/step4 0.35
+
+metroid/spacejump       SAMSDJMP // Taken from Smash Bros. Brawl
+metroid/walljump        SAMSWJMP
+metroid/wajumpup        SAMSWJMU
+
+// Morph Ball
+morphball/morph         BALMORPH
+morphball/unmorph       BALUNMRF
+morphball/denied        BALDENID
+morphball/bombdrop      BALBOMDR
+morphball/bombboom      BALBOMXP
+
+// Power Beam
+pbeam/fire              PBEAMFIR
+pbeam/hit               PBEAMHIT
+pbeam/charge            PBEAMCHR // Taken from Metroid Prime
+pbeam/idle              PBEAMIDL // Taken from Metroid Prime
+pbeam/chfire            PBEAMFI2
+pbeam/chhit             PBEAMCHT
+
+$rolloff pbeam/chhit    400 1800
+
+// Missile Launcher
+missile/fire            MISSFIRE
+
+$random missile/hit { miss/hit1 miss/hit2 miss/hit3 }
+miss/hit1               MISSEXP1
+miss/hit2               MISSEXP2
+miss/hit3               MISSEXP3
+
+// Wave Beam
+wbeam/fire              WBEAMFIR
+wbeam/hit               WBEAMHIT
+wbeam/chfire            WBEAMFI2
+wbeam/chhit             WBEAMCHT

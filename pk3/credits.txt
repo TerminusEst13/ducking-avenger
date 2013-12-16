@@ -1,0 +1,29 @@
+SPECIAL THANKS TO:
+=========
+- Nintendo (For creating the Metroid series in the first place)
+- id Software (For creating Doom and the idtech1 engine)
+- Graf Zahl, Randy Heit (For the ZDoom/GZDoom engine)
+- Torr Samaho and the Zandronum team (For picking up where Skulltag left off)
+
+GRAPHICS:
+=========
+- Scuba Steve (Drew the base arm cannon sprite)
+- Voltlock (Ripped the graphics for the Power Beam's blasts)
+- Rogue Entertainment (The base of the Missile's sprites)
+- Ijon Tichy (For the smoke trails for the Missile)
+- Aeons of Death (For the explosion graphics)
+
+SOUNDS:
+=========
+- Audacity (Incredible amounts of sound editing thanks to this tool)
+- Hollywood Edge/AudioJungle (Numerous stock sound effects)
+- The General Series 6000 (Numerous stock sound effects)
+- Super Smash Bros. Brawl (Samus' hurt, taunt, usefail, and landing sounds)
+- Unreal Championship 2 (Samus' walking sounds)
+- Metroid Prime (Samus' beam charging and charge idle sounds)
+
+CODE:
+=========
+- SolarSnowfall (Cleaned up third-person camera, used for the Morph Ball)
+- Repo Man (The basis of the Wave Beam projectile code)
+- Ijon Tichy (The Space Jump code, taken from Parkmore)

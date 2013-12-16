@@ -1,0 +1,103 @@
+actor Boolean: Inventory
+{
+    Inventory.MaxAmount 1
+    +UNDROPPABLE
+    -INVBAR
+}
+
+actor Counter: Inventory
+{
+    Inventory.MaxAmount 0x7FFFFFFF
+    +UNDROPPABLE
+    -INVBAR
+}
+
+actor Trigger: CustomInventory
+{
+    Inventory.MaxAmount 0
+    +AUTOACTIVATE
+}
+
+actor CameraDummy
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    
+    Radius 8
+    Height 8
+
+    States
+    {
+      Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
+actor EmptyTelefog
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 1
+    Height 1
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor TranslationHolder
+{
+    +NOINTERACTION
+
+    Radius 1
+    Height 1
+    
+    States
+    {
+      Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
+actor SpaceChecker
+{
+    Radius 18
+    Height 60
+    Mass 100
+    Speed 0
+    -SOLID
+    -SHOOTABLE
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        loop
+    }
+}
+
+actor ChaseCam
+{
+    Height 16
+    Radius 8
+    +NOGRAVITY +NOBLOCKMAP
+    states
+    {
+    Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
+#include "decorate/player.dec"
+#include "decorate/morphball.dec"
+#include "decorate/items.dec"
+#include "decorate/missile.dec"
+#include "decorate/powerbeam.dec"
+#include "decorate/wavebeam.dec"
+#include "decorate/parkmore.dec"

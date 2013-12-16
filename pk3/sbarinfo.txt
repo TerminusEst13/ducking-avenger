@@ -1,0 +1,12 @@
+statusbar normal, forcescaled
+{
+    InInventory not BorphMallAcquired, 1
+    {
+    drawimage "samvisor", 0, 0;
+    drawbar "SAMHFULL", "SAMHEMPT", Health, horizontal, 101, 24, 1;
+    drawimage "missicon", 280, 165;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 178;
+    IsSelected "Power Beam" { drawimage "WEAPPWBM", 14, 170; }
+    IsSelected "Wave Beam" { drawimage "WEAPWVBM", 14, 170; }
+    }
+}
