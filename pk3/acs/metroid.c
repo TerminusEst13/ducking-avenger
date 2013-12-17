@@ -35,6 +35,12 @@ script 550 OPEN
         ConsoleCommand("archivecvar metroid_spacejump");
     }
 
+    if (!GetCVar("metroid_loaded"))
+    {
+        ConsoleCommand("set metroid_loaded 0");
+        ConsoleCommand("archivecvar metroid_loaded");
+    }
+
     while (1)
     {
         if (GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
@@ -43,6 +49,11 @@ script 550 OPEN
 
         if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
         else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}
+
+        if (GetCVar("metroid_loaded") == 1)
+        {
+            if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
+        }
     }
 }
 
@@ -175,6 +186,9 @@ script 588 (int morphshit)
         cam_mode[PlayerNumber ()] = OFF;
         Thing_Remove (C_TID + PlayerNumber ());
         Thing_Remove(CheckerTID);
+
+        ACS_ExecuteAlways(352,0,0,0);
+        ACS_ExecuteAlways(351,0,0,0);
         }
         else
         { ActivatorSound("morphball/denied", 127); }

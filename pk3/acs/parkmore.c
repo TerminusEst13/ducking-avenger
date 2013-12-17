@@ -387,7 +387,6 @@ function void printTimers(int pln)
     Print(s:printStr);
 }
 
-
 script PARKMORE_ENTER enter
 {
     int pln = PlayerNumber();
