@@ -418,7 +418,7 @@ ACTOR WaveBoltCharged
         loop
     Death:
         TNT1 A 0
-        TNT1 AAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-180,180))
+        TNT1 AAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-135,135))
         WTRL A 2 BRIGHT A_Scream
         WTRL BCD 2 BRIGHT 
         stop
@@ -454,7 +454,7 @@ actor WaveSplatterShot
 	Height 6
 	Damage (5)
 	Speed 20
-	Scale 0.3
+	Scale 0.2
 	Renderstyle Add
     BounceCount 4
 	//SeeSound "wbeam/splatter"
@@ -464,12 +464,17 @@ actor WaveSplatterShot
 	{
 	Spawn:
         TNT1 A 0
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+		TNT1 A 0 A_CStaffMissileSlither
+		WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
+		TNT1 A 0 A_CStaffMissileSlither
+		WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
 		TNT1 A 0 A_CStaffMissileSlither
 		WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
 		loop
 	Death:
-		TNT1 A 1
-		stop
+		WSHT A 1 BRIGHT A_FadeOut(0.1)
+		loop
 	}
 }
 
@@ -477,7 +482,7 @@ actor WaveSplatterTrail
 {
 	Renderstyle Add
 	Scale 0.15
-	Alpha 0.5
+	Alpha 0.95
 	+NOBLOCKMAP
 	+NOGRAVITY
 	+CLIENTSIDEONLY
@@ -487,7 +492,7 @@ actor WaveSplatterTrail
 	Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
-		WSHT A 1 BRIGHT A_FadeOut (0.1)
+		WSHT A 1 BRIGHT A_FadeOut(0.1)
 		loop
     Nope:
         TNT1 A 1
