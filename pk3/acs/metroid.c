@@ -210,6 +210,8 @@ script 589 UNLOADING
     TakeInventory("PowerBeamChargeLevel",999);
     TakeInventory("PowerBeamCharged",999);
     TakeInventory("PowerBeamIdle",999);
+    TakeInventory("Bombs",999);
+    TakeInventory("BombCount",999);
 }
 
 script 590 DEATH { ACS_ExecuteAlways(589,0); }

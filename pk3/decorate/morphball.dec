@@ -38,7 +38,6 @@ actor MorphBallPlayer : PlayerPawn
 
     Death:
         TNT1 A 0
-		//TNT1 A 0 ACS_ExecuteAlways(589)
         PLAY H 10
         PLAY I 10 A_PlayerScream
         PLAY J 10 A_NoBlocking
@@ -48,7 +47,6 @@ actor MorphBallPlayer : PlayerPawn
 
     XDeath:
         TNT1 A 0
-		//TNT1 A 0 ACS_ExecuteAlways(589)
         PLAY O 5
         PLAY P 5 A_XScream
         PLAY Q 5 A_NoBlocking
