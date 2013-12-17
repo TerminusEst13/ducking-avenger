@@ -418,7 +418,7 @@ ACTOR WaveBoltCharged
         loop
     Death:
         TNT1 A 0
-        TNT1 AAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
+        TNT1 AAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
         WTRL A 2 BRIGHT A_Scream
         WTRL BCD 2 BRIGHT 
         stop
