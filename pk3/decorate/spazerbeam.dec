@@ -21,13 +21,14 @@ ACTOR "Spazer Beam" : Weapon replaces SuperShotgun
 		SBEM A 1 A_WeaponReady
 		Loop
 	Select:
-		SBEM A 1 A_Raise
-		SBEM AA 0 A_Raise
-		Loop
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        TNT1 A 1 A_Raise
+        loop
 	Deselect:
-		SBEM A 1 A_Lower
-		SBEM AA 0 A_Lower
-		Loop
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        TNT1 A 1 A_Lower
+        loop
 	Fire:
 		TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
 	    TNT1 A 0 A_Recoil(0.05)
@@ -393,7 +394,7 @@ actor SpazerBoltCharged4 : SpazerBolt1
 
 actor SpazerBoltCharged5 : SpazerBolt1
 {
-    Damage (10)
+    Damage (20)
     States
     {
     Spawn:
@@ -407,7 +408,7 @@ actor SpazerBoltCharged5 : SpazerBolt1
 
 actor SpazerBoltCharged6 : SpazerBolt1
 {
-    Damage (10)
+    Damage (20)
     States
     {
     Spawn:

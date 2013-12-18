@@ -25,14 +25,14 @@ ACTOR "Power Beam" : Weapon
 		PBEM A 1 A_WeaponReady
 		Loop
 	Select:
-		PBEM A 1 A_Raise
-		PBEM AA 0 A_Raise
-		Loop
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        TNT1 A 1 A_Raise
+        loop
 	Deselect:
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
-		PBEM A 1 A_Lower
-		PBEM AA 0 A_Lower
-		Loop
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        TNT1 A 1 A_Lower
+        loop
 	Fire:
 		TNT1 A 0 A_PlayWeaponSound("pbeam/fire")
 	    TNT1 A 0 A_Recoil(0.05)
