@@ -354,7 +354,6 @@ actor WaveBeamCharging1
     {
     Spawn:
         TNT1 A 0
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
         TNT1 A 1
         loop
@@ -369,9 +368,6 @@ actor WaveBeamCharging1
         stop
     Spawn4:
         WBCH D 2 bright
-        stop
-    Nope:
-        TNT1 A 1
         stop
     }
 }
