@@ -99,5 +99,6 @@ actor ChaseCam
 #include "decorate/items.dec"
 #include "decorate/missile.dec"
 #include "decorate/powerbeam.dec"
+#include "decorate/spazerbeam.dec"
 #include "decorate/wavebeam.dec"
 #include "decorate/parkmore.dec"

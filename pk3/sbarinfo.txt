@@ -8,5 +8,6 @@ statusbar normal, forcescaled
     drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 178;
     IsSelected "Power Beam" { drawimage "WEAPPWBM", 14, 170; }
     IsSelected "Wave Beam" { drawimage "WEAPWVBM", 14, 170; }
+    IsSelected "Spazer Beam" { drawimage "WEAPSPBM", 14, 170; }
     }
 }

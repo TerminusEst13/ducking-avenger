@@ -1,4 +1,4 @@
-ACTOR "Wave Beam" : Weapon replaces SuperShotgun
+ACTOR "Wave Beam" : Weapon replaces Chaingun
 {
     Weapon.SelectionOrder 2000
 	Inventory.PickupMessage "Got the Wave Beam!"
@@ -6,7 +6,7 @@ ACTOR "Wave Beam" : Weapon replaces SuperShotgun
     Weapon.AmmoType ""
     Weapon.AmmoUse 0
     Weapon.AmmoType2 "MissileAmmo"
-    Weapon.SlotNumber 2
+    Weapon.SlotNumber 4
     Weapon.AmmoUse2 1
 	+AMMO_OPTIONAL
     +ALT_AMMO_OPTIONAL

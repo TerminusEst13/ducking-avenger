@@ -52,6 +52,7 @@ script 550 OPEN
 
         if (GetCVar("metroid_loaded") == 1)
         {
+            if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); }
             if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
         }
     }

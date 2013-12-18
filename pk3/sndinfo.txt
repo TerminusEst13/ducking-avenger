@@ -73,3 +73,8 @@ wbeam/fire              WBEAMFIR
 wbeam/hit               WBEAMHIT
 wbeam/chfire            WBEAMFI2
 wbeam/chhit             WBEAMCHT
+
+// Spazer Beam
+sbeam/fire              SBEAMFIR
+sbeam/hit               SBEAMHIT
+sbeam/chfire            SBEAMFI2
