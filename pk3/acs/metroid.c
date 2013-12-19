@@ -227,8 +227,10 @@ script 592 ENTER
 {
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
 
-    ACS_ExecuteAlways(352,0,0,0); // Activates Parkour mode.
+    ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
     ACS_ExecuteAlways(351,0,0,0);
+
+    GiveInventory("BombCount",3);
 }
 
 script 593 RESPAWN { ACS_ExecuteAlways(589,0); }
