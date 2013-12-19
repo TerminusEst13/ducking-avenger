@@ -226,6 +226,9 @@ Script 591 (int p_num) DISCONNECT // Somehow this is different from just the Dea
 script 592 ENTER
 {
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
+
+    ACS_ExecuteAlways(352,0,0,0); // Activates Parkour mode.
+    ACS_ExecuteAlways(351,0,0,0);
 }
 
 script 593 RESPAWN { ACS_ExecuteAlways(589,0); }
