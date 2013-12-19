@@ -186,7 +186,7 @@ actor WaveBolt //: FastProjectile
     BounceFactor 0.9
     WallBounceFactor 0.9
     Speed 40
-    Damage (15)
+    Damage (20)
     Scale 0.5
     RenderStyle Add
     Alpha 0.75
@@ -481,7 +481,7 @@ ACTOR WaveBoltCharged
     WallBounceFactor 0.75
     BounceCount 3
     Speed 30
-    Damage (30)
+    Damage (35)
     Scale 0.65
     RenderStyle Add
     Alpha 0.75
@@ -539,7 +539,7 @@ actor WaveSplatterShot
 {
 	Radius 8
 	Height 6
-	Damage (5)
+	Damage (10)
 	Speed 20
 	Scale 0.2
 	Renderstyle Add
