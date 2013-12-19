@@ -212,7 +212,7 @@ script 589 UNLOADING
     TakeInventory("PowerBeamCharged",999);
     TakeInventory("PowerBeamIdle",999);
     TakeInventory("Bombs",999);
-    TakeInventory("BombCount",999);
+    GiveInventory("BombCount",999);
 }
 
 script 590 DEATH { ACS_ExecuteAlways(589,0); }
@@ -229,11 +229,9 @@ script 592 ENTER
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
     ACS_ExecuteAlways(351,0,0,0);
-
-    GiveInventory("BombCount",3);
 }
 
-script 593 RESPAWN { ACS_ExecuteAlways(589,0); }
+script 593 RESPAWN { ACS_ExecuteAlways(592,0); }
 
 
 // DECORATE CHECKS
