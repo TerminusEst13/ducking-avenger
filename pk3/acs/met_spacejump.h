@@ -1,9 +1,3 @@
-#include "zcommon.acs"
-#library "parkmore"
-
-#include "commonFuncs.h"
-#include "parkConst.h"
-
 world int 0:MaxJumpCount;
 
 int playerJumps[PLAYERMAX] = {0};
@@ -80,7 +74,7 @@ function int parkmoreIn3DFloor(int tid)
  * Turning scripts
  */
 
-script PARKMORE_TURN (int degrees, int factor, int direction) net clientside
+script METROID_TURN (int degrees, int factor, int direction) net clientside
 {
     if (degrees < 0)
     {
@@ -200,13 +194,13 @@ function void wallBounce (int type, int direction)
     {
         switch (direction)
         {
-            case WD_FORWRITE: ACS_ExecuteAlways(PARKMORE_TURN, 0, 45,  2, CLOCKWISE); break;
-            case WD_RIGHT:    ACS_ExecuteAlways(PARKMORE_TURN, 0, 90,  2, CLOCKWISE); break;
-            case WD_BACKRITE: ACS_ExecuteAlways(PARKMORE_TURN, 0, 135, 2, CLOCKWISE); break;
-            case WD_BACK:     ACS_ExecuteAlways(PARKMORE_TURN, 0, 180, 2, CLOCKWISE); break;
-            case WD_BACKLEFT: ACS_ExecuteAlways(PARKMORE_TURN, 0, 135, 2, COUNTERCLOCKWISE); break;
-            case WD_LEFT:     ACS_ExecuteAlways(PARKMORE_TURN, 0, 90,  2, COUNTERCLOCKWISE); break;
-            case WD_FORWLEFT: ACS_ExecuteAlways(PARKMORE_TURN, 0, 45,  2, COUNTERCLOCKWISE); break;
+            case WD_FORWRITE: ACS_ExecuteAlways(METROID_TURN, 0, 45,  2, CLOCKWISE); break;
+            case WD_RIGHT:    ACS_ExecuteAlways(METROID_TURN, 0, 90,  2, CLOCKWISE); break;
+            case WD_BACKRITE: ACS_ExecuteAlways(METROID_TURN, 0, 135, 2, CLOCKWISE); break;
+            case WD_BACK:     ACS_ExecuteAlways(METROID_TURN, 0, 180, 2, CLOCKWISE); break;
+            case WD_BACKLEFT: ACS_ExecuteAlways(METROID_TURN, 0, 135, 2, COUNTERCLOCKWISE); break;
+            case WD_LEFT:     ACS_ExecuteAlways(METROID_TURN, 0, 90,  2, COUNTERCLOCKWISE); break;
+            case WD_FORWLEFT: ACS_ExecuteAlways(METROID_TURN, 0, 45,  2, COUNTERCLOCKWISE); break;
         }
     }
 
@@ -223,7 +217,7 @@ function void wallBounce (int type, int direction)
     }
 }
 
-script PARKMORE_WALLBOUNCE (int type, int direction, int mask)
+script METROID_WALLBOUNCE (int type, int direction, int mask)
 {
     int newDir = -1;
     int justCheck;
@@ -325,7 +319,7 @@ function void Lunge(int force)
  * The scripts that loop
  */
 
-script PARKMORE_OPEN open
+script METROID_OPEN open
 {
     if (GetCVar("metroid_jumpcount") == 0)
     {
@@ -387,7 +381,7 @@ function void printTimers(int pln)
     Print(s:printStr);
 }
 
-script PARKMORE_ENTER enter
+script METROID_ENTER enter
 {
     int pln = PlayerNumber();
     int ground, wasGround, didSpecial;
@@ -461,7 +455,7 @@ script PARKMORE_ENTER enter
     }
 }
 
-script PARKMORE_ENTER2 enter clientside
+script METROID_ENTER2 enter clientside
 {
     int pln = PlayerNumber();
     int dodgeDir, pukeStr;
@@ -520,13 +514,13 @@ script PARKMORE_ENTER2 enter clientside
 
               case WD_FORWARD:
                 if (!CheckInventory("HasKicked")
-                    && ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, -WD_KICK)) 
+                    && ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_KICKUP, -WD_KICK)) 
                 {
                     i = 2; break;
                 }
             
               default:
-                if (ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, -dDirection)) { i = 1; }
+                if (ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_KICK, -dDirection)) { i = 1; }
                 break;
             }
 
@@ -534,26 +528,26 @@ script PARKMORE_ENTER2 enter clientside
             {
                 if (!IsServer)
                 {
-                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-256);
+                    pukeStr = StrParam(s:"puke -", d:METROID_REQUESTDODGE, s:" ", d:-256);
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall kick: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
                 {
-                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK);
+                    ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_KICKUP, WD_KICK);
                 }
             }
             else if (i == 1)
             {
                 if (!IsServer)
                 {
-                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" ", d:-dDirection);
+                    pukeStr = StrParam(s:"puke -", d:METROID_REQUESTDODGE, s:" ", d:-dDirection);
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall jump: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
                 {
-                    ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, dDirection);
+                    ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_KICK, dDirection);
                 }
             }
             else { dDirection = -1; }
@@ -569,7 +563,7 @@ script PARKMORE_ENTER2 enter clientside
             {
                 if (!IsServer)
                 {
-                    pukeStr = StrParam(s:"puke -", d:PARKMORE_REQUESTDODGE, s:" 0 0 1");
+                    pukeStr = StrParam(s:"puke -", d:METROID_REQUESTDODGE, s:" 0 0 1");
                     if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
@@ -594,7 +588,7 @@ script PARKMORE_ENTER2 enter clientside
 
 }
 
-script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
+script METROID_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
     int pln = PlayerNumber();
 
@@ -613,11 +607,11 @@ script PARKMORE_REQUESTDODGE (int direction, int hijump, int mjump) net
     else if (direction < 0)
     {
         direction = -direction;
-        if (direction == 256) { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICKUP, WD_KICK); }
-        else { ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_KICK, direction); }
+        if (direction == 256) { ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_KICKUP, WD_KICK); }
+        else { ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_KICK, direction); }
     }
     else
     {
-        ACS_ExecuteWithResult(PARKMORE_WALLBOUNCE, WB_DODGE, direction, 0);
+        ACS_ExecuteWithResult(METROID_WALLBOUNCE, WB_DODGE, direction, 0);
     }
 }

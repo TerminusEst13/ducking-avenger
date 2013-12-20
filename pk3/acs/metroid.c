@@ -2,16 +2,14 @@
 #include "zcommon.acs"
 #include "commonFuncs.h"
 
-#define C_TID		1000  //Default camera tid
-#define MAX_R		128	  //Maximum radius (or distance from the player)
-#define ADJUST_R	8	  //Amount to adjust the camera by
-#define VIEW_HEIGHT	31.0  //The approximate hight of the player's view
+#include "met_const.h"
+#include "met_spacejump.h"
 
 bool cam_mode[8];         //Variable for turning the camera on or off.
 
 int SamusHealth[PLAYERMAX];
 int playerOnFoot[PLAYERMAX];
-int IsServer = 0;
+//int IsServer = 0;
 
 
 
