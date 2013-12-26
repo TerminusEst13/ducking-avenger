@@ -12,6 +12,10 @@ GRAPHICS:
 - Rogue Entertainment (The base of the Missile's sprites)
 - Ijon Tichy (For the smoke trails for the Missile)
 - Aeons of Death (For the explosion graphics)
+- FixedSys/Terminal/JACKIE (Spliced and pieced together to form the Smallfont)
+- SF Square Head (A modified version for the BigFont)
+- Blue Shadow (Converting the BigFont to a lump file)
+- Cyberkill (Spanish Enye, slade, and tilde for smallfont)
 
 SOUNDS:
 =========
