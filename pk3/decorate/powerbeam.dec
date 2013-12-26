@@ -26,12 +26,14 @@ ACTOR "Power Beam" : Weapon
 		Loop
 	Select:
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
-        TNT1 A 1 A_Raise
+        PBEM A 1 A_Raise
         loop
 	Deselect:
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
+        PBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
-        TNT1 A 1 A_Lower
+        XBEM A 0 A_Lower
         loop
 	Fire:
 		TNT1 A 0 A_PlayWeaponSound("pbeam/fire")
@@ -43,7 +45,7 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0 A_Light1
 		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_Light0
-		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		PBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         PBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
@@ -62,7 +64,7 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner1",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner1",-15,64,28,0,0,0,-270,32) 
+		PBEM KK 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner1",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner1",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
     HoldFire:
         TNT1 A 0
@@ -78,7 +80,7 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0 A_Light1
 		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_Light0
-		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		PBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         PBEM A 6 A_WeaponReady(WRF_NOSWITCH)
 		Goto Ready
@@ -86,35 +88,35 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner2",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner2",-15,64,28,0,0,0,-270,32) 
+		PBEM LL 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner2",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner2",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold4:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner3",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner3",-15,64,28,0,0,0,-270,32) 
+		PBEM MM 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner3",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner3",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold5:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner4",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner4",-15,64,28,0,0,0,-270,32) 
+		PBEM NN 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner4",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner4",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold6:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner5",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner5",-15,64,28,0,0,0,-270,32) 
+		PBEM OO 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner5",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner5",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold7:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner6",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner6",-15,64,28,0,0,0,-270,32) 
+		PBEM PP 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner6",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamChargingSpawner6",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     HoldFinal:
@@ -125,7 +127,7 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3") // The shit I do because A_StopSoundEx doesn't work online.
         TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
-		PBEM AA 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner7",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamCharging7",-15,64,28,0,0,0,-270,32) 
+		PBEM QQ 1 BRIGHT A_FireCustomMissile("PowerBeamChargingSpawner7",0,0,0,0,0,0)//A_SpawnItemEx("PowerBeamCharging7",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         TNT1 A 0 A_PlaySoundEx("silence","soundslot7")//A_StopSoundEx("soundslot7")
 		TNT1 A 0 A_PlayWeaponSound("pbeam/chfire")
@@ -145,7 +147,7 @@ ACTOR "Power Beam" : Weapon
 		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_Light0
 		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
-		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		PBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         PBEM A 6 A_WeaponReady(WRF_NOSWITCH)
 		Goto Ready
@@ -163,13 +165,13 @@ ACTOR "Power Beam" : Weapon
 		TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
 		TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
-		PBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
 	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
-		PBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM J 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_Light0
 		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
-		PBEM D 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		PBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		PBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         PBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
 		Goto Ready
@@ -333,7 +335,7 @@ actor PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging1",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging1",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -345,7 +347,7 @@ actor PowerBeamChargingSpawner2 : PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging2",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging2",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -357,7 +359,7 @@ actor PowerBeamChargingSpawner3 : PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging3",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging3",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -369,7 +371,7 @@ actor PowerBeamChargingSpawner4 : PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging4",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging4",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -381,7 +383,7 @@ actor PowerBeamChargingSpawner5 : PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging5",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging5",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -393,7 +395,7 @@ actor PowerBeamChargingSpawner6 : PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging6",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging6",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -405,7 +407,7 @@ actor PowerBeamChargingSpawner7 : PowerBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging7",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("PowerBeamCharging7",-15,0,-3,0,0,0,-270,32)
         stop
     }
 }
