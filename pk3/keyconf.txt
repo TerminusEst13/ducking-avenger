@@ -2,6 +2,7 @@ clearplayerclasses
 
 addplayerclass SamusPlayer
 
+addslotdefault 0 "Long Beam"
 addslotdefault 1 "Power Beam"
 addslotdefault 2 "Spazer Beam"
 addslotdefault 4 "Wave Beam"

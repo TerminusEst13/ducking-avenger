@@ -4,6 +4,7 @@
 
 #include "met_const.h"
 #include "met_spacejump.h"
+#include "met_longbeam.h"
 
 bool cam_mode[8];         //Variable for turning the camera on or off.
 
@@ -52,6 +53,7 @@ script 550 OPEN
         {
             if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); }
             if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
+            if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); }
         }
     }
 }

@@ -101,4 +101,5 @@ actor ChaseCam
 #include "decorate/powerbeam.dec"
 #include "decorate/spazerbeam.dec"
 #include "decorate/wavebeam.dec"
+#include "decorate/longbeam.dec"
 #include "decorate/parkmore.dec"

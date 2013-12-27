@@ -1,0 +1,569 @@
+ACTOR "Long Beam" : Weapon replaces Chainsaw
+{
+    Weapon.SelectionOrder 2000
+	Inventory.PickupMessage "Got the Long Beam!"
+	Obituary "%k reached out and touched %o."
+    Weapon.AmmoType ""
+    Weapon.AmmoUse 0
+    Weapon.AmmoType2 "MissileAmmo"
+    Weapon.SlotNumber 0
+    Weapon.AmmoUse2 1
+	+AMMO_OPTIONAL
+    +ALT_AMMO_OPTIONAL
+    +NOAUTOFIRE
+    +NOALERT
+    Decal DoomImpScorch
+	States
+	{
+    Spawn:
+	    MEGA B -1
+        Stop
+	Ready:
+		LBEM A 1 A_WeaponReady
+		Loop
+	Select:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        LBEM A 1 A_Raise
+        loop
+	Deselect:
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
+        LBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        XBEM A 0 A_Lower
+        loop
+	Fire:
+		TNT1 A 0 A_PlayWeaponSound("lbeam/fire")
+	    TNT1 A 0 A_Recoil(0.05)
+		TNT1 A 0 A_FireCustomMissile("LongBeamProjectile",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireBullets(0,0,1,100,"BlankPuff",FBF_NORANDOM)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		LBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+		LBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		LBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		LBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        LBEM A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        LBEM A 6 A_WeaponReady(WRF_NOSWITCH)
+        TNT1 A 0 A_Refire
+		Goto Ready
+    Hold:
+        TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"HoldFinal2")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",26,"Hold7")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",21,"Hold6")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",16,"Hold5")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",11,"Hold4")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",6,"Hold3")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",1,"Hold2")
+        TNT1 A 0 A_PlaySoundEx("pbeam/charge","soundslot5")
+    Hold2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		LBEM KK 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner1",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging1",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+    HoldFire:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+		TNT1 A 0 A_PlayWeaponSound("lbeam/fire")
+	    TNT1 A 0 A_Recoil(0.05)
+		TNT1 A 0 A_FireCustomMissile("LongBeamProjectile",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireBullets(0,0,1,100,"BlankPuff",FBF_NORANDOM)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		LBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+		LBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		LBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		LBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        LBEM A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        LBEM A 6 A_WeaponReady(WRF_NOSWITCH)
+		Goto Ready
+    Hold3:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		LBEM LL 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner2",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging2",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold4:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		LBEM MM 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner3",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging3",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold5:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		LBEM NN 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner4",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging4",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold6:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		LBEM OO 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner5",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging5",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    Hold7:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+		LBEM PP 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner6",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging6",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    HoldFinal:
+        TNT1 A 0
+        TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
+    HoldFinal2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
+        TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
+		LBEM QQ 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner7",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging7",-15,64,28,0,0,0,-270,32) 
+        TNT1 A 0 A_Refire
+        TNT1 A 0 A_PlaySoundEx("silence","soundslot7")//A_StopSoundEx("soundslot7")
+		TNT1 A 0 A_PlayWeaponSound("lbeam/chfire")
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_ClearRefire
+	    TNT1 A 0 A_Recoil(2)
+		TNT1 A 0 A_FireCustomMissile("LongBeamChargedProjectile",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireBullets(0,0,1,100,"BlankPuff",FBF_NORANDOM)
+	    TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+	    TNT1 A 0 Radius_Quake(1,8,0,1,0)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		LBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+		LBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+		LBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		LBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        LBEM A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		Goto Ready
+    HoldFinal3:
+        TNT1 A 0
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",99)
+        TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
+        goto HoldFinal2
+
+    AltFire:
+        TNT1 A 0 A_JumpIfNoAmmo("Ready")
+		TNT1 A 0 A_PlayWeaponSound("missile/fire")
+	    TNT1 A 0 A_Recoil(2)
+	    TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+	    TNT1 A 0 Radius_Quake(1,8,0,1,0)
+		TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Light2
+		LBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light1
+	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+		LBEM J 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		TNT1 A 0 A_Light0
+		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+		LBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+		LBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        LBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+		Goto Ready
+    }
+}
+
+actor LongBeamChargingSpawner1
+{
+    -SOLID
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    Radius 0
+    Height 0
+    Speed 24
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging1",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamChargingSpawner2 : LongBeamChargingSpawner1
+{
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging2",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamChargingSpawner3 : LongBeamChargingSpawner1
+{
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging3",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamChargingSpawner4 : LongBeamChargingSpawner1
+{
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging4",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamChargingSpawner5 : LongBeamChargingSpawner1
+{
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging5",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamChargingSpawner6 : LongBeamChargingSpawner1
+{
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging6",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamChargingSpawner7 : LongBeamChargingSpawner1
+{
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging7",-15,0,-2,0,0,0,-270,32)
+        stop
+    }
+}
+
+actor LongBeamCharging1
+{
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.07
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    +NOTIMEFREEZE
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
+        TNT1 A 1
+        loop
+    Spawn1:
+        LBCH A 2 bright
+        stop
+    Spawn2:
+        LBCH B 2 bright
+        stop
+    Spawn3:
+        LBCH C 2 bright
+        stop
+    Spawn4:
+        LBCH D 2 bright
+        stop
+    }
+}
+
+actor LongBeamCharging2 : LongBeamCharging1 { scale 0.08 }
+actor LongBeamCharging3 : LongBeamCharging1 { scale 0.09 }
+actor LongBeamCharging4 : LongBeamCharging1 { scale 0.105 }
+actor LongBeamCharging5 : LongBeamCharging1 { scale 0.12 }
+actor LongBeamCharging6 : LongBeamCharging1 { scale 0.135 }
+actor LongBeamCharging7 : LongBeamCharging1 { scale 0.15 }
+
+
+actor LongBeamProjectile : FastProjectile
+{
+    Speed 4096
+    Radius 1
+    Height 1
+    Damage 0
+    +NOTIMEFREEZE
+    +SERVERSIDEONLY
+    RenderStyle None
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 1 ACS_ExecuteWithResult(454,0,0,4096)
+        loop
+      Death:
+        TNT1 A 0
+        TNT1 A 0 ACS_ExecuteWithResult(455,459,0)
+        TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze", 0,0,0, random(-100,100)/100.0, random(-100,100)/100.0, random(-100,100)/100.0, 0, SXF_NOCHECKPOSITION)
+        TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2", 0,0,0, random(-100,100)/40.0, random(-100,100)/40.0, random(-100,100)/40.0, 0, SXF_NOCHECKPOSITION)
+        TNT1 A 4
+        stop
+    }
+}
+
+actor LongBeamChargedProjectile: FastProjectile
+{
+    Speed 4096
+    Radius 1
+    Height 1
+    Damage 0
+    +NOTIMEFREEZE
+    +SERVERSIDEONLY
+    RenderStyle None
+
+    States
+    {
+    Spawn:
+        PLSS A 0
+        PLSS A 1 ACS_ExecuteWithResult(454,0,0,4096)
+        loop
+
+    Death:
+        MISL B 0 ACS_ExecuteWithResult(455,456,1)
+        PLSS AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze", 0,0,0, random(-100,100)/100.0, random(-100,100)/100.0, random(-100,100)/100.0, 0, SXF_NOCHECKPOSITION)
+        PLSS AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2", 0,0,0, random(-100,100)/40.0, random(-100,100)/40.0, random(-100,100)/40.0, 0, SXF_NOCHECKPOSITION)
+        TNT1 A 4
+        stop
+    }
+}
+
+actor LasgunTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 0
+    Height 0
+
+    RenderStyle Add
+    alpha 0.95
+    Scale 0.25
+
+
+    States
+    {
+    Spawn:
+        TNT1 A 0 bright
+        TNT1 AA 0 A_SpawnItemEx("LasgunBurstHaze", random(-8,8), random(-8,8), random(-8,8), random(-20,20)/2.0, random(-20,20)/2.0, random(-20,20)/2.0)
+        TNT1 AA 0 A_SpawnItemEx("LasgunBurstHaze2", random(-8,8), random(-8,8), random(-8,8), random(-20,20)/10.0, random(-20,20)/10.0, random(-20,20)/10.0)
+        LSHT A 1 bright A_FadeOut(0.075)
+        wait
+    }
+}
+
+actor LascannonBurstEffect
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 0
+    Height 0
+
+    RenderStyle Add
+    Scale 0.55
+
+    States
+    {
+      Spawn:
+        PLSS A 0 bright
+        PLSS AAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze", random(-8,8), random(-8,8), random(-8,8), random(-20,20)/20.0, random(-20,20)/20.0, random(-20,20)/20.0)
+        PLSS AAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2", random(-8,8), random(-8,8), random(-8,8), random(-20,20)/100.0, random(-20,20)/100.0, random(-20,20)/100.0)
+        LSHT A 2 bright A_FadeOut(0.075)
+        wait
+    }
+}
+
+actor LascannonBurstHaze
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 0
+    Height 0
+
+    RenderStyle Add
+    Scale 0.75
+    Alpha 0.1
+
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PLSE AAAAABBBBBCCCCC 2 bright A_FadeOut(random(2,5)/1000.0)
+        loop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor LasgunBurstHaze: LascannonBurstHaze
+{
+    Scale 0.6
+
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PLSE AAAAABBBBBCCCCC 2 bright A_FadeOut(random(2,5)/30.0)
+        loop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor LascannonBurstHaze2
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    RenderStyle Add
+    Scale 0.25
+    Alpha 0.2
+
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PLSS AAAAABBBBB 2 bright A_FadeOut(random(1,3)/1000.0)
+        loop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor LasgunBurstHaze2: LascannonBurstHaze2
+{
+    Scale 0.8
+
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PLSS AAAAABBBBB 2 bright A_FadeOut(random(1,3)/30.0)
+        loop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor LascannonBurstItem: CustomInventory
+{
+    +AUTOACTIVATE
+    Inventory.MaxAmount 0
+
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_SpawnItemEx("LascannonBurst", ACS_ExecuteWithResult(468, 0), ACS_ExecuteWithResult(468, 1), ACS_ExecuteWithResult(468, 2), 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        stop
+    }
+}
+
+actor LascannonBurst
+{
+    +PUFFGETSOWNER    
+    +SERVERSIDEONLY
+    +FORCERADIUSDMG
+
+    Radius 6
+    Height 6
+
+    Obituary "%k caught %o in the crossfire."
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Explode(24,128,0)
+        stop
+    }
+}
+
+actor LasgunBurstItem: CustomInventory
+{
+    +AUTOACTIVATE
+    Inventory.MaxAmount 0
+
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_SpawnItemEx("LasgunBurst", ACS_ExecuteWithResult(468, 0), ACS_ExecuteWithResult(468, 1), ACS_ExecuteWithResult(468, 2), 0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        stop
+    }
+}
+
+actor LasgunBurst
+{
+    +PUFFGETSOWNER    
+    +CLIENTSIDEONLY
+    +FORCERADIUSDMG
+    +NOGRAVITY
+
+    Radius 6
+    Height 6
+
+    Obituary "%k caught %o in the crossfire."
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        //TNT1 A 0 A_Explode(8,64,0)
+        stop
+    }
+}
+
+actor BlankPuff
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +BLOODLESSIMPACT
+
+    States
+    {
+      Spawn:
+        TNT1 A 1
+        stop
+    }
+}
