@@ -194,7 +194,7 @@ actor LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging1",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging1",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -206,7 +206,7 @@ actor LongBeamChargingSpawner2 : LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging2",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging2",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -218,7 +218,7 @@ actor LongBeamChargingSpawner3 : LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging3",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging3",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -230,7 +230,7 @@ actor LongBeamChargingSpawner4 : LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging4",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging4",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -242,7 +242,7 @@ actor LongBeamChargingSpawner5 : LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging5",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging5",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -254,7 +254,7 @@ actor LongBeamChargingSpawner6 : LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging6",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging6",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
@@ -266,7 +266,7 @@ actor LongBeamChargingSpawner7 : LongBeamChargingSpawner1
     Spawn:
         TNT1 A 0
         TNT1 A 1
-        TNT1 A 0 A_SpawnItemEx("LongBeamCharging7",-15,0,-2,0,0,0,-270,32)
+        TNT1 A 0 A_SpawnItemEx("LongBeamCharging7",-14,0,-3,0,0,0,-270,32)
         stop
     }
 }
