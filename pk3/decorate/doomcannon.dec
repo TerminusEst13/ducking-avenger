@@ -2,7 +2,7 @@ ACTOR "Doom Cannon" : Weapon
 {
     Weapon.SelectionOrder 2000
 	Inventory.PickupMessage "Got the Doom Cannon!"
-	Obituary "%k gave %o the boomstick."
+	Obituary "%k doomed %o."
     Weapon.AmmoType ""
     Weapon.AmmoUse 0
     Weapon.AmmoType2 "MissileAmmo"
