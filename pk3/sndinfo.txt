@@ -91,5 +91,5 @@ sbeam/chfire            SBEAMFI2
 
 // Long Beam
 lbeam/fire              LBEAMFIR
-//lbeam/hit               LBEAMHIT
+lbeam/hit               LBEAMHIT // Taken from Unreal Tournament
 lbeam/chfire            LBEAMFI2
