@@ -93,3 +93,19 @@ sbeam/chfire            SBEAMFI2
 lbeam/fire              LBEAMFIR
 lbeam/hit               LBEAMHIT // Taken from Unreal Tournament
 lbeam/chfire            LBEAMFI2
+
+dcann/fire              DCANNFIR
+dcann/chfire            DCANNFI2
+dcann/cock              DCANNCK1
+dcann/cock2             DCANNCK2
+dcann/cock3             DCANNCK3
+dcann/hbeat             DCANNBET // Taken from Heretic
+dcann/up                DCANNUP // Taken from Painkiller
+
+$random bullet/puff	{ bullet/puff1 bullet/puff2 bullet/puff3 bullet/puff4 bullet/puff5 bullet/puff6 } // Not sure where these are from. If you know, please let me know!
+bullet/puff1            blrich1
+bullet/puff2            blrich2
+bullet/puff3            blrich3
+bullet/puff4            blrich4
+bullet/puff5            blrich5
+bullet/puff6            blrich6

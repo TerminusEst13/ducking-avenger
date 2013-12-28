@@ -10,7 +10,7 @@ GRAPHICS:
 - Scuba Steve (Drew the base arm cannon sprite)
 - Voltlock (Ripped the graphics for the Power Beam's blasts)
 - Rogue Entertainment (The base of the Missile's sprites)
-- Ijon Tichy (For the smoke trails for the Missile)
+- Ijon Tichy (For the smoke trails for the Missile, the numbers and some punctuation of the smallfont)
 - Aeons of Death (For the explosion graphics)
 - FixedSys/Terminal/JACKIE (Spliced and pieced together to form the Smallfont)
 - SF Square Head (A modified version for the BigFont)
@@ -30,4 +30,4 @@ CODE:
 =========
 - SolarSnowfall (Cleaned up third-person camera, used for the Morph Ball)
 - Repo Man (The basis of the Wave Beam projectile code)
-- Ijon Tichy (The Space Jump code, taken from Parkmore)
+- Ijon Tichy (The Space Jump code (taken from Parkmore) and the Long Beam code (taken from Lelweps))
