@@ -57,52 +57,52 @@ actor MorphBallPlayer : PlayerPawn
 }
 
 ACTOR BombCount : Counter { Inventory.MaxAmount 3 }
-ACTOR BoostBallCount : Counter { Inventory.MaxAmount 16 }
+ACTOR BoostBallCount : Counter { Inventory.MaxAmount 17 }
 
 ACTOR "Bombs" : Weapon
 {
     Weapon.SelectionOrder 3000
-	Inventory.PickupMessage "Got the Morph Bombs!"
-	Weapon.SlotNumber 1
-	Obituary "%k blew %o up."
-	+AMMO_OPTIONAL
+    Inventory.PickupMessage "Got the Morph Bombs!"
+    Weapon.SlotNumber 1
+    Obituary "%k blew %o up."
+    +AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
     +CHEATNOTWEAPON
-	States
-	{
+    States
+    {
     Spawn:
-	    MGUN A -1
+        MGUN A -1
         Stop
-	Ready:
-		TNT1 A 1 A_WeaponReady
+    Ready:
+        TNT1 A 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"FireCharged")
-		Loop
-	Select:
-		TNT1 A 1 A_Raise
-		TNT1 AA 0 A_Raise
-		Loop
-	Deselect:
-		TNT1 A 1 A_Lower
-		TNT1 AA 0 A_Lower
-		Loop
-	Fire:
+        Loop
+    Select:
+        TNT1 A 1 A_Raise
+        TNT1 AA 0 A_Raise
+        Loop
+    Deselect:
+        TNT1 A 1 A_Lower
+        TNT1 AA 0 A_Lower
+        Loop
+    Fire:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("BombCount",1,1)
         goto Ready
         TNT1 A 0
-		TNT1 A 0 A_FireCustomMissile("MorphBallBomb",0,0,0,0,0,0)
+        TNT1 A 0 A_FireCustomMissile("MorphBallBomb",0,0,0,0,0,0)
         TNT1 A 0 A_PlayWeaponSound("morphball/bombdrop")
-		TNT1 A 4 A_TakeInventory("BombCount",1)
-		Goto Ready
-	FireCharged:
+        TNT1 A 4 A_TakeInventory("BombCount",1)
+        Goto Ready
+    FireCharged:
         TNT1 A 0
-		TNT1 AAAAAA 0 A_FireCustomMissile("MorphBallBombCharged",random(-180,180),0,0,0,0,random(0,135))
+        TNT1 AAAAAA 0 A_FireCustomMissile("MorphBallBombCharged",random(-180,180),0,0,0,0,random(0,135))
         TNT1 A 0 A_StopSound(7)
         TNT1 A 0 A_StopSoundEx("soundslot7")
         //TNT1 A 0 A_PlayWeaponSound("morphball/bombdrop")
-		TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
-		Goto Ready
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        Goto Ready
     AltFire:
         TNT1 A 1
         TNT1 A 0 A_PlayWeaponSound("boostball/start")
@@ -118,7 +118,7 @@ ACTOR "Bombs" : Weapon
         TNT1 A 0 A_PlaySoundEx("boostball/hum","soundslot5")
     AltHold2:
         TNT1 A 0
-        TNT1 A 0 A_JumpIfInventory("BoostBallCount",16,"AltHold3")
+        TNT1 A 0 A_JumpIfInventory("BoostBallCount",17,"AltHold3")
         TNT1 A 0 A_GiveInventory("BoostBallCount",1)
         TNT1 A 1
         TNT1 A 0 A_Refire
@@ -133,7 +133,7 @@ ACTOR "Bombs" : Weapon
         TNT1 A 0 A_PlaySoundEx("boostball/hum","soundslot5")
         TNT1 A 0 A_TakeInventory("BoostBallCount",99)
         goto AltHold2
-	}
+    }
 }
 
 ACTOR MorphBallBomb
@@ -151,7 +151,7 @@ ACTOR MorphBallBomb
     Spawn:
         MBOM AABBCCDDAABBCCD 2
         TNT1 A 0 A_PlaySound("morphball/bombboom")
-        TNT1 A 0 A_Explode(96,96,0)
+        TNT1 A 0 A_Explode(96,128,0)
         TNT1 A 0 A_GiveToTarget("BombCount",1)
         TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
         MBOM EFGHI 3
@@ -184,8 +184,8 @@ ACTOR DummyExplode
 {
     Radius 1
     Height 1
-	Speed 0
-	DamageType "NoDamage"
+    Speed 0
+    DamageType "NoDamage"
     +NOCLIP
     -SOLID
     +NOINTERACTION
@@ -195,8 +195,8 @@ ACTOR DummyExplode
     States
     {
       Spawn:
-		TNT1 A 0
-		TNT1 A 1 A_Explode(128,96)
+        TNT1 A 0
+        TNT1 A 1 A_Explode(128,96)
         Stop
     }
 }
@@ -206,8 +206,8 @@ ACTOR DummyExplodeCharged : DummyExplode
     States
     {
       Spawn:
-		TNT1 A 0
-		TNT1 A 1 A_Explode(64,64)
+        TNT1 A 0
+        TNT1 A 1 A_Explode(64,64)
         Stop
     }
 }

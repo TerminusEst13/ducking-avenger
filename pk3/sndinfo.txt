@@ -11,21 +11,21 @@ menu/dismiss         MENUDSMS // Dismiss a prompt. - Taken from Silent Bomber
 menu/invalid         MENUFAIL // Menu not available. - Taken from Devil May Cry 3*/
 
 // Samus Aran
-$playeralias	 Hunter   male	*death			QUIET
-$playersounddup	 Hunter   male	*xdeath			*death
-$playersounddup	 Hunter   male	*burndeath		*death
-$playersounddup	 Hunter   male	*crazydeath		*death
-$playersounddup  Hunter   male  *wimpydeath 	*death
-$playersounddup	 Hunter   male	*gibbed			*death
-$playeralias	 Hunter   male	*pain100		samus/hurt
-$playersounddup	 Hunter   male	*pain75			*pain100
-$playersounddup	 Hunter   male	*pain50			*pain100
-$playersounddup	 Hunter   male	*pain25			*pain100
-$playersound	 Hunter   male	*grunt			QUIET
-$playeralias	 Hunter   male	*land			samus/land
-$playersound	 Hunter   male	*usefail		SAMNOPE // Taken from Smash Bros. Brawl
-$playersound	 Hunter   male	*taunt			SAMTAUNT // Taken from Smash Bros. Brawl
-$playersound	 Hunter   male	*jump			QUIET
+$playeralias      Hunter   male    *death          QUIET
+$playersounddup   Hunter   male    *xdeath         *death
+$playersounddup   Hunter   male    *burndeath      *death
+$playersounddup   Hunter   male    *crazydeath     *death
+$playersounddup   Hunter   male    *wimpydeath     *death
+$playersounddup   Hunter   male    *gibbed         *death
+$playeralias      Hunter   male    *pain100        samus/hurt
+$playersounddup   Hunter   male    *pain75         *pain100
+$playersounddup   Hunter   male    *pain50         *pain100
+$playersounddup   Hunter   male    *pain25         *pain100
+$playersound      Hunter   male    *grunt          QUIET
+$playeralias      Hunter   male    *land           samus/land
+$playersound      Hunter   male    *usefail        SAMNOPE // Taken from Smash Bros. Brawl
+$playersound      Hunter   male    *taunt          SAMTAUNT // Taken from Smash Bros. Brawl
+$playersound      Hunter   male    *jump           QUIET
 
 $random samus/hurt { sam/hurt1 sam/hurt2 sam/hurt3 sam/hurt4 } // Taken from Smash Bros. Brawl
 sam/hurt1               SAMHURT1
@@ -107,7 +107,7 @@ dcann/cock3             DCANNCK3
 dcann/hbeat             DCANNBET // Taken from Heretic
 dcann/up                DCANNUP // Taken from Painkiller
 
-$random bullet/puff	{ bullet/puff1 bullet/puff2 bullet/puff3 bullet/puff4 bullet/puff5 bullet/puff6 } // Not sure where these are from. If you know, please let me know!
+$random bullet/puff    { bullet/puff1 bullet/puff2 bullet/puff3 bullet/puff4 bullet/puff5 bullet/puff6 } // Not sure where these are from. If you know, please let me know!
 bullet/puff1            blrich1
 bullet/puff2            blrich2
 bullet/puff3            blrich3

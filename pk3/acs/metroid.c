@@ -86,50 +86,50 @@ script 551 OPEN clientside
 
 Script 587 (int p_num)
 {
-	int r = MAX_R;
-	
-	while (cam_mode[p_num] == ON)
-	{	
-		int a = GetActorAngle (0);
-		int p = GetActorPitch (0);
-		int x = GetActorX (0);
-		int y = GetActorY (0);
-		int z = GetActorZ (0) + VIEW_HEIGHT;
-		int xyr = r * cos (p) >> 16;
-		
-		if (!ThingCountName ("ChaseCam", C_TID+p_num))
-		{
-			while (!Spawn ("ChaseCam", x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, C_TID+p_num, a >> 8) && r > 0)
-			{
-				r -= ADJUST_R;
-				xyr = cos (p) * r >> 16;
-			}
-			
-			if (ThingCountName ("ChaseCam", C_TID + p_num))
-				ChangeCamera (C_TID + p_num, 0, 0);
-			else
-			{
-				cam_mode[p_num] = OFF;
-				print (s:"Camera script failed to initialize.");
-			}
-		}
-	        else
-		{
-			while (!SetActorPosition (C_TID+p_num, x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, 0) && r > 0)
-			{
-				r -= ADJUST_R;
-				xyr = cos (p) * r >> 16;
-			}
-			
-			SetActorAngle (C_TID + p_num, a);
-			SetActorPitch (C_TID + p_num, p);
-			
-			if (r < MAX_R) 
+    int r = MAX_R;
+    
+    while (cam_mode[p_num] == ON)
+    {    
+        int a = GetActorAngle (0);
+        int p = GetActorPitch (0);
+        int x = GetActorX (0);
+        int y = GetActorY (0);
+        int z = GetActorZ (0) + VIEW_HEIGHT;
+        int xyr = r * cos (p) >> 16;
+        
+        if (!ThingCountName ("ChaseCam", C_TID+p_num))
+        {
+            while (!Spawn ("ChaseCam", x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, C_TID+p_num, a >> 8) && r > 0)
+            {
+                r -= ADJUST_R;
+                xyr = cos (p) * r >> 16;
+            }
+            
+            if (ThingCountName ("ChaseCam", C_TID + p_num))
+                ChangeCamera (C_TID + p_num, 0, 0);
+            else
+            {
+                cam_mode[p_num] = OFF;
+                print (s:"Camera script failed to initialize.");
+            }
+        }
+            else
+        {
+            while (!SetActorPosition (C_TID+p_num, x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, 0) && r > 0)
+            {
+                r -= ADJUST_R;
+                xyr = cos (p) * r >> 16;
+            }
+            
+            SetActorAngle (C_TID + p_num, a);
+            SetActorPitch (C_TID + p_num, p);
+            
+            if (r < MAX_R) 
                               r += ADJUST_R;
-		}
-		
-		delay (1);
-	}
+        }
+        
+        delay (1);
+    }
 }
 
 
@@ -139,7 +139,7 @@ Script 587 (int p_num)
 script 588 (int morphshit)
 {
     int pNum = PlayerNumber();
-    int CheckerTID = 1500+pNum;	
+    int CheckerTID = 1500+pNum;    
 
     switch (morphshit)
     {
@@ -149,18 +149,18 @@ script 588 (int morphshit)
 
         // Prepare for health transferring from old player to morphed player...
         SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
-		int newTID = unusedTID(23000, 25000);
-		int myTID  = defaultTID(-1);
+        int newTID = unusedTID(23000, 25000);
+        int myTID  = defaultTID(-1);
 
         // Transfer the player's translation from the old body to the new morph.
-		Spawn("TranslationHolder", GetActorX(0), GetActorY(0), GetActorZ(0)+8.0, newTID);
-		Thing_SetTranslation(newTID, -1);
-		MorphActor(0, "MorphBallPlayer", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog");
-		Thing_ChangeTID(0, myTID);
-		SetActivator(newTID);
-		Thing_SetTranslation(myTID, -1);
-		SetActivator(myTID);
-		Thing_Remove(newTID);
+        Spawn("TranslationHolder", GetActorX(0), GetActorY(0), GetActorZ(0)+8.0, newTID);
+        Thing_SetTranslation(newTID, -1);
+        MorphActor(0, "MorphBallPlayer", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog");
+        Thing_ChangeTID(0, myTID);
+        SetActivator(newTID);
+        Thing_SetTranslation(myTID, -1);
+        SetActivator(myTID);
+        Thing_Remove(newTID);
 
         // Transfer health and give inventory.
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
@@ -250,8 +250,8 @@ script 595 (void) NET
 script 589 UNLOADING
 {
     // Removes Morph Ball camera
-	cam_mode[PlayerNumber ()] = OFF;
-	Thing_Remove (C_TID + PlayerNumber ());
+    cam_mode[PlayerNumber ()] = OFF;
+    Thing_Remove (C_TID + PlayerNumber ());
 
     // Removes Morph Ball Inventory
     TakeInventory("BorphMallAcquired",999);
@@ -320,9 +320,9 @@ script 594 (int which)
     {
     case 0:
         if(GetCvar("metroid_cl_noeffects") == 1)
-		setresultvalue(1);
-		else setresultvalue(0);
-		break;
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
     }
 }
 
@@ -332,8 +332,8 @@ script 594 (int which)
     {
     case 0:
         if(GetCvar("metroid_cl_noeffects") == 1)
-		setresultvalue(1);
-		else setresultvalue(0);
-		break;
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
     }
 }*/

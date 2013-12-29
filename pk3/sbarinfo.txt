@@ -53,3 +53,8 @@ statusbar normal, forcescaled
     IsSelected "Doom Cannon" { drawimage "WEAPDMCN", 14, 170; }
     }
 }
+
+statusbar automap, forcescaled
+{
+    DrawImage "SAMHEMPX", 151, 4;
+}

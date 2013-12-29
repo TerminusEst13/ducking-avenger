@@ -1,54 +1,54 @@
 ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
 {
     Weapon.SelectionOrder 2000
-	Inventory.PickupMessage "Got the Spazer Beam!"
-	Obituary "%k spayed %o."
+    Inventory.PickupMessage "Got the Spazer Beam!"
+    Obituary "%k spayed %o."
     Weapon.AmmoType ""
     Weapon.AmmoUse 0
     Weapon.AmmoType2 "MissileAmmo"
     Weapon.SlotNumber 2
     Weapon.AmmoUse2 1
-	+AMMO_OPTIONAL
+    +AMMO_OPTIONAL
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
-	States
-	{
+    States
+    {
     Spawn:
-	    SOUL B -1
+        SOUL B -1
         Stop
-	Ready:
-		SBEM A 1 A_WeaponReady
-		Loop
-	Select:
+    Ready:
+        SBEM A 1 A_WeaponReady
+        Loop
+    Select:
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
         SBEM A 1 A_Raise
         loop
-	Deselect:
+    Deselect:
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
         SBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
         XBEM A 0 A_Lower
         loop
-	Fire:
-		TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
-	    TNT1 A 0 A_Recoil(0.05)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
-		TNT1 A 0 A_AlertMonsters
+    Fire:
+        TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
+        TNT1 A 0 A_Recoil(0.05)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
-		SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
-		SBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		TNT1 A 0 A_Light0
-		SBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		SBEM EEFFF 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light0
+        SBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM EEFFF 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         SBEM EEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         SBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
-		Goto Ready
+        Goto Ready
     Hold:
         TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"HoldFinal2")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
@@ -63,62 +63,62 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		SBEM KK 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner1",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging1",-15,64,28,0,0,0,-270,32) 
+        SBEM KK 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner1",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging1",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
     HoldFire:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
         TNT1 A 0 A_ClearRefire
-		TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
-	    TNT1 A 0 A_Recoil(0.05)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
-		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
+        TNT1 A 0 A_Recoil(0.05)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
-		SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
-		SBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		TNT1 A 0 A_Light0
-		SBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		SBEM EEFFF 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light0
+        SBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM EEFFF 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         SBEM EEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         SBEM A 6 A_WeaponReady(WRF_NOSWITCH)
-		Goto Ready
+        Goto Ready
     Hold3:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		SBEM LL 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner2",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging2",-15,64,28,0,0,0,-270,32) 
+        SBEM LL 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner2",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging2",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold4:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		SBEM MM 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner3",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging3",-15,64,28,0,0,0,-270,32) 
+        SBEM MM 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner3",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging3",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold5:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		SBEM NN 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner4",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging4",-15,64,28,0,0,0,-270,32) 
+        SBEM NN 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner4",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging4",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold6:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		SBEM OO 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner5",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging5",-15,64,28,0,0,0,-270,32) 
+        SBEM OO 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner5",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging5",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold7:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-		SBEM PP 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner6",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging6",-15,64,28,0,0,0,-270,32) 
+        SBEM PP 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner6",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging6",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         goto HoldFire
     HoldFinal:
@@ -129,39 +129,39 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
         TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
-		SBEM QQ 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner7",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging7",-15,64,28,0,0,0,-270,32) 
+        SBEM QQ 1 BRIGHT A_FireCustomMissile("SpazerBeamChargingSpawner7",0,0,0,0,0,0)//A_SpawnItemEx("SpazerBeamCharging7",-15,64,28,0,0,0,-270,32) 
         TNT1 A 0 A_Refire
         TNT1 A 0 A_PlaySoundEx("silence","soundslot7")//A_StopSoundEx("soundslot7")
-		TNT1 A 0 A_PlayWeaponSound("sbeam/chfire")
+        TNT1 A 0 A_PlayWeaponSound("sbeam/chfire")
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
         TNT1 A 0 A_ClearRefire
-	    TNT1 A 0 A_Recoil(2)
-	    TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
-	    TNT1 A 0 Radius_Quake(1,8,0,1,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged1",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged2",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged3",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged4",0,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged5",-1,0,12,-2,0,0)
-		TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged6",1,0,12,-2,0,0)
-		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_Recoil(2)
+        TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        TNT1 A 0 Radius_Quake(1,8,0,1,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged1",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged2",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged3",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged4",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged5",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged6",1,0,12,-2,0,0)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
-		SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
-	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
-		SBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		TNT1 A 0 A_Light0
-		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
-		SBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		SBEM EEFFF 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        SBEM C 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light0
+        TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        SBEM D 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM EEFFF 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         SBEM EEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         SBEM A 6 A_WeaponReady(WRF_NOSWITCH)
-		Goto Ready
+        Goto Ready
     HoldFinal3:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",99)
@@ -170,23 +170,23 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
 
     AltFire:
         TNT1 A 0 A_JumpIfNoAmmo("Ready")
-		TNT1 A 0 A_PlayWeaponSound("missile/fire")
-	    TNT1 A 0 A_Recoil(2)
-	    TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
-	    TNT1 A 0 Radius_Quake(1,8,0,1,0)
-		TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
-		TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_PlayWeaponSound("missile/fire")
+        TNT1 A 0 A_Recoil(2)
+        TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        TNT1 A 0 Radius_Quake(1,8,0,1,0)
+        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
-		SBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
-	    TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
-		SBEM J 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		TNT1 A 0 A_Light0
-		TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
-		SBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-		SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        SBEM J 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        TNT1 A 0 A_Light0
+        TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        SBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         SBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-		Goto Ready
+        Goto Ready
     }
 }
 
@@ -209,10 +209,10 @@ actor SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,-12,0,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,12,0,CVF_RELATIVE)
     Spawn1:
-	    TNT1 A 0
+        TNT1 A 0
         SPZR ABCD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         loop
     Death:
@@ -241,7 +241,7 @@ actor SpazerBolt3 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,12,0,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,-12,0,CVF_RELATIVE)
         goto Spawn1
     }
@@ -437,7 +437,7 @@ actor SpazerBoltCharged1 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,-6,12,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,6,-12,CVF_RELATIVE)
         goto Spawn1
     }
@@ -450,7 +450,7 @@ actor SpazerBoltCharged2 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,6,12,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,-6,-12,CVF_RELATIVE)
         goto Spawn1
     }
@@ -463,7 +463,7 @@ actor SpazerBoltCharged3 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,-6,-12,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,6,12,CVF_RELATIVE)
         goto Spawn1
     }
@@ -476,7 +476,7 @@ actor SpazerBoltCharged4 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,6,-12,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,-6,12,CVF_RELATIVE)
         goto Spawn1
     }
@@ -489,7 +489,7 @@ actor SpazerBoltCharged5 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,-32,0,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,32,0,CVF_RELATIVE)
         goto Spawn1
     }
@@ -502,7 +502,7 @@ actor SpazerBoltCharged6 : SpazerBolt1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,32,0,CVF_RELATIVE)
-	    SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
+        SPZR DD 1 BRIGHT A_CustomMissile("SpazerTrail",0,0,0)
         TNT1 A 0 A_ChangeVelocity(0,-32,0,CVF_RELATIVE)
         goto Spawn1
     }

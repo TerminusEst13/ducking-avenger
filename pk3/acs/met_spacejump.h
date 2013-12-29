@@ -96,16 +96,16 @@ script METROID_TURN (int degrees, int factor, int direction) net clientside
         curDegrees += addDegrees;
 
         //Log(f:floatDegrees, s:", ", f:curDegrees, s:", +", f:addDegrees);
-	if (!GetCVar("metroid_cl_nocamerajerk"))
-		{ SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360)); }
+    if (!GetCVar("metroid_cl_nocamerajerk"))
+        { SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360)); }
         Delay(1);
     }
 
     addDegrees = floatDegrees - curDegrees;
-	if (!GetCVar("metroid_cl_nocamerajerk"))
-		{
+    if (!GetCVar("metroid_cl_nocamerajerk"))
+        {
     SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
-		}
+        }
 }
 
 /*  :MOVEMENT
