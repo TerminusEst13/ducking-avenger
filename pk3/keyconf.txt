@@ -1,5 +1,4 @@
 clearplayerclasses
-
 addplayerclass SamusPlayer
 
 addslotdefault 0 "Long Beam"

@@ -15,6 +15,8 @@
 #define PITCH_UP    0
 #define PITCH_DOWN  1
 
+#define DASH_VEL 40
+
 #define WB_XYBASE   35.0
 #define WB_ZBASE    1.25
 

@@ -1,5 +1,27 @@
 actor BorphMallAcquired : Boolean {}
 actor CanSpaceJump : Boolean {}
+actor Health100 : Counter { Inventory.MaxAmount 100 }
+actor Health200 : Counter { Inventory.MaxAmount 200 }
+actor Health300 : Counter { Inventory.MaxAmount 300 }
+actor Health400 : Counter { Inventory.MaxAmount 400 }
+actor Health500 : Counter { Inventory.MaxAmount 500 }
+actor Health600 : Counter { Inventory.MaxAmount 600 }
+actor Health700 : Counter { Inventory.MaxAmount 700 }
+actor Health800 : Counter { Inventory.MaxAmount 800 }
+actor Health900 : Counter { Inventory.MaxAmount 900 }
+actor Health1000 : Counter { Inventory.MaxAmount 1000 }
+actor Health1100 : Counter { Inventory.MaxAmount 1100 }
+actor HealthOver100 : Boolean {}
+actor HealthOver200 : Boolean {}
+actor HealthOver300 : Boolean {}
+actor HealthOver400 : Boolean {}
+actor HealthOver500 : Boolean {}
+actor HealthOver600 : Boolean {}
+actor HealthOver700 : Boolean {}
+actor HealthOver800 : Boolean {}
+actor HealthOver900 : Boolean {}
+actor HealthOver1000 : Boolean {}
+actor EnergyTankAcquired : Counter { Inventory.MaxAmount 10 }
 
 actor MorphBallActivate : CustomInventory
 {
@@ -45,6 +67,17 @@ actor SamusPlayer : PlayerPawn
     Player.StartItem "MorphBallActivate", 1
 	Player.StartItem "MissileAmmo", 5
     Player.StartItem "BombCount", 3
+    Player.StartItem "Health100", 100
+    Player.StartItem "Health200", 200
+    Player.StartItem "Health300", 300
+    Player.StartItem "Health400", 400
+    Player.StartItem "Health500", 500
+    Player.StartItem "Health600", 600
+    Player.StartItem "Health700", 700
+    Player.StartItem "Health800", 800
+    Player.StartItem "Health900", 900
+    Player.StartItem "Health1000", 1000
+    Player.StartItem "Health1100", 1100
     DamageFactor "NoDamage", 0.0
     DamageFactor "Normal", 0.75
     RadiusDamageFactor 0.75
