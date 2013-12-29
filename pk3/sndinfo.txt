@@ -60,6 +60,11 @@ morphball/denied        BALDENID
 morphball/bombdrop      BALBOMDR
 morphball/bombboom      BALBOMXP
 
+boostball/start         BOOSTSTR // Taken from Metroid Prime
+boostball/launch        BOOSTGO
+boostball/humstart      BOOSHUMS
+boostball/hum           BOOSHUM
+
 // Power Beam
 pbeam/fire              PBEAMFIR
 pbeam/hit               PBEAMHIT
