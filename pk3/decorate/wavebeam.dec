@@ -1,4 +1,4 @@
-ACTOR "Wave Beam" : Weapon replaces Chaingun
+ACTOR "Wave Beam" : Weapon// replaces Chaingun
 {
     Weapon.SelectionOrder 2000
 	Inventory.PickupMessage "Got the Wave Beam!"

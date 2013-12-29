@@ -20,7 +20,21 @@ ACTOR MissileAmmo2 : MissileAmmo replaces ShellBox {}
 ACTOR MissileAmmo3 : MissileAmmo replaces RocketAmmo {}
 ACTOR MissileAmmo4 : MissileAmmo replaces RocketBox {}
 
-ACTOR NothingAmmo1 : BulletPuff replaces Clip {}
-ACTOR NothingAmmo2 : BulletPuff replaces ClipBox {}
-ACTOR NothingAmmo3 : BulletPuff replaces Cell {}
-ACTOR NothingAmmo4 : BulletPuff replaces CellPack {}
+ACTOR NothingAmmo1 : BlankPuff replaces Clip {}
+ACTOR NothingAmmo2 : BlankPuff replaces ClipBox {}
+ACTOR NothingAmmo3 : BlankPuff replaces Cell {}
+ACTOR NothingAmmo4 : BlankPuff replaces CellPack {}
+
+ACTOR NothingHealth1 : BlankPuff replaces HealthBonus {}
+
+ACTOR NothingWeapon1 : BlankPuff replaces Chainsaw {}
+ACTOR NothingWeapon2 : BlankPuff replaces Shotgun {}
+ACTOR NothingWeapon3 : BlankPuff replaces SuperShotgun {}
+ACTOR NothingWeapon4 : BlankPuff replaces Chaingun {}
+ACTOR NothingWeapon5 : BlankPuff replaces RocketLauncher {}
+ACTOR NothingWeapon6 : BlankPuff replaces PlasmaRifle {}
+ACTOR NothingWeapon7 : BlankPuff replaces BFG9000 {}
+
+ACTOR NothingArmor1 : BlankPuff replaces ArmorBonus {}
+ACTOR NothingArmor2 : BlankPuff replaces GreenArmor {}
+ACTOR NothingArmor3 : BlankPuff replaces BlueArmor {}

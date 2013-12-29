@@ -1,4 +1,4 @@
-ACTOR "Spazer Beam" : Weapon replaces SuperShotgun
+ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
 {
     Weapon.SelectionOrder 2000
 	Inventory.PickupMessage "Got the Spazer Beam!"

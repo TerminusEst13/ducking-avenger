@@ -58,8 +58,8 @@ ACTOR "Doom Cannon" : Weapon
 		DCAN EEFFFEEGHA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_PlaySoundEx("dcann/cock","soundslot5",0,0)
-        DCAN A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        DCAN A 8 A_WeaponReady(WRF_NOSWITCH)
+        DCAN A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        DCAN A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
 		Goto Ready
     Hold:
@@ -100,8 +100,8 @@ ACTOR "Doom Cannon" : Weapon
 		DCAN EEFFFEEGHA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_PlaySoundEx("dcann/cock","soundslot5",0,0)
-        DCAN A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        DCAN A 8 A_WeaponReady(WRF_NOSWITCH)
+        DCAN A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        DCAN A 6 A_WeaponReady(WRF_NOSWITCH)
 		Goto Ready
     Hold3:
         TNT1 A 0
@@ -171,8 +171,8 @@ ACTOR "Doom Cannon" : Weapon
 		DCAN EEFFFEEGHA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 5 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
 		TNT1 A 0 A_PlaySoundEx("dcann/cock3","soundslot5",0,0)
-        DCAN A 5 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        DCAN A 10 A_WeaponReady(WRF_NOSWITCH)
+        DCAN A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        DCAN A 9 A_WeaponReady(WRF_NOSWITCH)
         goto Ready
 
     AltFire:
