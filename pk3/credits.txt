@@ -7,7 +7,7 @@ SPECIAL THANKS TO:
 
 GRAPHICS:
 =========
-- Scuba Steve (Drew the base arm cannon sprite)
+- Zrrion the Insect (Drew the base arm cannon sprite)
 - Voltlock (Ripped the graphics for the Power Beam's blasts)
 - Rogue Entertainment (The base of the Missile's sprites)
 - Ijon Tichy (For the smoke trails for the Missile, the numbers and some punctuation of the smallfont)
