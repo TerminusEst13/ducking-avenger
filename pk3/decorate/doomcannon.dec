@@ -76,7 +76,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-        DCAN KK 1 //A_FireCustomMissile("LongBeamChargingSpawner1",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging1",-15,64,28,0,0,0,-270,32) 
+        DCAN KK 1
         TNT1 A 0 A_Refire
     HoldFire:
         TNT1 A 0
@@ -107,35 +107,35 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-        DCAN LL 1 //A_FireCustomMissile("LongBeamChargingSpawner2",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging2",-15,64,28,0,0,0,-270,32) 
+        DCAN LL 1
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold4:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-        DCAN MM 1 //A_FireCustomMissile("LongBeamChargingSpawner3",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging3",-15,64,28,0,0,0,-270,32) 
+        DCAN MM 1
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold5:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-        DCAN NN 1 //A_FireCustomMissile("LongBeamChargingSpawner4",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging4",-15,64,28,0,0,0,-270,32) 
+        DCAN NN 1
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold6:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-        DCAN OO 1 //A_FireCustomMissile("LongBeamChargingSpawner5",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging5",-15,64,28,0,0,0,-270,32) 
+        DCAN OO 1
         TNT1 A 0 A_Refire
         goto HoldFire
     Hold7:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
-        DCAN PP 1 //A_FireCustomMissile("LongBeamChargingSpawner6",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging6",-15,64,28,0,0,0,-270,32) 
+        DCAN PP 1
         TNT1 A 0 A_Refire
         goto HoldFire
     HoldFinal:
@@ -146,7 +146,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0
         //TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
         TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
-        DCAN QQ 1 //A_FireCustomMissile("LongBeamChargingSpawner7",0,0,0,0,0,0)//A_SpawnItemEx("LongBeamCharging7",-15,64,28,0,0,0,-270,32) 
+        DCAN QQ 1
         TNT1 A 0 A_Refire
         TNT1 A 0 A_PlaySoundEx("silence","soundslot7")//A_StopSoundEx("soundslot7")
         TNT1 A 0 A_PlayWeaponSound("dcann/chfire")
