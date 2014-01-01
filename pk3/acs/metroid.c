@@ -59,6 +59,7 @@ script 550 OPEN
             if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); }
             if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
             if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); }
+            if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); }
         }
 
         delay(1);
