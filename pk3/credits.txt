@@ -16,6 +16,7 @@ GRAPHICS:
 - SF Square Head (A modified version for the BigFont)
 - Blue Shadow (Converting the BigFont to a lump file)
 - Cyberkill (Spanish Enye, slade, and tilde for smallfont)
+- Enterbrain (Plasma Beam particles)
 
 SOUNDS:
 =========

@@ -99,6 +99,12 @@ lbeam/fire              LBEAMFIR
 lbeam/hit               LBEAMHIT // Taken from Unreal Tournament
 lbeam/chfire            LBEAMFI2
 
+// Plasma Beam
+plbeam/fire              MBEAMFIR
+plbeam/hit               MBEAMHIT // Taken from Doom 3
+plbeam/chfire            MBEAMFI2
+plbeam/chit               MBEAMCHT // Taken from Doom 3
+
 dcann/fire              DCANNFIR
 dcann/chfire            DCANNFI2
 dcann/cock              DCANNCK1
