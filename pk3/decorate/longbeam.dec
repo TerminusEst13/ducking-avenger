@@ -6,7 +6,7 @@ ACTOR "Long Beam" : Weapon// replaces Chainsaw
     Weapon.AmmoType ""
     Weapon.AmmoUse 0
     Weapon.AmmoType2 "MissileAmmo"
-    Weapon.SlotNumber 0
+    Weapon.SlotNumber 7
     Weapon.AmmoUse2 1
     +AMMO_OPTIONAL
     +ALT_AMMO_OPTIONAL
