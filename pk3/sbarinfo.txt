@@ -47,9 +47,10 @@ statusbar normal, forcescaled
     drawimage "missicon", 280, 165;
     drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 178;
     IsSelected "Power Beam" { drawimage "WEAPPWBM", 14, 170; }
-    IsSelected "Wave Beam" { drawimage "WEAPWVBM", 14, 170; }
     IsSelected "Spazer Beam" { drawimage "WEAPSPBM", 14, 170; }
+    IsSelected "Wave Beam" { drawimage "WEAPWVBM", 14, 170; }
     IsSelected "Plasma Beam" { drawimage "WEAPPLBM", 14, 170; }
+    IsSelected "Ice Beam" { drawimage "WEAPLNBM", 14, 170; }
     IsSelected "Long Beam" { drawimage "WEAPLNBM", 14, 170; }
     IsSelected "Doom Cannon" { drawimage "WEAPDMCN", 14, 170; }
     }
