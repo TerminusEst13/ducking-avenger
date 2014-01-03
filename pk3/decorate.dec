@@ -110,6 +110,8 @@ actor ChaseCam
     }
 }
 
+actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
+
 #include "decorate/player.dec"
 #include "decorate/morphball.dec"
 #include "decorate/missile.dec"
@@ -122,3 +124,4 @@ actor ChaseCam
 #include "decorate/doomcannon.dec"
 #include "decorate/parkmore.dec"
 #include "decorate/items.dec"
+#include "decorate/doom_enemies.dec"

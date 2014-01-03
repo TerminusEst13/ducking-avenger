@@ -168,6 +168,7 @@ script 588 (int morphshit)
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
         GiveInventory("BorphMallAcquired", 1);
         TakeInventory("MorphBallActivate", 1);
+        TakeInventory("IceBeamChilled",999);
         GiveInventory("MorphBallDeactivate", 1);
 
         TakeInventory("PowerBeamChargeLevel",999);
@@ -251,17 +252,21 @@ script 595 (void) NET
 
 script 589 UNLOADING
 {
-    // Removes Morph Ball camera
+    // Adjusts stats
     cam_mode[PlayerNumber ()] = OFF;
     Thing_Remove (C_TID + PlayerNumber ());
+    SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+    SetActorProperty(0,APROP_SPEED,1.00);
 
-    // Removes Morph Ball Inventory
+    // Adjusts inventory
     TakeInventory("BorphMallAcquired",999);
     TakeInventory("PowerBeamChargeLevel",999);
     TakeInventory("PowerBeamCharged",999);
     TakeInventory("PowerBeamIdle",999);
     TakeInventory("Bombs",999);
     TakeInventory("BoostBallCount",999);
+    TakeInventory("IceBeamChilled",999);
+
     GiveInventory("BombCount",999);
 }
 
@@ -324,6 +329,27 @@ script 594 (int which)
         if(GetCvar("metroid_cl_noeffects") == 1)
         setresultvalue(1);
         else setresultvalue(0);
+        break;
+
+    case 1:
+        SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*3/4)); // 75% of the current player speed. Stackable.
+        GiveInventory("IceBeamChilled",1);
+        delay(105);
+        TakeInventory("IceBeamChilled",1);
+        delay(70);
+        SetActorProperty(0,APROP_SPEED,1.00);
+        break;
+
+    case 2:
+        SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
+        SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*1/2)); // 50% of the current player speed. Stackable.
+        GiveInventory("IceBeamChilled",1);
+        delay(35);
+        SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
+        delay(105);
+        TakeInventory("IceBeamChilled",1);
+        delay(70);
+        SetActorProperty(0,APROP_SPEED,1.00);
         break;
     }
 }

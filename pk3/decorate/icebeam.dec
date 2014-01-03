@@ -302,6 +302,8 @@ actor IceTrailFlicker2 : IceTrail
     }
 }
 
+actor IceTrailFlicker3 : IceTrail { Alpha 0.5 }
+
 ACTOR IceSpark
 {
     Radius 1
@@ -313,12 +315,13 @@ ACTOR IceSpark
     +CLIENTSIDEONLY
     +RANDOMIZE
     +NOTELEPORT
-    +EXPLODEONWATER
-    -CANBOUNCEWATER
-    +DONTSPLASH
-    +THRUACTORS
-    -NOGRAVITY
-    +DOOMBOUNCE
+    //+EXPLODEONWATER
+    //-CANBOUNCEWATER
+    //+DONTSPLASH
+    //+THRUACTORS
+    //-NOGRAVITY
+    //+DOOMBOUNCE
+    +NOINTERACTION
     States
     {
     Spawn:

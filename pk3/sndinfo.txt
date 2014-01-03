@@ -107,9 +107,16 @@ plbeam/chit             MBEAMCHT // Taken from Doom 3
 
 // Ice Beam
 ibeam/fire              IBEAMFIR
-ibeam/hit               IBEAMHIT
+ibeam/hit               IBEAMHIT // Taken from Painkiller
 ibeam/chfire            IBEAMFI2
-ibeam/chit              IBEAMCHT
+ibeam/chit              IBEAMCHT // Taken from Devil May Cry 3
+ibeam/chill             IBEAMCHL
+ibeam/chill2            IBEAMCH2
+$random ibeam/freeze { ifreeze1 ifreeze2 ifreeze3 } // Taken from Painkiller
+ifreeze1                IBEAMFR1
+ifreeze2                IBEAMFR2
+ifreeze3                IBEAMFR3
+ibeam/break             IBEAMBRK
 
 dcann/fire              DCANNFIR
 dcann/chfire            DCANNFI2
