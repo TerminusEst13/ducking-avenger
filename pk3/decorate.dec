@@ -18,6 +18,20 @@ actor Trigger: CustomInventory
     +AUTOACTIVATE
 }
 
+actor BlankPuff
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +BLOODLESSIMPACT
+
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        stop
+    }
+}
+
 actor CameraDummy
 {
     +NOINTERACTION

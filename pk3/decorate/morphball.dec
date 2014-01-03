@@ -12,7 +12,7 @@ actor MorphBallPlayer : PlayerPawn
     DamageFactor "NoDamage", 0.0
     Player.StartItem "BombCount", 3
     Player.SoundClass "Hunter"
-    Player.DisplayName "Morph Ball"
+    Player.DisplayName "MorphBall"
     Player.MorphWeapon "Bombs"
     -PICKUP
     +NOSKIN

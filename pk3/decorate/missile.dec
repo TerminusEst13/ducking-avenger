@@ -8,6 +8,7 @@ ACTOR PowerMissile
     +FORCERADIUSDMG
     DeathSound "missile/hit"
     Obituary "%k blew %o up."
+    DamageType "Missile"
     Decal Scorch
     States
     {

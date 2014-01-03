@@ -11,7 +11,7 @@ int TrailDensities[TRAILCOUNT] = {24, 24, 16};
 int TrailModes[PLAYERMAX];
 int TempCoords[PLAYERMAX][3];
 
-script 454 (int scaleI, int scaleF, int speedF)
+/*script 454 (int scaleI, int scaleF, int speedF)
 {
     int scale, x, y, z, mag;
     x = GetActorVelX(0); y = GetActorVelY(0); z = GetActorVelZ(0);
@@ -35,7 +35,7 @@ script 454 (int scaleI, int scaleF, int speedF)
     SetActorVelocity(0, FixedMul(x, scale), FixedMul(y, scale), FixedMul(z, scale), 0, 0);
     // PrintBold(s:"(", f:x, s:", ", f:y, s:", ", f:z, s:"): ", f:scale, s:" -> (", f:GetActorVelX(0), s:", ", f:GetActorVelY(0), s:", ", f:GetActorVelZ(0), s:")");
     // printf("(%f, %f, %f): %f -> (%f, %f, %f)\n", x, y, z, scale, GetActorVelX(0), GetActorVelY(0), GetActorVelZ(0));
-}
+}*/
 
 script 455 (int which, int mode)
 {

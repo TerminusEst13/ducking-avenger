@@ -22,6 +22,7 @@ actor HealthOver800 : Boolean {}
 actor HealthOver900 : Boolean {}
 actor HealthOver1000 : Boolean {}
 actor EnergyTankAcquired : Counter { Inventory.MaxAmount 10 }
+actor IceBeamChilled : Boolean {}
 
 actor MorphBallActivate : CustomInventory
 {
@@ -81,6 +82,16 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "NoDamage", 0.0
     DamageFactor "Drowning", 0.0
     DamageFactor "Normal", 0.75
+    // Technically all this is covered by DamageFactor Normal, but I like having all the damagetypes listed in one place.
+    DamageFactor "PowerBeam", 0.75
+    DamageFactor "PowerCharged", 0.75
+    DamageFactor "SpazerBeam", 0.75
+    DamageFactor "PlasmaBeam", 0.75
+    DamageFactor "PlasmaCharged", 0.75
+    DamageFactor "PowerBeam", 0.75
+    DamageFactor "IceBeam", 0.75
+    DamageFactor "IceCharged", 0.75
+    DamageFactor "Missile", 0.75
     RadiusDamageFactor 0.75
     Player.ColorRange 112, 127
     +NOSKIN
@@ -124,6 +135,16 @@ actor SamusPlayer : PlayerPawn
         Goto Missile
 
     Pain:
+        PLAY G 4
+        PLAY G 4 A_Pain
+        Goto Spawn
+
+    Pain.IceBeam:
+        PLAY G 4
+        PLAY G 4 A_Pain
+        Goto Spawn
+
+    Pain.IceCharged:
         PLAY G 4
         PLAY G 4 A_Pain
         Goto Spawn
