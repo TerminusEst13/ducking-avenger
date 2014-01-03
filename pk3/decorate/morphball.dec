@@ -126,7 +126,7 @@ ACTOR "Bombs" : Weapon
         TNT1 A 0 ACS_ExecuteAlways(595,0,0,0,0)
         TNT1 A 0 A_TakeInventory("BoostBallCount",99)
         TNT1 A 0 A_ClearRefire
-        TNT1 A 10
+        TNT1 A 5
         goto Ready
     AltHold3:
         TNT1 A 0
