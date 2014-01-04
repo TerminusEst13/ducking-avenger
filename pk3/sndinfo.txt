@@ -1,15 +1,15 @@
 silence                 QUIET
 system/healthsiren      WARNSRN
 
-/*menu/activate        MENUUP // Bring up the main menu. - Taken from Mega Man X6
-menu/clear           MENUDOWN // Close main menu. - Taken from Mega Man X6
-menu/choose          MENUYES // Choose an item on the menu. - Taken from Unreal 2
-menu/backup          MENUNO // Go back to previous menu. - Taken from Unreal 2
-menu/cursor          MENUSCRL // Move cursor up/down. - Taken from Unreal 2
-menu/change          MENUCHNG // Changing options around. - Taken from World of Warcraft
-menu/prompt          MENUQUIT // Are you sure you want to quit? - Taken from Devil May Cry 3
-menu/dismiss         MENUDSMS // Dismiss a prompt. - Taken from Silent Bomber
-menu/invalid         MENUFAIL // Menu not available. - Taken from Devil May Cry 3*/
+menu/activate        MENUUP // Bring up the main menu. - Taken from Metroid Prime 3
+menu/clear           MENUDOWN // Close main menu. - Taken from Metroid Prime 3
+menu/choose          MENUYES // Choose an item on the menu. - Taken from Metroid Prime
+menu/backup          MENUNO // Go back to previous menu. - Taken from Metroid Prime
+menu/cursor          MENUSCRL // Move cursor up/down. - Taken from Metroid Prime
+menu/change          MENUCHNG // Changing options around. - Taken from Metroid Prime
+menu/prompt          MENUQUIT // Are you sure you want to quit? - Taken from Metroid Prime
+menu/dismiss         MENUDSMS // Dismiss a prompt. - Taken from Metroid Prime 3
+menu/invalid         MENUFAIL // Menu not available. - Taken from Metroid Prime
 
 // Samus Aran
 $playeralias      Hunter   male    *death          QUIET
