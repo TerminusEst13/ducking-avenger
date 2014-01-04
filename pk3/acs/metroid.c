@@ -80,6 +80,12 @@ script 551 OPEN clientside
         ConsoleCommand("set metroid_cl_nocamerajerk 0");
         ConsoleCommand("archivecvar metroid_cl_nocamerajerk");
     }
+
+    if (!GetCVar("metroid_cl_nosiren"))
+    {
+        ConsoleCommand("set metroid_cl_nosiren 0");
+        ConsoleCommand("archivecvar metroid_cl_nosiren");
+    }
 }
 
 
@@ -314,6 +320,18 @@ script 592 ENTER
         if (GetActorProperty(0,APROP_Health) > 1000) { GiveInventory("HealthOver1000",1); } else { if (CheckInventory("HealthOver1000") == 1) { TakeInventory("HealthOver1000",1); }}
 
         delay(1);
+    }
+}
+
+script 597 ENTER clientside
+{
+    while (1)
+    {
+    if (GetActorProperty(0,APROP_HEALTH) > 0) {
+        if (GetActorProperty(0,APROP_HEALTH) <= 30) {
+            if (GetCvar("metroid_cl_nosiren") == 0) {
+                LocalAmbientSound("system/healthsiren",48); }}}
+    delay(17);
     }
 }
 

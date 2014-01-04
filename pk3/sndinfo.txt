@@ -1,4 +1,5 @@
 silence                 QUIET
+system/healthsiren      WARNSRN
 
 /*menu/activate        MENUUP // Bring up the main menu. - Taken from Mega Man X6
 menu/clear           MENUDOWN // Close main menu. - Taken from Mega Man X6
