@@ -35,6 +35,7 @@ actor FrozenDummy
 actor Metroid_Zombieguy : Zombieman replaces Zombieman
 {
     DamageFactor "NoDamage", 0.0
+    DropItem "BlankPuff"
     States
     {
     Death.IceBeam:
@@ -62,6 +63,7 @@ actor ZombieguyFrozen : FrozenDummy
 actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
 {
     DamageFactor "NoDamage", 0.0
+    DropItem "BlankPuff"
     States
     {
     Death.IceBeam:
@@ -89,6 +91,7 @@ actor ShotguyFrozen : FrozenDummy
 actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
 {
     DamageFactor "NoDamage", 0.0
+    DropItem "BlankPuff"
     States
     {
     Death.IceBeam:

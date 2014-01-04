@@ -16,6 +16,78 @@ ACTOR MissileAmmo : Ammo replaces Shell
     }
 }
 
+actor Energy10 : Health replaces Stimpack
+{
+    Inventory.Amount 10
+    Inventory.PickupMessage "Picked up a small energy capsule."
+    Inventory.PickupSound "health/10"
+    Renderstyle Add
+    Alpha 0.975
+    Scale 0.75
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+        NRGA ABCD 4 BRIGHT
+        NRGA ABCD 4
+        loop
+    }
+}
+
+actor Energy25 : Health replaces Medikit
+{
+    Inventory.Amount 25
+    Inventory.PickupMessage "Picked up a large energy capsule."
+    Inventory.PickupSound "health/25"
+    Renderstyle Add
+    Scale 1
+    Alpha 0.975
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+        NRGB ABCD 4 BRIGHT
+        NRGB ABCD 4
+        loop
+    }
+}
+
+actor Energy50 : Health replaces Soulsphere
+{
+    Inventory.Amount 50
+    Inventory.PickupMessage "Picked up a greater energy capsule."
+    Inventory.PickupSound "health/50"
+    Renderstyle Add
+    Scale 1.25
+    Alpha 0.975
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+        NRGC ABCD 4 BRIGHT
+        NRGC ABCD 4
+        loop
+    }
+}
+
+actor Energy100 : Health replaces Megasphere
+{
+    Inventory.Amount 100
+    Inventory.PickupMessage "Picked up a tank refill."
+    Inventory.PickupSound "health/100"
+    Renderstyle Add
+    Scale 1.5
+    Alpha 0.975
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+        NRGD ABCD 4 BRIGHT
+        NRGD ABCD 4
+        loop
+    }
+}
+
 ACTOR MissileAmmo2 : MissileAmmo replaces ShellBox {}
 ACTOR MissileAmmo3 : MissileAmmo replaces RocketAmmo {}
 ACTOR MissileAmmo4 : MissileAmmo replaces RocketBox {}
@@ -28,13 +100,153 @@ ACTOR NothingAmmo4 : BlankPuff replaces CellPack {}
 ACTOR NothingHealth1 : BlankPuff replaces HealthBonus {}
 
 ACTOR NothingWeapon1 : BlankPuff replaces Chainsaw {}
-ACTOR NothingWeapon2 : BlankPuff replaces Shotgun {}
-ACTOR NothingWeapon3 : BlankPuff replaces SuperShotgun {}
-ACTOR NothingWeapon4 : BlankPuff replaces Chaingun {}
-ACTOR NothingWeapon5 : BlankPuff replaces RocketLauncher {}
-ACTOR NothingWeapon6 : BlankPuff replaces PlasmaRifle {}
+//ACTOR NothingWeapon2 : BlankPuff replaces Shotgun {}
+//ACTOR NothingWeapon3 : BlankPuff replaces SuperShotgun {}
+//ACTOR NothingWeapon4 : BlankPuff replaces Chaingun {}
+//ACTOR NothingWeapon5 : BlankPuff replaces RocketLauncher {}
+//ACTOR NothingWeapon6 : BlankPuff replaces PlasmaRifle {}
 ACTOR NothingWeapon7 : BlankPuff replaces BFG9000 {}
 
 ACTOR NothingArmor1 : BlankPuff replaces ArmorBonus {}
 ACTOR NothingArmor2 : BlankPuff replaces GreenArmor {}
 ACTOR NothingArmor3 : BlankPuff replaces BlueArmor {}
+
+actor WeaponPickup: CustomInventory
+{
+    Inventory.MaxAmount 0
+    Inventory.PickupSound "weapon/get"
+    States
+    {
+    CheckStay:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,3,0,0) == 1, "PickupFail")
+        stop
+
+    PickupFail:
+        TNT1 A 0
+        fail
+
+    NoPickup:
+        TNT1 A 0
+        stop
+    }
+}
+
+ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun
+{
+    Inventory.PickupMessage "SPAZER BEAM: ACQUIRED"
+    +AUTOACTIVATE
+    Scale 0.55
+    Inventory.MaxAmount 0
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
+    Spawn2:
+        WPPK S 10 BRIGHT
+        WPPK S 5
+        loop
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("Spazer Beam",1,"PickupFail")
+        TNT1 A 0 A_GiveInventory("Spazer Beam")
+        TNT1 A 0 A_PlaySound("weapon/get", CHAN_ITEM)
+        TNT1 A 0 A_SetBlend("70 F4 2B", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun
+{
+    Inventory.PickupMessage "PLASMA BEAM: ACQUIRED"
+    +AUTOACTIVATE
+    Scale 0.55
+    Inventory.MaxAmount 0
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
+    Spawn2:
+        WPPK P 10 BRIGHT
+        WPPK P 5
+        loop
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("Plasma Beam",1,"PickupFail")
+        TNT1 A 0 A_GiveInventory("Plasma Beam")
+        TNT1 A 0 A_PlaySound("weapon/get", CHAN_ITEM)
+        TNT1 A 0 A_SetBlend("FF 1F 1F", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun
+{
+    Inventory.PickupMessage "WAVE BEAM: ACQUIRED"
+    +AUTOACTIVATE
+    Scale 0.55
+    Inventory.MaxAmount 0
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
+    Spawn2:
+        WPPK W 10 BRIGHT
+        WPPK W 5
+        loop
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("Wave Beam",1,"PickupFail")
+        TNT1 A 0 A_GiveInventory("Wave Beam")
+        TNT1 A 0 A_PlaySound("weapon/get", CHAN_ITEM)
+        TNT1 A 0 A_SetBlend("FF 1F FF", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher
+{
+    Inventory.PickupMessage "ICE BEAM: ACQUIRED"
+    +AUTOACTIVATE
+    Scale 0.55
+    Inventory.MaxAmount 0
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
+    Spawn2:
+        WPPK I 10 BRIGHT
+        WPPK I 5
+        loop
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("Ice Beam",1,"PickupFail")
+        TNT1 A 0 A_GiveInventory("Ice Beam")
+        TNT1 A 0 A_PlaySound("weapon/get", CHAN_ITEM)
+        TNT1 A 0 A_SetBlend("3F BB FF", 0.25, 8)
+        goto CheckStay
+    }
+}
+
+ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle
+{
+    Inventory.PickupMessage "LONG BEAM: ACQUIRED"
+    +AUTOACTIVATE
+    Scale 0.55
+    Inventory.MaxAmount 0
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
+    Spawn2:
+        WPPK L 10 BRIGHT
+        WPPK L 5
+        loop
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("Long Beam",1,"PickupFail")
+        TNT1 A 0 A_GiveInventory("Long Beam")
+        TNT1 A 0 A_PlaySound("weapon/get", CHAN_ITEM)
+        TNT1 A 0 A_SetBlend("FA FA FA", 0.25, 8)
+        goto CheckStay
+    }
+}

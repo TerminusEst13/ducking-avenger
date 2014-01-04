@@ -189,6 +189,7 @@ script 588 (int morphshit)
         //Thing_Remove(CheckerTID);
         UnmorphActor(0, 1);
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
+        SetActorProperty(0,APROP_SPEED,1.00);
         TakeInventory("BorphMallAcquired", 1);
         TakeInventory("BoostBallCount", 99);
         GiveInventory("MorphBallActivate", 1);
@@ -245,6 +246,7 @@ script 595 (void) NET
                     FixedMul(FixedMul(mag, sin(angle)), cos(pitch)),
                     FixedMul(mag, -sin(pitch)), 0, 0);
         }
+        SetActorState(0,"BoostBall");
 }
 
 // ENTER EXIT DEATH RESPAWN SHIT
@@ -344,12 +346,24 @@ script 594 (int which)
         SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
         SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*1/2)); // 50% of the current player speed. Stackable.
         GiveInventory("IceBeamChilled",1);
-        delay(35);
+        delay(17);
         SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
-        delay(105);
+        delay(123);
         TakeInventory("IceBeamChilled",1);
         delay(70);
         SetActorProperty(0,APROP_SPEED,1.00);
+        break;
+
+    case 3:
+        if(GetCvar("sv_weaponstay") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
+
+    case 4:
+        if(GetCvar("sv_noweaponspawn") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
         break;
     }
 }

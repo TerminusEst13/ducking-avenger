@@ -221,7 +221,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
 actor PlasmaBolt
 {
-    Radius 10
+    Radius 16
     Height 12
     Projectile
     +NOGRAVITY
@@ -568,13 +568,13 @@ actor PlasmaBeamCharging7 : PlasmaBeamCharging1 { scale 0.15 }
 
 actor PlasmaBoltCharged
 {
-    Radius 12
+    Radius 16
     Height 12
     Projectile
     +NOGRAVITY
     +RIPPER
     +ROCKETTRAIL
-    Speed 50
+    Speed 55
     Damage (45)
     Scale 0.2
     RenderStyle Add
@@ -587,7 +587,7 @@ actor PlasmaBoltCharged
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC A 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
@@ -597,7 +597,7 @@ actor PlasmaBoltCharged
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC B 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC C 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
@@ -607,7 +607,7 @@ actor PlasmaBoltCharged
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC D 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC E 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
@@ -617,7 +617,7 @@ actor PlasmaBoltCharged
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC F 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC G 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
@@ -627,7 +627,7 @@ actor PlasmaBoltCharged
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC H 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC I 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
@@ -637,7 +637,7 @@ actor PlasmaBoltCharged
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC J 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC K 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
@@ -647,7 +647,7 @@ actor PlasmaBoltCharged
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC L 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_GiveInventory("PlasmaBeamCount",1)
-        TNT1 A 0 A_Explode(16,64,0)
+        TNT1 A 0 A_Explode(24,64,0)
         TNT1 AAA 0 A_SpawnItemEx("PlasmaSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_CustomMissile("PlasmaSmoke",0,0,Random(-200,200),3,Random(-200,200))
         LSMC M 1 BRIGHT A_SpawnItemEx("PlasmaTrailCharged",0,0,0,0,0,0,0,160)

@@ -133,3 +133,10 @@ bullet/puff3            blrich3
 bullet/puff4            blrich4
 bullet/puff5            blrich5
 bullet/puff6            blrich6
+
+// Items
+health/10               HEALF10
+health/25               HEALF25
+health/50               HEALF50
+health/100              HEALF100
+weapon/get              WEAPGET // Taken from Metroid Prime
