@@ -1,4 +1,4 @@
-ducking-avenger
+Metroid: Dreadnought
 ===============
 
-testing smartgit testing
+The official GitHub page for the in-progress Doom mod, Metroid: Dreadnought
