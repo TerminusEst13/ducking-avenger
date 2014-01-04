@@ -18,7 +18,7 @@ ACTOR MissileAmmo : Ammo replaces Shell
 
 actor Energy10 : Health replaces Stimpack
 {
-    Inventory.Amount 10
+    Inventory.Amount 15
     Inventory.PickupMessage "Picked up a small energy capsule."
     Inventory.PickupSound "health/10"
     Renderstyle Add
@@ -36,7 +36,7 @@ actor Energy10 : Health replaces Stimpack
 
 actor Energy25 : Health replaces Medikit
 {
-    Inventory.Amount 25
+    Inventory.Amount 30
     Inventory.PickupMessage "Picked up a large energy capsule."
     Inventory.PickupSound "health/25"
     Renderstyle Add
