@@ -10,8 +10,6 @@ actor MorphBallPlayer : PlayerPawn
     Player.ForwardMove 1.2, 1.2
     Player.SideMove 0.1, 0.2
     DamageFactor "NoDamage", 0.0
-    DamageFactor "BoostBall", 0.75
-    RadiusDamageFactor 0.5
     Player.StartItem "BombCount", 3
     Player.SoundClass "Hunter"
     Player.DisplayName "MorphBall"
@@ -233,7 +231,7 @@ ACTOR DummyExplode
     {
       Spawn:
         TNT1 A 0
-        TNT1 A 1 A_Explode(256,96)
+        TNT1 A 1 A_Explode(128,96)
         Stop
     }
 }
