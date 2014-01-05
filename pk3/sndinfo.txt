@@ -141,3 +141,4 @@ health/25               HEALF25
 health/50               HEALF50
 health/100              HEALF100
 weapon/get              WEAPGET // Taken from Metroid Prime
+nrgtank/get             ENRGTANK // Taken from Metroid Prime 3

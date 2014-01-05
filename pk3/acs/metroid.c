@@ -273,6 +273,7 @@ script 589 UNLOADING
     TakeInventory("PowerBeamIdle",999);
     TakeInventory("Bombs",999);
     TakeInventory("BoostBallCount",999);
+    TakeInventory("NotInThisLevel",999);
     TakeInventory("IceBeamChilled",999);
 
     GiveInventory("BombCount",999);
@@ -291,6 +292,7 @@ script 592 ENTER
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
 
     if (GameType () == GAME_NET_DEATHMATCH) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
+    if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
     ACS_ExecuteAlways(351,0,0,0);
@@ -382,6 +384,25 @@ script 594 (int which)
         if(GetCvar("sv_noweaponspawn") == 1)
         setresultvalue(1);
         else setresultvalue(0);
+        break;
+
+    case 5:
+        //SetActorProperty(0,APROP_SPAWNHEALTH,(GetActorProperty(0,APROP_SPAWNHEALTH))+100);
+        //delay(1);
+        //SetActorProperty(0,APROP_HEALTH,(GetActorProperty(0,APROP_SPAWNHEALTH)));
+
+        // Well that doesn't work. Guess we'll have to do this the hacky way.
+
+        if (CheckInventory("EnergyTankAcquired") == 1) { SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
+        if (CheckInventory("EnergyTankAcquired") == 2) { SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
+        if (CheckInventory("EnergyTankAcquired") == 3) { SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
+        if (CheckInventory("EnergyTankAcquired") == 4) { SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
+        if (CheckInventory("EnergyTankAcquired") == 5) { SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
+        if (CheckInventory("EnergyTankAcquired") == 6) { SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
+        if (CheckInventory("EnergyTankAcquired") == 7) { SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
+        if (CheckInventory("EnergyTankAcquired") == 8) { SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
+        if (CheckInventory("EnergyTankAcquired") == 9) { SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
+        if (CheckInventory("EnergyTankAcquired") == 10) { SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
         break;
     }
 }
