@@ -346,8 +346,8 @@ actor SpiderguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        BSPI Q 350
-        BSPI Q 1 A_Jump(128, "Death")
+        BSPI I 350
+        BSPI I 1 A_Jump(128, "Death")
         Loop
     }
 }
