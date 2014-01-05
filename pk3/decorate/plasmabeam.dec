@@ -227,7 +227,7 @@ actor PlasmaBolt
     +NOGRAVITY
     +RIPPER
     +ROCKETTRAIL
-    Speed 45
+    Speed 55
     Damage (45)
     Scale 0.25
     RenderStyle Add
@@ -574,7 +574,7 @@ actor PlasmaBoltCharged
     +NOGRAVITY
     +RIPPER
     +ROCKETTRAIL
-    Speed 55
+    Speed 65
     Damage (45)
     Scale 0.2
     RenderStyle Add

@@ -12,7 +12,7 @@ ACTOR "Doom Cannon" : Weapon
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
-    //+CHEATNOTWEAPON
+    +CHEATNOTWEAPON
     Decal BulletChip
     States
     {
