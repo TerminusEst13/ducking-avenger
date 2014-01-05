@@ -415,6 +415,12 @@ script 594 (int which)
         if (CheckInventory("EnergyTankAcquired") == 9) { SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
         if (CheckInventory("EnergyTankAcquired") == 10) { SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
         break;
+
+    case 6:
+        SetAmmoCapacity("MissileAmmo",GetAmmoCapacity("MissileAmmo")+5);
+        delay(1);
+        GiveInventory("MissileAmmo",5);
+        break;
     }
 }
 

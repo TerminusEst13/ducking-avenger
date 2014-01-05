@@ -54,7 +54,7 @@ actor Energy25 : Health replaces Medikit
 
 actor Energy50 : Health replaces Soulsphere
 {
-    Inventory.Amount 50
+    Inventory.Amount 100
     Inventory.PickupMessage "Picked up a greater energy capsule."
     Inventory.PickupSound "health/50"
     Renderstyle Add
@@ -70,7 +70,7 @@ actor Energy50 : Health replaces Soulsphere
     }
 }
 
-actor Energy100 : Health replaces Megasphere
+/*actor Energy100 : Health replaces Megasphere
 {
     Inventory.Amount 100
     Inventory.PickupMessage "Picked up a tank refill."
@@ -86,7 +86,7 @@ actor Energy100 : Health replaces Megasphere
         NRGD ABCD 4
         loop
     }
-}
+}*/
 
 ACTOR MissileAmmo2 : MissileAmmo replaces ShellBox {}
 ACTOR MissileAmmo3 : MissileAmmo replaces RocketAmmo {}
@@ -246,7 +246,7 @@ ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle
     }
 }
 
-ACTOR EnergyTankPickup : CustomInventory replaces Berserk
+ACTOR EnergyTankPickup : CustomInventory replaces Megasphere//replaces Berserk
 {
     Inventory.PickupMessage "ENERGY TANK: ACQUIRED"
     Inventory.PickupSound "nrgtank/get"
@@ -267,6 +267,30 @@ ACTOR EnergyTankPickup : CustomInventory replaces Berserk
         TNT1 A 0 ACS_ExecuteAlways(594,0,5,0,0)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
         TNT1 A 0 A_GiveInventory("NotInThisLevel",1)
+        stop
+    PickupFail:
+        TNT1 A 0
+        fail
+    }
+}
+
+ACTOR MissileTankPickup : CustomInventory replaces Backpack
+{
+    Inventory.PickupMessage "MISSILE TANK: ACQUIRED"
+    Inventory.PickupSound "nrgtank/get"
+    +AUTOACTIVATE
+    +NOGRAVITY
+    +FLOATBOB
+    Scale 0.05
+    States
+    {
+    Spawn:
+        MTNK A 10 BRIGHT
+        MTNK A 5
+        loop
+    Pickup:
+        TNT1 A 0 ACS_ExecuteAlways(594,0,6,0,0)
+        TNT1 A 0 A_SetBlend("White", 0.5, 16)
         stop
     PickupFail:
         TNT1 A 0
