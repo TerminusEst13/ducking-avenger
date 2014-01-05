@@ -98,11 +98,11 @@ Script 587 (int p_num)
     
     while (cam_mode[p_num] == ON)
     {    
-        int a = GetActorAngle (0);
-        int p = GetActorPitch (0);
-        int x = GetActorX (0);
-        int y = GetActorY (0);
-        int z = GetActorZ (0) + VIEW_HEIGHT;
+        int a = GetActorAngle(0);
+        int p = GetActorPitch(0);
+        int x = GetActorX(0);
+        int y = GetActorY(0);
+        int z = GetActorZ(0) + VIEW_HEIGHT;
         int xyr = r * cos (p) >> 16;
         
         if (!ThingCountName ("ChaseCam", C_TID+p_num))
@@ -147,7 +147,8 @@ Script 587 (int p_num)
 script 588 (int morphshit)
 {
     int pNum = PlayerNumber();
-    int CheckerTID = 1500+pNum;    
+    int CheckerTID = 1500+pNum;
+    int velx, vely, velz;
 
     switch (morphshit)
     {
@@ -160,6 +161,11 @@ script 588 (int morphshit)
         int newTID = unusedTID(23000, 25000);
         int myTID  = defaultTID(-1);
 
+        // Prepare velocities...
+        velx = GetActorVelX(0);
+        vely = GetActorVelY(0);
+        velz = GetActorVelZ(0);
+
         // Transfer the player's translation from the old body to the new morph.
         Spawn("TranslationHolder", GetActorX(0), GetActorY(0), GetActorZ(0)+8.0, newTID);
         Thing_SetTranslation(newTID, -1);
@@ -169,6 +175,7 @@ script 588 (int morphshit)
         Thing_SetTranslation(myTID, -1);
         SetActivator(myTID);
         Thing_Remove(newTID);
+        SetActorVelocity(0, velx,vely,velz, 0,0);
 
         // Transfer health and give inventory.
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
@@ -192,6 +199,9 @@ script 588 (int morphshit)
         {
         ActivatorSound("morphball/unmorph", 127);
         SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
+        velx = GetActorVelX(0);
+        vely = GetActorVelY(0);
+        velz = GetActorVelZ(0);
         //Thing_Remove(CheckerTID);
         UnmorphActor(0, 1);
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
@@ -200,6 +210,7 @@ script 588 (int morphshit)
         TakeInventory("BoostBallCount", 99);
         GiveInventory("MorphBallActivate", 1);
         TakeInventory("MorphBallDeactivate", 1);
+        SetActorVelocity(0, velx,vely,velz, 0,0);
         playerOnFoot[pNum] = 0;
 
         cam_mode[PlayerNumber ()] = OFF;
