@@ -81,7 +81,7 @@ actor TranslationHolder
 
 actor SpaceChecker
 {
-    Radius 18
+    Radius 20
     Height 60
     Mass 100
     Speed 0
