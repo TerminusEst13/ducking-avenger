@@ -215,8 +215,8 @@ ACTOR "Power Beam" : Weapon
 
 actor PowerBolt : FastProjectile
 {
-    Radius 6
-    Height 4
+    Radius 3
+    Height 2
     Projectile
     Speed 100
     Damage (15)
