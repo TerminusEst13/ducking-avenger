@@ -46,6 +46,12 @@ script 550 OPEN
         ConsoleCommand("archivecvar metroid_startingtanks");
     }
 
+    if (!GetCVar("metroid_nolevellimiter"))
+    {
+        ConsoleCommand("set metroid_nolevellimiter 0");
+        ConsoleCommand("archivecvar metroid_nolevellimiter");
+    }
+
     while (1)
     {
         if (GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
@@ -75,11 +81,11 @@ script 551 OPEN clientside
         ConsoleCommand("archivecvar metroid_cl_noeffects");
     }
 
-    if (!GetCVar("metroid_cl_nocamerajerk"))
+    /*if (!GetCVar("metroid_cl_nocamerajerk"))
     {
         ConsoleCommand("set metroid_cl_nocamerajerk 0");
         ConsoleCommand("archivecvar metroid_cl_nocamerajerk");
-    }
+    }*/
 
     if (!GetCVar("metroid_cl_nosiren"))
     {
@@ -420,6 +426,10 @@ script 594 (int which)
         SetAmmoCapacity("MissileAmmo",GetAmmoCapacity("MissileAmmo")+5);
         delay(1);
         GiveInventory("MissileAmmo",5);
+        break;
+
+    case 7:
+        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("NotInThisLevel",1); }
         break;
     }
 }
