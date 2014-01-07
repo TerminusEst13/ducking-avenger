@@ -11,33 +11,7 @@ int TrailDensities[TRAILCOUNT] = {24, 24, 16};
 int TrailModes[PLAYERMAX];
 int TempCoords[PLAYERMAX][3];
 
-/*script 454 (int scaleI, int scaleF, int speedF)
-{
-    int scale, x, y, z, mag;
-    x = GetActorVelX(0); y = GetActorVelY(0); z = GetActorVelZ(0);
-
-    if (speedF == 0) { scale = itof(scaleI) + (scaleF * 0.01); }
-    else
-    {
-        mag = magnitudeThree_f(x, y, z);
-
-        if (mag == 0)
-        {
-            x = random(-10.0, 10.0);
-            y = random(-10.0, 10.0);
-            z = random(-10.0, 10.0);
-            mag = magnitudeThree_f(x, y, z);
-        }
-
-        scale = FixedDiv(speedF * 1.0, mag);
-    }
-
-    SetActorVelocity(0, FixedMul(x, scale), FixedMul(y, scale), FixedMul(z, scale), 0, 0);
-    // PrintBold(s:"(", f:x, s:", ", f:y, s:", ", f:z, s:"): ", f:scale, s:" -> (", f:GetActorVelX(0), s:", ", f:GetActorVelY(0), s:", ", f:GetActorVelZ(0), s:")");
-    // printf("(%f, %f, %f): %f -> (%f, %f, %f)\n", x, y, z, scale, GetActorVelX(0), GetActorVelY(0), GetActorVelZ(0));
-}*/
-
-script 455 (int which, int mode)
+script METROID_LONG_XYZ (int which, int mode)
 {
     int x, y, z;
     x = GetActorX(0); y = GetActorY(0); z = GetActorZ(0);
@@ -51,7 +25,7 @@ script 455 (int which, int mode)
     ACS_ExecuteWithResult(469, x,y,z); // For explosive trails
 }
 
-script 456 (int tx, int ty, int tz) clientside
+script METROID_LONG_BURST (int tx, int ty, int tz) clientside
 {
     if (ConsolePlayerNumber() == -1) { terminate; }
 
@@ -76,7 +50,7 @@ script 456 (int tx, int ty, int tz) clientside
     }
 }
 
-script 459 (int tx, int ty, int tz) clientside
+script METROID_LONG_TRAIL (int tx, int ty, int tz) clientside
 {
     if (ConsolePlayerNumber() == -1) { terminate; }
 
@@ -101,7 +75,7 @@ script 459 (int tx, int ty, int tz) clientside
     }
 }
 
-script 469 (int tx, int ty, int tz)
+script METROID_LONG_SERVERSHIT (int tx, int ty, int tz)
 {
     if (!IsServer) { terminate; }
 
@@ -133,7 +107,7 @@ script 469 (int tx, int ty, int tz)
     }
 }
 
-script 468 (int which)
+script METROID_LONG_COORDSHIT (int which)
 {
     int pln = PlayerNumber();
     int ret = 0;

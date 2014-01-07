@@ -58,6 +58,7 @@ statusbar normal, forcescaled
     {
     drawimage "FLSCRBAR", 0, 0;
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
+    drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21;
     InInventory EnergyTankAcquired, 1 { drawimage "FTNKEMPT", 26, 7; }
     InInventory EnergyTankAcquired, 2 { drawimage "FTNKEMPT", 34, 7; }
     InInventory EnergyTankAcquired, 3 { drawimage "FTNKEMPT", 42, 7; }
@@ -98,8 +99,8 @@ statusbar normal, forcescaled
     InInventory HealthOver1000, 1 { drawimage "FBAREMPT", 25, 15; }
     InInventory HealthOver1000, 1 { drawimage "FTNKFULL", 99, 8; }
     InInventory HealthOver1000, 1 { drawbar "FBARFUL0", "FBAREMP0", Health Health1100, horizontal, -755, 15, 1; }
-    drawimage "FMISICON", 113, 5;
-    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 135, 20;
+    drawimage "FMISICON", 113, 6;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 135, 21;
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
@@ -110,6 +111,7 @@ statusbar fullscreen, forcescaled
 {
     drawimage "FLSCRBAR", 0, 0;
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
+    drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21;
     InInventory EnergyTankAcquired, 1 { drawimage "FTNKEMPT", 26, 7; }
     InInventory EnergyTankAcquired, 2 { drawimage "FTNKEMPT", 34, 7; }
     InInventory EnergyTankAcquired, 3 { drawimage "FTNKEMPT", 42, 7; }
@@ -150,8 +152,8 @@ statusbar fullscreen, forcescaled
     InInventory HealthOver1000, 1 { drawimage "FBAREMPT", 25, 15; }
     InInventory HealthOver1000, 1 { drawimage "FTNKFULL", 99, 8; }
     InInventory HealthOver1000, 1 { drawbar "FBARFUL0", "FBAREMP0", Health Health1100, horizontal, -755, 15, 1; }
-    drawimage "FMISICON", 113, 5;
-    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 135, 20;
+    drawimage "FMISICON", 113, 6;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 135, 21;
     IsSelected "Power Beam" { drawimage "WPFSPWBM", 254, 4; }
     IsSelected "Spazer Beam" { drawimage "WPFSSPBM", 254, 4; }
     IsSelected "Wave Beam" { drawimage "WPFSWVBM", 254, 4; }

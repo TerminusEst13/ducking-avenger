@@ -1,13 +1,32 @@
-#define METROID_BASE 354
+#define METROID_BASE                         354
 
-#define METROID_OPEN               (METROID_BASE-1)
-#define METROID_ENTER              (METROID_BASE-2)
-#define METROID_ENTER2             (METROID_BASE-3)
+#define METROID_SPACEJUMP_ENTER2             351
+#define METROID_SPACEJUMP_ENTER              352
+#define METROID_OPEN                         353
 
-#define METROID_TURN               (METROID_BASE+31)
+#define METROID_WALLBOUNCE                   364
+#define METROID_REQUESTDODGE                 368
 
-#define METROID_WALLBOUNCE         (METROID_BASE+10)
-#define METROID_REQUESTDODGE       (METROID_BASE+14)
+#define METROID_TURN                         385
+
+#define METROID_LONG_XYZ                     455
+#define METROID_LONG_BURST                   456
+#define METROID_LONG_TRAIL                   459
+#define METROID_LONG_COORDSHIT               468
+#define METROID_LONG_SERVERSHIT              469
+
+#define METROID_OPEN_CLIENT                  551
+#define METROID_MORPHCAMERA                  587
+#define METROID_MORPHBALL                    588
+#define METROID_UNLOADING                    589
+#define METROID_DEATH                        590
+#define METROID_DISCONNECT                   591
+#define METROID_ENTER                        592
+#define METROID_RESPAWN                      593
+#define METROID_DECORATE                     594
+#define METROID_BOOSTBALL                    595
+#define METROID_DECORATECLIENT               596
+#define METROID_BWEEBWEEBWEEBWEE             597
 
 #define CLOCKWISE           0
 #define COUNTERCLOCKWISE    1

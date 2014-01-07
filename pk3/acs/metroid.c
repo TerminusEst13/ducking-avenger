@@ -18,9 +18,10 @@ int playerOnFoot[PLAYERMAX];
 // CVAR HANDLING SHIT
 // ==================
 
-script 550 OPEN
+script METROID_OPEN OPEN
 {
-    IsServer = 1;
+    IsServer = 1;    
+    int cjumps, oldcjumps;
 
     if (!GetCVar("metroid_noaircontrol"))
     {
@@ -52,8 +53,16 @@ script 550 OPEN
         ConsoleCommand("archivecvar metroid_nolevellimiter");
     }
 
+    if (!GetCVar("metroid_jumpcount"))
+    {
+        ConsoleCommand("set metroid_jumpcount 2");
+        ConsoleCommand("archivecvar metroid_jumpcount");
+    }
+
     while (1)
     {
+        if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
+
         if (GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
         else if (GetCVar("metroid_noaircontrol") == 1) { SetAirControl(0.00390625); }
 
@@ -69,11 +78,15 @@ script 550 OPEN
             if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); }
         }
 
+        oldcjumps = cjumps;
+        cjumps = GetCVar("metroid_jumpcount");
+        if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
+
         delay(1);
     }
 }
 
-script 551 OPEN clientside
+script METROID_OPEN_CLIENT OPEN clientside
 {
     if (!GetCVar("metroid_cl_noeffects"))
     {
@@ -98,7 +111,7 @@ script 551 OPEN clientside
 // MORPH BALL CAMERA SHIT
 // ========================
 
-Script 587 (int p_num)
+Script METROID_MORPHCAMERA (int p_num)
 {
     int r = MAX_R;
     
@@ -150,7 +163,7 @@ Script 587 (int p_num)
 // MORPH BALL SHIT
 // =================
 
-script 588 (int morphshit)
+script METROID_MORPHBALL (int morphshit)
 {
     int pNum = PlayerNumber();
     int CheckerTID = 1500+pNum;
@@ -232,7 +245,7 @@ script 588 (int morphshit)
     }
 }
 
-script 595 (void) NET
+script METROID_BOOSTBALL (void) NET
 {
 
     int vx, vy, vz,  mag, angle, pitch;
@@ -275,7 +288,7 @@ script 595 (void) NET
 // ENTER EXIT DEATH RESPAWN SHIT
 // ========================
 
-script 589 UNLOADING
+script METROID_UNLOADING UNLOADING
 {
     // Adjusts stats
     cam_mode[PlayerNumber ()] = OFF;
@@ -296,16 +309,18 @@ script 589 UNLOADING
     GiveInventory("BombCount",999);
 }
 
-script 590 DEATH { ACS_ExecuteAlways(589,0); }
+script METROID_DEATH DEATH { ACS_ExecuteAlways(589,0); }
 
-Script 591 (int p_num) DISCONNECT // Somehow this is different from just the Death script.
+Script METROID_DISCONNECT (int p_num) DISCONNECT // Somehow this is different from just the Death script.
 {
        cam_mode[p_num] = OFF;
        Thing_Remove (C_TID + p_num);
 }
 
-script 592 ENTER
+script METROID_ENTER ENTER
 {
+    int barhp;
+
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
 
     if (GameType () == GAME_NET_DEATHMATCH) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
@@ -338,29 +353,35 @@ script 592 ENTER
         if (GetActorProperty(0,APROP_Health) > 900) { GiveInventory("HealthOver900",1); } else { if (CheckInventory("HealthOver900") == 1) { TakeInventory("HealthOver900",1); }}
         if (GetActorProperty(0,APROP_Health) > 1000) { GiveInventory("HealthOver1000",1); } else { if (CheckInventory("HealthOver1000") == 1) { TakeInventory("HealthOver1000",1); }}
 
+        if (GetActorProperty(0, APROP_Health) >= ((CheckInventory("EnergyTankAcquired")+1) * 100)) { barHP = GetActorProperty(0, APROP_Health); }
+        else { barhp = GetActorProperty(0, APROP_Health) % 100; }
+
+        TakeInventory("PlayerTotalHealth", 0x7FFFFFFF);
+        GiveInventory("PlayerTotalHealth", min(barhp, 99));
+
         delay(1);
     }
 }
 
-script 597 ENTER clientside
+script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 {
     while (1)
     {
     if (GetActorProperty(0,APROP_HEALTH) > 0) {
         if (GetActorProperty(0,APROP_HEALTH) <= 30) {
             if (GetCvar("metroid_cl_nosiren") == 0) {
-                LocalAmbientSound("system/healthsiren",48); }}}
+                LocalAmbientSound("system/healthsiren",64); }}}
     delay(17);
     }
 }
 
-script 593 RESPAWN { ACS_ExecuteAlways(592,0); }
+script METROID_RESPAWN RESPAWN { ACS_ExecuteAlways(592,0); }
 
 
 // DECORATE CHECKS
 // =====================
 
-script 594 (int which)
+script METROID_DECORATE (int which)
 {
     switch (which)
     {
@@ -434,7 +455,7 @@ script 594 (int which)
     }
 }
 
-/*script 596 (int which) clientside
+/*script METROID_DECORATE_CLIENT (int which) clientside
 {
     switch (which)
     {

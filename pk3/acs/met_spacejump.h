@@ -23,14 +23,6 @@ function int parkmoreOnGround(int tid)
         (GetActorVelZ(tid) == 0 && !spawned));
 }
 
-/* Comment markers:
- *  :TURNING    - Turning scripts
- *  :MOVEMENT   - Wall-jumping, dodging scripts
- *  :DAEMONS    - The scripts that loop
- *  :USER       - The customisable crap
- *  :ASSORTED   - Where everything else goes
- */
-
 /* A note on 3D floors:
  *
  * The closest 3D floor above you in the sector you're in is considered the ceiling of the sector.
@@ -95,17 +87,13 @@ script METROID_TURN (int degrees, int factor, int direction) net clientside
         addDegrees = (floatDegrees - curDegrees) / factor;
         curDegrees += addDegrees;
 
-        //Log(f:floatDegrees, s:", ", f:curDegrees, s:", +", f:addDegrees);
-    /*if (!GetCVar("metroid_cl_nocamerajerk"))
-        {*/ SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360)); //}
+        SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360)); //}
         Delay(1);
     }
 
     addDegrees = floatDegrees - curDegrees;
-    /*if (!GetCVar("metroid_cl_nocamerajerk"))
-        {*/
+
     SetActorAngle(0, GetActorAngle(0) + ((addDegrees * dirMult) / 360));
-        //}
 }
 
 /*  :MOVEMENT
@@ -315,34 +303,6 @@ function void Lunge(int force)
     SetActorVelocity(0, velX, velY, velZ, 0, 1);
 }
 
-/*  :DAEMONS
- * The scripts that loop
- */
-
-script METROID_OPEN open
-{
-    if (GetCVar("metroid_jumpcount") == 0)
-    {
-        ConsoleCommand("set metroid_jumpcount 2");
-        ConsoleCommand("archivecvar metroid_jumpcount");
-    }
-
-    IsServer = 1;
-
-    int cjumps, oldcjumps;
-    
-    while (1)
-    {
-        oldcjumps = cjumps;
-        cjumps = GetCVar("metroid_jumpcount");
-
-        if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
-
-        if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
-        Delay(1);
-    }
-}
-
 function int getTimer(int pln, int which)
 {
     return playerTimers[pln][which];
@@ -381,7 +341,7 @@ function void printTimers(int pln)
     Print(s:printStr);
 }
 
-script METROID_ENTER enter
+script METROID_SPACEJUMP_ENTER enter
 {
     int pln = PlayerNumber();
     int ground, wasGround, didSpecial;
@@ -455,7 +415,7 @@ script METROID_ENTER enter
     }
 }
 
-script METROID_ENTER2 enter clientside
+script METROID_SPACEJUMP_ENTER2 enter clientside
 {
     int pln = PlayerNumber();
     int dodgeDir, pukeStr;

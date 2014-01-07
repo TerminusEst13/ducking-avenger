@@ -25,6 +25,7 @@ actor EnergyTankAcquired : Counter { Inventory.MaxAmount 10 }
 actor IceBeamChilled : Boolean {}
 actor CoopModeOn : Boolean {}
 actor NotInThisLevel : Boolean {}
+actor PlayerTotalHealth : Counter { Inventory.MaxAmount 99 }
 
 actor MorphBallActivate : CustomInventory
 {
