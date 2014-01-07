@@ -54,6 +54,114 @@ statusbar normal, forcescaled
     IsSelected "Long Beam" { drawimage "WEAPLNBM", 14, 170; }
     IsSelected "Doom Cannon" { drawimage "WEAPDMCN", 14, 170; }
     }
+    InInventory BorphMallAcquired, 1
+    {
+    drawimage "FLSCRBAR", 0, 0;
+    drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
+    InInventory EnergyTankAcquired, 1 { drawimage "FTNKEMPT", 26, 7; }
+    InInventory EnergyTankAcquired, 2 { drawimage "FTNKEMPT", 34, 7; }
+    InInventory EnergyTankAcquired, 3 { drawimage "FTNKEMPT", 42, 7; }
+    InInventory EnergyTankAcquired, 4 { drawimage "FTNKEMPT", 50, 7; }
+    InInventory EnergyTankAcquired, 5 { drawimage "FTNKEMPT", 58, 7; }
+    InInventory EnergyTankAcquired, 6 { drawimage "FTNKEMPT", 66, 7; }
+    InInventory EnergyTankAcquired, 7 { drawimage "FTNKEMPT", 74, 7; }
+    InInventory EnergyTankAcquired, 8 { drawimage "FTNKEMPT", 82, 7; }
+    InInventory EnergyTankAcquired, 9 { drawimage "FTNKEMPT", 90, 7; }
+    InInventory EnergyTankAcquired, 10 { drawimage "FTNKEMPT", 98, 7; }
+    InInventory HealthOver100, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver100, 1 { drawimage "FTNKFULL", 27, 8; }
+    InInventory HealthOver100, 1 { drawbar "FBARFUL1", "FBAREMP1", Health Health200, horizontal, -53, 15, 1; }
+    InInventory HealthOver200, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver200, 1 { drawimage "FTNKFULL", 35, 8; }
+    InInventory HealthOver200, 1 { drawbar "FBARFUL2", "FBAREMP2", Health Health300, horizontal, -131, 15, 1; }
+    InInventory HealthOver300, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver300, 1 { drawimage "FTNKFULL", 43, 8; }
+    InInventory HealthOver300, 1 { drawbar "FBARFUL3", "FBAREMP3", Health Health400, horizontal, -209, 15, 1; }
+    InInventory HealthOver400, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver400, 1 { drawimage "FTNKFULL", 51, 8; }
+    InInventory HealthOver400, 1 { drawbar "FBARFUL4", "FBAREMP4", Health Health500, horizontal, -287, 15, 1; }
+    InInventory HealthOver500, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver500, 1 { drawimage "FTNKFULL", 59, 8; }
+    InInventory HealthOver500, 1 { drawbar "FBARFUL5", "FBAREMP5", Health Health600, horizontal, -365, 15, 1; }
+    InInventory HealthOver600, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver600, 1 { drawimage "FTNKFULL", 67, 8; }
+    InInventory HealthOver600, 1 { drawbar "FBARFUL6", "FBAREMP6", Health Health700, horizontal, -443, 15, 1; }
+    InInventory HealthOver700, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver700, 1 { drawimage "FTNKFULL", 75, 8; }
+    InInventory HealthOver700, 1 { drawbar "FBARFUL7", "FBAREMP7", Health Health800, horizontal, -521, 15, 1; }
+    InInventory HealthOver800, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver800, 1 { drawimage "FTNKFULL", 83, 8; }
+    InInventory HealthOver800, 1 { drawbar "FBARFUL8", "FBAREMP8", Health Health900, horizontal, -599, 15, 1; }
+    InInventory HealthOver900, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver900, 1 { drawimage "FTNKFULL", 91, 8; }
+    InInventory HealthOver900, 1 { drawbar "FBARFUL9", "FBAREMP9", Health Health1000, horizontal, -677, 15, 1; }
+    InInventory HealthOver1000, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver1000, 1 { drawimage "FTNKFULL", 99, 8; }
+    InInventory HealthOver1000, 1 { drawbar "FBARFUL0", "FBAREMP0", Health Health1100, horizontal, -755, 15, 1; }
+    drawimage "FMISICON", 113, 5;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 135, 20;
+    IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
+                         InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
+                         InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
+    }
+}
+
+statusbar fullscreen, forcescaled
+{
+    drawimage "FLSCRBAR", 0, 0;
+    drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
+    InInventory EnergyTankAcquired, 1 { drawimage "FTNKEMPT", 26, 7; }
+    InInventory EnergyTankAcquired, 2 { drawimage "FTNKEMPT", 34, 7; }
+    InInventory EnergyTankAcquired, 3 { drawimage "FTNKEMPT", 42, 7; }
+    InInventory EnergyTankAcquired, 4 { drawimage "FTNKEMPT", 50, 7; }
+    InInventory EnergyTankAcquired, 5 { drawimage "FTNKEMPT", 58, 7; }
+    InInventory EnergyTankAcquired, 6 { drawimage "FTNKEMPT", 66, 7; }
+    InInventory EnergyTankAcquired, 7 { drawimage "FTNKEMPT", 74, 7; }
+    InInventory EnergyTankAcquired, 8 { drawimage "FTNKEMPT", 82, 7; }
+    InInventory EnergyTankAcquired, 9 { drawimage "FTNKEMPT", 90, 7; }
+    InInventory EnergyTankAcquired, 10 { drawimage "FTNKEMPT", 98, 7; }
+    InInventory HealthOver100, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver100, 1 { drawimage "FTNKFULL", 27, 8; }
+    InInventory HealthOver100, 1 { drawbar "FBARFUL1", "FBAREMP1", Health Health200, horizontal, -53, 15, 1; }
+    InInventory HealthOver200, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver200, 1 { drawimage "FTNKFULL", 35, 8; }
+    InInventory HealthOver200, 1 { drawbar "FBARFUL2", "FBAREMP2", Health Health300, horizontal, -131, 15, 1; }
+    InInventory HealthOver300, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver300, 1 { drawimage "FTNKFULL", 43, 8; }
+    InInventory HealthOver300, 1 { drawbar "FBARFUL3", "FBAREMP3", Health Health400, horizontal, -209, 15, 1; }
+    InInventory HealthOver400, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver400, 1 { drawimage "FTNKFULL", 51, 8; }
+    InInventory HealthOver400, 1 { drawbar "FBARFUL4", "FBAREMP4", Health Health500, horizontal, -287, 15, 1; }
+    InInventory HealthOver500, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver500, 1 { drawimage "FTNKFULL", 59, 8; }
+    InInventory HealthOver500, 1 { drawbar "FBARFUL5", "FBAREMP5", Health Health600, horizontal, -365, 15, 1; }
+    InInventory HealthOver600, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver600, 1 { drawimage "FTNKFULL", 67, 8; }
+    InInventory HealthOver600, 1 { drawbar "FBARFUL6", "FBAREMP6", Health Health700, horizontal, -443, 15, 1; }
+    InInventory HealthOver700, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver700, 1 { drawimage "FTNKFULL", 75, 8; }
+    InInventory HealthOver700, 1 { drawbar "FBARFUL7", "FBAREMP7", Health Health800, horizontal, -521, 15, 1; }
+    InInventory HealthOver800, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver800, 1 { drawimage "FTNKFULL", 83, 8; }
+    InInventory HealthOver800, 1 { drawbar "FBARFUL8", "FBAREMP8", Health Health900, horizontal, -599, 15, 1; }
+    InInventory HealthOver900, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver900, 1 { drawimage "FTNKFULL", 91, 8; }
+    InInventory HealthOver900, 1 { drawbar "FBARFUL9", "FBAREMP9", Health Health1000, horizontal, -677, 15, 1; }
+    InInventory HealthOver1000, 1 { drawimage "FBAREMPT", 25, 15; }
+    InInventory HealthOver1000, 1 { drawimage "FTNKFULL", 99, 8; }
+    InInventory HealthOver1000, 1 { drawbar "FBARFUL0", "FBAREMP0", Health Health1100, horizontal, -755, 15, 1; }
+    drawimage "FMISICON", 113, 5;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 135, 20;
+    IsSelected "Power Beam" { drawimage "WPFSPWBM", 254, 4; }
+    IsSelected "Spazer Beam" { drawimage "WPFSSPBM", 254, 4; }
+    IsSelected "Wave Beam" { drawimage "WPFSWVBM", 254, 4; }
+    IsSelected "Plasma Beam" { drawimage "WPFSPLBM", 254, 4; }
+    IsSelected "Ice Beam" { drawimage "WPFSICBM", 254, 4; }
+    IsSelected "Long Beam" { drawimage "WPFSLNBM", 254, 4; }
+    IsSelected "Doom Cannon" { drawimage "WPFSDMCN", 254, 4; }
+    IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
+                         InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
+                         InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
 }
 
 statusbar automap, forcescaled
