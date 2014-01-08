@@ -13,7 +13,6 @@
 #define METROID_LONG_BURST                   456
 #define METROID_LONG_TRAIL                   459
 #define METROID_LONG_COORDSHIT               468
-#define METROID_LONG_SERVERSHIT              469
 
 #define METROID_OPEN_CLIENT                  551
 #define METROID_MORPHCAMERA                  587
