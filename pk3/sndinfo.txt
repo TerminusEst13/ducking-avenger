@@ -143,3 +143,9 @@ health/100              HEALF100
 weapon/get              WEAPGET // Taken from Metroid Prime
 nrgtank/get             ENRGTANK // Taken from Metroid Prime 3
 cannon/get              DCANNGET
+
+
+
+
+// Enemies
+pirate/shot             PIRTSHOT

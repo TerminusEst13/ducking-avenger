@@ -9,9 +9,9 @@ GRAPHICS:
 =========
 - Zrrion the Insect (Drew the base arm cannon sprite)
 - Voltlock (Ripped the graphics for the Power Beam's blasts)
-- Rogue Entertainment (The base of the Missile's sprites)
+- Rogue Entertainment (The base of the Missile's sprites, from Strife)
 - Ijon Tichy (For the smoke trails for the Missile, the numbers and some punctuation of the smallfont)
-- Aeons of Death (For the explosion graphics)
+- Aeons of Death (For the Missile explosion graphics)
 - FixedSys/Terminal/JACKIE (Spliced and pieced together to form the Smallfont)
 - SF Square Head (A modified version for the BigFont)
 - Blue Shadow (Converting the BigFont to a lump file)
@@ -19,6 +19,9 @@ GRAPHICS:
 - Enterbrain (Plasma Beam/Ice Beam particles)
 - Bearborg (Ripping the Metroid Prime HUD)
 - Rundas45 (The basis of the fullscreen HUD)
+- Eriance (Spazer Beam particles)
+- Id Software (Bomb explode animation, from Doom 3)
+- PillowBlaster (Space Pirate shots)
 
 SOUNDS:
 =========
