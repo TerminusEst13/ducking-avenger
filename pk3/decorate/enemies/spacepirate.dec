@@ -80,10 +80,10 @@ ACTOR SpacePirate 17010
         Goto See
     Death:
         TNT1 A 0
-        PIRT G 8 A_Scream
-        PIRT H 8
-        PIRT I 8 A_NoBlocking
-        PIRT J 8
+        PIRT G 6 A_Scream
+        PIRT H 6
+        PIRT I 6 A_NoBlocking
+        PIRT J 6
         PIRT K -1
         stop
     Death.Missile:
