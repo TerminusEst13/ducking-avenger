@@ -12,7 +12,7 @@ menu/dismiss         MENUDSMS // Dismiss a prompt. - Taken from Metroid Prime 3
 menu/invalid         MENUFAIL // Menu not available. - Taken from Metroid Prime
 
 // Samus Aran
-$playeralias      Hunter   male    *death          QUIET
+$playersound      Hunter   male    *death          SAMDEATH
 $playersounddup   Hunter   male    *xdeath         *death
 $playersounddup   Hunter   male    *burndeath      *death
 $playersounddup   Hunter   male    *crazydeath     *death
@@ -149,3 +149,9 @@ cannon/get              DCANNGET
 
 // Enemies
 pirate/shot             PIRTSHOT
+pirate/hit              PIRTHIT
+pirate/land             PIRTLAND // Taken from Painkiller
+pirate/see              PIRTSEE // Taken from Painkiller
+pirate/pain             PIRTPAIN // Taken from Painkiller
+pirate/death            PIRTDETH // Taken from Painkiller
+pirate/idle             PIRTIDLE // Taken from Painkiller
