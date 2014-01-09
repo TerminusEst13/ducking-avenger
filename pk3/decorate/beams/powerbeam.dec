@@ -219,7 +219,7 @@ actor PowerBolt : FastProjectile
     Height 2
     Projectile
     Speed 100
-    Damage (15)
+    Damage (10)
     Scale 0.75
     RenderStyle Add
     Alpha 0.85
