@@ -23,7 +23,7 @@ actor Energy10 : Health replaces Stimpack
     Inventory.PickupSound "health/10"
     Renderstyle Add
     Alpha 0.975
-    Scale 0.75
+    Scale 0.7
     +NOGRAVITY
     States
     {
@@ -52,20 +52,20 @@ actor Energy25 : Health replaces Medikit
     }
 }
 
-actor Energy50 : Health replaces Soulsphere
+actor Energy100 : Health replaces Soulsphere
 {
     Inventory.Amount 100
     Inventory.PickupMessage "Picked up a greater energy capsule."
     Inventory.PickupSound "health/50"
     Renderstyle Add
-    Scale 1.25
+    Scale 1.5
     Alpha 0.975
     +NOGRAVITY
     States
     {
     Spawn:
-        NRGC ABCD 4 BRIGHT
-        NRGC ABCD 4
+        NRGD ABCD 4 BRIGHT
+        NRGD ABCD 4
         loop
     }
 }
