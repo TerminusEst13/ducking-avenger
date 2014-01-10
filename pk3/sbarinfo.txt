@@ -1,48 +1,49 @@
 statusbar normal, forcescaled
 {
-    InInventory not BorphMallAcquired, 1
+InInventory not BorphMallAcquired, 1
     {
     drawimage "samvisor", 0, 0;
+    drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 97, 25;
     drawbar "SAMHFULL", "SAMHEMPT", Health Health100, horizontal, 101, 24, 1;
-    InInventory EnergyTankAcquired, 1 { drawimage "ETNKEMPT", 124, 20; }
-    InInventory EnergyTankAcquired, 2 { drawimage "ETNKEMPT", 132, 20; }
-    InInventory EnergyTankAcquired, 3 { drawimage "ETNKEMPT", 140, 20; }
-    InInventory EnergyTankAcquired, 4 { drawimage "ETNKEMPT", 148, 20; }
-    InInventory EnergyTankAcquired, 5 { drawimage "ETNKEMPT", 156, 20; }
-    InInventory EnergyTankAcquired, 6 { drawimage "ETNKEMPT", 164, 20; }
-    InInventory EnergyTankAcquired, 7 { drawimage "ETNKEMPT", 172, 20; }
-    InInventory EnergyTankAcquired, 8 { drawimage "ETNKEMPT", 180, 20; }
-    InInventory EnergyTankAcquired, 9 { drawimage "ETNKEMPT", 188, 20; }
-    InInventory EnergyTankAcquired, 10 { drawimage "ETNKEMPT", 196, 20; }
+    InInventory EnergyTankAcquired, 1 { drawimage "ETNKEMPT", 123, 20; }
+    InInventory EnergyTankAcquired, 2 { drawimage "ETNKEMPT", 131, 20; }
+    InInventory EnergyTankAcquired, 3 { drawimage "ETNKEMPT", 139, 20; }
+    InInventory EnergyTankAcquired, 4 { drawimage "ETNKEMPT", 147, 20; }
+    InInventory EnergyTankAcquired, 5 { drawimage "ETNKEMPT", 155, 20; }
+    InInventory EnergyTankAcquired, 6 { drawimage "ETNKEMPT", 163, 20; }
+    InInventory EnergyTankAcquired, 7 { drawimage "ETNKEMPT", 171, 20; }
+    InInventory EnergyTankAcquired, 8 { drawimage "ETNKEMPT", 179, 20; }
+    InInventory EnergyTankAcquired, 9 { drawimage "ETNKEMPT", 187, 20; }
+    InInventory EnergyTankAcquired, 10 { drawimage "ETNKEMPT", 195, 20; }
     InInventory HealthOver100, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver100, 1 { drawimage "ETNKFULL", 124, 20; }
+    InInventory HealthOver100, 1 { drawimage "ETNKFULL", 123, 20; }
     InInventory HealthOver100, 1 { drawbar "SAMHFUL2", "SAMHEMP2", Health Health200, horizontal, -18, 24, 1; }
     InInventory HealthOver200, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver200, 1 { drawimage "ETNKFULL", 132, 20; }
+    InInventory HealthOver200, 1 { drawimage "ETNKFULL", 131, 20; }
     InInventory HealthOver200, 1 { drawbar "SAMHFUL3", "SAMHEMP3", Health Health300, horizontal, -137, 24, 1; }
     InInventory HealthOver300, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver300, 1 { drawimage "ETNKFULL", 140, 20; }
+    InInventory HealthOver300, 1 { drawimage "ETNKFULL", 139, 20; }
     InInventory HealthOver300, 1 { drawbar "SAMHFUL4", "SAMHEMP4", Health Health400, horizontal, -256, 24, 1; }
     InInventory HealthOver400, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver400, 1 { drawimage "ETNKFULL", 148, 20; }
+    InInventory HealthOver400, 1 { drawimage "ETNKFULL", 147, 20; }
     InInventory HealthOver400, 1 { drawbar "SAMHFUL5", "SAMHEMP5", Health Health500, horizontal, -375, 24, 1; }
     InInventory HealthOver500, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver500, 1 { drawimage "ETNKFULL", 156, 20; }
+    InInventory HealthOver500, 1 { drawimage "ETNKFULL", 155, 20; }
     InInventory HealthOver500, 1 { drawbar "SAMHFUL6", "SAMHEMP6", Health Health600, horizontal, -494, 24, 1; }
     InInventory HealthOver600, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver600, 1 { drawimage "ETNKFULL", 164, 20; }
+    InInventory HealthOver600, 1 { drawimage "ETNKFULL", 163, 20; }
     InInventory HealthOver600, 1 { drawbar "SAMHFUL7", "SAMHEMP7", Health Health700, horizontal, -613, 24, 1; }
     InInventory HealthOver700, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver700, 1 { drawimage "ETNKFULL", 172, 20; }
+    InInventory HealthOver700, 1 { drawimage "ETNKFULL", 171, 20; }
     InInventory HealthOver700, 1 { drawbar "SAMHFUL8", "SAMHEMP8", Health Health800, horizontal, -732, 24, 1; }
     InInventory HealthOver800, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver800, 1 { drawimage "ETNKFULL", 180, 20; }
+    InInventory HealthOver800, 1 { drawimage "ETNKFULL", 179, 20; }
     InInventory HealthOver800, 1 { drawbar "SAMHFUL9", "SAMHEMP9", Health Health900, horizontal, -851, 24, 1; }
     InInventory HealthOver900, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver900, 1 { drawimage "ETNKFULL", 188, 20; }
+    InInventory HealthOver900, 1 { drawimage "ETNKFULL", 187, 20; }
     InInventory HealthOver900, 1 { drawbar "SAMHFUL0", "SAMHEMP0", Health Health1000, horizontal, -970, 24, 1; }
     InInventory HealthOver1000, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver1000, 1 { drawimage "ETNKFULL", 196, 20; }
+    InInventory HealthOver1000, 1 { drawimage "ETNKFULL", 195, 20; }
     InInventory HealthOver1000, 1 { drawbar "SAMHFULX", "SAMHEMPX", Health Health1100, horizontal, -1089, 24, 1; }
     drawimage "missicon", 280, 165;
     drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 178;
@@ -53,8 +54,18 @@ statusbar normal, forcescaled
     IsSelected "Ice Beam" { drawimage "WEAPICBM", 14, 170; }
     IsSelected "Long Beam" { drawimage "WEAPLNBM", 14, 170; }
     IsSelected "Doom Cannon" { drawimage "WEAPDMCN", 14, 170; }
+
+    gamemode cooperative, singleplayer
+    {
+    InInventory RedCard, 1 { drawimage "RKEYICON", 148, 186; }
+    InInventory BlueCard, 1 { drawimage "BKEYICON", 160, 186; }
+    InInventory YellowCard, 1 { drawimage "YKEYICON", 172, 186; }
+    InInventory RedSkull, 1 { drawimage "RSKUICON", 148, 193; }
+    InInventory BlueSkull, 1 { drawimage "BSKUICON", 160, 193; }
+    InInventory YellowSkull, 1 { drawimage "YSKUICON", 172, 193; }
     }
-    InInventory BorphMallAcquired, 1
+    }
+InInventory BorphMallAcquired, 1
     {
     drawimage "FLSCRBAR", 0, 0;
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
@@ -104,7 +115,15 @@ statusbar normal, forcescaled
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
-    }
+gamemode cooperative, singleplayer
+    {
+    InInventory RedCard, 1 { drawimage "RKEYICON", 294, 4; }
+    InInventory BlueCard, 1 { drawimage "BKEYICON", 292, 10; }
+    InInventory YellowCard, 1 { drawimage "YKEYICON", 290, 16; }
+    InInventory RedSkull, 1 { drawimage "RSKUICON", 296, 5; }
+    InInventory BlueSkull, 1 { drawimage "BSKUICON", 294, 11; }
+    InInventory YellowSkull, 1 { drawimage "YSKUICON", 292, 17; }
+    }}
 }
 
 statusbar fullscreen, forcescaled
@@ -164,6 +183,15 @@ statusbar fullscreen, forcescaled
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
+gamemode cooperative, singleplayer
+    {
+    InInventory RedCard, 1 { drawimage "RKEYICON", 294, 4; }
+    InInventory BlueCard, 1 { drawimage "BKEYICON", 292, 10; }
+    InInventory YellowCard, 1 { drawimage "YKEYICON", 290, 16; }
+    InInventory RedSkull, 1 { drawimage "RSKUICON", 296, 5; }
+    InInventory BlueSkull, 1 { drawimage "BSKUICON", 294, 11; }
+    InInventory YellowSkull, 1 { drawimage "YSKUICON", 292, 17; }
+    }
 }
 
 statusbar automap, forcescaled
