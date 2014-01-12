@@ -35,9 +35,16 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"FireChilled")
         TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
         TNT1 A 0 A_Recoil(0.05)
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"FireCoop")
         TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
+        goto FireFinish
+    FireCoop:
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1Coop",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3Coop",1,0,12,-2,0,0)
+    FireFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -53,9 +60,16 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
     FireChilled:
         TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
         TNT1 A 0 A_Recoil(0.05)
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"ChilledCoop")
         TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
+        goto ChilledFinish
+    ChilledCoop:
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1Coop",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3Coop",1,0,12,-2,0,0)
+    ChilledFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         SBEM B 2 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -91,9 +105,16 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_PlayWeaponSound("sbeam/fire")
         TNT1 A 0 A_Recoil(0.05)
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"UnholdCoop")
         TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
+        goto UnholdFinish
+    UnholdCoop:
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1Coop",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3Coop",1,0,12,-2,0,0)
+    UnholdFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -159,6 +180,7 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_Recoil(2)
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"ChargedCoop")
         TNT1 A 0 A_FireCustomMissile("SpazerBolt1",-1,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBolt3",1,0,12,-2,0,0)
@@ -168,6 +190,18 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged4",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged5",-1,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged6",1,0,12,-2,0,0)
+        goto ChargedFinish
+    ChargedCoop:
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt1Coop",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt2Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBolt3Coop",1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged1Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged2Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged3Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged4Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged5Coop",-1,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerBoltCharged6Coop",1,0,12,-2,0,0)
+    ChargedFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         SBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -194,7 +228,12 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_Recoil(2)
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"AltFireCoop")
         TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+        goto AltFireFinish
+    AltFireCoop:
+        TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,1,12,-2,0,0)
+    AltFireFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         SBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -262,6 +301,8 @@ actor SpazerBolt1
     }
 }
 
+actor SpazerBolt1Coop : SpazerBolt1 { Damage (20) }
+
 actor SpazerBolt2 : SpazerBolt1
 {
     States
@@ -272,6 +313,8 @@ actor SpazerBolt2 : SpazerBolt1
         goto Spawn1
     }
 }
+
+actor SpazerBolt2Coop : SpazerBolt2 { Damage (20) }
 
 actor SpazerBolt3 : SpazerBolt1
 {
@@ -285,6 +328,8 @@ actor SpazerBolt3 : SpazerBolt1
         goto Spawn1
     }
 }
+
+actor SpazerBolt3Coop : SpazerBolt3 { Damage (20) }
 
 actor SpazerTrail
 { 
@@ -482,6 +527,8 @@ actor SpazerBoltCharged1 : SpazerBolt1
     }
 }
 
+actor SpazerBoltCharged1Coop : SpazerBoltCharged1 { Damage (20) }
+
 actor SpazerBoltCharged2 : SpazerBolt1
 {
     States
@@ -494,6 +541,8 @@ actor SpazerBoltCharged2 : SpazerBolt1
         goto Spawn1
     }
 }
+
+actor SpazerBoltCharged2Coop : SpazerBoltCharged2 { Damage (20) }
 
 actor SpazerBoltCharged3 : SpazerBolt1
 {
@@ -508,6 +557,8 @@ actor SpazerBoltCharged3 : SpazerBolt1
     }
 }
 
+actor SpazerBoltCharged3Coop : SpazerBoltCharged3 { Damage (20) }
+
 actor SpazerBoltCharged4 : SpazerBolt1
 {
     States
@@ -520,6 +571,8 @@ actor SpazerBoltCharged4 : SpazerBolt1
         goto Spawn1
     }
 }
+
+actor SpazerBoltCharged4Coop : SpazerBoltCharged4 { Damage (20) }
 
 actor SpazerBoltCharged5 : SpazerBolt1
 {
@@ -534,6 +587,8 @@ actor SpazerBoltCharged5 : SpazerBolt1
     }
 }
 
+actor SpazerBoltCharged5Coop : SpazerBoltCharged5 { Damage (20) }
+
 actor SpazerBoltCharged6 : SpazerBolt1
 {
     States
@@ -546,3 +601,5 @@ actor SpazerBoltCharged6 : SpazerBolt1
         goto Spawn1
     }
 }
+
+actor SpazerBoltCharged6Coop : SpazerBoltCharged6 { Damage (20) }

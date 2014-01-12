@@ -35,10 +35,11 @@ actor BlankPuff
 actor CameraDummy
 {
     +NOINTERACTION
+    +NOCLIP
     +CLIENTSIDEONLY
     
-    Radius 8
-    Height 8
+    Radius 1
+    Height 1
 
     States
     {
@@ -97,9 +98,10 @@ actor SpaceChecker
 
 actor ChaseCam
 {
-    Height 16
-    Radius 8
+    Height 1
+    Radius 1
     +NOGRAVITY +NOBLOCKMAP
+    +NOCLIP
     +NOINTERACTION
     +CLIENTSIDEONLY
     states

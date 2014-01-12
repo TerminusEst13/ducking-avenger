@@ -28,6 +28,8 @@ ACTOR PowerMissile
     }
 }
 
+actor PowerMissileCoop : PowerMissile { Species "Player" +THRUSPECIES }
+
 actor MissileTrail
 {
     RenderStyle Add
