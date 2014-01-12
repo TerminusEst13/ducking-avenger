@@ -196,6 +196,8 @@ script METROID_MORPHBALL (int morphshit)
         Thing_Remove(newTID);
         SetActorVelocity(0, velx,vely,velz, 0,0);
 
+        if (isSinglePlayer() || isCoop()) { SetActorState(0,"CoopModeOn"); }
+
         // Transfer health and give inventory.
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
         GiveInventory("BorphMallAcquired", 1);
@@ -324,7 +326,7 @@ script METROID_ENTER ENTER
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
 
     if (GameType () == GAME_NET_DEATHMATCH) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
-    if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); }}
+    if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
     ACS_ExecuteAlways(351,0,0,0);
@@ -375,7 +377,24 @@ script METROID_BWEEBWEEBWEEBWEE ENTER clientside
     }
 }
 
-script METROID_RESPAWN RESPAWN { ACS_ExecuteAlways(592,0); }
+script METROID_RESPAWN RESPAWN
+{
+    ACS_ExecuteAlways(592,0);
+
+    if (isSinglePlayer() || isCoop()) // This shouldn't ever matter in any PvP modes, since their inventory resets on death, but just in case.
+    {
+        if (CheckInventory("EnergyTankAcquired") == 1) { SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
+        if (CheckInventory("EnergyTankAcquired") == 2) { SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
+        if (CheckInventory("EnergyTankAcquired") == 3) { SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
+        if (CheckInventory("EnergyTankAcquired") == 4) { SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
+        if (CheckInventory("EnergyTankAcquired") == 5) { SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
+        if (CheckInventory("EnergyTankAcquired") == 6) { SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
+        if (CheckInventory("EnergyTankAcquired") == 7) { SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
+        if (CheckInventory("EnergyTankAcquired") == 8) { SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
+        if (CheckInventory("EnergyTankAcquired") == 9) { SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
+        if (CheckInventory("EnergyTankAcquired") == 10) { SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
+    }
+}
 
 
 // DECORATE CHECKS
@@ -451,6 +470,10 @@ script METROID_DECORATE (int which)
 
     case 7:
         if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("NotInThisLevel",1); }
+        break;
+
+    case 8:
+        SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*1/2)); // 50% of the current monster's speed. Stackable.
         break;
     }
 }
