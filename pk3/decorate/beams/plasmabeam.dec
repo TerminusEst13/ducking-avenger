@@ -14,6 +14,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
+    +NOAUTOAIM
     States
     {
     Spawn:

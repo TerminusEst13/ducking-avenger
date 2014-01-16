@@ -15,6 +15,7 @@ ACTOR "Doom Cannon" : Weapon
     +NOALERT
     +CHEATNOTWEAPON
     +FLOATBOB
+    +NOAUTOAIM
     Decal BulletChip
     States
     {

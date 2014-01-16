@@ -12,6 +12,7 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
+    +NOAUTOAIM
     States
     {
     Spawn:
@@ -301,7 +302,7 @@ actor SpazerBolt1
     }
 }
 
-actor SpazerBolt1Coop : SpazerBolt1 { Damage (20) }
+actor SpazerBolt1Coop : SpazerBolt1 { Damage (15) }
 
 actor SpazerBolt2 : SpazerBolt1
 {

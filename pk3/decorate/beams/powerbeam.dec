@@ -16,6 +16,7 @@ ACTOR "Power Beam" : Weapon
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
+    +NOAUTOAIM
     States
     {
     Spawn:

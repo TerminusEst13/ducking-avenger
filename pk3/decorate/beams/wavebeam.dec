@@ -12,6 +12,7 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
     +NOALERT
+    +NOAUTOAIM
     States
     {
     Spawn:
