@@ -1,0 +1,19 @@
+episode METTEST
+{
+    name = "Shitty Test Map"
+}
+
+map METTEST "Test Map"
+{
+    next = "METTEST"
+    music = "M_TEST" // Kenji Yamamoto - Brinstar
+}
+
+map TITLEMAP "Carcosa Biomedical Research"
+{
+    next = "TITLEMAP"
+    SKY1 = "HEXSKY1A", 1.5
+    SKY2 = "HEXSKY1B", 1.5
+    Lightning
+    SmoothLighting
+}
