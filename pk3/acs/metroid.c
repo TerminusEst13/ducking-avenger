@@ -105,6 +105,12 @@ script METROID_OPEN_CLIENT OPEN clientside
         ConsoleCommand("set metroid_cl_nosiren 0");
         ConsoleCommand("archivecvar metroid_cl_nosiren");
     }
+
+    if (!GetCVar("metroid_cl_nomorphcamera"))
+    {
+        ConsoleCommand("set metroid_cl_nomorphcamera 0");
+        ConsoleCommand("archivecvar metroid_cl_nomorphcamera");
+    }
 }
 
 
@@ -211,8 +217,9 @@ script METROID_MORPHBALL (int morphshit)
         playerOnFoot[pNum] = 1;
 
         // And set the camera
-        cam_mode[PlayerNumber ()] = ON;
-        ACS_ExecuteAlways (587, 0, PlayerNumber ());
+        if (GetCvar("metroid_cl_nomorphcamera") == 0)
+        { cam_mode[PlayerNumber ()] = ON;
+        ACS_ExecuteAlways (587, 0, PlayerNumber ()); }
         ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         break;
 
