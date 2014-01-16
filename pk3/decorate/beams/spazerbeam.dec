@@ -275,6 +275,7 @@ actor SpazerBolt1
     Projectile
     ReactionTime 9
     +NOGRAVITY
+    +PAINLESS
     Speed 60
     Damage (25)
     Scale 0.5
@@ -302,10 +303,11 @@ actor SpazerBolt1
     }
 }
 
-actor SpazerBolt1Coop : SpazerBolt1 { Damage (15) }
+actor SpazerBolt1Coop : SpazerBolt1 { Damage (15) Species "Player" +THRUSPECIES }
 
 actor SpazerBolt2 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -315,7 +317,7 @@ actor SpazerBolt2 : SpazerBolt1
     }
 }
 
-actor SpazerBolt2Coop : SpazerBolt2 { Damage (20) }
+actor SpazerBolt2Coop : SpazerBolt2 { Damage (15) Species "Player" +THRUSPECIES }
 
 actor SpazerBolt3 : SpazerBolt1
 {
@@ -330,7 +332,7 @@ actor SpazerBolt3 : SpazerBolt1
     }
 }
 
-actor SpazerBolt3Coop : SpazerBolt3 { Damage (20) }
+actor SpazerBolt3Coop : SpazerBolt3 { Damage (15) Species "Player" +THRUSPECIES }
 
 actor SpazerTrail
 { 
@@ -517,6 +519,7 @@ actor SpazerBeamCharging7 : SpazerBeamCharging1 { scale 0.15 }
 
 actor SpazerBoltCharged1 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -528,10 +531,11 @@ actor SpazerBoltCharged1 : SpazerBolt1
     }
 }
 
-actor SpazerBoltCharged1Coop : SpazerBoltCharged1 { Damage (20) }
+actor SpazerBoltCharged1Coop : SpazerBoltCharged1 { Damage (20) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged2 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -543,10 +547,11 @@ actor SpazerBoltCharged2 : SpazerBolt1
     }
 }
 
-actor SpazerBoltCharged2Coop : SpazerBoltCharged2 { Damage (20) }
+actor SpazerBoltCharged2Coop : SpazerBoltCharged2 { Damage (20) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged3 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -558,10 +563,11 @@ actor SpazerBoltCharged3 : SpazerBolt1
     }
 }
 
-actor SpazerBoltCharged3Coop : SpazerBoltCharged3 { Damage (20) }
+actor SpazerBoltCharged3Coop : SpazerBoltCharged3 { Damage (20) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged4 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -573,10 +579,11 @@ actor SpazerBoltCharged4 : SpazerBolt1
     }
 }
 
-actor SpazerBoltCharged4Coop : SpazerBoltCharged4 { Damage (20) }
+actor SpazerBoltCharged4Coop : SpazerBoltCharged4 { Damage (20) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged5 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -588,10 +595,11 @@ actor SpazerBoltCharged5 : SpazerBolt1
     }
 }
 
-actor SpazerBoltCharged5Coop : SpazerBoltCharged5 { Damage (20) }
+actor SpazerBoltCharged5Coop : SpazerBoltCharged5 { Damage (20) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged6 : SpazerBolt1
 {
+    -PAINLESS
     States
     {
     Spawn:
@@ -603,4 +611,4 @@ actor SpazerBoltCharged6 : SpazerBolt1
     }
 }
 
-actor SpazerBoltCharged6Coop : SpazerBoltCharged6 { Damage (20) }
+actor SpazerBoltCharged6Coop : SpazerBoltCharged6 { Damage (20) Species "Player" +THRUSPECIES  }
