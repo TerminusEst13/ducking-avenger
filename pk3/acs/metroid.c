@@ -213,6 +213,7 @@ script METROID_MORPHBALL (int morphshit)
         // And set the camera
         cam_mode[PlayerNumber ()] = ON;
         ACS_ExecuteAlways (587, 0, PlayerNumber ());
+        ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         break;
 
     case 1:
@@ -240,6 +241,7 @@ script METROID_MORPHBALL (int morphshit)
 
         ACS_ExecuteAlways(352,0,0,0);
         ACS_ExecuteAlways(351,0,0,0);
+        ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         }
         else
         { ActivatorSound("morphball/denied", 127); }
@@ -380,6 +382,7 @@ script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 script METROID_RESPAWN RESPAWN
 {
     ACS_ExecuteAlways(592,0);
+    ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
 
     if (isSinglePlayer() || isCoop()) // This shouldn't ever matter in any PvP modes, since their inventory resets on death, but just in case.
     {
