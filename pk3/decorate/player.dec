@@ -101,6 +101,7 @@ actor SamusPlayer : PlayerPawn
     RadiusDamageFactor 0.75
     Player.ColorRange 112, 127
     +NOSKIN
+    +NOBLOOD
     -THRUSPECIES
     -DONTBLAST
     Species "Player"

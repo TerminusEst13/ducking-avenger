@@ -17,6 +17,7 @@ actor MorphBallPlayer : PlayerPawn
     -PICKUP
     +NOSKIN
     +DOOMBOUNCE
+    +NOBLOOD
     -THRUSPECIES
     -DONTBLAST
     Species "Player"
@@ -189,7 +190,6 @@ ACTOR MorphBallBomb
     +NOGRAVITY
     -SOLID
     +NOCLIP
-    +NOBLOOD
     DamageType "Bomb"
     States
     {
