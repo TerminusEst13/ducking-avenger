@@ -250,6 +250,7 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere//replaces Berserk
 {
     Inventory.PickupMessage "ENERGY TANK: ACQUIRED"
     Inventory.PickupSound "nrgtank/get"
+    Inventory.RespawnTics 4200
     +AUTOACTIVATE
     +NOGRAVITY
     +FLOATBOB
