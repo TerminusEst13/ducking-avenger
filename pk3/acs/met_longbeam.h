@@ -4,7 +4,6 @@
 // LONG BEAM SHIT
 // ==================
 
-#define TRAILCOUNT 3
 //int TrailItems[TRAILCOUNT]     = {"LasgunBurstItem", "LascannonBurstItem", "SuperNoclipBurstItem"};
 int TrailStarts[TRAILCOUNT]    = {24, 24, 16};
 int TrailDensities[TRAILCOUNT] = {24, 24, 16};
