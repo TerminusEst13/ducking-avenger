@@ -1,0 +1,8 @@
+map TITLEMAP "Title Map"
+{
+    next = "TITLEMAP"
+    SKY1 = "HEXSKY1A", 1.5
+    SKY2 = "HEXSKY1B", 1.5
+    Lightning
+    SmoothLighting
+}
