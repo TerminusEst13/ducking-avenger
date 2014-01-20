@@ -1,0 +1,52 @@
+SPECIAL THANKS TO:
+=========
+- Nintendo (For creating the Metroid series in the first place)
+- id Software (For creating Doom and the idtech1 engine)
+- Graf Zahl, Randy Heit (For the ZDoom/GZDoom engine)
+- Torr Samaho and the Zandronum team (For picking up where Skulltag left off)
+
+GRAPHICS:
+=========
+- Rundas45 (Samus' gunship)
+
+SOUNDS:
+=========
+- Tormentor667 (Some thunder noises)
+- Hexen: Beyond Heretic (Some thunder noises)
+- The General Series 6000 (Some thunder noises)
+
+TEXTURES:
+==========
+- BRINROCK (From Super Metroid, enhanced by TerminusEst13)
+- LABFLOOR (From Zero Mission, enhanced by TerminusEst13)
+- TECHGRID (Metroid Prime: Hunters)
+- GREYROCK (Metroid Prime: Hunters)
+- POREROCK (Metroid Prime: Hunters)
+- BLUEROCK (Metroid Prime: Hunters)
+- GRATEMPT (Metroid Prime)
+- GRATFULL (Metroid Prime)
+- LITEROWS (Metroid Prime)
+- LITEROW2 (Metroid Prime)
+- TEXTMETL (Hi-Res Minecraft Pack by Misa)
+- METMETL1 (Metroid Prime)
+- METMETL2 (Metroid Prime)
+- METMETL3 (Metroid Prime)
+- METMETL4 (Metroid Prime)
+- METMETL5 (Metroid Prime)
+- METMETL6 (Metroid Prime)
+- METMETL7 (Metroid Prime)
+- BLAKROCK (Metroid Prime)
+- ICETOP (Metroid Prime)
+- BLAKROCK (Metroid Prime)
+- METDIRT (Metroid Prime)
+- METGRAVL (Metroid Prime)
+- METSAND (Metroid Prime)
+- SANDBLOK (Metroid Prime)
+- SANDBRIK (Metroid Prime)
+- METSNOW (Metroid Prime)
+- STONBLOK (Metroid Prime)
+- STONBRIK (Metroid Prime)
+- HEXSKY1A (Hexen: Beyond Heretic)
+- HEXSKY1B (Hexen: Beyond Heretic)
+- HAZARDVH (Duke Nukem 3D)
+- HAZARDVV (Duke Nukem 3D)

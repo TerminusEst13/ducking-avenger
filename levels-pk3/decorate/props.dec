@@ -1,0 +1,16 @@
+actor SamusGunship 17830
+{
+    Radius 128
+    Height 96
+    +FLOATBOB
+    +SOLID
+    +NOGRAVITY
+    -SHOOTABLE
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        GSHP A -1
+        stop
+    }
+}
