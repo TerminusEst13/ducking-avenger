@@ -217,10 +217,10 @@ script METROID_MORPHBALL (int morphshit)
         playerOnFoot[pNum] = 1;
 
         // And set the camera
-        if (GetCvar("metroid_cl_nomorphcamera") == 0)
+        if (GetCvar("metroid_cl_morphcamera") == 0)
         { cam_mode[PlayerNumber ()] = ON;
         ACS_ExecuteAlways (587, 0, PlayerNumber ()); }
-        if (GetCvar("metroid_cl_nomorphcamera") == 1)
+        if (GetCvar("metroid_cl_morphcamera") == 1)
         { ConsoleCommand("chase"); }
         ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         break;
@@ -247,7 +247,7 @@ script METROID_MORPHBALL (int morphshit)
         cam_mode[PlayerNumber ()] = OFF;
         Thing_Remove (C_TID + PlayerNumber ());
         Thing_Remove(CheckerTID);
-        if (GetCvar("metroid_cl_nomorphcamera") == 1)
+        if (GetCvar("metroid_cl_morphcamera") == 1)
         { ConsoleCommand("chase"); }
 
         ACS_ExecuteAlways(352,0,0,0);
@@ -310,7 +310,7 @@ script METROID_UNLOADING UNLOADING
     Thing_Remove (C_TID + PlayerNumber ());
     SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
     SetActorProperty(0,APROP_SPEED,1.00);
-    if (CheckInventory("BorphMallAcquired")) { ConsoleCommand("chase"); }
+    if (CheckInventory("BorphMallAcquired")) { if (GetCvar("metroid_cl_morphcamera") == 1) { ConsoleCommand("chase"); }}
 
     // Adjusts inventory
     TakeInventory("BorphMallAcquired",999);
