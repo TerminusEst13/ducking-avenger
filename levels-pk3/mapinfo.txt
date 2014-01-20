@@ -1,26 +1,22 @@
-episode METTEST
-{
-    name = "Shitty Test Map"
-}
-
 episode METINTRO
 {
     name = "Metroid: Dreadnought"
+}
+
+episode METTEST
+{
+    name = "Shitty PvE Test Map"
+}
+
+episode METDM01
+{
+    name = "Shitty PvP Test Map"
 }
 
 map METTEST "Test Map"
 {
     next = "METTEST"
     music = "M_TEST" // Kenji Yamamoto - Brinstar
-}
-
-map TITLEMAP "Title Map"
-{
-    next = "TITLEMAP"
-    SKY1 = "HEXSKY1A", 1.5
-    SKY2 = "HEXSKY1B", 1.5
-    Lightning
-    SmoothLighting
 }
 
 map METINTRO "Carcosa Biomedical Research"
@@ -30,4 +26,10 @@ map METINTRO "Carcosa Biomedical Research"
     SKY2 = "HEXSKY1B", 1.5
     Lightning
     SmoothLighting
+}
+
+map METDM01 "Test DM Map"
+{
+    next = "METDM01"
+    music = "M_TEST" // Kenji Yamamoto - Brinstar
 }
