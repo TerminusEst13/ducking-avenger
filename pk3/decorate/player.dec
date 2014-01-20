@@ -86,16 +86,18 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "Drowning", 0.0
     DamageFactor "Normal", 0.75
     // Technically all this is covered by DamageFactor Normal, but I like having all the damagetypes listed in one place.
-    DamageFactor "PowerBeam", 0.75
-    DamageFactor "PowerCharged", 0.75
-    DamageFactor "SpazerBeam", 0.75
-    DamageFactor "PlasmaBeam", 0.75
-    DamageFactor "PlasmaCharged", 0.75
-    DamageFactor "WaveBeam", 0.75
-    DamageFactor "WaveCharged", 0.75
-    DamageFactor "IceBeam", 0.75
-    DamageFactor "IceCharged", 0.75
-    DamageFactor "Missile", 0.75
+    DamageFactor "PowerBeam", 0.45
+    DamageFactor "PowerCharged", 0.45
+    DamageFactor "SpazerBeam", 0.45
+    DamageFactor "PlasmaBeam", 0.45
+    DamageFactor "PlasmaCharged", 0.45
+    DamageFactor "WaveBeam", 0.45
+    DamageFactor "WaveCharged", 0.45
+    DamageFactor "IceBeam", 0.45
+    DamageFactor "IceCharged", 0.45
+    DamageFactor "IceBeamExplode", 0.75
+    DamageFactor "IceChargedExplode", 0.75
+    DamageFactor "Missile", 0.45
     DamageFactor "BoostBall", 1.00
     DamageFactor "Bomb", 1.00
     RadiusDamageFactor 0.75
@@ -152,15 +154,15 @@ actor SamusPlayer : PlayerPawn
     Pain.IceBeam:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("ibeam/chill","soundslot7")
-        TNT1 A 0 A_SetBlend("89D5FF",0.75,175)
+        TNT1 A 0 A_SetBlend("89D5FF",0.5,175)
         TNT1 A 0 ACS_ExecuteAlways(594,0,1,0,0)
         Goto Pain
 
     Pain.IceCharged:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("ibeam/chill2","soundslot7")
-        TNT1 A 0 A_SetBlend("White",1.0,35)
-        TNT1 A 0 A_SetBlend("89D5FF",1.0,210)
+        TNT1 A 0 A_SetBlend("White",0.5,35)
+        TNT1 A 0 A_SetBlend("89D5FF",0.5,210)
         TNT1 A 0 ACS_ExecuteAlways(594,0,2,0,0)
         Goto Pain
 
@@ -176,6 +178,8 @@ actor SamusPlayer : PlayerPawn
     Death.Ice:
     Death.IceBeam:
     Death.IceCharged:
+    Death.IceBeamExplode:
+    Death.IceChargedExplode:
         PLAY G 2
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
