@@ -67,8 +67,3 @@ int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 
 #define TIMER_HBACK      6
 
 #define TRAILCOUNT 3
-
-#define C_TID            1000  //Default camera tid
-#define MAX_R            128   //Maximum radius (or distance from the player)
-#define ADJUST_R         8     //Amount to adjust the camera by
-#define VIEW_HEIGHT      31.0  //The approximate hight of the player's view

@@ -6,8 +6,6 @@
 #include "met_spacejump.h"
 #include "met_longbeam.h"
 
-bool cam_mode[8];         //Variable for turning the camera on or off.
-
 int SamusHealth[PLAYERMAX];
 int playerOnFoot[PLAYERMAX];
 //int IsServer = 0;
@@ -62,6 +60,7 @@ script METROID_OPEN OPEN
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
+        if (!GetCvar("sv_chasecam")) { ConsoleCommand("set sv_chasecam 1"); }
 
         if (GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
         else if (GetCVar("metroid_noaircontrol") == 1) { SetAirControl(0.00390625); }
@@ -94,12 +93,6 @@ script METROID_OPEN_CLIENT OPEN clientside
         ConsoleCommand("archivecvar metroid_cl_noeffects");
     }
 
-    /*if (!GetCVar("metroid_cl_nocamerajerk"))
-    {
-        ConsoleCommand("set metroid_cl_nocamerajerk 0");
-        ConsoleCommand("archivecvar metroid_cl_nocamerajerk");
-    }*/
-
     if (!GetCVar("metroid_cl_nosiren"))
     {
         ConsoleCommand("set metroid_cl_nosiren 0");
@@ -108,7 +101,7 @@ script METROID_OPEN_CLIENT OPEN clientside
 
     if (!GetCVar("metroid_cl_morphcamera"))
     {
-        ConsoleCommand("set metroid_cl_morphcamera 0");
+        ConsoleCommand("set metroid_cl_morphcamera 1");
         ConsoleCommand("archivecvar metroid_cl_morphcamera");
     }
 }
@@ -117,51 +110,29 @@ script METROID_OPEN_CLIENT OPEN clientside
 // MORPH BALL CAMERA SHIT
 // ========================
 
-Script METROID_MORPHCAMERA (int p_num)
+Script METROID_MORPHCAMERA (int bitches) CLIENTSIDE
 {
-    int r = MAX_R;
-    
-    while (cam_mode[p_num] == ON)
-    {    
-        int a = GetActorAngle(0);
-        int p = GetActorPitch(0);
-        int x = GetActorX(0);
-        int y = GetActorY(0);
-        int z = GetActorZ(0) + VIEW_HEIGHT;
-        int xyr = r * cos (p) >> 16;
-        
-        if (!ThingCountName ("ChaseCam", C_TID+p_num))
-        {
-            while (!Spawn ("ChaseCam", x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, C_TID+p_num, a >> 8) && r > 0)
-            {
-                r -= ADJUST_R;
-                xyr = cos (p) * r >> 16;
-            }
-            
-            if (ThingCountName ("ChaseCam", C_TID + p_num))
-                ChangeCamera (C_TID + p_num, 0, 0);
-            else
-            {
-                cam_mode[p_num] = OFF;
-                print (s:"Camera script failed to initialize.");
-            }
-        }
-            else
-        {
-            while (!SetActorPosition (C_TID+p_num, x-cos(a)*xyr, y-sin(a)*xyr, z+sin(p)*r, 0) && r > 0)
-            {
-                r -= ADJUST_R;
-                xyr = cos (p) * r >> 16;
-            }
-            
-            SetActorAngle (C_TID + p_num, a);
-            SetActorPitch (C_TID + p_num, p);
-            
-            if (r < MAX_R) 
-                              r += ADJUST_R;
-        }
-        
-        delay (1);
+    if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
+    int pNum = PlayerNumber();
+
+    switch (bitches)
+    {
+    case 0:
+        if (GetCvar("metroid_cl_morphcamera") == 1)
+        { ConsoleCommand("chase"); TakeInventory("PlayerMorphCamera",1); }
+        break;
+
+    case 1:
+        if (GetCvar("metroid_cl_morphcamera") == 1)
+        { ConsoleCommand("chase"); GiveInventory("PlayerMorphCamera",1); }
+        break;
+
+    case 2:
+        delay(1);
+        if (CheckInventory("PlayerMorphCamera") == 0)
+        { if (GetCvar("metroid_cl_morphcamera") == 1)
+        { ConsoleCommand("chase"); GiveInventory("PlayerMorphCamera",1); } }
+        break;
     }
 }
 
@@ -216,12 +187,7 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("PowerBeamIdle",999);
         playerOnFoot[pNum] = 1;
 
-        // And set the camera
-        if (GetCvar("metroid_cl_morphcamera") == 0)
-        { cam_mode[PlayerNumber ()] = ON;
-        ACS_ExecuteAlways (587, 0, PlayerNumber ()); }
-        if (GetCvar("metroid_cl_morphcamera") == 1)
-        { ConsoleCommand("chase"); }
+        ACS_ExecuteAlways(METROID_MORPHCAMERA,0,0);
         ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         break;
 
@@ -244,18 +210,13 @@ script METROID_MORPHBALL (int morphshit)
         SetActorVelocity(0, velx,vely,velz, 0,0);
         playerOnFoot[pNum] = 0;
 
-        cam_mode[PlayerNumber ()] = OFF;
-        Thing_Remove (C_TID + PlayerNumber ());
-        Thing_Remove(CheckerTID);
-        if (GetCvar("metroid_cl_morphcamera") == 1)
-        { ConsoleCommand("chase"); }
+        ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1);
 
         ACS_ExecuteAlways(352,0,0,0);
         ACS_ExecuteAlways(351,0,0,0);
         ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         }
-        else
-        { ActivatorSound("morphball/denied", 127); }
+        else { ActivatorSound("morphball/denied", 127); }
         break;
     }
 }
@@ -291,7 +252,6 @@ script METROID_BOOSTBALL (void) NET
         else
         {
             mag += (DASH_VEL<<16);
-
             SetActorVelocity(0,
                     FixedMul(FixedMul(mag, cos(angle)), cos(pitch)),
                     FixedMul(FixedMul(mag, sin(angle)), cos(pitch)),
@@ -305,12 +265,8 @@ script METROID_BOOSTBALL (void) NET
 
 script METROID_UNLOADING UNLOADING
 {
-    // Adjusts stats
-    cam_mode[PlayerNumber ()] = OFF;
-    Thing_Remove (C_TID + PlayerNumber ());
     SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
     SetActorProperty(0,APROP_SPEED,1.00);
-    if (CheckInventory("BorphMallAcquired")) { if (GetCvar("metroid_cl_morphcamera") == 1) { ConsoleCommand("chase"); }}
 
     // Adjusts inventory
     TakeInventory("BorphMallAcquired",999);
@@ -325,12 +281,16 @@ script METROID_UNLOADING UNLOADING
     GiveInventory("BombCount",999);
 }
 
-script METROID_DEATH DEATH { ACS_ExecuteAlways(589,0); }
-
-Script METROID_DISCONNECT (int p_num) DISCONNECT // Somehow this is different from just the Death script.
+script METROID_DEATH DEATH
 {
-       cam_mode[p_num] = OFF;
-       Thing_Remove (C_TID + p_num);
+    if (CheckInventory("BorphMallAcquired")) { ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1); }
+    ACS_ExecuteAlways(589,0);
+}
+
+Script METROID_DISCONNECT (int p_num) DISCONNECT // Guess this isn't really needed anymore, but...
+{
+       //cam_mode[p_num] = OFF;
+       //Thing_Remove (C_TID + p_num);
 }
 
 script METROID_ENTER ENTER
@@ -338,6 +298,7 @@ script METROID_ENTER ENTER
     int barhp;
 
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
+    ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
     if (GameType () == GAME_NET_DEATHMATCH) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
@@ -381,6 +342,7 @@ script METROID_ENTER ENTER
 
 script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 {
+    if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
     while (1)
     {
     if (GetActorProperty(0,APROP_HEALTH) > 0) {
