@@ -165,7 +165,8 @@ script METROID_MORPHBALL (int morphshit)
         // Transfer the player's translation from the old body to the new morph.
         Spawn("TranslationHolder", GetActorX(0), GetActorY(0), GetActorZ(0)+8.0, newTID);
         Thing_SetTranslation(newTID, -1);
-        MorphActor(0, "MorphBallPlayer", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog");
+        if (isSinglePlayer() || isCoop()) { MorphActor(0, "MorphBallPlayer", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog"); }
+        else { MorphActor(0, "MorphBallPlayerDM", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog"); }
         Thing_ChangeTID(0, myTID);
         SetActivator(newTID);
         Thing_SetTranslation(myTID, -1);
