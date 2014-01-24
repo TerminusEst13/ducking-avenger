@@ -71,21 +71,6 @@ script METROID_OPEN OPEN
         if (GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
         else if (GetCVar("metroid_noaircontrol") == 1) { SetAirControl(0.00390625); }
 
-        if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
-        else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}
-
-        if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
-        else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
-
-        if (GetCVar("metroid_loaded") == 1)
-        {
-            if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); }
-            if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
-            if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); }
-            if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); }
-            if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); }
-        }
-
         oldcjumps = cjumps;
         cjumps = GetCVar("metroid_jumpcount");
         if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
@@ -345,6 +330,23 @@ script METROID_ENTER ENTER
 
         TakeInventory("PlayerTotalHealth", 0x7FFFFFFF);
         GiveInventory("PlayerTotalHealth", min(barhp, 99));
+
+
+
+        if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
+        else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}
+
+        if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
+        else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
+
+        if (GetCVar("metroid_loaded") == 1)
+        {
+            if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); }
+            if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
+            if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); }
+            if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); }
+            if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); }
+        }
 
         delay(1);
     }
