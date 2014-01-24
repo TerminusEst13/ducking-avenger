@@ -32,23 +32,6 @@ actor BlankPuff
     }
 }
 
-actor CameraDummy
-{
-    +NOINTERACTION
-    +NOCLIP
-    +CLIENTSIDEONLY
-    
-    Radius 1
-    Height 1
-
-    States
-    {
-      Spawn:
-        TNT1 A -1
-        stop
-    }
-}
-
 actor EmptyTelefog
 {
     +NOINTERACTION
@@ -93,22 +76,6 @@ actor SpaceChecker
     Spawn:
         TNT1 A 1
         loop
-    }
-}
-
-actor ChaseCam
-{
-    Height 1
-    Radius 1
-    +NOGRAVITY +NOBLOCKMAP
-    +NOCLIP
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-    states
-    {
-    Spawn:
-        TNT1 A -1
-        stop
     }
 }
 
