@@ -27,6 +27,7 @@ actor CoopModeOn : Boolean {}
 actor NotInThisLevel : Boolean {}
 actor PlayerTotalHealth : Counter { Inventory.MaxAmount 99 }
 actor PlayerMorphCamera : Boolean {}
+actor DisableMorph : Boolean {}
 
 actor MorphBallActivate : CustomInventory
 {
@@ -36,10 +37,13 @@ actor MorphBallActivate : CustomInventory
     Inventory.MaxAmount 1
     States
     {
-      Use:
+    Use:
         TNT1 A 0
-        //TNT1 A 0 ACS_ExecuteAlways(589)
+        TNT1 A 0 A_JumpIfInventory("DisableMorph",1,"Nope")
         TNT1 A 0 ACS_ExecuteAlways(588, 0, 0, 0, 0)
+        fail
+    Nope:
+        TNT1 A 0
         fail
     }
 }
@@ -54,8 +58,11 @@ actor MorphBallDeactivate : CustomInventory
     {
       Use:
         TNT1 A 0
-        //TNT1 A 0 ACS_ExecuteAlways(589)
+        TNT1 A 0 A_JumpIfInventory("DisableMorph",1,"Nope")
         TNT1 A 0 ACS_ExecuteAlways(588, 0, 1, 0, 0)
+        fail
+    Nope:
+        TNT1 A 0
         fail
     }
 }

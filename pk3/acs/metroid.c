@@ -18,7 +18,7 @@ int playerOnFoot[PLAYERMAX];
 
 script METROID_OPEN OPEN
 {
-    IsServer = 1;    
+    IsServer = 1;
     int cjumps, oldcjumps;
 
     if (!GetCVar("metroid_noaircontrol"))
@@ -57,6 +57,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_jumpcount");
     }
 
+    if (!GetCVar("metroid_nomorph"))
+    {
+        ConsoleCommand("set metroid_nomorph 0");
+        ConsoleCommand("archivecvar metroid_nomorph");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -67,6 +73,9 @@ script METROID_OPEN OPEN
 
         if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
         else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}
+
+        if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
+        else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
 
         if (GetCVar("metroid_loaded") == 1)
         {
