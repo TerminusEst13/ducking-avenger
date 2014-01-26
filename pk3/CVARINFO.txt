@@ -9,4 +9,4 @@ server int metroid_jumpcount = 2;
 // Clientside cvars
 user int metroid_cl_noeffects = 0;
 user int metroid_cl_nosiren = 0;
-user int metroid_cl_morphcamera = 0;
+user int metroid_cl_morphcamera = 1;

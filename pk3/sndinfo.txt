@@ -155,3 +155,15 @@ pirate/see              PIRTSEE // Taken from Painkiller
 pirate/pain             PIRTPAIN // Taken from Painkiller
 pirate/death            PIRTDETH // Taken from Painkiller
 pirate/idle             PIRTIDLE // Taken from Painkiller
+
+
+
+// Titlemap
+$random ambient/thunder { thunder1 thunder2 thunder3 thunder4 thunder5 thunder6 thunder7 }
+thunder1                AMBTHUN1 // Taken from The Ultimate Torment n' Torture
+thunder2                AMBTHUN2 // Taken from The Ultimate Torment n' Torture
+thunder3                AMBTHUN3 // Taken from Hexen
+thunder4                AMBTHUN4 // Taken from The General Series 6000
+thunder5                AMBTHUN5 // Taken from The General Series 6000
+thunder6                AMBTHUN6 // Taken from The General Series 6000
+thunder7                AMBTHUN7 // Taken from The General Series 6000
