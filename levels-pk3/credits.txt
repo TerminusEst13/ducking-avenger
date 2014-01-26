@@ -50,3 +50,11 @@ TEXTURES:
 - HEXSKY1B (Hexen: Beyond Heretic)
 - HAZARDVH (Duke Nukem 3D)
 - HAZARDVV (Duke Nukem 3D)
+- COMP_N06
+- COMP_N5C
+- COMP_N5D
+- METAL8
+- TILESIX (Paul/NMN)
+- N_WFAL0X (Nightmare)
+- ALLBLACK
+- Q1EX_026 (Quake)

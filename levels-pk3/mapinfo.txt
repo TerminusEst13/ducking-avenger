@@ -31,5 +31,5 @@ map METINTRO "Carcosa Biomedical Research"
 map METDM01 "Test DM Map"
 {
     next = "METDM01"
-    music = "M_TEST" // Kenji Yamamoto - Brinstar
+    music = "M_HUNTRS" // Kenji Yamamoto - Hunters
 }
