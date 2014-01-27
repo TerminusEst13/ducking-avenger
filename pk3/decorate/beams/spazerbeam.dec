@@ -277,7 +277,7 @@ actor SpazerBolt1
     +NOGRAVITY
     +PAINLESS
     Speed 60
-    Damage (25)
+    Damage (20)
     Scale 0.5
     RenderStyle Add
     Alpha 0.75
