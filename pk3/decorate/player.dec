@@ -108,7 +108,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "IceChargedExplode", 0.75
     DamageFactor "Missile", 0.45
     DamageFactor "BoostBall", 0.55
-    DamageFactor "Bomb", 0.70
+    DamageFactor "Bomb", 0.45
     RadiusDamageFactor 0.75
     Player.ColorRange 112, 127
     +NOSKIN

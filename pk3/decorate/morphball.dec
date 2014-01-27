@@ -10,6 +10,7 @@ actor MorphBallPlayer : PlayerPawn
     Player.ForwardMove 1.2, 1.2
     Player.SideMove 0.1, 0.2
     DamageFactor "NoDamage", 0.0
+    DamageFactor "Normal", 0.85
     Player.StartItem "BombCount", 3
     Player.SoundClass "Hunter"
     Player.DisplayName "MorphBall"
@@ -81,7 +82,8 @@ actor MorphBallPlayer : PlayerPawn
 actor MorphBallPlayerDM : MorphBallPlayer
 {
     Radius 10
-    RadiusDamageFactor 1.1
+    DamageFactor "Normal", 1.0
+    RadiusDamageFactor 1.25
 }
 
 actor BoostBallDamage
@@ -143,7 +145,12 @@ ACTOR "Bombs" : Weapon
         TNT1 A 0 A_JumpIfInventory("BombCount",1,1)
         goto Ready
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"FireCoop")
+        TNT1 A 0 A_FireCustomMissile("MorphBallBombDM",0,0,0,0,0,0)
+        goto FireFinish
+    FireCoop:
         TNT1 A 0 A_FireCustomMissile("MorphBallBomb",0,0,0,0,0,0)
+    FireFinish:
         TNT1 A 0 A_PlayWeaponSound("morphball/bombdrop")
         TNT1 A 4 A_TakeInventory("BombCount",1)
         Goto Ready
@@ -200,14 +207,29 @@ ACTOR MorphBallBomb
     States
     {
     Spawn:
-        MBOM AABBCCDDAABBCCDD 2
+        MBOM ABCDABCD 4
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,128,0)
         TNT1 A 0 A_GiveToTarget("BombCount",1)
         TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
 		TNT1 AA 0 A_SpawnItemEx("BombRingExp1",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
-        //MBOM EFGHI 3
+        stop
+    }
+}
+
+ACTOR MorphBallBombDM : MorphBallBomb
+{
+    States
+    {
+    Spawn:
+        MBOM ABCDABCDAB 4
+        TNT1 A 0 A_PlaySound("morphball/bombboom")
+        TNT1 A 0 A_Explode(96,96,0)
+        TNT1 A 0 A_GiveToTarget("BombCount",1)
+        TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
+		TNT1 AA 0 A_SpawnItemEx("BombRingExp1",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
         stop
     }
 }
