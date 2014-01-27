@@ -565,7 +565,7 @@ actor IceBoltCharged
     }
 }
 
-actor IceBoltChargedCoop : IceBoltCharged { Damage (45) Species "Player" +THRUSPECIES  }
+actor IceBoltChargedCoop : IceBoltCharged { Damage (60) Species "Player" +THRUSPECIES  }
 
 ACTOR IceBoltChargedExplosion
 {
