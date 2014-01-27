@@ -4,47 +4,47 @@ InInventory not BorphMallAcquired, 1
     {
     drawimage "samvisor", 0, 0;
     drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 97, 25;
-    drawbar "SAMHFULL", "SAMHEMPT", Health Health100, horizontal, 101, 24, 1;
-    InInventory EnergyTankAcquired, 1 { drawimage "ETNKEMPT", 123, 20; }
-    InInventory EnergyTankAcquired, 2 { drawimage "ETNKEMPT", 131, 20; }
-    InInventory EnergyTankAcquired, 3 { drawimage "ETNKEMPT", 139, 20; }
-    InInventory EnergyTankAcquired, 4 { drawimage "ETNKEMPT", 147, 20; }
-    InInventory EnergyTankAcquired, 5 { drawimage "ETNKEMPT", 155, 20; }
-    InInventory EnergyTankAcquired, 6 { drawimage "ETNKEMPT", 163, 20; }
-    InInventory EnergyTankAcquired, 7 { drawimage "ETNKEMPT", 171, 20; }
-    InInventory EnergyTankAcquired, 8 { drawimage "ETNKEMPT", 179, 20; }
-    InInventory EnergyTankAcquired, 9 { drawimage "ETNKEMPT", 187, 20; }
-    InInventory EnergyTankAcquired, 10 { drawimage "ETNKEMPT", 195, 20; }
-    InInventory HealthOver100, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver100, 1 { drawimage "ETNKFULL", 123, 20; }
-    InInventory HealthOver100, 1 { drawbar "SAMHFUL2", "SAMHEMP2", Health Health200, horizontal, -18, 24, 1; }
-    InInventory HealthOver200, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver200, 1 { drawimage "ETNKFULL", 131, 20; }
-    InInventory HealthOver200, 1 { drawbar "SAMHFUL3", "SAMHEMP3", Health Health300, horizontal, -137, 24, 1; }
-    InInventory HealthOver300, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver300, 1 { drawimage "ETNKFULL", 139, 20; }
-    InInventory HealthOver300, 1 { drawbar "SAMHFUL4", "SAMHEMP4", Health Health400, horizontal, -256, 24, 1; }
-    InInventory HealthOver400, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver400, 1 { drawimage "ETNKFULL", 147, 20; }
-    InInventory HealthOver400, 1 { drawbar "SAMHFUL5", "SAMHEMP5", Health Health500, horizontal, -375, 24, 1; }
-    InInventory HealthOver500, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver500, 1 { drawimage "ETNKFULL", 155, 20; }
-    InInventory HealthOver500, 1 { drawbar "SAMHFUL6", "SAMHEMP6", Health Health600, horizontal, -494, 24, 1; }
-    InInventory HealthOver600, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver600, 1 { drawimage "ETNKFULL", 163, 20; }
-    InInventory HealthOver600, 1 { drawbar "SAMHFUL7", "SAMHEMP7", Health Health700, horizontal, -613, 24, 1; }
-    InInventory HealthOver700, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver700, 1 { drawimage "ETNKFULL", 171, 20; }
-    InInventory HealthOver700, 1 { drawbar "SAMHFUL8", "SAMHEMP8", Health Health800, horizontal, -732, 24, 1; }
-    InInventory HealthOver800, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver800, 1 { drawimage "ETNKFULL", 179, 20; }
-    InInventory HealthOver800, 1 { drawbar "SAMHFUL9", "SAMHEMP9", Health Health900, horizontal, -851, 24, 1; }
-    InInventory HealthOver900, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver900, 1 { drawimage "ETNKFULL", 187, 20; }
-    InInventory HealthOver900, 1 { drawbar "SAMHFUL0", "SAMHEMP0", Health Health1000, horizontal, -970, 24, 1; }
-    InInventory HealthOver1000, 1 { drawimage "SAMHEMPT", 101, 24; }
-    InInventory HealthOver1000, 1 { drawimage "ETNKFULL", 195, 20; }
-    InInventory HealthOver1000, 1 { drawbar "SAMHFULX", "SAMHEMPX", Health Health1100, horizontal, -1089, 24, 1; }
+    drawbar "SAMHFULL", "SAMHEMPT", Health Health100, horizontal, 100, 24, 1;
+    InInventory EnergyTankAcquired, 1 { drawimage "ETNKEMPT", 122, 20; }
+    InInventory EnergyTankAcquired, 2 { drawimage "ETNKEMPT", 130, 20; }
+    InInventory EnergyTankAcquired, 3 { drawimage "ETNKEMPT", 138, 20; }
+    InInventory EnergyTankAcquired, 4 { drawimage "ETNKEMPT", 146, 20; }
+    InInventory EnergyTankAcquired, 5 { drawimage "ETNKEMPT", 154, 20; }
+    InInventory EnergyTankAcquired, 6 { drawimage "ETNKEMPT", 162, 20; }
+    InInventory EnergyTankAcquired, 7 { drawimage "ETNKEMPT", 170, 20; }
+    InInventory EnergyTankAcquired, 8 { drawimage "ETNKEMPT", 178, 20; }
+    InInventory EnergyTankAcquired, 9 { drawimage "ETNKEMPT", 186, 20; }
+    InInventory EnergyTankAcquired, 10 { drawimage "ETNKEMPT", 194, 20; }
+    InInventory HealthOver100, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver100, 1 { drawimage "ETNKFULL", 122, 20; }
+    InInventory HealthOver100, 1 { drawbar "SAMHFUL2", "SAMHEMP2", Health Health200, horizontal, -19, 24, 1; }
+    InInventory HealthOver200, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver200, 1 { drawimage "ETNKFULL", 130, 20; }
+    InInventory HealthOver200, 1 { drawbar "SAMHFUL3", "SAMHEMP3", Health Health300, horizontal, -138, 24, 1; }
+    InInventory HealthOver300, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver300, 1 { drawimage "ETNKFULL", 138, 20; }
+    InInventory HealthOver300, 1 { drawbar "SAMHFUL4", "SAMHEMP4", Health Health400, horizontal, -257, 24, 1; }
+    InInventory HealthOver400, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver400, 1 { drawimage "ETNKFULL", 146, 20; }
+    InInventory HealthOver400, 1 { drawbar "SAMHFUL5", "SAMHEMP5", Health Health500, horizontal, -376, 24, 1; }
+    InInventory HealthOver500, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver500, 1 { drawimage "ETNKFULL", 154, 20; }
+    InInventory HealthOver500, 1 { drawbar "SAMHFUL6", "SAMHEMP6", Health Health600, horizontal, -495, 24, 1; }
+    InInventory HealthOver600, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver600, 1 { drawimage "ETNKFULL", 162, 20; }
+    InInventory HealthOver600, 1 { drawbar "SAMHFUL7", "SAMHEMP7", Health Health700, horizontal, -614, 24, 1; }
+    InInventory HealthOver700, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver700, 1 { drawimage "ETNKFULL", 170, 20; }
+    InInventory HealthOver700, 1 { drawbar "SAMHFUL8", "SAMHEMP8", Health Health800, horizontal, -733, 24, 1; }
+    InInventory HealthOver800, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver800, 1 { drawimage "ETNKFULL", 178, 20; }
+    InInventory HealthOver800, 1 { drawbar "SAMHFUL9", "SAMHEMP9", Health Health900, horizontal, -852, 24, 1; }
+    InInventory HealthOver900, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver900, 1 { drawimage "ETNKFULL", 186, 20; }
+    InInventory HealthOver900, 1 { drawbar "SAMHFUL0", "SAMHEMP0", Health Health1000, horizontal, -971, 24, 1; }
+    InInventory HealthOver1000, 1 { drawimage "SAMHEMPT", 100, 24; }
+    InInventory HealthOver1000, 1 { drawimage "ETNKFULL", 194, 20; }
+    InInventory HealthOver1000, 1 { drawbar "SAMHFULX", "SAMHEMPX", Health Health1100, horizontal, -1090, 24, 1; }
     drawimage "missicon", 280, 165;
     drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 178;
     IsSelected "Power Beam" { drawimage "WEAPPWBM", 14, 170; }
