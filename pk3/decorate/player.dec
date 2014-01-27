@@ -161,6 +161,7 @@ actor SamusPlayer : PlayerPawn
         Goto Spawn
 
     Pain.IceBeam:
+    Pain.IceBeamExplode:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("ibeam/chill","soundslot7")
         TNT1 A 0 A_SetBlend("89D5FF",0.5,175)
@@ -168,6 +169,7 @@ actor SamusPlayer : PlayerPawn
         Goto Pain
 
     Pain.IceCharged:
+    Pain.IceChargedExplode:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("ibeam/chill2","soundslot7")
         TNT1 A 0 A_SetBlend("White",0.5,35)
