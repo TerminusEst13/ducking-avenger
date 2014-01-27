@@ -252,6 +252,7 @@ ACTOR DoomBulletPuff : BulletPuff
     +NOBLOCKMAP 
     +NOGRAVITY
     -SOLID
+    DamageType "DoomCannon"
     VSpeed 0
     Height 1
     Radius 1

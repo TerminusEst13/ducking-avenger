@@ -106,6 +106,9 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "IceCharged", 0.45
     DamageFactor "IceBeamExplode", 0.75
     DamageFactor "IceChargedExplode", 0.75
+    DamageFactor "LongBeam", 0.45
+    DamageFactor "LongCharged", 0.45
+    DamageFactor "DoomCannon", 0.75
     DamageFactor "Missile", 0.45
     DamageFactor "BoostBall", 0.55
     DamageFactor "Bomb", 0.45
