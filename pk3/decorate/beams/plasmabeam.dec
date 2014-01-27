@@ -254,7 +254,7 @@ actor PlasmaBolt
     +RIPPER
     +ROCKETTRAIL
     Speed 55
-    Damage (45)
+    Damage (80)
     Scale 0.25
     RenderStyle Add
     Alpha 0.95
@@ -603,7 +603,7 @@ actor PlasmaBoltCharged
     +RIPPER
     +ROCKETTRAIL
     Speed 65
-    Damage (55)
+    Damage (100)
     Scale 0.2
     RenderStyle Add
     Alpha 0.95
@@ -727,7 +727,7 @@ actor PlasmaBoltCharged
     }
 }
 
-actor PlasmaBoltChargedCoop : PlasmaBoltCharged { Damage (50) Speed 55 }
+actor PlasmaBoltChargedCoop : PlasmaBoltCharged { Damage (60) Speed 55 }
 
 actor PlasmaTrailCharged
 { 
