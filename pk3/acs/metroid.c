@@ -63,6 +63,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_nomorph");
     }
 
+    if (!GetCVar("metroid_noenemydrops"))
+    {
+        ConsoleCommand("set metroid_noenemydrops 0");
+        ConsoleCommand("archivecvar metroid_noenemydrops");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -180,6 +186,8 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("PowerBeamChargeLevel",999);
         //TakeInventory("PowerBeamCharged",999);
         TakeInventory("PowerBeamIdle",999);
+        TakeInventory("MissileChargeLevel",999);
+        TakeInventory("MissileCharged",999);
         playerOnFoot[pNum] = 1;
 
         ACS_ExecuteAlways(METROID_MORPHCAMERA,0,0);
@@ -272,6 +280,8 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("BoostBallCount",999);
     TakeInventory("NotInThisLevel",999);
     TakeInventory("IceBeamChilled",999);
+    TakeInventory("MissileChargeLevel",999);
+    TakeInventory("MissileCharged",999);
 
     GiveInventory("BombCount",999);
 }
@@ -463,6 +473,18 @@ script METROID_DECORATE (int which)
 
     case 8:
         SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*1/2)); // 50% of the current monster's speed. Stackable.
+        break;
+
+    case 9:
+        SetAmmoCapacity("SuperMissileAmmo",GetAmmoCapacity("SuperMissileAmmo")+2);
+        delay(1);
+        GiveInventory("SuperMissileAmmo",2);
+        break;
+
+    case 10:
+        if(GetCvar("metroid_noenergydrops") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
         break;
     }
 }

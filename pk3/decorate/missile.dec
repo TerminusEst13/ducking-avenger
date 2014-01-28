@@ -1,3 +1,6 @@
+ACTOR MissileChargeLevel : Counter { Inventory.MaxAmount 31 }
+ACTOR MissileCharged : Boolean {}
+
 ACTOR PowerMissile
 {
     Radius 12
@@ -18,7 +21,6 @@ ACTOR PowerMissile
     Death:
         TNT1 A 0
         TNT1 A 0 A_Scream
-        TNT1 A 0 Radius_Quake(2,15,0,128,0)
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
         TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("MissileExplosionLarge",0,0,0,0,0,0,0,160)
@@ -59,6 +61,21 @@ actor MissileTrail
         SMK4 ABCDEFGHIJKLMNOP 1
         stop
     Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor MissileTrailLarge : MissileTrail
+{
+    Scale 0.65
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        MISL BCD 1 BRIGHT
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
         TNT1 A 1
         stop
     }
@@ -112,10 +129,153 @@ actor MissileExplosionLarge : MissileExplosionSmall
     Scale 0.75
     States
     {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 Radius_Quake(1,15,0,8,0)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
     Nope:
         TNT1 A 0
         TNT1 A 0 A_SetTranslucent(0.9,1)
         TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
+    }
+}
+
+actor SuperMissileExplosion : MissileExplosionSmall { Scale 0.75 }
+actor SuperMissileExplosionLarge : MissileExplosionLarge { Scale 1.1 }
+
+actor SuperMissileExplosionVeryLarge
+{
+    RenderStyle Add
+    Alpha 0.9
+    Scale 1.1
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        FBLS ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT  A_SpawnItemEx("MissileTrailLarge",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,64)
+        FBL2 ABCDEFGHIJ 1 BRIGHT
+        stop
+    }
+}
+
+ACTOR SuperMissile
+{
+    Radius 16
+    Height 12
+    Speed 35
+    Damage (240)
+    Scale 1.25
+    Projectile
+    +FORCERADIUSDMG
+    DeathSound "supermissile/hit"
+    Obituary "%k super-blew %o up."
+    DamageType "SuperMissile"
+    Decal Scorch
+    States
+    {
+    Spawn:
+        SMSL A 1 Bright A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("MissileTrail",0,0,1,random(-50,50)/100.00,random(-50,50)/100.00,random(-50,50)/100.00,0,160)
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrailLarge",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,64)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrailLarge",random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-400,400)/100.00,random(-400,400)/100.00,random(-400,400)/100.00,random(-180,180),160,64)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SuperMissileSpatter",random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160,64)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SuperMissileSpatter2",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,64)
+        TNT1 AAAA 0 A_SpawnItemEx("SuperMissileExplosion",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("SuperMissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("SuperMissileExplosionVeryLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("SuperMissileThrust",0,0,0,0,0,0,0,160)
+        TNT1 A 1 Bright A_Explode(384,256,0)
+        TNT1 A 0
+        Stop
+    }
+}
+
+actor SuperMissileCoop : SuperMissile { Species "Player" +THRUSPECIES }
+
+ACTOR SuperMissileThrust
+{
+    Radius 1
+    Height 1
+    Speed 0
+    DamageType "NoDamage"
+    +NOCLIP
+    -SOLID
+    +NOINTERACTION
+    +NOBLOOD
+    +PAINLESS
+    Obituary "%k shouldn't have killed %o with this."
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 Radius_Quake(3,20,0,16,0)
+        TNT1 A 1 A_Explode(128,128)
+        Stop
+    }
+}
+
+ACTOR SuperMissileSpatter
+{
+    Radius 1
+    Height 1
+    RenderStyle Add
+    Alpha 1
+    Scale 0.75
+    Speed 1
+    Damage 0
+    Projectile
+    +NOTELEPORT
+    +DONTSPLASH
+    -SOLID
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        PUFF A 1 BRIGHT A_FadeOut(0.05)
+        loop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+ACTOR SuperMissileSpatter2
+{
+    Radius 1
+    Height 1
+    RenderStyle Add
+    Alpha 1
+    Scale 0.95
+    Speed 1
+    Damage 0
+    Projectile
+    +NOTELEPORT
+    +DONTSPLASH
+    -SOLID
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        MISL BCD 5 BRIGHT A_FadeOut(0.2)
+        loop
+    Nope:
         TNT1 A 1
         stop
     }

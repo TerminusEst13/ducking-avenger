@@ -37,7 +37,7 @@ actor FrozenDummy
 actor Metroid_Zombieguy : Zombieman replaces Zombieman
 {
     DamageFactor "NoDamage", 0.0
-    DropItem "BlankPuff"
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -71,8 +71,16 @@ actor Metroid_Zombieguy : Zombieman replaces Zombieman
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ZombieguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -90,7 +98,7 @@ actor ZombieguyFrozen : FrozenDummy
 actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
 {
     DamageFactor "NoDamage", 0.0
-    DropItem "BlankPuff"
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -124,8 +132,16 @@ actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ShotguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -143,7 +159,7 @@ actor ShotguyFrozen : FrozenDummy
 actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
 {
     DamageFactor "NoDamage", 0.0
-    DropItem "BlankPuff"
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -177,8 +193,16 @@ actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ChainguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -196,6 +220,7 @@ actor ChainguyFrozen : FrozenDummy
 actor Metroid_Impguy : DoomImp replaces DoomImp
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -228,8 +253,16 @@ actor Metroid_Impguy : DoomImp replaces DoomImp
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ImpguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -247,6 +280,7 @@ actor ImpguyFrozen : FrozenDummy
 actor Metroid_Demonguy : Demon replaces Demon
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -279,8 +313,16 @@ actor Metroid_Demonguy : Demon replaces Demon
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("DemonguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -299,6 +341,7 @@ actor DemonguyFrozen : FrozenDummy
 actor Metroid_Spectreguy : Spectre replaces Spectre
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -331,14 +374,23 @@ actor Metroid_Spectreguy : Spectre replaces Spectre
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("DemonguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
 actor Metroid_Cacoguy : Cacodemon replaces Cacodemon
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -371,8 +423,16 @@ actor Metroid_Cacoguy : Cacodemon replaces Cacodemon
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("CacoguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -392,6 +452,7 @@ actor CacoguyFrozen : FrozenDummy
 actor Metroid_Lostguy : LostSoul replaces LostSoul
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -417,8 +478,16 @@ actor Metroid_Lostguy : LostSoul replaces LostSoul
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("LostguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -439,6 +508,7 @@ actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
     DamageFactor "NoDamage", 0.0
     PainChance "IceChargedExplode", 64
     PainChance "IceBeamExplode", 64
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -472,8 +542,16 @@ actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
         TNT1 A 0 A_BossDeath
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("BaronguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -494,6 +572,7 @@ actor BaronguyFrozen : FrozenDummy
 actor Metroid_Knightguy : HellKnight replaces HellKnight
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -527,8 +606,16 @@ actor Metroid_Knightguy : HellKnight replaces HellKnight
         TNT1 A 0 A_BossDeath
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("BaronguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -537,6 +624,7 @@ actor Metroid_Vileguy : Archvile replaces Archvile
     DamageFactor "NoDamage", 0.0
     PainChance "IceChargedExplode", 64
     PainChance "IceBeamExplode", 64
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -573,8 +661,16 @@ actor Metroid_Vileguy : Archvile replaces Archvile
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("VileguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -594,6 +690,7 @@ actor VileguyFrozen : FrozenDummy
 actor Metroid_Spiderguy : Arachnotron replaces Arachnotron
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -629,8 +726,16 @@ actor Metroid_Spiderguy : Arachnotron replaces Arachnotron
         TNT1 A 0 A_BossDeath
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("SpiderguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -651,6 +756,7 @@ actor SpiderguyFrozen : FrozenDummy
 actor Metroid_Fatguy : Fatso replaces Fatso
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -689,8 +795,16 @@ actor Metroid_Fatguy : Fatso replaces Fatso
         TNT1 A 0 A_BossDeath
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("FatguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -711,6 +825,7 @@ actor FatguyFrozen : FrozenDummy
 actor Metroid_Painguy : PainElemental replaces PainElemental
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -746,8 +861,16 @@ actor Metroid_Painguy : PainElemental replaces PainElemental
         TNT1 A 0 A_PainDie
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("PainguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -768,6 +891,7 @@ actor PainguyFrozen : FrozenDummy
 actor Metroid_Coolguy : Revenant replaces Revenant
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -802,8 +926,16 @@ actor Metroid_Coolguy : Revenant replaces Revenant
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("CoolguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -822,6 +954,7 @@ actor CoolguyFrozen : FrozenDummy
 actor Metroid_Naziguy : WolfensteinSS replaces WolfensteinSS
 {
     DamageFactor "NoDamage", 0.0
+    //DropItem "EnemyDropSpawner"
     States
     {
     Pain.IceCharged:
@@ -858,8 +991,16 @@ actor Metroid_Naziguy : WolfensteinSS replaces WolfensteinSS
         TNT1 A 0 A_NoBlocking
         TNT1 A 0 A_PlaySound("misc/freeze")
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("NaziguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
     }
 }
 
@@ -871,5 +1012,37 @@ actor NaziguyFrozen : FrozenDummy
         SSWV H 350
         SSWV H 1 A_Jump(128, "Death")
         Loop
+    }
+}
+
+
+
+actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
+{
+    DamageFactor "NoDamage", 0.0
+    States
+    {
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+        goto "Super::Death"
+    }
+}
+
+actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
+{
+    DamageFactor "NoDamage", 0.0
+    States
+    {
+    Death:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+        goto "Super::Death"
+    Death2:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+        goto "Super::Death"
     }
 }

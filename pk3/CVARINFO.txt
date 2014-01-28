@@ -1,3 +1,6 @@
+// Technically not needed, since Z& doesn't support it and this won't work in
+// ZDoom, but it's nice to have all the cvars in one place for reference.
+
 // Server cvars
 server int metroid_noaircontrol = 0;
 server int metroid_spacejump = 0;
@@ -5,6 +8,8 @@ server int metroid_loaded = 0;
 server int metroid_startingtanks = 0;
 server int metroid_nolevellimiter = 0;
 server int metroid_jumpcount = 2;
+server int metroid_nomorph = 0;
+server int metroid_noenemydrops = 0;
 
 // Clientside cvars
 user int metroid_cl_noeffects = 0;

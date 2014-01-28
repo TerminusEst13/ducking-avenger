@@ -78,11 +78,22 @@ $rolloff pbeam/chhit    400 1800
 
 // Missile Launcher
 missile/fire            MISSFIRE
+supermissile/fire       SMISFIRE
+supermissile/ready      SMISREAD
 
 $random missile/hit { miss/hit1 miss/hit2 miss/hit3 }
 miss/hit1               MISSEXP1
 miss/hit2               MISSEXP2
 miss/hit3               MISSEXP3
+
+$random supermissile/hit { smiss/hit1 smiss/hit2 smiss/hit3 }
+smiss/hit1              SMISEXP1
+smiss/hit2              SMISEXP2
+smiss/hit3              SMISEXP3
+
+$rolloff smiss/hit1     400 1800
+$rolloff smiss/hit2     400 1800
+$rolloff smiss/hit3     400 1800
 
 // Wave Beam
 wbeam/fire              WBEAMFIR
