@@ -321,6 +321,7 @@ ACTOR SuperMissileTankPickup : CustomInventory replaces Berserk
 {
     Inventory.PickupMessage "SUPER MISSILE TANK: ACQUIRED"
     Inventory.PickupSound "nrgtank/get"
+    Inventory.RespawnTics 4200
     +AUTOACTIVATE
     States
     {
