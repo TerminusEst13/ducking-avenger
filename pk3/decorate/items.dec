@@ -20,9 +20,9 @@ actor SuperMissileAmmo : Ammo
 {
     Inventory.PickupMessage "Picked up a Super Missile."
     Inventory.Amount 1
-    Inventory.MaxAmount 2
+    Inventory.MaxAmount 0
     Ammo.BackpackAmount 1
-    Ammo.BackpackMaxAmount 2
+    Ammo.BackpackMaxAmount 0
     Inventory.Icon "SPKUA0"
     Scale 1.1
     +NOGRAVITY
