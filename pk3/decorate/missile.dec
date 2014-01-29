@@ -194,7 +194,7 @@ ACTOR SuperMissile
         TNT1 AAAA 0 A_SpawnItemEx("SuperMissileExplosion",0,0,0,0,0,0,0,160)
         TNT1 AA 0 A_SpawnItemEx("SuperMissileExplosionLarge",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("SuperMissileExplosionVeryLarge",0,0,0,0,0,0,0,160)
-        TNT1 A 0 A_SpawnItemEx("SuperMissileThrust",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("SuperMissileThrust",0,0,0,0,0,0,0,32)
         TNT1 A 1 Bright A_Explode(384,256,0)
         TNT1 A 0
         Stop
@@ -211,8 +211,8 @@ ACTOR SuperMissileThrust
     DamageType "NoDamage"
     +NOCLIP
     -SOLID
-    +NOINTERACTION
     +NOBLOOD
+    +NOINTERACTION
     +PAINLESS
     Obituary "%k shouldn't have killed %o with this."
     States
