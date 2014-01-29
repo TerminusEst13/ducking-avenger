@@ -22,6 +22,8 @@ GRAPHICS:
 - Eriance (Spazer Beam particles)
 - Id Software (Bomb explode animation, from Doom 3)
 - PillowBlaster (Space Pirate shots)
+- People Can Fly (The Flamebolter's fire effect used for the Super Missile explosion)
+- Yoshio Sakamoto (His likeness used for the Icon of Sin)
 
 SOUNDS:
 =========
@@ -31,6 +33,7 @@ SOUNDS:
 - Super Smash Bros. Brawl (Samus' hurt, taunt, usefail, and landing sounds)
 - Unreal Championship 2 (Samus' walking sounds)
 - Metroid Prime (Samus' beam charging and charge idle sounds)
+- Yoshio Sakamoto (His voice reversed and warped for the Icon of Sin)
 
 CODE:
 =========
