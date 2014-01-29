@@ -197,6 +197,7 @@ ACTOR "Power Beam" : Weapon
     AltFire:
         TNT1 A 0 A_Refire
     AltFire2:
+        TNT1 A 0
         TNT1 A 0 A_TakeInventory("MissileCharged",1)
         TNT1 A 0 A_TakeInventory("MissileChargeLevel",34) // Already done in AltHold, but just in case.
         TNT1 A 0 A_ClearRefire
@@ -243,8 +244,10 @@ ACTOR "Power Beam" : Weapon
         PBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
     AltHold:
-        TNT1 A 0 A_JumpIfInventory("SuperMissileAmmo",1,1)
+        TNT1 A 0 A_JumpIfInventory("SuperMissileAmmo",1,2)
+        PBEM A 1
         goto AltFire2
+        TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("MissileCharged",1,"AltHoldFinal2")
         TNT1 A 0 A_JumpIfInventory("MissileChargeLevel",13,"AltHoldFinal")
         TNT1 A 0 A_GiveInventory("MissileChargeLevel",1)
