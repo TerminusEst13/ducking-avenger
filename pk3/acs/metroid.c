@@ -305,7 +305,7 @@ script METROID_ENTER ENTER
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
-    if (GameType () == GAME_NET_DEATHMATCH) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
+    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
@@ -483,6 +483,12 @@ script METROID_DECORATE (int which)
 
     case 10:
         if(GetCvar("metroid_noenergydrops") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
+
+    case 11:
+        if(isFreeForAll() || isTeamgame())
         setresultvalue(1);
         else setresultvalue(0);
         break;

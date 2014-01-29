@@ -71,7 +71,7 @@ actor Energy25 : Health replaces Medikit
     }
 }
 
-actor Energy100 : Health replaces Soulsphere
+actor Energy100 : Health //replaces Soulsphere
 {
     Inventory.Amount 100
     Inventory.PickupMessage "Picked up a greater energy capsule."
@@ -380,6 +380,27 @@ ACTOR EnemyDropSpawnerB
     }
 }
 
+ACTOR SoulsphereSpawner : CustomInventory replaces Soulsphere
+{
+    Radius 1
+    Height 1
+    +NOCLIP
+    -SOLID
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,11,0,0) == 1, "SpawnDM")
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("SoulsphereSpawner1",0,0,0,0,0,0,0,32)
+        stop
+    SpawnDM:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("SoulsphereSpawner2",0,0,0,0,0,0,0,32)
+        stop
+    }
+}
+
 ACTOR EnemyDropSpawner1 : RandomSpawner
 {
   +DROPPED
@@ -395,4 +416,14 @@ ACTOR EnemyDropSpawner2 : RandomSpawner
   DropItem "Energy25", 125, 10
   DropItem "MissileAmmo", 175, 5
   DropItem "SuperMissileAmmo", 125, 1
+}
+
+ACTOR SoulsphereSpawner1 : RandomSpawner // Hack, hack, hack.
+{
+  DropItem "Energy100", 255
+}
+
+ACTOR SoulsphereSpawner2 : RandomSpawner
+{
+  DropItem "EnergyTankPickup", 255
 }
