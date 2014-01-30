@@ -60,6 +60,12 @@ morphball/unmorph       BALUNMRF
 morphball/denied        BALDENID
 morphball/bombdrop      BALBOMDR
 morphball/bombboom      BALBOMXP
+morphball/pbomwub       PBOMWUB
+morphball/pbomdrop      PBOMLAY
+morphball/pbomread      PBOMREAD // Taken from Smash Bros. Brawl
+morphball/pbomexplod    PBOMBOOM
+
+$rolloff morphball/pbomexplod    400 1800
 
 boostball/start         BOOSTSTR // Taken from Metroid Prime
 boostball/launch        BOOSTGO

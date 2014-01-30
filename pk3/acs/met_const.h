@@ -9,6 +9,7 @@
 
 #define METROID_TURN                         385
 
+#define METROID_POWERBOMB                    454
 #define METROID_LONG_XYZ                     455
 #define METROID_LONG_BURST                   456
 #define METROID_LONG_TRAIL                   459

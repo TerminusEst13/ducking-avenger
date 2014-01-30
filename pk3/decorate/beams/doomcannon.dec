@@ -1,4 +1,4 @@
-ACTOR "Doom Cannon" : Weapon
+ACTOR "Doom Cannon" : Weapon 17521
 {
     Weapon.SelectionOrder 2000
     Inventory.PickupSound "cannon/get"

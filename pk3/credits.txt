@@ -37,6 +37,5 @@ SOUNDS:
 
 CODE:
 =========
-- SolarSnowfall (Cleaned up third-person camera, used for the Morph Ball)
 - Repo Man (The basis of the Wave Beam projectile code)
-- Ijon Tichy (The Space Jump code (taken from Parkmore) and the Long Beam code (taken from Lelweps))
+- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion)

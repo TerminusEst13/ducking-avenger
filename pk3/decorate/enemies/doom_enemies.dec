@@ -37,7 +37,7 @@ actor FrozenDummy
 actor Metroid_Zombieguy : Zombieman replaces Zombieman
 {
     DamageFactor "NoDamage", 0.0
-    //DropItem "EnemyDropSpawner"
+    DropItem "BlankPuff"
     States
     {
     Pain.IceCharged:
@@ -74,12 +74,25 @@ actor Metroid_Zombieguy : Zombieman replaces Zombieman
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ZombieguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -98,7 +111,7 @@ actor ZombieguyFrozen : FrozenDummy
 actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
 {
     DamageFactor "NoDamage", 0.0
-    //DropItem "EnemyDropSpawner"
+    DropItem "BlankPuff"
     States
     {
     Pain.IceCharged:
@@ -135,12 +148,25 @@ actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ShotguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -159,7 +185,7 @@ actor ShotguyFrozen : FrozenDummy
 actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
 {
     DamageFactor "NoDamage", 0.0
-    //DropItem "EnemyDropSpawner"
+    DropItem "BlankPuff"
     States
     {
     Pain.IceCharged:
@@ -196,12 +222,25 @@ actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ChainguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -256,12 +295,25 @@ actor Metroid_Impguy : DoomImp replaces DoomImp
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("ImpguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -316,12 +368,25 @@ actor Metroid_Demonguy : Demon replaces Demon
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("DemonguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -377,12 +442,25 @@ actor Metroid_Spectreguy : Spectre replaces Spectre
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("DemonguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -426,12 +504,25 @@ actor Metroid_Cacoguy : Cacodemon replaces Cacodemon
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("CacoguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -481,12 +572,25 @@ actor Metroid_Lostguy : LostSoul replaces LostSoul
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("LostguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -545,12 +649,25 @@ actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("BaronguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -609,12 +726,25 @@ actor Metroid_Knightguy : HellKnight replaces HellKnight
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("BaronguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -664,12 +794,25 @@ actor Metroid_Vileguy : Archvile replaces Archvile
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("VileguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -729,12 +872,25 @@ actor Metroid_Spiderguy : Arachnotron replaces Arachnotron
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("SpiderguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -798,12 +954,25 @@ actor Metroid_Fatguy : Fatso replaces Fatso
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("FatguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -864,12 +1033,25 @@ actor Metroid_Painguy : PainElemental replaces PainElemental
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("PainguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -929,12 +1111,25 @@ actor Metroid_Coolguy : Revenant replaces Revenant
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("CoolguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -994,12 +1189,25 @@ actor Metroid_Naziguy : WolfensteinSS replaces WolfensteinSS
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("NaziguyFrozen",0,0,0,0,0,0,0,32)
         Stop
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -1022,12 +1230,25 @@ actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
     DamageFactor "NoDamage", 0.0
     States
     {
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }
@@ -1037,12 +1258,25 @@ actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
     DamageFactor "NoDamage", 0.0
     States
     {
+
     Death:
-        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"Death2")
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+    DeathNope:
+        TNT1 A 0
         goto "Super::Death"
-    Death2:
-        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(-100,100),0,0,0,0,32,32)
+    DeathSuperMissile:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathPowerBomb:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        goto "Super::Death"
+    DeathBoth:
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
         goto "Super::Death"
     }
 }

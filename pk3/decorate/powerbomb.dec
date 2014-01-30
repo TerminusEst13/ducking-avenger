@@ -1,0 +1,467 @@
+// Every time I look at this code, I stare for a little bit, then sigh wistfully
+// because I know Samus will never be able to grab a dude, hoist him up high
+// above her head, then swing him down hard onto the mat.
+
+actor PowerBomb
+{
+    Radius 5
+    Height 5
+    Speed 0
+    Scale 1.5
+    Projectile
+    +NOGRAVITY
+    -SOLID
+    +NOCLIP
+    +FORCERADIUSDMG
+    DONTHURTSHOOTER
+    DamageType "PowerBomb"
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySound("morphball/pbomwub")
+        PBOM ABC 4
+        PBOM ABC 4 BRIGHT
+        TNT1 A 0 A_PlaySound("morphball/pbomwub")
+        PBOM ABC 4
+        PBOM ABC 4 BRIGHT
+        TNT1 A 0 A_PlaySound("morphball/pbomwub")
+        PBOM ABC 4
+        PBOM ABC 4 BRIGHT
+        TNT1 A 0 A_Die
+        goto Death
+
+      Death:
+        TNT1 A 0
+        TNT1 A 0 A_Explode(128, 192, 0)
+        TNT1 A 0 Radius_Quake(6,70,0,32,0)
+        TNT1 A 0 A_SetTranslucent(1, 1)
+        TNT1 A 0 A_PlaySound("morphball/pbomexplod", CHAN_AUTO, 1.0, 0, ATTN_NONE)
+        TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   8, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  16, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  24, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  32, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  40, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  48, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  56, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  64, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  72, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  80, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  88, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  96, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 104, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 112, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 120, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 128, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 136, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 144, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 152, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 160, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 168, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 176, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 184, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 192, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 200, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 208, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 216, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 224, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 232, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 248, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 256, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 264, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 272, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 280, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 288, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 296, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 304, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 312, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 320, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 328, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 336, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 344, 6, 0)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 352, 6, 0)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 8.571428571428571, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 17.142857142857142, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 25.714285714285715, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 34.285714285714285, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 42.857142857142854, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 51.42857142857142, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 59.99999999999999, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 68.57142857142857, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 77.14285714285714, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 85.71428571428571, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 94.28571428571428, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 102.85714285714285, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 111.42857142857142, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 119.99999999999999, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 128.57142857142856, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 137.14285714285714, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 145.71428571428572, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 154.2857142857143, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 162.8571428571429, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 171.42857142857147, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180.00000000000006, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 188.57142857142864, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 197.14285714285722, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 205.7142857142858, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 214.2857142857144, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 222.85714285714297, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 231.42857142857156, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240.00000000000014, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 248.57142857142873, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 257.1428571428573, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 265.71428571428584, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 274.2857142857144, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 282.85714285714295, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 291.4285714285715, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 300.00000000000006, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 308.5714285714286, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 317.14285714285717, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 325.7142857142857, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 334.2857142857143, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 342.85714285714283, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 351.4285714285714, 6, 15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 359.99999999999994, 6, 15)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 9.473684210526315, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 18.94736842105263, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 28.421052631578945, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 37.89473684210526, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 47.368421052631575, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 56.84210526315789, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 66.3157894736842, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 75.78947368421052, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 85.26315789473684, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 94.73684210526315, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 104.21052631578947, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 113.68421052631578, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 123.1578947368421, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 132.6315789473684, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 142.10526315789474, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 151.57894736842104, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 161.05263157894734, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 170.52631578947364, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 179.99999999999994, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 189.47368421052624, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 198.94736842105254, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 208.42105263157885, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 217.89473684210515, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 227.36842105263145, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 236.84210526315775, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 246.31578947368405, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 255.78947368421035, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 265.26315789473665, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 274.73684210526295, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 284.21052631578925, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 293.68421052631555, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 303.15789473684185, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 312.63157894736815, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 322.10526315789446, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 331.57894736842076, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 341.05263157894706, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 350.52631578947336, 6, 30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 359.99999999999966, 6, 30)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 11.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 22.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 33.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  45, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 56.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 67.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 78.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  90, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 101.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 112.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 123.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 135, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 146.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 157.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 168.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 191.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 202.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 213.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 225, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 236.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 247.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 258.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 270, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 281.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 292.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 303.75, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 315, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 326.25, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 337.5, 6, 45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 348.75, 6, 45)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  15, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  30, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  45, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  60, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  75, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  90, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 105, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 120, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 135, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 150, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 165, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 195, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 210, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 225, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 255, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 270, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 285, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 300, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 315, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 330, 6, 60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 345, 6, 60)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  30, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  60, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  90, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 120, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 150, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 210, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 270, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 300, 6, 75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 330, 6, 75)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 0, 6, 90)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  30, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  60, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  90, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 120, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 150, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 210, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 270, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 300, 6, -75)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 330, 6, -75)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  15, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  30, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  45, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  60, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  75, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  90, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 105, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 120, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 135, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 150, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 165, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 195, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 210, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 225, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 255, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 270, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 285, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 300, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 315, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 330, 6, -60)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 345, 6, -60)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 11.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 22.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 33.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  45, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 56.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 67.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 78.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,  90, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 101.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 112.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 123.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 135, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 146.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 157.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 168.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 191.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 202.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 213.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 225, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 236.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 247.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 258.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 270, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 281.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 292.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 303.75, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 315, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 326.25, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 337.5, 6, -45)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 348.75, 6, -45)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 9.473684210526315, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 18.94736842105263, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 28.421052631578945, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 37.89473684210526, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 47.368421052631575, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 56.84210526315789, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 66.3157894736842, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 75.78947368421052, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 85.26315789473684, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 94.73684210526315, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 104.21052631578947, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 113.68421052631578, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 123.1578947368421, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 132.6315789473684, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 142.10526315789474, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 151.57894736842104, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 161.05263157894734, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 170.52631578947364, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 179.99999999999994, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 189.47368421052624, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 198.94736842105254, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 208.42105263157885, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 217.89473684210515, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 227.36842105263145, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 236.84210526315775, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 246.31578947368405, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 255.78947368421035, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 265.26315789473665, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 274.73684210526295, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 284.21052631578925, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 293.68421052631555, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 303.15789473684185, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 312.63157894736815, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 322.10526315789446, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 331.57894736842076, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 341.05263157894706, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 350.52631578947336, 6, -30)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 359.99999999999966, 6, -30)
+
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0,   0, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 8.571428571428571, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 17.142857142857142, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 25.714285714285715, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 34.285714285714285, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 42.857142857142854, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 51.42857142857142, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 59.99999999999999, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 68.57142857142857, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 77.14285714285714, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 85.71428571428571, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 94.28571428571428, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 102.85714285714285, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 111.42857142857142, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 119.99999999999999, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 128.57142857142856, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 137.14285714285714, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 145.71428571428572, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 154.2857142857143, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 162.8571428571429, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 171.42857142857147, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 180.00000000000006, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 188.57142857142864, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 197.14285714285722, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 205.7142857142858, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 214.2857142857144, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 222.85714285714297, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 231.42857142857156, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 240.00000000000014, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 248.57142857142873, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 257.1428571428573, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 265.71428571428584, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 274.2857142857144, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 282.85714285714295, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 291.4285714285715, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 300.00000000000006, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 308.5714285714286, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 317.14285714285717, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 325.7142857142857, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 334.2857142857143, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 342.85714285714283, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 351.4285714285714, 6, -15)
+        TNT1 A 0 A_CustomMissile("PowerBombShockwave", 3,0, 359.99999999999994, 6, -15)
+
+        MISL BCD 8
+        stop
+    }
+}
+
+actor PowerBombShockwave
+{
+    Projectile
+
+    +RIPPER
+    +BLOODLESSIMPACT
+    +NOINTERACTION
+    +PIERCEARMOR
+    +EXTREMEDEATH
+    +FORCERADIUSDMG
+    +SERVERSIDEONLY
+
+    Radius 2
+    Height 2
+    DamageType "PowerBomb"
+
+    Speed 10
+
+    States
+    {
+      Spawn:
+        TNT1 B 0
+        TNT1 B 0 A_SpawnItemEx("PowerBombShockwaveClientside", 0,0,0, momx,momy,momz, 0, SXF_ABSOLUTEMOMENTUM)
+        TNT1 B 0 A_ChangeFlag("NOINTERACTION", 0)
+        TNT1 AA 4 bright A_Explode(64, 160, 0) // First half-second
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        TNT1 A  4 bright A_Explode(64, 160, 0)
+        TNT1 AA 3 bright A_Explode(44,  160, 0)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        TNT1 AAA 3 bright A_Explode(36, 160, 0) // Second half-second
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        TNT1 AAA 3 bright A_Explode(36, 160, 0) // Second half-second
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        TNT1 AAAAAAAAA 2 bright A_Explode(24, 160, 0) // Third half-second
+        stop
+    }
+}
+
+actor PowerBombShockwaveClientside
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    Scale 1.25
+    RenderStyle Add
+
+    States
+    {
+      Spawn:
+        MISL B 8 bright
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        MISL B 10 bright
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        MISL C 9 bright
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        MISL C 9 bright
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        MISL D 8 bright
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        MISL D 10 bright
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        stop
+    }
+}

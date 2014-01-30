@@ -46,7 +46,8 @@ InInventory not BorphMallAcquired, 1
     InInventory HealthOver1000, 1 { drawimage "ETNKFULL", 194, 20; }
     InInventory HealthOver1000, 1 { drawbar "SAMHFULX", "SAMHEMPX", Health Health1100, horizontal, -1090, 24, 1; }
     drawimage "missicon", 280, 165;
-    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 178;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 183;
+    drawnumber 3, METHUDF, Untranslated, AmmoCapacity MissileAmmo, fillzeros, 315, 173;
     IsSelected "Power Beam" { drawimage "WEAPPWBM", 14, 170; }
     IsSelected "Spazer Beam" { drawimage "WEAPSPBM", 14, 170; }
     IsSelected "Wave Beam" { drawimage "WEAPWVBM", 14, 170; }
@@ -115,6 +116,9 @@ InInventory BorphMallAcquired, 1
     InInventory SuperMissileAcquired, 1 {
     drawimage "FSMSICON", 140, 6;
     drawnumber 3, METHUDF, Untranslated, SuperMissileAmmo, fillzeros, 162, 21; }
+    InInventory PowerBombAcquired, 1 {
+    drawimage "FPBMICON", 167, 6;
+    drawnumber 3, METHUDF, Untranslated, PowerBombAmmo, fillzeros, 189, 21; }
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
@@ -179,6 +183,9 @@ statusbar fullscreen, forcescaled
     InInventory SuperMissileAcquired, 1 {
     drawimage "FSMSICON", 140, 6;
     drawnumber 3, METHUDF, Untranslated, SuperMissileAmmo, fillzeros, 162, 21; }
+    InInventory PowerBombAcquired, 1 {
+    drawimage "FPBMICON", 167, 6;
+    drawnumber 3, METHUDF, Untranslated, PowerBombAmmo, fillzeros, 189, 21; }
     IsSelected "Power Beam" { drawimage "WPFSPWBM", 254, 4; }
     IsSelected "Spazer Beam" { drawimage "WPFSSPBM", 254, 4; }
     IsSelected "Wave Beam" { drawimage "WPFSWVBM", 254, 4; }

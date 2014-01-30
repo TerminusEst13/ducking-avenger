@@ -143,10 +143,14 @@ ACTOR "Bombs" : Weapon
         TNT1 AA 0 A_Lower
         Loop
     Fire:
-        TNT1 A 0
+        TNT1 A 0 A_Refire
+    Fire2:
         TNT1 A 0 A_JumpIfInventory("BombCount",1,1)
         goto Ready
         TNT1 A 0
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"FireCoop")
         TNT1 A 0 A_FireCustomMissile("MorphBallBombDM",0,0,0,0,0,0)
         goto FireFinish
@@ -164,6 +168,37 @@ ACTOR "Bombs" : Weapon
         //TNT1 A 0 A_PlayWeaponSound("morphball/bombdrop")
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
         Goto Ready
+    Hold:
+        TNT1 A 0 A_JumpIfInventory("PowerBombAmmo",1,2)
+        TNT1 A 1
+        goto Fire2
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("MissileCharged",1,"HoldFinal2")
+        TNT1 A 0 A_JumpIfInventory("MissileChargeLevel",13,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("MissileChargeLevel",1)
+        TNT1 AA 1
+        TNT1 A 0 A_Refire
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+        goto Fire2
+    HoldFinal:
+        TNT1 A 0
+        TNT1 A 0 A_GiveInventory("MissileCharged",1)
+        TNT1 A 0 A_PlaySoundEx("morphball/pbomread","soundslot7")
+    HoldFinal2:
+        TNT1 A 0
+        TNT1 AA 1
+        TNT1 A 0 A_Refire
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+        TNT1 A 0 A_PlayWeaponSound("morphball/pbomdrop")
+        TNT1 A 0 A_FireCustomMissile("PowerBomb",0,0,0,2,0,0)
+        TNT1 A 0 A_TakeInventory("PowerBombAmmo",1)
+        TNT1 A 8
+        Goto Ready
+
     AltFire:
         TNT1 A 1
         TNT1 A 0 A_PlayWeaponSound("boostball/start")

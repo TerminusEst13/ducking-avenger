@@ -208,6 +208,8 @@ script METROID_MORPHBALL (int morphshit)
         SetActorProperty(0,APROP_SPEED,1.00);
         TakeInventory("BorphMallAcquired", 1);
         TakeInventory("BoostBallCount", 99);
+        TakeInventory("MissileChargeLevel",999);
+        TakeInventory("MissileCharged",999);
         GiveInventory("MorphBallActivate", 1);
         TakeInventory("MorphBallDeactivate", 1);
         SetActorVelocity(0, velx,vely,velz, 0,0);
@@ -344,7 +346,7 @@ script METROID_ENTER ENTER
 
 
         if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
-        else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}
+        else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("SpaceJumpAcquired") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}}
 
         if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
         else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
@@ -492,6 +494,12 @@ script METROID_DECORATE (int which)
         setresultvalue(1);
         else setresultvalue(0);
         break;
+
+    case 12:
+        SetAmmoCapacity("PowerBombAmmo",GetAmmoCapacity("PowerBombAmmo")+1);
+        delay(1);
+        GiveInventory("PowerBombAmmo",1);
+        break;
     }
 }
 
@@ -506,3 +514,29 @@ script METROID_DECORATE (int which)
         break;
     }
 }*/
+
+script METROID_POWERBOMB (int scaleI, int scaleF, int speedF)
+{
+    int scale, x, y, z, mag;
+    x = GetActorVelX(0); y = GetActorVelY(0); z = GetActorVelZ(0);
+
+    if (speedF == 0) { scale = itof(scaleI) + (scaleF * 0.01); }
+    else
+    {
+        mag = magnitudeThree_f(x, y, z);
+
+        if (mag == 0)
+        {
+            x = random(-10.0, 10.0);
+            y = random(-10.0, 10.0);
+            z = random(-10.0, 10.0);
+            mag = magnitudeThree_f(x, y, z);
+        }
+
+        scale = FixedDiv(speedF * 1.0, mag);
+    }
+
+    SetActorVelocity(0, FixedMul(x, scale), FixedMul(y, scale), FixedMul(z, scale), 0, 0);
+    // PrintBold(s:"(", f:x, s:", ", f:y, s:", ", f:z, s:"): ", f:scale, s:" -> (", f:GetActorVelX(0), s:", ", f:GetActorVelY(0), s:", ", f:GetActorVelZ(0), s:")");
+    // printf("(%f, %f, %f): %f -> (%f, %f, %f)\n", x, y, z, scale, GetActorVelX(0), GetActorVelY(0), GetActorVelZ(0));
+}
