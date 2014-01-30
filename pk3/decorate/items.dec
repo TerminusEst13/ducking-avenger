@@ -277,7 +277,7 @@ ACTOR EnemyDropSpawnerC
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "Nope")
-        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner2",random(-5,5),random(-5,5),random(1,10),0,0,0,0,32,0)
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner3",random(-5,5),random(-5,5),random(1,10),0,0,0,0,32,0)
         stop
     Nope:
         TNT1 A 1
@@ -296,7 +296,7 @@ ACTOR EnemyDropSpawnerD
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "Nope")
-        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner2",random(-5,5),random(-5,5),random(1,10),0,0,0,0,32,0)
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner4",random(-5,5),random(-5,5),random(1,10),0,0,0,0,32,0)
         stop
     Nope:
         TNT1 A 1
