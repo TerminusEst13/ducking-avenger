@@ -17,7 +17,7 @@ GRAPHICS:
 - Blue Shadow (Converting the BigFont to a lump file)
 - Cyberkill (Spanish Enye, slade, and tilde for smallfont)
 - Enterbrain (Plasma Beam/Ice Beam particles)
-- Bearborg (Ripping the Metroid Prime HUD)
+- Bearborg/Mike12 (Ripping and polishing the Metroid Prime HUD)
 - Rundas45 (The basis of the fullscreen HUD)
 - Eriance (Spazer Beam particles)
 - Id Software (Bomb explode animation, from Doom 3)
