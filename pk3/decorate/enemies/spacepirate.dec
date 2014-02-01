@@ -3,6 +3,10 @@ ACTOR EnemyFlyingDeath : Boolean {}
 ACTOR SpacePirate 17010
 {
     Health 150
+    PainChance "IceBeam", 96
+    PainChance "IceCharged", 96
+    PainChance "IceChargedExplode", 64
+    PainChance "IceBeamExplode", 64
     PainChance 80
     Scale 0.75
     Speed 12
