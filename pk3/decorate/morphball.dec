@@ -12,6 +12,7 @@ actor MorphBallPlayer : PlayerPawn
     Player.SideMove 0.1, 0.2
     DamageFactor "NoDamage", 0.0
     DamageFactor "Normal", 0.85
+    RadiusDamageFactor 0.95
     Player.StartItem "BombCount", 3
     Player.SoundClass "Hunter"
     Player.DisplayName "MorphBall"
@@ -77,7 +78,9 @@ actor MorphBallPlayer : PlayerPawn
 actor MorphBallPlayerDM : MorphBallPlayer
 {
     Radius 10
+    Height 16
     DamageFactor "Normal", 1.0
+    DamageFactor "PowerCharged", 1.1
     RadiusDamageFactor 1.25
 }
 
@@ -151,7 +154,7 @@ ACTOR "Bombs" : Weapon
         TNT1 A 0 A_FireCustomMissile("MorphBallBomb",0,0,0,0,0,0)
     FireFinish:
         TNT1 A 0 A_PlayWeaponSound("morphball/bombdrop")
-        TNT1 A 4 A_TakeInventory("BombCount",1)
+        TNT1 A 3 A_TakeInventory("BombCount",1)
         Goto Ready
     FireCharged:
         TNT1 A 0
