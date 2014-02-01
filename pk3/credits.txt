@@ -24,6 +24,7 @@ GRAPHICS:
 - PillowBlaster (Space Pirate shots)
 - People Can Fly (The Flamebolter's fire effect used for the Super Missile explosion)
 - Yoshio Sakamoto (His likeness used for the Icon of Sin)
+- VincentPrice (Making the model the Morph Ball was based off)
 
 SOUNDS:
 =========

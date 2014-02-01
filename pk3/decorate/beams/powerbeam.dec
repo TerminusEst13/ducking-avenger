@@ -376,8 +376,6 @@ actor PowerSpark
     }
 }
 
-
-
 actor PowerBoltCharged : PowerBolt
 {
     Radius 12
@@ -394,7 +392,6 @@ actor PowerBoltCharged : PowerBolt
     Spawn:
         PBCS AABB 1 BRIGHT A_CustomMissile("PowerTrailCharged",0,0,0)
         Loop
-
     Death:
         TNT1 A 0
         TNT1 A 0 A_Explode(64,96,0)
@@ -405,7 +402,22 @@ actor PowerBoltCharged : PowerBolt
     }
 }
 
-actor PowerBoltChargedCoop : PowerBoltCharged { Damage (75) Species "Player" +THRUSPECIES }
+actor PowerBoltChargedCoop : PowerBoltCharged
+{
+    Damage (75)
+    Species "Player"
+    +THRUSPECIES
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Explode(96,128,0)
+        TNT1 A 0 A_Scream
+        TNT1 A 0 A_SpawnItemEx("PowerBoltChargedExplosion",0,0,0,0,0,0,0,160,0)
+        TNT1 A 1
+        Stop
+    }
+}
 
 actor PowerTrailCharged
 { 

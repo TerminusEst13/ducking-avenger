@@ -351,7 +351,36 @@ ACTOR IceBoltExplosion
     }
 }
 
-actor IceBoltCoop : IceBolt { Damage (35) Species "Player" +THRUSPECIES }
+actor IceBoltCoop : IceBolt
+{
+    Damage (35)
+    Species "Player"
+    +THRUSPECIES    
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Stop
+        TNT1 A 0 A_SpawnItemEx("IceBoltExplosionCoop",0,0,0,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
+        TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrailFlicker",0,0,Random(-200,200),3,Random(-200,200))
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",0,0,0,0,0,0,0,160)
+        TNT1 A 1
+        stop
+    }
+}
+
+actor IceBoltExplosionCoop : IceBoltExplosion
+{
+    States
+    {
+      Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_Explode(32,128,0)
+        Stop
+    }
+}
 
 actor IceTrail
 { 
@@ -620,7 +649,26 @@ actor IceBoltCharged
     }
 }
 
-actor IceBoltChargedCoop : IceBoltCharged { Damage (60) Species "Player" +THRUSPECIES  }
+actor IceBoltChargedCoop : IceBoltCharged
+{
+    Damage (60)
+    Species "Player"
+    +THRUSPECIES
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Stop
+        TNT1 A 0 A_SpawnItemEx("IceBoltChargedExplosionCoop",0,0,0,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
+        TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrail",0,0,Random(-200,200),3,Random(-200,200))
+        TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrailFlicker",0,0,Random(-200,200),3,Random(-200,200))
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",0,0,0,0,0,0,0,160)
+        TNT1 A 1
+        stop
+    }
+}
 
 ACTOR IceBoltChargedExplosion
 {
@@ -636,6 +684,17 @@ ACTOR IceBoltChargedExplosion
       Spawn:
 		TNT1 A 0
 		TNT1 A 1 A_Explode(64,96,0)
+        Stop
+    }
+}
+
+actor IceBoltChargedExplosionCoop : IceBoltChargedExplosion
+{
+    States
+    {
+      Spawn:
+		TNT1 A 0
+		TNT1 A 1 A_Explode(64,128,0)
         Stop
     }
 }

@@ -406,7 +406,7 @@ actor PlasmaBolt
     }
 }
 
-actor PlasmaBoltCoop : PlasmaBolt { Damage (40) Speed 45 }
+actor PlasmaBoltCoop : PlasmaBolt { Damage (35) Speed 45 }
 
 actor PlasmaTrail
 { 
@@ -782,7 +782,7 @@ actor PlasmaBoltCharged
     }
 }
 
-actor PlasmaBoltChargedCoop : PlasmaBoltCharged { Damage (60) Speed 55 }
+actor PlasmaBoltChargedCoop : PlasmaBoltCharged { Damage (90) Speed 55 }
 
 actor PlasmaTrailCharged
 { 
