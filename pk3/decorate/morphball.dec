@@ -3,7 +3,8 @@ actor MorphBallPlayer : PlayerPawn
     Radius 8
     Height 12
     Gravity 0.5
-    Scale 0.75
+    XScale 0.8
+    YScale 0.7
     Player.JumpZ 0
     MaxStepHeight 12
     Player.Viewheight 21
@@ -15,6 +16,7 @@ actor MorphBallPlayer : PlayerPawn
     Player.SoundClass "Hunter"
     Player.DisplayName "MorphBall"
     Player.MorphWeapon "Bombs"
+    Player.ColorRange 16,47
     -PICKUP
     +NOSKIN
     +DOOMBOUNCE
@@ -24,22 +26,13 @@ actor MorphBallPlayer : PlayerPawn
     Species "Player"
     States
     {
-      Spawn:
-        PLAY X -1
+    Spawn:
+        MARU A -1
         Stop
 
-      See:
-        PLAY X 3
+    See:
+        MARU BCDEFA 2
         Loop
-
-      Melee:
-      Missile:
-        PLAY X 5 BRIGHT
-        Goto Spawn
-
-      Pain:
-        PLAY X 4 A_Pain
-        Goto Spawn
 
     Death:
         TNT1 A 0
@@ -64,7 +57,7 @@ actor MorphBallPlayer : PlayerPawn
     BoostBall:
         TNT1 A 0
         TNT1 A 0 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
-        PLAY X 1 BRIGHT
+        MARU A 1 BRIGHT
         //TNT1 AA 0 A_SpawnItemEx("RainbowTrail",0,random(-12,12),random(5,46),0,0,0,0,SXF_CLIENTSIDE)
         TNT1 A 0 A_CheckFloor("Spawn")
         TNT1 A 0 A_JumpIf(momx == 0, "Spawn")
@@ -76,7 +69,7 @@ actor MorphBallPlayer : PlayerPawn
         TNT1 A 0
         TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
         TNT1 A 0 A_ChangeFlag("DONTBLAST",1)
-        PLAY X 1
+        MARU A 1
         goto Spawn
     }
 }
