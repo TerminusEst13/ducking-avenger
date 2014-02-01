@@ -119,8 +119,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "Bomb", 0.45
     DamageFactor "PowerBomb", 0.35
     RadiusDamageFactor 0.75
-    //Player.ColorRange 112, 127
-    Player.ColorRange 16,47
+    Player.ColorRange 16,47 // Oh man, Tumblr's going to have me by the balls for this.
     +NOSKIN
     +NOBLOOD
     -THRUSPECIES
