@@ -109,9 +109,6 @@ actor BoostBallDamage
     }
 }
 
-ACTOR BombCount : Counter { Inventory.MaxAmount 3 }
-ACTOR BoostBallCount : Counter { Inventory.MaxAmount 17 }
-
 ACTOR "Bombs" : Weapon
 {
     Weapon.SelectionOrder 3000

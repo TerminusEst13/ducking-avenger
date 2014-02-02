@@ -1,7 +1,3 @@
-ACTOR PowerBeamChargeLevel : Counter { Inventory.MaxAmount 31 }
-ACTOR PowerBeamIdle : Counter { Inventory.MaxAmount 26 }
-ACTOR PowerBeamCharged : Boolean {}
-
 ACTOR "Power Beam" : Weapon
 {
     Weapon.SelectionOrder 3000

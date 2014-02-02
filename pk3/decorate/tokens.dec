@@ -1,0 +1,60 @@
+// Counters
+ACTOR BombCount : Counter { Inventory.MaxAmount 3 }
+ACTOR BoostBallCount : Counter { Inventory.MaxAmount 17 }
+
+actor Health100 : Counter { Inventory.MaxAmount 100 }
+actor Health200 : Counter { Inventory.MaxAmount 200 }
+actor Health300 : Counter { Inventory.MaxAmount 300 }
+actor Health400 : Counter { Inventory.MaxAmount 400 }
+actor Health500 : Counter { Inventory.MaxAmount 500 }
+actor Health600 : Counter { Inventory.MaxAmount 600 }
+actor Health700 : Counter { Inventory.MaxAmount 700 }
+actor Health800 : Counter { Inventory.MaxAmount 800 }
+actor Health900 : Counter { Inventory.MaxAmount 900 }
+actor Health1000 : Counter { Inventory.MaxAmount 1000 }
+actor Health1100 : Counter { Inventory.MaxAmount 1100 }
+actor EnergyTankAcquired : Counter { Inventory.MaxAmount 10 }
+actor PlayerTotalHealth : Counter { Inventory.MaxAmount 99 }
+
+ACTOR MissileChargeLevel : Counter { Inventory.MaxAmount 31 }
+ACTOR PowerBeamChargeLevel : Counter { Inventory.MaxAmount 31 }
+ACTOR PowerBeamIdle : Counter { Inventory.MaxAmount 26 }
+
+
+
+// Booleans
+actor HealthOver100 : Boolean {}
+actor HealthOver200 : Boolean {}
+actor HealthOver300 : Boolean {}
+actor HealthOver400 : Boolean {}
+actor HealthOver500 : Boolean {}
+actor HealthOver600 : Boolean {}
+actor HealthOver700 : Boolean {}
+actor HealthOver800 : Boolean {}
+actor HealthOver900 : Boolean {}
+actor HealthOver1000 : Boolean {}
+
+actor IceBeamChilled : Boolean {}
+actor CoopModeOn : Boolean {}
+actor NotInThisLevel : Boolean {}
+actor PlayerMorphCamera : Boolean {}
+actor DisableMorph : Boolean {}
+
+ACTOR MissileCharged : Boolean {}
+ACTOR PowerBeamCharged : Boolean {}
+
+actor BorphMallAcquired : Boolean {}
+actor SuperMissileAcquired : Boolean {}
+actor SpaceJumpAcquired : Boolean {}
+actor CanSpaceJump : Boolean {}
+actor PowerBombAcquired : Boolean {}
+
+ACTOR EnemyFlyingDeath : Boolean {}
+
+ACTOR PowerBeamAcquired : Boolean {}
+ACTOR SpazerBeamAcquired : Boolean {}
+ACTOR PlasmaBeamAcquired : Boolean {}
+ACTOR WaveBeamAcquired : Boolean {}
+ACTOR IceBeamAcquired : Boolean {}
+ACTOR LongBeamAcquired : Boolean {}
+ACTOR DoomCannonAcquired : Boolean {}

@@ -81,6 +81,7 @@ actor SpaceChecker
 
 actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
 
+#include "decorate/tokens.dec"
 #include "decorate/player.dec"
 #include "decorate/morphball.dec"
 #include "decorate/powerbomb.dec"
