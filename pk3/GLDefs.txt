@@ -1,0 +1,149 @@
+brightmap sprite MARUA1
+{
+   map "brightmaps/morphball/MARUA1.png"
+}
+
+brightmap sprite MARUB1
+{
+   map "brightmaps/morphball/MARUB1.png"
+}
+
+brightmap sprite MARUC1
+{
+   map "brightmaps/morphball/MARUC1.png"
+}
+
+brightmap sprite MARUD1
+{
+   map "brightmaps/morphball/MARUD1.png"
+}
+
+brightmap sprite MARUE1
+{
+   map "brightmaps/morphball/MARUE1.png"
+}
+
+brightmap sprite MARUF1
+{
+   map "brightmaps/morphball/MARUF1.png"
+}
+
+brightmap sprite MARUA5
+{
+   map "brightmaps/morphball/MARUA5.png"
+}
+
+brightmap sprite MARUB5
+{
+   map "brightmaps/morphball/MARUB5.png"
+}
+
+brightmap sprite MARUC5
+{
+   map "brightmaps/morphball/MARUC5.png"
+}
+
+brightmap sprite MARUD5
+{
+   map "brightmaps/morphball/MARUD5.png"
+}
+
+brightmap sprite MARUE5
+{
+   map "brightmaps/morphball/MARUE5.png"
+}
+
+brightmap sprite MARUF5
+{
+   map "brightmaps/morphball/MARUF5.png"
+}
+
+brightmap sprite MARUA2A8
+{
+   map "brightmaps/morphball/MARUA2A8.png"
+}
+
+brightmap sprite MARUB2B8
+{
+   map "brightmaps/morphball/MARUB2B8.png"
+}
+
+brightmap sprite MARUC2C8
+{
+   map "brightmaps/morphball/MARUC2C8.png"
+}
+
+brightmap sprite MARUD2D8
+{
+   map "brightmaps/morphball/MARUD2D8.png"
+}
+
+brightmap sprite MARUE2E8
+{
+   map "brightmaps/morphball/MARUE2E8.png"
+}
+
+brightmap sprite MARUF2F8
+{
+   map "brightmaps/morphball/MARUF2F8.png"
+}
+
+brightmap sprite MARUA4A6
+{
+   map "brightmaps/morphball/MARUA4A6.png"
+}
+
+brightmap sprite MARUB4B6
+{
+   map "brightmaps/morphball/MARUB4B6.png"
+}
+
+brightmap sprite MARUC4C6
+{
+   map "brightmaps/morphball/MARUC4C6.png"
+}
+
+brightmap sprite MARUD4D6
+{
+   map "brightmaps/morphball/MARUD4D6.png"
+}
+
+brightmap sprite MARUE4E6
+{
+   map "brightmaps/morphball/MARUE4E6.png"
+}
+
+brightmap sprite MARUF4F6
+{
+   map "brightmaps/morphball/MARUF4F6.png"
+}
+
+brightmap sprite MARUA3A7
+{
+   map "brightmaps/morphball/MARUA3A7.png"
+}
+
+brightmap sprite MARUB3B7
+{
+   map "brightmaps/morphball/MARUB3B7.png"
+}
+
+brightmap sprite MARUC3C7
+{
+   map "brightmaps/morphball/MARUC3C7.png"
+}
+
+brightmap sprite MARUD3D7
+{
+   map "brightmaps/morphball/MARUD3D7.png"
+}
+
+brightmap sprite MARUE3E7
+{
+   map "brightmaps/morphball/MARUE3E7.png"
+}
+
+brightmap sprite MARUF3F7
+{
+   map "brightmaps/morphball/MARUF3F7.png"
+}
