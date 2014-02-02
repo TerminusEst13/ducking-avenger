@@ -7,6 +7,7 @@
 #include "met_longbeam.h"
 
 int SamusHealth[PLAYERMAX];
+int SamusArmor[PLAYERMAX];
 int playerOnFoot[PLAYERMAX];
 //int IsServer = 0;
 
@@ -67,6 +68,12 @@ script METROID_OPEN OPEN
     {
         ConsoleCommand("set metroid_noenemydrops 0");
         ConsoleCommand("archivecvar metroid_noenemydrops");
+    }
+
+    if (!GetCVar("metroid_cannonbfg"))
+    {
+        ConsoleCommand("set metroid_cannonbfg 0");
+        ConsoleCommand("archivecvar metroid_cannonbfg");
     }
 
     while (1)
@@ -154,6 +161,7 @@ script METROID_MORPHBALL (int morphshit)
 
         // Prepare for health transferring from old player to morphed player...
         SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
+        SamusArmor[pNum] = CheckInventory("Armor");
         int newTID = unusedTID(23000, 25000);
         int myTID  = defaultTID(-1);
 
@@ -178,6 +186,7 @@ script METROID_MORPHBALL (int morphshit)
 
         // Transfer health and give inventory.
         SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
+        GiveInventory("RawEnergyShield2",SamusArmor[pNum]);
         GiveInventory("BorphMallAcquired", 1);
         TakeInventory("MorphBallActivate", 1);
         TakeInventory("IceBeamChilled",999);
@@ -303,6 +312,8 @@ Script METROID_DISCONNECT (int p_num) DISCONNECT // Guess this isn't really need
 script METROID_ENTER ENTER
 {
     int barhp;
+    int oarmor;
+    int armor;
 
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
@@ -359,6 +370,13 @@ script METROID_ENTER ENTER
             if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); }
             if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); }
         }
+
+        oarmor = armor;
+        armor = CheckInventory("Armor");
+
+        if (oarmor > armor)
+        { ActivatorSound("rawenergy/shieldhit", 127);
+            FadeRange(255, 255, 255, min(0.5, (oarmor - armor) * 0.015), 0, 0, 0, 0.0, min(35.0, 1.5 * (oarmor - armor)) / 35); }
 
         delay(1);
     }
@@ -499,6 +517,12 @@ script METROID_DECORATE (int which)
         SetAmmoCapacity("PowerBombAmmo",GetAmmoCapacity("PowerBombAmmo")+1);
         delay(1);
         GiveInventory("PowerBombAmmo",1);
+        break;
+
+    case 13:
+        if(GetCvar("metroid_cannonbfg") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
         break;
     }
 }

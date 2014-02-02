@@ -327,48 +327,48 @@ ACTOR SoulsphereSpawner : CustomInventory replaces Soulsphere
 
 ACTOR EnemyDropSpawner1 : RandomSpawner
 {
-  +DROPPED
-  DropItem "Energy10", 175, 15
-  DropItem "Energy25", 100, 10
-  DropItem "MissileAmmo", 150, 5
+    +DROPPED
+    DropItem "Energy10", 175, 15
+    DropItem "Energy25", 100, 10
+    DropItem "MissileAmmo", 150, 5
 }
 
 ACTOR EnemyDropSpawner2 : RandomSpawner
 {
-  +DROPPED
-  DropItem "Energy10", 175, 15
-  DropItem "Energy25", 100, 10
-  DropItem "MissileAmmo", 150, 5
-  DropItem "SuperMissileAmmo", 125, 3
+    +DROPPED
+    DropItem "Energy10", 175, 15
+    DropItem "Energy25", 100, 10
+    DropItem "MissileAmmo", 150, 5
+    DropItem "SuperMissileAmmo", 125, 3
 }
 
 ACTOR EnemyDropSpawner3 : RandomSpawner
 {
-  +DROPPED
-  DropItem "Energy10", 175, 15
-  DropItem "Energy25", 100, 10
-  DropItem "MissileAmmo", 150, 5
-  DropItem "PowerBombAmmo", 100, 2
+    +DROPPED
+    DropItem "Energy10", 175, 15
+    DropItem "Energy25", 100, 10
+    DropItem "MissileAmmo", 150, 5
+    DropItem "PowerBombAmmo", 100, 2
 }
 
 ACTOR EnemyDropSpawner4 : RandomSpawner
 {
-  +DROPPED
-  DropItem "Energy10", 175, 15
-  DropItem "Energy25", 100, 10
-  DropItem "MissileAmmo", 150, 5
-  DropItem "SuperMissileAmmo", 125, 3
-  DropItem "PowerBombAmmo", 100, 2
+    +DROPPED
+    DropItem "Energy10", 175, 15
+    DropItem "Energy25", 100, 10
+    DropItem "MissileAmmo", 150, 5
+    DropItem "SuperMissileAmmo", 125, 3
+    DropItem "PowerBombAmmo", 100, 2
 }
 
 ACTOR SoulsphereSpawner1 : RandomSpawner // Hack, hack, hack.
 {
-  DropItem "Energy100", 255
+    DropItem "Energy100", 255
 }
 
 ACTOR SoulsphereSpawner2 : RandomSpawner
 {
-  DropItem "EnergyTankPickup", 255
+    DropItem "EnergyTankPickup", 255
 }
 
 ACTOR SpaceJumpPickup : CustomInventory 17520
@@ -426,6 +426,61 @@ ACTOR PowerBombTankPickup : CustomInventory 17523
 
 ACTOR BerserkSpawner1 : RandomSpawner replaces Berserk
 {
-  DropItem "SuperMissileTankPickup", 255
-  DropItem "PowerBombTankPickup", 255
+    DropItem "SuperMissileTankPickup", 255
+    DropItem "PowerBombTankPickup", 255
 }
+
+actor RawEnergy : CustomInventory replaces BlueArmor
+{
+    RenderStyle Add
+    Alpha 0.95
+    Scale 0.65
+    +ALWAYSPICKUP
+    +AUTOACTIVATE
+    +NOGRAVITY
+    Inventory.PickupMessage "ACQUIRED: Raw Energy Deposit"
+    Inventory.PickupSound "rawenergy/get"
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySound("rawenergy/idle")
+        EFLD WWWWWWWWWW 2 BRIGHT A_SpawnItemEx("LascannonBurstHaze2",0,0,20,random(-100,100)/250.0,random(-100,100)/250.0,random(-100,100)/250.0,0,32) // 10x2 = 20
+        EFLD WWWWW 2 BRIGHT A_SpawnItemEx("LascannonBurstHaze2",0,0,20,random(-100,100)/250.0,random(-100,100)/250.0,random(-100,100)/250.0,0,32) // 5x2 = 10
+        EFLD ABCDEFGHIJKLMNOPQRSTUV 2 BRIGHT A_SpawnItemEx("LascannonBurstHaze2",0,0,20,random(-100,100)/250.0,random(-100,100)/250.0,random(-100,100)/250.0,0,32)
+        loop
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("White", 0.5, 35)
+        TNT1 A 0 A_GiveInventory("RawEnergyShield",1)
+        stop
+    }
+}
+
+actor RawEnergyShield : BasicArmorPickup
+{
+    Armor.SavePercent 100
+    Armor.SaveAmount 150
+    DamageFactor "Normal", 0.5 // For PvE.
+    DamageFactor "PowerBeam", 0.9
+    DamageFactor "PowerCharged", 0.9
+    DamageFactor "SpazerBeam", 0.9
+    DamageFactor "PlasmaBeam", 0.9
+    DamageFactor "PlasmaCharged", 0.9
+    DamageFactor "WaveBeam", 0.9
+    DamageFactor "WaveCharged", 0.9
+    DamageFactor "IceBeam", 0.9
+    DamageFactor "IceCharged", 0.9
+    DamageFactor "IceBeamExplode", 0.9
+    DamageFactor "IceChargedExplode", 0.9
+    DamageFactor "LongBeam", 0.9
+    DamageFactor "LongCharged", 0.9
+    DamageFactor "DoomCannon", 0.9
+    DamageFactor "Missile", 0.9
+    DamageFactor "SuperMissile", 0.9
+    DamageFactor "BoostBall", 0.9
+    DamageFactor "Bomb", 0.9
+    DamageFactor "PowerBomb", 0.9 // In PvP, however, it only adds 10% resistance to everything.
+}
+
+actor RawEnergyShield2 : RawEnergyShield { Armor.SaveAmount 1 }
