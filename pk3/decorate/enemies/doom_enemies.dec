@@ -611,8 +611,8 @@ actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
 {
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
-    PainChance "IceCharged", 96
-    PainChance "IceChargedExplode", 64
+    PainChance "IceCharged", 128
+    PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -692,8 +692,8 @@ actor Metroid_Knightguy : HellKnight replaces HellKnight
 {
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
-    PainChance "IceCharged", 96
-    PainChance "IceChargedExplode", 64
+    PainChance "IceCharged", 128
+    PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -759,8 +759,8 @@ actor Metroid_Vileguy : Archvile replaces Archvile
 {
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
-    PainChance "IceCharged", 96
-    PainChance "IceChargedExplode", 64
+    PainChance "IceCharged", 128
+    PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -921,7 +921,7 @@ actor Metroid_Fatguy : Fatso replaces Fatso
 {
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
-    PainChance "IceCharged", 96
+    PainChance "IceCharged", 128
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -1239,8 +1239,8 @@ actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
 {
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
-    PainChance "IceCharged", 96
-    PainChance "IceChargedExplode", 64
+    PainChance "IceCharged", 128
+    PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
     States
     {
@@ -1250,19 +1250,19 @@ actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
         TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
         TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
     DeathNope:
         TNT1 A 0
         goto "Super::Death"
     DeathSuperMissile:
         TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
         goto "Super::Death"
     DeathPowerBomb:
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
         goto "Super::Death"
     DeathBoth:
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
         goto "Super::Death"
     }
 }
@@ -1271,8 +1271,8 @@ actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
 {
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
-    PainChance "IceCharged", 96
-    PainChance "IceChargedExplode", 64
+    PainChance "IceCharged", 128
+    PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
     States
     {
@@ -1282,19 +1282,19 @@ actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "DeathNope")
         TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAcquired",1,"DeathSuperMissile")
         TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathPowerBomb")
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawner",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
     DeathNope:
         TNT1 A 0
         goto "Super::Death"
     DeathSuperMissile:
         TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerB",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
         goto "Super::Death"
     DeathPowerBomb:
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerC",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
         goto "Super::Death"
     DeathBoth:
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("EnemyDropSpawnerD",random(-100,100),random(-100,100),random(10,100),0,0,0,0,32,32)
         goto "Super::Death"
     }
 }
