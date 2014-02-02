@@ -37,22 +37,22 @@ actor MorphBallPlayer : PlayerPawn
 
     Death:
         TNT1 A 0
+        MARU A 1 A_PlayerScream
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
-        PLAY H 10
-        PLAY I 10 A_PlayerScream
-        PLAY J 10 A_NoBlocking
-        PLAY KLM 10
-        PLAY N -1
-        Stop
-
-    XDeath:
-        TNT1 A 0
-        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
-        PLAY O 5
-        PLAY P 5 A_XScream
-        PLAY Q 5 A_NoBlocking
-        PLAY RSTUV 5
-        PLAY W -1
+        TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("BombExplodeSmaller",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MorphBallGas",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-300,300)/100.00,random(-300,300)/100.00,random(100,600)/100.00,random(-180,180),32)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart1",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart2",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart3",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart4",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart5",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart6",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart7",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart8",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        MARU A 1 A_NoBlocking
+        ACLO E -1
         Stop
         
     BoostBall:
@@ -78,7 +78,8 @@ actor MorphBallPlayer : PlayerPawn
 actor MorphBallPlayerDM : MorphBallPlayer
 {
     Radius 10
-    Height 16
+    Height 12
+    ProjectilePassHeight 20
     DamageFactor "Normal", 1.0
     DamageFactor "PowerCharged", 1.1
     RadiusDamageFactor 1.25
@@ -625,4 +626,119 @@ actor BombRingExp20 : BombRingExp1
 			BOMR A 1
 			stop
 	}
+}
+
+actor MorphBallPart1
+{
+    Radius 3
+    Height 3
+    Gravity 0.8
+    BounceFactor 0.65
+    WallBounceFactor 0.35
+	BounceCount 5
+    Scale 0.75
+    Projectile
+    -NOGRAVITY
+    +DOOMBOUNCE
+    +NOTELEPORT
+    -SOLID
+    +CLIENTSIDEONLY
+    States
+    {
+    Spawn:
+        MPRT ABCD 4
+        loop
+    Death:
+		TNT1 A 1 A_Stop
+        stop
+    }
+}
+
+actor MorphBallPart2 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR2 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallPart3 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR3 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallPart4 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR4 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallPart5 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR5 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallPart6 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR6 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallPart7 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR7 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallPart8 : MorphBallPart1
+{
+    States
+    {
+    Spawn:
+        MPR8 ABCD 4
+        loop
+    }
+}
+
+actor MorphBallGas
+{
+    Scale 0.45
+    RenderStyle Add
+    Alpha 0.95
+    Projectile
+    +NOGRAVITY
+    +NOTELEPORT
+    -SOLID
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        BOMX A 1 A_FadeOut(0.05)
+        loop
+    }
 }
