@@ -45,16 +45,25 @@ InInventory not BorphMallAcquired, 1
     InInventory HealthOver1000, 1 { drawimage "SAMHEMPT", 100, 24; }
     InInventory HealthOver1000, 1 { drawimage "ETNKFULL", 194, 20; }
     InInventory HealthOver1000, 1 { drawbar "SAMHFULX", "SAMHEMPX", Health Health1100, horizontal, -1090, 24, 1; }
-    drawimage "missicon", 280, 165;
-    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 315, 183;
-    drawnumber 3, METHUDF, Untranslated, AmmoCapacity MissileAmmo, fillzeros, 315, 173;
-    IsSelected "Power Beam" { drawimage "WEAPPWBM", 14, 170; }
-    IsSelected "Spazer Beam" { drawimage "WEAPSPBM", 14, 170; }
-    IsSelected "Wave Beam" { drawimage "WEAPWVBM", 14, 170; }
-    IsSelected "Plasma Beam" { drawimage "WEAPPLBM", 14, 170; }
-    IsSelected "Ice Beam" { drawimage "WEAPICBM", 14, 170; }
-    IsSelected "Long Beam" { drawimage "WEAPLNBM", 14, 170; }
-    IsSelected "Doom Cannon" { drawimage "WEAPDMCN", 14, 170; }
+    drawbar "MISBARFL", "MISBAREM", MissileAmmo, vertical, 277, 163, 1;
+    drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 319, 155;
+    InInventory PowerBeamAcquired, 1 { drawimage "PBEAMGET", 14, 168; } // I can't think of a scenario where you WOULDN'T have the Power Beam, but whatever.
+    IsSelected "Power Beam" { drawimage "PBEAMUSE", 14, 168; }
+    InInventory SpazerBeamAcquired, 1 { drawimage "SBEAMGET", 20, 166; }
+    IsSelected "Spazer Beam" { drawimage "SBEAMUSE", 20, 166; }
+    InInventory PlasmaBeamAcquired, 1 { drawimage "MBEAMGET", 23, 179; }
+    IsSelected "Plasma Beam" { drawimage "MBEAMUSE", 23, 179; }
+    InInventory WaveBeamAcquired, 1 { drawimage "WBEAMGET", 29, 177; }
+    IsSelected "Wave Beam" { drawimage "WBEAMUSE", 29, 177; }
+    InInventory IceBeamAcquired, 1 { drawimage "IBEAMGET", 32, 190; }
+    IsSelected "Ice Beam" { drawimage "IBEAMUSE", 32, 190; }
+    InInventory LongBeamAcquired, 1 { drawimage "LBEAMGET", 38, 188; }
+    IsSelected "Long Beam" { drawimage "LBEAMUSE", 38, 188; }
+    InInventory DoomCannonAcquired, 1 { drawimage "DCANNGET", 4, 150; }
+    IsSelected "Doom Cannon" { drawimage "DCANNUSE", 4, 150; }
+    drawbar "SHLBFULL", "SHLBEMPT", Armor, horizontal, 100, 24;
+    InInventory SuperMissileAcquired, 1 { drawimage "SMISSGET", 273, 15; drawnumber 3, METHUDF, Untranslated, SuperMissileAmmo, fillzeros, 318, 14; }
+    InInventory PowerBombAcquired, 1 { drawimage "PBOMBGET", 29, 15; drawnumber 3, METHUDF, Untranslated, PowerBombAmmo, fillzeros, 25, 14; }
 
     gamemode cooperative, singleplayer
     {
@@ -122,6 +131,8 @@ InInventory BorphMallAcquired, 1
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
+    drawbar "FSHBFULL", "FSHBEMPT", Armor, horizontal, 25, 15;
+
 gamemode cooperative, singleplayer
     {
     InInventory RedCard, 1 { drawimage "RKEYICON", 294, 4; }
@@ -196,6 +207,7 @@ statusbar fullscreen, forcescaled
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
+    drawbar "FSHBFULL", "FSHBEMPT", Armor, horizontal, 25, 15;
 gamemode cooperative, singleplayer
     {
     InInventory RedCard, 1 { drawimage "RKEYICON", 294, 4; }
