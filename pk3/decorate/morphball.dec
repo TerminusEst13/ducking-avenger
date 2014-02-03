@@ -82,7 +82,7 @@ actor MorphBallPlayerDM : MorphBallPlayer
     ProjectilePassHeight 20
     DamageFactor "Normal", 1.0
     DamageFactor "PowerCharged", 1.1
-    RadiusDamageFactor 1.25
+    RadiusDamageFactor 1.15
 }
 
 actor BoostBallDamage

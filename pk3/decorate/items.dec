@@ -789,7 +789,7 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere//replaces Berserk
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("NotInThisLevel",1,"PickupFail")
-        TNT1 A 0 A_JumpIfInventory("EnergyTankAcquired",10,"PickupFail")
+        TNT1 A 0 A_JumpIfInventory("EnergyTankAcquired",10,"PickupFailCheck")
         TNT1 A 0 A_GiveInventory("EnergyTankAcquired",1)
         TNT1 A 0 ACS_ExecuteAlways(594,0,5,0,0)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
@@ -798,6 +798,15 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere//replaces Berserk
     PickupFail:
         TNT1 A 0
         fail
+    PickupFailCheck:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfHealthLower(1100,1)
+        goto PickupFail
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_GiveInventory("Medikit",1)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAA 0 A_GiveInventory("Medikit",1)
+        TNT1 A 0 A_SetBlend("White", 0.5, 16)
+        stop
     }
 }
 
