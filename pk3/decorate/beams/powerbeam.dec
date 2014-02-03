@@ -320,7 +320,7 @@ actor PowerBolt : FastProjectile
     }
 }
 
-actor PowerBoltCoop : PowerBolt { Species "Player" +THRUSPECIES }
+actor PowerBoltCoop : PowerBolt { Damage (15) Species "Player" +THRUSPECIES }
 
 actor PowerTrail
 { 
