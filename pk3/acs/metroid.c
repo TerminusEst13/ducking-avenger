@@ -197,10 +197,11 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("PowerBeamIdle",999);
         TakeInventory("MissileChargeLevel",999);
         TakeInventory("MissileCharged",999);
+        TakeInventory("PowerInvulnerable",999);
         playerOnFoot[pNum] = 1;
 
         ACS_ExecuteAlways(METROID_MORPHCAMERA,0,0);
-        ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+        //ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         break;
 
     case 1:
@@ -228,7 +229,7 @@ script METROID_MORPHBALL (int morphshit)
 
         ACS_ExecuteAlways(352,0,0,0);
         ACS_ExecuteAlways(351,0,0,0);
-        ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+        //ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         }
         else { ActivatorSound("morphball/denied", 127); }
         break;
@@ -364,11 +365,11 @@ script METROID_ENTER ENTER
 
         if (GetCVar("metroid_loaded") == 1)
         {
-            if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); }
-            if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); }
-            if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); }
-            if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); }
-            if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); }
+            if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1); }
+            if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1); }
+            if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1); }
+            if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); GiveInventory("IceBeamAcquired",1); }
+            if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1); }
         }
 
         oarmor = armor;
