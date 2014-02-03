@@ -201,7 +201,7 @@ script METROID_MORPHBALL (int morphshit)
         playerOnFoot[pNum] = 1;
 
         ACS_ExecuteAlways(METROID_MORPHCAMERA,0,0);
-        //ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+        ACS_ExecuteAlways(METROID_BWEEBWEEMORPH,0);
         break;
 
     case 1:
@@ -229,7 +229,7 @@ script METROID_MORPHBALL (int morphshit)
 
         ACS_ExecuteAlways(352,0,0,0);
         ACS_ExecuteAlways(351,0,0,0);
-        //ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+        ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
         }
         else { ActivatorSound("morphball/denied", 127); }
         break;
@@ -385,14 +385,39 @@ script METROID_ENTER ENTER
 
 script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 {
+    int endloop;
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
-    while (1)
+
+    while (!endloop)
     {
+    delay(2);
+    if (CheckInventory("BorphMallAcquired") == 1) { terminate; }
+    if (isDead(0)) { endloop = 1; }
     if (GetActorProperty(0,APROP_HEALTH) > 0) {
         if (GetActorProperty(0,APROP_HEALTH) <= 30) {
             if (GetCvar("metroid_cl_nosiren") == 0) {
-                LocalAmbientSound("system/healthsiren",64); }}}
-    delay(17);
+                LocalAmbientSound("system/healthsiren",96); }}}
+    delay(15);
+    }
+}
+
+   // This is stupidly hacky and a wasteful script, but I'm
+   // really fucking tired of the multi-siren bug.
+script METROID_BWEEBWEEMORPH (void) clientside
+{
+    int endloop;
+    if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
+
+    while (!endloop)
+    {
+    delay(2);
+    if (CheckInventory("BorphMallAcquired") == 0) { terminate; }
+    if (isDead(0)) { endloop = 1; }
+    if (GetActorProperty(0,APROP_HEALTH) > 0) {
+        if (GetActorProperty(0,APROP_HEALTH) <= 30) {
+            if (GetCvar("metroid_cl_nosiren") == 0) {
+                LocalAmbientSound("system/healthsiren",96); }}}
+    delay(15);
     }
 }
 
