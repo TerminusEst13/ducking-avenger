@@ -383,6 +383,8 @@ script METROID_ENTER ENTER
     }
 }
 
+   // These are stupidly hacky and a wasteful pair of scripts, but I'm
+   // really fucking tired of the multi-siren bug.
 script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 {
     int endloop;
@@ -390,19 +392,32 @@ script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 
     while (!endloop)
     {
+    if (isDead(0)) { terminate; }
     delay(2);
     if (CheckInventory("BorphMallAcquired") == 1) { terminate; }
-    if (isDead(0)) { endloop = 1; }
+    if (isDead(0)) { terminate; }
     if (GetActorProperty(0,APROP_HEALTH) > 0) {
         if (GetActorProperty(0,APROP_HEALTH) <= 30) {
             if (GetCvar("metroid_cl_nosiren") == 0) {
                 LocalAmbientSound("system/healthsiren",96); }}}
-    delay(15);
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(1);
     }
 }
 
-   // This is stupidly hacky and a wasteful script, but I'm
-   // really fucking tired of the multi-siren bug.
 script METROID_BWEEBWEEMORPH (void) clientside
 {
     int endloop;
@@ -410,6 +425,7 @@ script METROID_BWEEBWEEMORPH (void) clientside
 
     while (!endloop)
     {
+    if (isDead(0)) { terminate; }
     delay(2);
     if (CheckInventory("BorphMallAcquired") == 0) { terminate; }
     if (isDead(0)) { endloop = 1; }
@@ -417,7 +433,21 @@ script METROID_BWEEBWEEMORPH (void) clientside
         if (GetActorProperty(0,APROP_HEALTH) <= 30) {
             if (GetCvar("metroid_cl_nosiren") == 0) {
                 LocalAmbientSound("system/healthsiren",96); }}}
-    delay(15);
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(1);
     }
 }
 
