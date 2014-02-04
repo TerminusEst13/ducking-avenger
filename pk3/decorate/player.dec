@@ -78,11 +78,11 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "IceChargedExplode", 0.75
     DamageFactor "LongBeam", 0.45
     DamageFactor "LongCharged", 0.45
-    DamageFactor "DoomCannon", 0.6
+    DamageFactor "DoomCannon", 0.65
     DamageFactor "Missile", 0.45
     DamageFactor "SuperMissile", 0.45
     DamageFactor "BoostBall", 0.55
-    DamageFactor "Bomb", 0.45
+    DamageFactor "Bomb", 0.75
     DamageFactor "PowerBomb", 0.35
     RadiusDamageFactor 0.75
     Player.ColorRange 16,47 // Oh man, Tumblr's going to have me by the balls for this.
