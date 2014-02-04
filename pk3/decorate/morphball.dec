@@ -58,11 +58,11 @@ actor MorphBallPlayer : PlayerPawn
     BoostBall:
         TNT1 A 0
         TNT1 A 0 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
-        MARU A 1 BRIGHT A_SpawnItemEx("BoostBallTrail",0,0,0,0,0,0,0,161)
+        MARU A 1 BRIGHT A_SpawnItemEx("BoostBallTrail",-32,0,0,0,0,0,0,161)
         TNT1 A 0 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
-        MARU C 1 BRIGHT A_SpawnItemEx("BoostBallTrail",0,0,0,0,0,0,0,161)
+        MARU C 1 BRIGHT A_SpawnItemEx("BoostBallTrail",-32,0,0,0,0,0,0,161)
         TNT1 A 0 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
-        MARU E 1 BRIGHT A_SpawnItemEx("BoostBallTrail",0,0,0,0,0,0,0,161)
+        MARU E 1 BRIGHT A_SpawnItemEx("BoostBallTrail",-32,0,0,0,0,0,0,161)
         //TNT1 AA 0 A_SpawnItemEx("RainbowTrail",0,random(-12,12),random(5,46),0,0,0,0,SXF_CLIENTSIDE)
         TNT1 A 0 A_CheckFloor("Spawn")
         TNT1 A 0 A_JumpIf(momx == 0, "Spawn")
