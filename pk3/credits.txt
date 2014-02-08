@@ -8,6 +8,7 @@ SPECIAL THANKS TO:
 GRAPHICS:
 =========
 - Zrrion the Insect (Drew the base arm cannon sprite)
+- Scripten (Drew the Space Pirate sprites)
 - Voltlock (Ripped the graphics for the Power Beam's blasts)
 - Rogue Entertainment (The base of the Missile's sprites, from Strife)
 - Ijon Tichy (For the smoke trails for the Missile, the numbers and some punctuation of the smallfont)

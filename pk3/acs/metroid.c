@@ -290,7 +290,9 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("PowerBeamIdle",999);
     TakeInventory("Bombs",999);
     TakeInventory("BoostBallCount",999);
-    TakeInventory("NotInThisLevel",999);
+    TakeInventory("ETNotInThisLevel",999);
+    TakeInventory("PBNotInThisLevel",999);
+    TakeInventory("SMNotInThisLevel",999);
     TakeInventory("IceBeamChilled",999);
     TakeInventory("MissileChargeLevel",999);
     TakeInventory("MissileCharged",999);
@@ -319,12 +321,13 @@ script METROID_ENTER ENTER
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
-    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); }
+    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); if (GetCvar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
     ACS_ExecuteAlways(351,0,0,0);
 
+    if (!CheckInventory("InGame")) {
     if (GetCvar("metroid_startingtanks") == 1) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
     if (GetCvar("metroid_startingtanks") == 2) { GiveInventory("EnergyTankAcquired",2); SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
     if (GetCvar("metroid_startingtanks") == 3) { GiveInventory("EnergyTankAcquired",3); SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
@@ -334,7 +337,8 @@ script METROID_ENTER ENTER
     if (GetCvar("metroid_startingtanks") == 7) { GiveInventory("EnergyTankAcquired",7); SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
     if (GetCvar("metroid_startingtanks") == 8) { GiveInventory("EnergyTankAcquired",8); SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
     if (GetCvar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
-    if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
+    if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); } }
+    GiveInventory("InGame",1);
 
     while (1)
     {
@@ -477,6 +481,8 @@ script METROID_RESPAWN RESPAWN
 
 script METROID_DECORATE (int which)
 {
+    int burrshet;
+
     switch (which)
     {
     case 0:
@@ -488,9 +494,9 @@ script METROID_DECORATE (int which)
     case 1:
         SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*3/4)); // 75% of the current player speed. Stackable.
         GiveInventory("IceBeamChilled",1);
-        delay(105);
+        delay(125);
         TakeInventory("IceBeamChilled",1);
-        delay(70);
+        delay(75);
         SetActorProperty(0,APROP_SPEED,1.00);
         break;
 
@@ -498,11 +504,11 @@ script METROID_DECORATE (int which)
         SetPlayerProperty(0,1,PROP_TOTALLYFROZEN);
         SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*1/2)); // 50% of the current player speed. Stackable.
         GiveInventory("IceBeamChilled",1);
-        delay(17);
+        delay(20);
         SetPlayerProperty(0,0,PROP_TOTALLYFROZEN);
-        delay(123);
+        delay(130);
         TakeInventory("IceBeamChilled",1);
-        delay(70);
+        delay(75);
         SetActorProperty(0,APROP_SPEED,1.00);
         break;
 
@@ -544,7 +550,7 @@ script METROID_DECORATE (int which)
         break;
 
     case 7:
-        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("NotInThisLevel",1); }
+        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("ETNotInThisLevel",1); }
         break;
 
     case 8:
@@ -579,6 +585,14 @@ script METROID_DECORATE (int which)
         if(GetCvar("metroid_cannonbfg") == 1)
         setresultvalue(1);
         else setresultvalue(0);
+        break;
+
+    case 14:
+        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("SMNotInThisLevel",1); }
+        break;
+
+    case 15:
+        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("PBNotInThisLevel",1); }
         break;
     }
 }
