@@ -169,6 +169,8 @@ rawenergy/shieldhit     SHLDHIT // Taken from Smash Bros. Brawl
 
 
 // Enemies
+
+// Space Pirate
 pirate/shot             PIRTSHOT
 pirate/hit              PIRTHIT
 pirate/land             PIRTLAND // Taken from Painkiller
@@ -176,6 +178,35 @@ pirate/see              PIRTSEE // Taken from Painkiller
 pirate/pain             PIRTPAIN // Taken from Painkiller
 pirate/death            PIRTDETH // Taken from Painkiller
 pirate/idle             PIRTIDLE // Taken from Painkiller
+
+// Red Prince
+$random prince/active { inqv1 inqv2 inqv3 inqv4 inqv5 inqv6 inqv7 inqv8 inqv9 inqv10 } // Taken from the Dark Inquisitor on realm667
+inqv1 redact1
+inqv2 redact2
+inqv3 redact3
+inqv4 redact4
+inqv5 redact5
+inqv6 redact6
+inqv7 redact7
+inqv8 redact8
+inqv9 redact9
+inqv10 redact10
+
+prince/sight            REDSIGHT
+prince/pain             REDPAIN
+prince/death            REDDEATH
+prince/cloak            REDCLOAK
+prince/teleport         REDTELE
+prince/fire             REDFIRE1
+prince/blasterfire      REDFIRE2
+prince/megafire         REDFIRE3
+prince/grenadefire      REDFIRE4
+prince/blasterhit       REDHIT2
+prince/megahit          REDHIT3
+
+$random prince/step { prstep1 prstep2 }
+prstep1		            REDSTEP1
+prstep2		            REDSTEP2
 
 
 

@@ -1,0 +1,297 @@
+actor PrinceCloak : Boolean {}
+
+actor BulletTracer : FastProjectile
+{
+    Alpha 0.9
+    RenderStyle Add
+    Radius 4
+    Height 4
+    Speed 50
+	Damage (4)
+    Projectile
+    +BLOODSPLATTER
+    Scale 0.4
+    Decal BulletChip
+    States
+    {
+    Spawn:
+        PUFF A 1 BRIGHT
+        Loop
+    Death:
+    //Crash:
+        PUFF A 1
+        TNT1 A 0 A_PlaySound("bullet/puff")
+        TNT1 AAA 0 A_SpawnItemEx("BulletSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(100,800)/100.00,random(-180,180),32,32)
+        PUFF B 2 BRIGHT A_SetTranslucent(0.9,0)
+        PUFF CD 2 BRIGHT
+        Stop
+	//XDeath:
+        //TNT1 A 3 A_PlaySound("hitflesh")
+        //Stop
+    }
+}
+
+ACTOR PrinceDummy
+{
+    Alpha 1.0
+    Scale 0.75
+    Renderstyle "Translucent"
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        CALE GGGGGGGGGG 3 A_FadeOut(0.1)
+        stop
+    }
+}
+
+ACTOR RedPrince
+{ 
+    Health 8000 
+    Radius 24 
+    Height 64 
+    Mass 1500 
+    Speed 40
+    PainChance 16
+    Obituary "%o met an unknown force."
+    Monster
+    +FLOORCLIP 
+    +MISSILEMORE
+    +BOSS
+    +DONTRIP
+    +NOTARGET
+    +NOINFIGHTING
+    +QUICKTORETALIATE
+    Alpha 1.0
+    Scale 0.75
+    DamageFactor "PowerBomb", 0.25
+    Renderstyle "Translucent"
+    SeeSound "prince/sight" 
+    PainSound "prince/pain" 
+    DeathSound "prince/death"
+    States 
+    { 
+    Spawn: 
+        CALE ABCD 1 A_Look 
+        Loop 
+    See:
+        TNT1 A 0 A_JumpIfInventory("PrinceCloak",1,2)
+        TNT1 A 0 A_JumpIfHealthLower(4000,"Cloak")
+        TNT1 A 0
+        CALE A 1 A_Playsound("prince/step")
+        CALE A 3 A_Chase
+        CALE A 4 A_Chase
+        CALE B 4 A_Chase
+        CALE B 4 A_Chase
+        CALE C 1 A_Playsound("prince/step")
+        CALE C 3 A_Chase 
+        CALE C 4 A_Chase
+        CALE D 4 A_Chase
+        CALE D 4 A_Chase
+        Loop
+    Cloak:
+        TNT1 A 0 A_ChangeFlag("NOPAIN",1)
+        CALE G 4 A_PlaySoundEX("prince/cloak","soundslot7",0,1)
+        CALE GGGG 12 A_FadeOut(0.2385)
+        CALE G 1 A_GiveInventory("PrinceCloak",1)
+        TNT1 A 0 A_ChangeFlag("NOPAIN",0)
+        goto See
+    Pain:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(64,"Teleport")
+        CALE G 3     
+        CALE G 3 A_Pain
+        goto See
+    Teleport:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySound("prince/teleport")
+        TNT1 A 0 A_JumpIfInventory("PrinceCloak",1,2)
+        TNT1 A 0 A_SpawnItemEx("PrinceDummy",0,0,0,0,0,0,0,160)
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Wander
+        goto See
+    Missile:
+        TNT1 A 0 A_PlaySoundEx("prince/active","soundslot5",0,1)
+        TNT1 A 0 A_Jump(202,"AutoCannon")
+        CALE E 4 A_FaceTarget
+        CALE E 4 A_FastChase
+        TNT1 A 0 A_CustomMissile("RedBlaster",42,15,0,0)
+        CALE FFFF 2 BRIGHT A_FastChase
+        CALE E 4 A_FaceTarget
+        CALE E 4 A_FastChase
+        TNT1 A 0 A_CustomMissile("RedBlaster",42,15,0,0)
+        CALE FFFF 2 BRIGHT A_FastChase
+        TNT1 A 0 A_Jump(128,"AutoCannon") 
+        goto See
+    Autocannon:
+        TNT1 A 0 A_Jump(120,"Grenade")
+    Autocannon2:
+        CALE E 1 A_Facetarget
+        TNT1 A 0 A_CustomMissile("BulletTracer",42,-10,random(-500,500)/100.00)
+        TNT1 A 0 A_Playsound("prince/fire")
+        CALE FF 1 BRIGHT A_FastChase
+        CALE E 2 A_Facetarget
+        TNT1 A 0 A_CustomMissile("BulletTracer",42,-10,random(-500,500)/100.00)
+        TNT1 A 0 A_Playsound("prince/fire")
+        CALE FF 1 BRIGHT A_FastChase
+        TNT1 A 0 A_jump(16,"MegaBall")
+        CALE E 1 A_Spidrefire
+        goto Autocannon2
+    MegaBall:
+        CALE E 8 A_Facetarget
+        TNT1 A 0 A_CustomMissile("MegaBall", 42, -15, 0, 0)
+        CALE FFFF 2 BRIGHT A_FastChase
+        CALE E 8 A_Facetarget
+        TNT1 A 0 A_CustomMissile("MegaBall", 42, -15, 0, 0)
+        CALE FFFF 2 BRIGHT A_FastChase
+        TNT1 A 0 A_Jump(62,"AutoCannon")
+        TNT1 A 0 A_Jump(62,"Missile")
+        goto See
+    Grenade:
+        TNT1 A 0 A_Jump(128,"MegaBall")
+        CALE E 4 A_FastChase
+        CALE E 4 A_Facetarget
+        TNT1 A 0 A_CustomMissile("Mininade", 42, -15, 0, 0)
+        CALE FFFFFFF 1 BRIGHT A_FastChase
+        CALE E 4 A_Facetarget
+        CALE E 4 A_FastChase
+        CALE F 8 BRIGHT A_CustomMissile("Mininade", 42, -15, 0, 0)
+        CALE E 4 A_Facetarget
+        CALE E 4 A_FastChase
+        TNT1 A 0 A_CustomMissile("Mininade", 42, -15, 0, 0)
+        CALE FFFFFFF 1 BRIGHT A_FastChase
+        CALE E 4 A_Facetarget
+        CALE E 4 A_FastChase
+        CALE F 8 BRIGHT A_CustomMissile("Mininade", 42, -15, 0, 0)
+        TNT1 A 0 A_Jump(62,"Missile")
+        TNT1 A 0 A_Jump(62,"MegaBall")
+        goto See 
+    Death:
+        CALE H 2 A_Scream
+        CALE H 4 A_FadeIn(0.2)
+        CALE H 6 A_FadeIn(0.2)
+        CALE HHH 6 A_FadeIn(0.2)
+        CALE IJKL 6 //A_SpawnItem("Gibber")
+        CALE M 6
+        CALE N 6 A_Fall
+        CALE N -1 A_BossDeath 
+        stop
+    } 
+}
+
+
+
+actor RedBlaster
+{
+    Radius 8
+    Height 12
+    Speed 40
+    Damage (10)
+    PROJECTILE
+    Renderstyle Add
+    alpha 0.85
+    SeeSound "prince/blasterfire"
+    DeathSound "prince/blasterhit"
+    States
+    {
+    Spawn: 
+        BLST A 1 Bright 
+        loop
+    Death:
+        BLST B 6 Bright A_Explode(10,64,0)
+        BLST CDEFGHIJKL 3 Bright 
+        stop
+    }
+}
+
+
+ 
+ACTOR MegaBall
+{
+    Speed 40
+    Height 13
+    Radius 13
+    Damage (15)
+    RenderStyle Add
+    Alpha 0.75
+    Translation "192:207=[255,163,91] : [175,67,0]"
+    SeeSound "prince/megafire"
+    PROJECTILE
+    +DROPOFF
+    +NOBLOCKMAP
+    +NOGRAVITY
+    States
+    {
+    Spawn:
+        INCF A 1 BRIGHT A_CustomMissile("mplasmatrail", 0, 0, 0)
+        INCF B 1 BRIGHT 
+        loop
+    Death:
+    Crash:
+        BLST A 0 A_Explode(10,48,0)
+        BLST A 1 BRIGHT A_PlaySound("prince/megahit")
+        BLST CDEFGHIJKL 3 Bright 
+        stop
+	XDeath:
+        BLST A 0 A_Explode(10,48,0)
+	    BLST A 1 BRIGHT //A_CustomMissile("PlasmaSmoke", -12, 0, 0, 40)
+        BLST CDEFGHIJKL 3 Bright 
+        stop
+    }
+}
+
+ACTOR mplasmatrail
+{
+   Height 8
+   Radius 1
+   Damage 0
+   Scale 0.4
+   Speed 0.2
+   RenderStyle Translucent
+   Translation "192:207=[255,163,91] : [175,67,0]"
+   Alpha 0.4
+   +NOGRAVITY
+   +DOOMBOUNCE
+   +DROPOFF
+   +CLIENTSIDEONLY
+   States
+   {
+   Spawn:
+      PLSS ABCDEFGHIJKLMNOPQRSTUVWXYZ 1
+      PLSZ ABC 1
+      Stop
+   }
+}
+
+
+
+ACTOR Mininade
+{
+    Radius 4
+    Height 3
+    Speed 30
+    Damage (20)
+    +NOBLOCKMAP 
+    +DROPOFF 
+    +MISSILE 
+    +ACTIVATEIMPACT 
+    +ACTIVATEPCROSS
+    +CANBOUNCEWATER
+    +DONTSPLASH
+    +DOOMBOUNCE
+    BounceCount 10
+    SeeSound "prince/grenadefire"
+    DeathSound "weapons/rocklx"
+    States
+    {
+    Spawn:
+        GRNS AB 3
+        loop
+    Death:
+        MISL B 8 bright A_Explode(64,96,0)
+        MISL C 6 bright
+        MISL D 4 bright
+        stop
+   }
+}
