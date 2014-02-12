@@ -11,6 +11,7 @@ actor MorphBallPlayer : PlayerPawn
     Player.ForwardMove 1.3, 1.3
     Player.SideMove 0.1, 0.2
     DamageFactor "NoDamage", 0.0
+    DamageFactor "Drowning", 0.0
     DamageFactor "Normal", 0.85
     RadiusDamageFactor 0.95
     Player.StartItem "BombCount", 3
