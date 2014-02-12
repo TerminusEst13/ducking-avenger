@@ -32,4 +32,8 @@ map METDM01 "Test DM Map"
 {
     next = "METDM01"
     music = "M_HUNTRS" // Kenji Yamamoto - Hunters
+    SKY1 = "HEXSKY1A", 1.5
+    SKY2 = "HEXSKY1B", 1.5
+    Lightning
+    SmoothLighting
 }
