@@ -295,7 +295,7 @@ ACTOR "Power Beam" : Weapon
 
 actor PowerBolt : FastProjectile
 {
-    Radius 3
+    Radius 2
     Height 2
     Projectile
     Speed 100
