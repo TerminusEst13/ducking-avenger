@@ -84,6 +84,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "BoostBall", 0.55
     DamageFactor "Bomb", 0.75
     DamageFactor "PowerBomb", 0.35
+    DamageFactor "LittleMacUppercut", 3.0
     RadiusDamageFactor 0.75
     Player.ColorRange 16,47 // Oh man, Tumblr's going to have me by the balls for this.
     +NOSKIN
