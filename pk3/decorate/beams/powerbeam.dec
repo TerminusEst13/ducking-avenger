@@ -378,7 +378,7 @@ actor PowerBoltCharged : PowerBolt
     Radius 12
     Height 8
     Speed 75
-    Damage (50)
+    Damage (60)
     Scale 0.25
     Alpha 0.95
     DeathSound "pbeam/chhit"
@@ -391,7 +391,7 @@ actor PowerBoltCharged : PowerBolt
         Loop
     Death:
         TNT1 A 0
-        TNT1 A 0 A_Explode(64,96,0)
+        TNT1 A 0 A_Explode(80,112,0)
         TNT1 A 0 A_Scream
         TNT1 A 0 A_SpawnItemEx("PowerBoltChargedExplosion",0,0,0,0,0,0,0,160,0)
         TNT1 A 1
