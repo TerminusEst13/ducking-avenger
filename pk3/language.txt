@@ -1,0 +1,17 @@
+[enu default]
+
+QUITMSG   = "53 65 61 72 63 68 65 72 73 20 61 66 74 65 72 20 68 6f 72 72 6f 72 20 68 61 75 6e 74 20 73 74 72 61 6e 67 65 2c 20 66 61 72 20 70 6c 61 63 65 73 2e";
+QUITMSG1  = "Error 11: Address not mapped to object";
+QUITMSG2  = "Terminated on SIGSEGV (Segmentation fault)";
+QUITMSG3  = "Operating system not found";
+QUITMSG4  = "Cannot find MBR, please insert disc and hit any key";
+QUITMSG5  = "Metroid: Dreadnought has encountered a problem and needs to close.\nWe are sorry for the inconvenience.";
+QUITMSG6  = "Abort, Retry, Fail?";
+QUITMSG7  = "Software Failure #0000000004.000AC0B.\nAll data has been lost.";
+QUITMSG8  = "CPU#0: Possible thermal failure (pm0 on fire)";
+QUITMSG9  = "PEERDIST_ERROR_OPERATION_NOTFOUND\n4059 (0xFDB)";
+QUITMSG10 = "ERROR_RESMON_SYSTEM_RESOURCES_LACKING\n5956 (0x1744)";
+QUITMSG11 = "WSASYSCALLFAILURE\n10107 (0x277B)";
+QUITMSG12 = "[17218826182.2832] Kernel shutting down.";
+QUITMSG13 = "STOP: 0x0000007E\n(0xC0000005,0x46069F2E,0xF79B0AC4,0xF79B07C0)\n\nBeginning dump of physical memory.";
+QUITMSG14 = "Kernel panic: /dev/kmem not found";
