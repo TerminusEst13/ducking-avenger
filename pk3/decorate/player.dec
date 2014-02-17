@@ -66,18 +66,19 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "Normal", 0.75
     // Technically all this is covered by DamageFactor Normal, but I like having all the damagetypes listed in one place.
     DamageFactor "PowerBeam", 0.45
-    DamageFactor "PowerCharged", 0.45
+    DamageFactor "PowerCharged", 0.5
     DamageFactor "SpazerBeam", 0.45
+    DamageFactor "SpazerBeamCharged", 0.5
     DamageFactor "PlasmaBeam", 0.45
-    DamageFactor "PlasmaCharged", 0.45
+    DamageFactor "PlasmaCharged", 0.5
     DamageFactor "WaveBeam", 0.45
-    DamageFactor "WaveCharged", 0.45
+    DamageFactor "WaveCharged", 0.5
     DamageFactor "IceBeam", 0.45
-    DamageFactor "IceCharged", 0.45
+    DamageFactor "IceCharged", 0.5
     DamageFactor "IceBeamExplode", 0.75
     DamageFactor "IceChargedExplode", 0.75
     DamageFactor "LongBeam", 0.45
-    DamageFactor "LongCharged", 0.45
+    DamageFactor "LongCharged", 0.5
     DamageFactor "DoomCannon", 0.65
     DamageFactor "Missile", 0.45
     DamageFactor "SuperMissile", 0.45
