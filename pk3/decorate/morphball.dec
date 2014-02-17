@@ -122,8 +122,8 @@ actor MorphBallPlayerDM : MorphBallPlayer
     DamageFactor "IceCharged", 1.1
     DamageFactor "IceBeamExplode", 0.75
     DamageFactor "IceChargedExplode", 1.15
-    DamageFactor "LongBeam", 0.9
-    DamageFactor "LongCharged", 1.1
+    DamageFactor "LongBeam", 1.25
+    DamageFactor "LongCharged", 1.25
     DamageFactor "DoomCannon", 1.1
     DamageFactor "Missile", 0.9
     DamageFactor "SuperMissile", 0.75
