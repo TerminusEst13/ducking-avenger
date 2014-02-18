@@ -55,16 +55,18 @@ metroid/walljump        SAMSWJMP
 metroid/wajumpup        SAMSWJMU
 
 // Morph Ball
-morphball/morph         BALMORPH
-morphball/unmorph       BALUNMRF
-morphball/denied        BALDENID
-morphball/bombdrop      BALBOMDR
+morphball/morph         BALMORPH // Taken from Metroid Prime
+morphball/unmorph       BALUNMRF // Taken from Metroid Prime
+morphball/denied        BALDENID // Taken from Metroid Prime
+morphball/bombdrop      BALBOMDR // Taken from Smash Bros. Melee
 morphball/bombboom      BALBOMXP
 morphball/pbomwub       PBOMWUB
 morphball/pbomdrop      PBOMLAY
 morphball/pbomread      PBOMREAD // Taken from Smash Bros. Brawl
 morphball/pbomexplod    PBOMBOOM
 
+$limit morphball/pbomwub 0
+$limit morphball/bombboom 0
 $rolloff morphball/pbomexplod    400 1800
 
 boostball/start         BOOSTSTR // Taken from Metroid Prime
@@ -180,7 +182,7 @@ pirate/death            PIRTDETH // Taken from Painkiller
 pirate/idle             PIRTIDLE // Taken from Painkiller
 
 // Red Prince
-$random prince/active { inqv1 inqv2 inqv3 inqv4 inqv5 inqv6 inqv7 inqv8 inqv9 inqv10 } // Taken from the Dark Inquisitor on realm667
+$random prince/active { inqv1 inqv2 inqv3 inqv4 inqv5 inqv6 inqv7 inqv8 inqv9 inqv10 } // Taken from the Dark Inquisitor on Realm667
 inqv1 redact1
 inqv2 redact2
 inqv3 redact3
