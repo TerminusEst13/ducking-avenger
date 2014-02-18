@@ -20,13 +20,13 @@ actor PowerBomb
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_PlaySound("morphball/pbomwub")
-        PBOM ABC 4
+        PBOM ABC 3
         PBOM ABC 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/pbomwub")
-        PBOM ABC 4
+        PBOM ABC 3
         PBOM ABC 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/pbomwub")
-        PBOM ABC 4
+        PBOM ABC 3
         PBOM ABC 4 BRIGHT
         TNT1 A 0 A_Die
         goto Death
@@ -418,7 +418,7 @@ actor PowerBombShockwave
     Height 2
     DamageType "PowerBomb"
 
-    Speed 10
+    Speed 12
 
     States
     {
@@ -429,13 +429,13 @@ actor PowerBombShockwave
         TNT1 AA 4 bright A_Explode(64, 160, 0) // First half-second
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
         TNT1 A  4 bright A_Explode(64, 160, 0)
-        TNT1 AA 3 bright A_Explode(44,  160, 0)
+        TNT1 AA 3 bright A_Explode(64, 160, 0)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        TNT1 AAA 3 bright A_Explode(36, 160, 0) // Second half-second
+        TNT1 AAA 3 bright A_Explode(48, 160, 0) // Second half-second
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        TNT1 AAA 3 bright A_Explode(36, 160, 0) // Second half-second
+        TNT1 AAA 3 bright A_Explode(48, 160, 0) // Second half-second
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        TNT1 AAAAAAAAA 2 bright A_Explode(24, 160, 0) // Third half-second
+        TNT1 AAAAAAAAA 2 bright A_Explode(32, 160, 0) // Third half-second
         stop
     }
 }
@@ -444,23 +444,73 @@ actor PowerBombShockwaveClientside
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
-    Scale 1.25
+    Scale 0.35
     RenderStyle Add
+    Alpha 0.975
 
     States
     {
-      Spawn:
-        MISL B 8 bright
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(255,"Spawn1","Spawn2","Spawn3","Spawn4")
+    Spawn1:
+        PBMX A 8 bright A_FadeOut(0.15)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        MISL B 10 bright
+        PBMX A 10 bright A_FadeOut(0.15)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        MISL C 9 bright
+        PBMX A 9 bright A_FadeOut(0.15)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        MISL C 9 bright
+        PBMX A 9 bright A_FadeOut(0.15)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        MISL D 8 bright
+        PBMX A 8 bright A_FadeOut(0.15)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        MISL D 10 bright
+        PBMX A 5 bright A_FadeOut(0.15)
+        PBMX A 5 bright A_FadeOut(0.1)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        stop
+    Spawn2:
+        PBMX B 8 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX B 10 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX B 9 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX B 9 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX B 8 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX B 5 bright A_FadeOut(0.15)
+        PBMX B 5 bright A_FadeOut(0.1)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        stop
+    Spawn3:
+        PBMX C 8 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX C 10 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX C 9 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX C 9 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX C 8 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX C 5 bright A_FadeOut(0.15)
+        PBMX C 5 bright A_FadeOut(0.1)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        stop
+    Spawn4:
+        PBMX D 8 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX D 10 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX D 9 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX D 9 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX D 8 bright A_FadeOut(0.15)
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        PBMX D 5 bright A_FadeOut(0.15)
+        PBMX D 5 bright A_FadeOut(0.1)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
         stop
     }

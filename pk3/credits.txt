@@ -22,7 +22,7 @@ GRAPHICS:
 - Rundas45 (The basis of the fullscreen HUD)
 - Eriance (Spazer Beam particles)
 - Id Software (Bomb explode animation, from Doom 3)
-- PillowBlaster (Space Pirate shots)
+- PillowBlaster (Space Pirate shots, Power Bomb explosion sprites)
 - People Can Fly (The Flamebolter's fire effect used for the Super Missile explosion)
 - Yoshio Sakamoto (His likeness used for the Icon of Sin)
 - VincentPrice (Making the model the Morph Ball was based off)
