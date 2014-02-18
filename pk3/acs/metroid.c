@@ -492,7 +492,7 @@ script METROID_DECORATE (int which)
         break;
 
     case 1:
-        SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*3/4)); // 75% of the current player speed. Stackable.
+        SetActorProperty(0,APROP_SPEED,(GetActorProperty(0,APROP_SPEED)*4/5)); // 80% of the current player speed. Stackable.
         GiveInventory("IceBeamChilled",1);
         delay(100);
         TakeInventory("IceBeamChilled",1);
