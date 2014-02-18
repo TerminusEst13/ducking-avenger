@@ -48,7 +48,7 @@ script METROID_OPEN OPEN
 
     if (!GetCVar("metroid_nolevellimiter"))
     {
-        ConsoleCommand("set metroid_nolevellimiter 0");
+        ConsoleCommand("set metroid_nolevellimiter 1");
         ConsoleCommand("archivecvar metroid_nolevellimiter");
     }
 
