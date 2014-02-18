@@ -60,6 +60,7 @@ morphball/unmorph       BALUNMRF // Taken from Metroid Prime
 morphball/denied        BALDENID // Taken from Metroid Prime
 morphball/bombdrop      BALBOMDR // Taken from Smash Bros. Melee
 morphball/bombboom      BALBOMXP
+morphball/bombboom2     BALBOMXP
 morphball/pbomwub       PBOMWUB
 morphball/pbomdrop      PBOMLAY
 morphball/pbomread      PBOMREAD // Taken from Smash Bros. Brawl

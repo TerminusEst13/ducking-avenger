@@ -347,7 +347,7 @@ ACTOR MorphBallBombCharged : MorphBallBomb
     {
     Spawn:
         MBOM ABCDAB 4
-        TNT1 A 0 A_PlaySound("morphball/bombboom")
+        TNT1 A 0 A_PlaySound("morphball/bombboom2")
         TNT1 A 0 A_Explode(96,128,0)
         TNT1 A 0 A_GiveToTarget("BombCount",1)
         TNT1 A 0 A_SpawnItemEx("BombExplodeSmaller",0,0,0,0,0,0,0,160)
