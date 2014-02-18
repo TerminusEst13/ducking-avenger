@@ -456,15 +456,15 @@ actor LascannonBurstEffect
     Height 0
 
     RenderStyle Add
-    Scale 0.55
+    Scale 0.45
 
     States
     {
       Spawn:
         LBSS A 0 bright
         LBSS AAAAAA 0 A_SpawnItemEx("LascannonBurstHaze",random(-8,8),random(-8,8),random(-8,8),random(-20,20)/20.0,random(-20,20)/20.0,random(-20,20)/20.0)
-        LBSS AAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2",random(-8,8),random(-8,8),random(-8,8),random(-20,20)/100.0,random(-20,20)/100.0,random(-20,20)/100.0)
-        LSHT A 2 bright A_FadeOut(0.075)
+        LBSS AAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2",random(-8,8),random(-8,8),random(-8,8),random(-20,20)/400.0,random(-20,20)/400.0,random(-20,20)/400.0)
+        LSHT A 1 bright A_FadeOut(0.05)
         wait
     }
 }
@@ -486,7 +486,7 @@ actor LascannonBurstHaze
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
-        LBSE AAAAABBBBBCCCCC 2 bright A_FadeOut(random(2,5)/100.0)
+        LBSE AAAAABBBBBCCCCC 2 bright A_FadeOut(random(2,5)/400.0)
         loop
     Nope:
         TNT1 A 1
@@ -596,8 +596,10 @@ actor LongBeamPuffCharged
         TNT1 A 0
         TNT1 A 0 ACS_ExecuteWithResult(455,456,1)
         TNT1 A 0 A_Explode(64,128,0)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze",0,0,0,random(-200,200)/100.0,random(-200,200)/100.0,random(-200,200)/100.0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2",0,0,0,random(-200,200)/50.0,random(-200,200)/50.0,random(-200,200)/50.0,0,32)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze",0,0,0,random(-100,100)/100.0,random(-100,100)/100.0,random(-100,100)/100.0,0,32)
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2",0,0,0,random(-100,100)/40.0,random(-100,100)/40.0,random(-100,100)/40.0,0,32)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("LascannonBurstHaze2",0,0,0,random(-100,100)/50.0,random(-100,100)/50.0,random(-100,100)/50.0,0,32)
         TNT1 A 4
         stop
     }
