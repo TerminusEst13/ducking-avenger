@@ -838,7 +838,7 @@ ACTOR MissileTankPickup : CustomInventory replaces Backpack
     }
 }
 
-ACTOR SuperMissileTankPickup : CustomInventory 17522
+ACTOR SuperMissileTankPickup : CustomInventory replaces GreenArmor 17522
 {
     Inventory.PickupMessage "SUPER MISSILE TANK: ACQUIRED"
     Inventory.PickupSound "nrgtank/get"
@@ -1034,7 +1034,7 @@ ACTOR SpaceJumpPickup : CustomInventory 17520
     }
 }
 
-ACTOR PowerBombTankPickup : CustomInventory 17523
+ACTOR PowerBombTankPickup : CustomInventory replaces Berserk 17523
 {
     Inventory.PickupMessage "POWER BOMB TANK: ACQUIRED"
     Inventory.PickupSound "nrgtank/get"
@@ -1059,11 +1059,11 @@ ACTOR PowerBombTankPickup : CustomInventory 17523
     }
 }
 
-ACTOR BerserkSpawner1 : RandomSpawner replaces Berserk
+/*ACTOR BerserkSpawner1 : RandomSpawner replaces Berserk
 {
     DropItem "SuperMissileTankPickup", 255
     DropItem "PowerBombTankPickup", 255
-}
+}*/
 
 actor RawEnergy : CustomInventory replaces BlueArmor
 {
