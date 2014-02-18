@@ -347,7 +347,7 @@ ACTOR IceBoltExplosion
     {
       Spawn:
 		TNT1 A 0
-		TNT1 A 1 A_Explode(32,96,0)
+		TNT1 A 1 A_Explode(32,64,0)
         Stop
     }
 }
