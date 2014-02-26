@@ -1,3 +1,327 @@
+ACTOR IceComboMissile
+{
+    Radius 12
+    Height 8
+    Speed 40
+    Damage (80)
+    Projectile
+    +FORCERADIUSDMG
+    +NODAMAGETHRUST
+    Scale 1.25
+    DeathSound "missile/hit"
+    Obituary "%k crushed %o with an Ice Missile."
+    DamageType "IceCombo"
+    Decal Scorch
+    States
+    {
+    Spawn:
+        CICM A 1 Bright A_SpawnItemEx("IceTrail",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,0,160,0)
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrail",0,0,Random(-200,200),3,Random(-200,200))
+        TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrailFlicker",0,0,Random(-200,200),3,Random(-200,200))
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceComboPuff",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("IceComboPuff2",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff3",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff4",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff3",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff4",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff3",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff4",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff3",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff4",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff3",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff4",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff3",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("IceComboPuff4",random(-5000,5000)/100.00,random(-5000,5000)/100.00,random(-5000,5000)/100.00,0,0,0,0,160)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 4 A_Explode(8,384,0)
+        TNT1 AAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuff",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
+        TNT1 A 0 A_SpawnItemEx("IceBoltPuffCharged",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160)
+        TNT1 A 0
+        TNT1 A 0
+        Stop
+    }
+}
+
+actor IceComboPuff
+{ 
+    Alpha 0.95
+    Scale 1.95
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    RenderStyle Add
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        IPFF ABCDEFGHIJKL 10 BRIGHT
+        stop
+    }
+}
+
+actor IceComboPuff2 : IceComboPuff { Alpha 0.45 Scale 2.75 }
+
+actor IceComboPuff3
+{ 
+    Alpha 0.75
+    Scale 1.55
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    RenderStyle Add
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        IPFF ABCDEFGHIJKL 5 BRIGHT
+        stop
+    }
+}
+
+actor IceComboPuff4 : IceComboPuff3 { Scale 1.95 }
+
 ACTOR WaveComboMissile
 {
     Radius 12
@@ -14,13 +338,31 @@ ACTOR WaveComboMissile
     States
     {
     Spawn:
-    Spawn1:
         CWVM A 1 Bright A_CustomMissile("WaveTrail",0,0,0)
         Loop
     Death:
         TNT1 A 0
         TNT1 A 0 A_Scream
-        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,random(-1500,1500)/100.00,random(-1500,1500)/100.00,random(500,1500)/100.00,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,18,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,36,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,54,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,72,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,90,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,108,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,126,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,144,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,162,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,180,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,198,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,216,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,234,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,252,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,270,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,288,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,306,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,324,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,342,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,20,0,random(-100,400)/100.00,360,48)
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
         TNT1 AA 0 A_SpawnItemEx("WaveMissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("WaveMissileExplosionLarge",0,0,0,0,0,0,0,160)
@@ -42,23 +384,23 @@ ACTOR WaveComboMissileMini
     +HEXENBOUNCE
     BounceFactor 1.1
     WallBounceFactor 1.1
-    BounceCount 6
+    BounceCount 4
     Gravity 0.5
     Scale 0.5
     DeathSound "missile/hit"
     Obituary "%k disintegrated %o with a Wave Missile."
     DamageType "WaveCombo"
-    Decal Scorch
+    Decal DoomImpScorch
     States
     {
     Spawn:
-    Spawn1:
         CWVM A 1 Bright A_CustomMissile("WaveSpark",0,0,Random(-180,180),2,Random(-100,100))
         Loop
     Death:
         TNT1 A 0
         TNT1 A 0 A_Scream
         TNT1 AAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
+        TNT1 A 0 A_SpawnItemEx("WaveMissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_Explode(32,128,0)
         TNT1 A 0 A_SetTranslucent(0.9,1)
         WTRL A 2 BRIGHT A_Scream
@@ -77,14 +419,10 @@ ACTOR PlasmaComboMissile
     Damage (80)
     Projectile
     -NOGRAVITY
-    //+DOOMBOUNCE
     +FORCERADIUSDMG
     +NODAMAGETHRUST
     +ROCKETTRAIL
     Gravity 0.7
-    //BounceFactor 0.6
-    //WallBounceFactor 0.6
-    //BounceCount 5
     Scale 1.25
     DeathSound "missile/hit"
     Obituary "%k seared %o with a Plasma Missile."
@@ -93,13 +431,12 @@ ACTOR PlasmaComboMissile
     States
     {
     Spawn:
-    Spawn1:
         CPLM A 1 Bright A_SpawnItemEx("PlasmaTrailFlicker",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
         Loop
     Death:
         TNT1 A 0
         TNT1 A 0 A_Scream
-        TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("BigFireSpawner",0,0,0,random(-500,500)/100.00,random(-500,500)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("BigFireSpawner",0,0,0,random(-500,500)/100.00,random(-500,500)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
         TNT1 AA 0 A_SpawnItemEx("PlasmaMissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("PlasmaMissileExplosionLarge",0,0,0,0,0,0,0,160)
@@ -109,14 +446,16 @@ ACTOR PlasmaComboMissile
     }
 }
 
-ACTOR LongComboMissile
+ACTOR LongComboMissile : FastProjectile
 {
     Radius 12
     Height 8
-    Speed 120
+    Speed 160
     Damage (240)
     Projectile
     +FORCERADIUSDMG
+    MissileType LasGunTrail
+    //MissileHeight 32
     Scale 1.25
     DeathSound "missile/hit"
     Obituary "%k smeared %o with a Long Missile."
@@ -125,7 +464,6 @@ ACTOR LongComboMissile
     States
     {
     Spawn:
-    Spawn1:
         CLNM A 1 Bright A_SpawnItemEx("LasgunTrail",0,0,1,0,0,0,0,160)
         Loop
     Death:
@@ -134,7 +472,7 @@ ACTOR LongComboMissile
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
         TNT1 AA 0 A_SpawnItemEx("LongMissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("LongMissileExplosionLarge",0,0,0,0,0,0,0,160)
-        TNT1 A 1 Bright A_Explode(384,128,0)
+        TNT1 A 1 Bright A_Explode(512,128,0)
         TNT1 A 0
         Stop
     }

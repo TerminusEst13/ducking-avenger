@@ -161,6 +161,7 @@ combo/spazer            CMBSPAZR
 combo/long              CMBLONG
 combo/plasma            CMBPLASM
 combo/wave              CMBWAVE
+combo/ice               CMBICE
 
 // Items
 item/get                ITEMGET // Taken from Doom 64
