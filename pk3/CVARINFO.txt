@@ -15,3 +15,4 @@ server int metroid_noenemydrops = 0;
 user int metroid_cl_noeffects = 0;
 user int metroid_cl_nosiren = 0;
 user int metroid_cl_morphcamera = 1;
+user int metroid_cl_doomhealth = 0;

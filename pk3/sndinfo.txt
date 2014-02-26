@@ -155,6 +155,10 @@ bullet/puff4            blrich4
 bullet/puff5            blrich5
 bullet/puff6            blrich6
 
+// Charge Combos
+combo/ready             CHCMBCLK // Taken from Smash Bros. Melee
+combo/spazer            CMBSPAZR
+
 // Items
 item/get                ITEMGET // Taken from Doom 64
 health/10               HEALF10

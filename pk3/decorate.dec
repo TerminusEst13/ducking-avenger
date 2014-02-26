@@ -95,6 +95,7 @@ actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
 #include "decorate/beams/plasmabeam.dec"
 #include "decorate/beams/icebeam.dec"
 #include "decorate/beams/doomcannon.dec"
+#include "decorate/beams/chargecombos.dec"
 #include "decorate/parkmore.dec"
 #include "decorate/enemies/doom_enemies.dec"
 #include "decorate/enemies/spacepirate.dec"
