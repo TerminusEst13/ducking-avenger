@@ -1,11 +1,43 @@
+ACTOR LongComboMissile
+{
+    Radius 12
+    Height 8
+    Speed 120
+    Damage (160)
+    Projectile
+    +FORCERADIUSDMG
+    Scale 1.25
+    DeathSound "missile/hit"
+    Obituary "%k smeared %o with a Long Missile."
+    DamageType "LongCharged"
+    Decal Scorch
+    States
+    {
+    Spawn:
+    Spawn1:
+        CLNM A 1 Bright A_SpawnItemEx("LasgunTrail",0,0,1,0,0,0,0,160)
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 AA 0 A_SpawnItemEx("LongMissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("LongMissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 1 Bright A_Explode(256,128,0)
+        TNT1 A 0
+        Stop
+    }
+}
+
 ACTOR SpazerComboMissile1
 {
     Radius 12
     Height 8
-    Speed 40
+    Speed 50
     Damage (80)
     Projectile
     +FORCERADIUSDMG
+    Scale 1.25
     DeathSound "missile/hit"
     Obituary "%k smeared %o with a spray of Spazer Missiles."
     DamageType "SpazerCharged"
@@ -14,14 +46,14 @@ ACTOR SpazerComboMissile1
     {
     Spawn:
     Spawn1:
-        PMSL A 1 Bright A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
+        CSPM A 1 Bright A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
         Loop
     Death:
         TNT1 A 0
         TNT1 A 0 A_Scream
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
-        TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
-        TNT1 A 0 A_SpawnItemEx("MissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("SpazerMissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("SpazerMissileExplosionLarge",0,0,0,0,0,0,0,160)
         TNT1 A 1 Bright A_Explode(128,128,0)
         TNT1 A 0
         Stop
@@ -35,7 +67,7 @@ ACTOR SpazerComboMissile2 : SpazerComboMissile1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,-12,0,CVF_RELATIVE)
-        PMSL AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
+        CSPM AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
         TNT1 A 0 A_ChangeVelocity(0,12,0,CVF_RELATIVE)
         goto Spawn1
     }
@@ -48,7 +80,7 @@ ACTOR SpazerComboMissile3 : SpazerComboMissile1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,-24,0,CVF_RELATIVE)
-        PMSL AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
+        CSPM AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
         TNT1 A 0 A_ChangeVelocity(0,24,0,CVF_RELATIVE)
         goto Spawn1
     }
@@ -61,7 +93,7 @@ ACTOR SpazerComboMissile4 : SpazerComboMissile1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,12,0,CVF_RELATIVE)
-        PMSL AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
+        CSPM AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
         TNT1 A 0 A_ChangeVelocity(0,-12,0,CVF_RELATIVE)
         goto Spawn1
     }
@@ -74,8 +106,78 @@ ACTOR SpazerComboMissile5 : SpazerComboMissile1
     Spawn:
         TNT1 A 0
         TNT1 A 0 A_ChangeVelocity(0,24,0,CVF_RELATIVE)
-        PMSL AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
+        CSPM AA 1 BRIGHT A_SpawnItemEx("MissileTrail",0,0,1,0,0,0,0,160)
         TNT1 A 0 A_ChangeVelocity(0,-24,0,CVF_RELATIVE)
         goto Spawn1
     }
 }
+
+// These combo explosions look ugly as sin, but they're pretty much the only
+// thing I can do for now aside from manually recoloring every single sprite.
+
+actor SpazerMissileExplosionSmall
+{
+    RenderStyle Add
+    Alpha 0.9
+    Scale 0.55
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
+    Spawn1:
+        CXP1 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Spawn2:
+        CXP2 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Spawn3:
+        CXP3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Spawn4:
+        CXP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Spawn5:
+        CXP5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Spawn6:
+        CXP6 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Spawn7:
+        CXP7 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+    Nope:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor SpazerMissileExplosionLarge : SpazerMissileExplosionSmall
+{
+    Alpha 0.65
+    Scale 0.75
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 Radius_Quake(1,15,0,8,0)
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
+    Nope:
+        TNT1 A 0
+        TNT1 A 0 A_SetTranslucent(0.9,1)
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
+    }
+}
+
+actor LongMissileExplosionSmall : SpazerMissileExplosionSmall { Translation "112:127=80:111" }
+actor LongMissileExplosionLarge : SpazerMissileExplosionLarge { Translation "112:127=80:111" }

@@ -158,6 +158,7 @@ bullet/puff6            blrich6
 // Charge Combos
 combo/ready             CHCMBCLK // Taken from Smash Bros. Melee
 combo/spazer            CMBSPAZR
+combo/long              CMBLONG
 
 // Items
 item/get                ITEMGET // Taken from Doom 64
