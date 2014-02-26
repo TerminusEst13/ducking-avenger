@@ -160,6 +160,7 @@ ACTOR MissileAmmo_Dropped : MissileAmmo
         MPKU B 4 BRIGHT
         MPKU A 10 BRIGHT
         MPKU B 4 BRIGHT
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
         MPKU A 10 BRIGHT
         MPKU B 4 BRIGHT // 70
         stop
@@ -335,6 +336,7 @@ actor SuperMissileAmmo_Dropped : CustomInventory
         SPKU B 4 BRIGHT
         SPKU A 10 BRIGHT
         SPKU B 4 BRIGHT
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
         SPKU A 10 BRIGHT
         SPKU B 4 BRIGHT // 70
         stop
@@ -521,6 +523,7 @@ actor PowerBombAmmo_Dropped : CustomInventory
         PBOM E 4 BRIGHT
         PBOM D 10 BRIGHT
         PBOM E 4 BRIGHT
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
         PBOM D 10 BRIGHT
         PBOM E 4 BRIGHT // 70
         stop
@@ -623,6 +626,7 @@ ACTOR Energy10_Dropped : Energy10
         NRGA ABCD 4 // 30
         NRGA ABCD 4 BRIGHT
         NRGA ABCD 4
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
         NRGA ABCD 4 BRIGHT
         stop
     }
@@ -713,6 +717,7 @@ ACTOR Energy25_Dropped : Energy25
         NRGB ABCD 4 // 30
         NRGB ABCD 4 BRIGHT
         NRGB ABCD 4
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
         NRGB ABCD 4 BRIGHT
         stop
     }

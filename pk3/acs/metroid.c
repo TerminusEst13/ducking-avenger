@@ -76,6 +76,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_cannonbfg");
     }
 
+    if (!GetCVar("metroid_dropstay"))
+    {
+        ConsoleCommand("set metroid_dropstay 0");
+        ConsoleCommand("archivecvar metroid_dropstay");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -621,6 +627,12 @@ script METROID_DECORATE (int which)
 
     case 15:
         if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("PBNotInThisLevel",1); }
+        break;
+
+    case 16:
+        if(GetCvar("metroid_dropstay") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
         break;
     }
 }
