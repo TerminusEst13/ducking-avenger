@@ -1,15 +1,126 @@
+ACTOR WaveComboMissile
+{
+    Radius 12
+    Height 8
+    Speed 40
+    Damage (60)
+    Projectile
+    +FORCERADIUSDMG
+    Scale 1.25
+    DeathSound "missile/hit"
+    Obituary "%k disintegrated %o with a Wave Missile."
+    DamageType "WaveCombo"
+    Decal Scorch
+    States
+    {
+    Spawn:
+    Spawn1:
+        CWVM A 1 Bright A_CustomMissile("WaveTrail",0,0,0)
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("WaveComboMissileMini",0,0,0,random(-1500,1500)/100.00,random(-1500,1500)/100.00,random(500,1500)/100.00,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 AA 0 A_SpawnItemEx("WaveMissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("WaveMissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 1 Bright A_Explode(96,128,0)
+        TNT1 A 0
+        Stop
+    }
+}
+
+ACTOR WaveComboMissileMini
+{
+    Radius 8
+    Height 6
+    Speed 40
+    Damage (15)
+    Projectile
+    -NOGRAVITY
+    +FORCERADIUSDMG
+    +HEXENBOUNCE
+    BounceFactor 1.1
+    WallBounceFactor 1.1
+    BounceCount 6
+    Gravity 0.5
+    Scale 0.5
+    DeathSound "missile/hit"
+    Obituary "%k disintegrated %o with a Wave Missile."
+    DamageType "WaveCombo"
+    Decal Scorch
+    States
+    {
+    Spawn:
+    Spawn1:
+        CWVM A 1 Bright A_CustomMissile("WaveSpark",0,0,Random(-180,180),2,Random(-100,100))
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
+        TNT1 A 0 A_Explode(32,128,0)
+        TNT1 A 0 A_SetTranslucent(0.9,1)
+        WTRL A 2 BRIGHT A_Scream
+        WTRL BCD 2 BRIGHT 
+        TNT1 A 0
+        Stop
+    }
+}
+
+
+ACTOR PlasmaComboMissile
+{
+    Radius 12
+    Height 8
+    Speed 40
+    Damage (80)
+    Projectile
+    -NOGRAVITY
+    //+DOOMBOUNCE
+    +FORCERADIUSDMG
+    +NODAMAGETHRUST
+    +ROCKETTRAIL
+    Gravity 0.7
+    //BounceFactor 0.6
+    //WallBounceFactor 0.6
+    //BounceCount 5
+    Scale 1.25
+    DeathSound "missile/hit"
+    Obituary "%k seared %o with a Plasma Missile."
+    DamageType "PlasmaCombo"
+    Decal Scorch
+    States
+    {
+    Spawn:
+    Spawn1:
+        CPLM A 1 Bright A_SpawnItemEx("PlasmaTrailFlicker",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAA 0 A_SpawnItemEx("BigFireSpawner",0,0,0,random(-500,500)/100.00,random(-500,500)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 AA 0 A_SpawnItemEx("PlasmaMissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("PlasmaMissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 1 Bright A_Explode(128,128,0)
+        TNT1 A 0
+        Stop
+    }
+}
+
 ACTOR LongComboMissile
 {
     Radius 12
     Height 8
     Speed 120
-    Damage (160)
+    Damage (240)
     Projectile
     +FORCERADIUSDMG
     Scale 1.25
     DeathSound "missile/hit"
     Obituary "%k smeared %o with a Long Missile."
-    DamageType "LongCharged"
+    DamageType "LongCombo"
     Decal Scorch
     States
     {
@@ -23,7 +134,7 @@ ACTOR LongComboMissile
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
         TNT1 AA 0 A_SpawnItemEx("LongMissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("LongMissileExplosionLarge",0,0,0,0,0,0,0,160)
-        TNT1 A 1 Bright A_Explode(256,128,0)
+        TNT1 A 1 Bright A_Explode(384,128,0)
         TNT1 A 0
         Stop
     }
@@ -40,7 +151,7 @@ ACTOR SpazerComboMissile1
     Scale 1.25
     DeathSound "missile/hit"
     Obituary "%k smeared %o with a spray of Spazer Missiles."
-    DamageType "SpazerCharged"
+    DamageType "SpazerCombo"
     Decal Scorch
     States
     {
@@ -119,7 +230,7 @@ actor SpazerMissileExplosionSmall
 {
     RenderStyle Add
     Alpha 0.9
-    Scale 0.55
+    Scale 0.65
     +CLIENTSIDEONLY
     +NOINTERACTION
     States
@@ -160,7 +271,7 @@ actor SpazerMissileExplosionSmall
 actor SpazerMissileExplosionLarge : SpazerMissileExplosionSmall
 {
     Alpha 0.65
-    Scale 0.75
+    Scale 0.8
     States
     {
     Spawn:
@@ -181,3 +292,194 @@ actor SpazerMissileExplosionLarge : SpazerMissileExplosionSmall
 
 actor LongMissileExplosionSmall : SpazerMissileExplosionSmall { Translation "112:127=80:111" }
 actor LongMissileExplosionLarge : SpazerMissileExplosionLarge { Translation "112:127=80:111" }
+actor PlasmaMissileExplosionSmall : SpazerMissileExplosionSmall { Translation "112:127=172:190" }
+actor PlasmaMissileExplosionLarge : SpazerMissileExplosionLarge { Translation "112:127=172:190" }
+actor WaveMissileExplosionSmall : SpazerMissileExplosionSmall { Translation "112:127=250:254" }
+actor WaveMissileExplosionLarge : SpazerMissileExplosionLarge { Translation "112:127=250:254" }
+
+
+
+actor BigFireSpawner
+{
+    Height 1
+    Radius 1
+    Speed 1
+    DamageType "PlasmaCombo"
+    Monster
+    -SHOOTABLE
+    -ISMONSTER // How's that for irony?
+    -SOLID
+    +FORCERADIUSDMG
+    +NODAMAGETHRUST
+    +BLOODLESSIMPACT
+    +PAINLESS
+    states
+    {
+    Spawn:
+        TNT1 A 1 A_SpawnItemEx("BigFireRise", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(0,100)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        TNT1 A 0 A_SpawnItemEx("BigFireRise5", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        //TNT1 A 0 A_Wander
+        TNT1 A 1 A_SpawnItemEx("BigFireRise8", Random(-400,400)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        TNT1 AA 1 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 0 A_Explode(4,96,0)
+        //TNT1 A 0 A_Wander
+        TNT1 AA 0 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        TNT1 A 1 A_SpawnItemEx("BigFireRise2", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        //TNT1 A 0 A_Wander
+        TNT1 A 0 A_SpawnItemEx("BigFireRise6", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        TNT1 AA 1 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 0 A_Explode(4,96,0)
+        //TNT1 A 0 A_Wander
+        TNT1 A 1 A_SpawnItemEx("BigFireRise3", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        TNT1 A 0 A_SpawnItemEx("BigFireRise7", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        //TNT1 A 0 A_Wander
+        TNT1 A 1 A_SpawnItemEx("BigFireRise9", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        TNT1 AA 0 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 0 A_Explode(4,96,0)
+        //TNT1 A 0 A_Wander
+        TNT1 AA 1 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 0 A_Explode(4,96,0)
+        TNT1 A 0 A_Wander
+        //TNT1 A 0 A_Jump(16,"Spawn2")
+        TNT1 A 0 A_Jump(96,"Spawn")
+        TNT1 A 0 A_JumpIfInventory("Health100",12,"Death")
+        TNT1 A 0 A_GiveInventory("Health100",1)
+        loop
+    Spawn2:
+        TNT1 A 0 
+        TNT1 A 0 A_SpawnItemEx("BigFireSpawner",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        goto Spawn
+    Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+
+
+Actor FireRise
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +NOCLIP
+    +NOGRAVITY
+    RenderStyle Add
+    alpha 0.6
+    scale 0.1
+    VSpeed 2
+    states
+    {
+    Spawn:
+        PFIE A 1 A_Jump(255, "One", "Two", "Three")
+    One:
+        PFIE A 3
+        PFIE BCDE 4
+        PFIE FGHI 4 A_FadeOut(0.1)
+        stop
+    Two:
+        PFIE ABCDE 3
+        PFIE FGHI 3 A_FadeOut(0.1)
+        stop
+    Three:
+        PFIE ABCDE 2
+        PFIE FGHI 2 A_FadeOut(0.1)
+        stop
+    }
+}
+
+Actor FireRise2 : FireRise
+{
+    states
+    {
+    Spawn:
+        PFIB A 1 A_Jump(255, "One", "Two", "Three")
+    One:
+        PFIB A 3
+        PFIB BCDE 4
+        PFIB FGHI 4 A_FadeOut(0.1)
+        stop
+    Two:
+        PFIB ABCDE 3
+        PFIB FGHI 3 A_FadeOut(0.1)
+        stop
+    Three:
+        PFIB ABCDE 2
+        PFIB FGHI 2 A_FadeOut(0.1)
+        stop
+    }
+}
+
+Actor FireRise3 : FireRise
+{
+    scale 0.12
+    states
+    {
+    Spawn:
+        PFIC A 1 A_Jump(255, "One", "Two", "Three")
+    One:
+        PFIC A 3
+        PFIC BCDE 4
+        PFIC FGHI 4 A_FadeOut(0.1)
+        stop
+    Two:
+        PFIC ABCDE 3
+        PFIC FGHI 3 A_FadeOut(0.1)
+        stop
+    Three:
+        PFIC ABCDE 2
+        PFIC FGHI 2 A_FadeOut(0.1)
+        stop
+    }
+}
+
+Actor FireRise4 : FireRise
+{
+    scale 0.08
+    alpha 0.2
+    states
+    {
+    Spawn:
+        PFID H 1 A_Jump(255, "One", "Two", "Three")
+    One:
+        PFID H 3 
+        PFID HGF 4
+        PFID E 4 A_FadeOut(0.1)
+        PFID DCBA 4
+        stop
+    Two:
+        PFID HGF 3
+        PFID E 3 A_FadeOut(0.1)
+        PFID EDCBA 3
+        stop
+    Three:
+        PFID HGF 2
+        PFID E 2 A_FadeOut(0.1)
+        PFID DCBA 2
+        stop
+    }
+}
+
+Actor BigFireRise : FireRise { scale 0.28 }
+Actor BigFireRise2 : FireRise2 { scale 0.36 }
+Actor BigFireRise3 : FireRise3 { scale 0.19 }
+Actor BigFireRise4 : FireRise4 { scale 0.12 }
+Actor BigFireRise5 : FireRise3 { scale 0.18 }
+Actor BigFireRise6 : FireRise2 { scale 0.26 }
+Actor BigFireRise7 : FireRise { scale 0.16 }
+Actor BigFireRise8 : FireRise { scale 0.14 }
+Actor BigFireRise9 : FireRise2 { scale 0.19 }

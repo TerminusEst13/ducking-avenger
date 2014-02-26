@@ -159,6 +159,8 @@ bullet/puff6            blrich6
 combo/ready             CHCMBCLK // Taken from Smash Bros. Melee
 combo/spazer            CMBSPAZR
 combo/long              CMBLONG
+combo/plasma            CMBPLASM
+combo/wave              CMBWAVE
 
 // Items
 item/get                ITEMGET // Taken from Doom 64

@@ -4,6 +4,7 @@ SPECIAL THANKS TO:
 - id Software (For creating Doom and the idtech1 engine)
 - Graf Zahl, Randy Heit (For the ZDoom/GZDoom engine)
 - Torr Samaho and the Zandronum team (For picking up where Skulltag left off)
+- /vr/ (For their help, guidance, and enthusiasm for both Doom and Metroid)
 
 GRAPHICS:
 =========
@@ -26,6 +27,7 @@ GRAPHICS:
 - People Can Fly (The Flamebolter's fire effect used for the Super Missile explosion)
 - Yoshio Sakamoto (His likeness used for the Icon of Sin)
 - VincentPrice (Making the model the Morph Ball was based off)
+- TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)
 
 SOUNDS:
 =========
@@ -41,3 +43,4 @@ CODE:
 =========
 - Repo Man (The basis of the Wave Beam projectile code)
 - Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion)
+- TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)
