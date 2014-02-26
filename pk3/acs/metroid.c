@@ -111,6 +111,12 @@ script METROID_OPEN_CLIENT OPEN clientside
         ConsoleCommand("set metroid_cl_morphcamera 1");
         ConsoleCommand("archivecvar metroid_cl_morphcamera");
     }
+
+    if (!GetCVar("metroid_cl_doomhealth"))
+    {
+        ConsoleCommand("set metroid_cl_doomhealth 0");
+        ConsoleCommand("archivecvar metroid_cl_doomhealth");
+    }
 }
 
 
@@ -156,6 +162,7 @@ script METROID_MORPHBALL (int morphshit)
     switch (morphshit)
     {
     case 0:
+        if(CheckInventory("PowerInvulnerable") == 1) { ActivatorSound("morphball/denied", 127); Print(s:"Morphing while invulnerable is temporarily disabled due to a bug.\n\nSorry."); terminate; }
         // Play sound...
         ActivatorSound("morphball/morph", 127);
 
@@ -197,7 +204,6 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("PowerBeamIdle",999);
         TakeInventory("MissileChargeLevel",999);
         TakeInventory("MissileCharged",999);
-        TakeInventory("PowerInvulnerable",999);
         playerOnFoot[pNum] = 1;
 
         ACS_ExecuteAlways(METROID_MORPHCAMERA,0,0);
@@ -296,6 +302,7 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("IceBeamChilled",999);
     TakeInventory("MissileChargeLevel",999);
     TakeInventory("MissileCharged",999);
+    TakeInventory("SynthFireRight",999);
 
     GiveInventory("BombCount",999);
 }
@@ -342,6 +349,7 @@ script METROID_ENTER ENTER
 
     while (1)
     {
+        // Health bar shit
         if (GetActorProperty(0,APROP_Health) > 100) { GiveInventory("HealthOver100",1); } else { if (CheckInventory("HealthOver100") == 1) { TakeInventory("HealthOver100",1); }}
         if (GetActorProperty(0,APROP_Health) > 200) { GiveInventory("HealthOver200",1); } else { if (CheckInventory("HealthOver200") == 1) { TakeInventory("HealthOver200",1); }}
         if (GetActorProperty(0,APROP_Health) > 300) { GiveInventory("HealthOver300",1); } else { if (CheckInventory("HealthOver300") == 1) { TakeInventory("HealthOver300",1); }}
@@ -359,14 +367,15 @@ script METROID_ENTER ENTER
         TakeInventory("PlayerTotalHealth", 0x7FFFFFFF);
         GiveInventory("PlayerTotalHealth", min(barhp, 99));
 
-
-
+        // Spacejump shit
         if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
         else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("SpaceJumpAcquired") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}}
 
+        // Nomorph shit
         if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
         else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
 
+        // Loaded shit
         if (GetCVar("metroid_loaded") == 1)
         {
             if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1); }
@@ -376,6 +385,7 @@ script METROID_ENTER ENTER
             if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1); }
         }
 
+        // Armor shit
         oarmor = armor;
         armor = CheckInventory("Armor");
 
@@ -383,6 +393,23 @@ script METROID_ENTER ENTER
         { ActivatorSound("rawenergy/shieldhit", 127);
             FadeRange(255, 255, 255, min(0.5, (oarmor - armor) * 0.015), 0, 0, 0, 0.0, min(35.0, 1.5 * (oarmor - armor)) / 35); }
 
+        // Charge combo shit
+        if (CheckInventory("ChargeComboAcquired") == 1)
+        {
+        if (keyDown(BT_ALTATTACK)) { GiveInventory("SynthFireRight", 1); }
+        else { TakeInventory("SynthFireRight", 0x7FFFFFFF); }
+        }
+
+        delay(1);
+    }
+}
+
+script METROID_ENTER_CLIENTSIDE ENTER clientside
+{
+    while(1)
+    {
+        if (GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
+        else { if (CheckInventory("DoomHealthCounter") == 1) { TakeInventory("DoomHealthCounter",1); }}
         delay(1);
     }
 }
@@ -458,6 +485,7 @@ script METROID_BWEEBWEEMORPH (void) clientside
 script METROID_RESPAWN RESPAWN
 {
     ACS_ExecuteAlways(592,0);
+    ACS_ExecuteAlways(METROID_ENTER_CLIENTSIDE,0);
     ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
 
     if (isSinglePlayer() || isCoop()) // This shouldn't ever matter in any PvP modes, since their inventory resets on death, but just in case.

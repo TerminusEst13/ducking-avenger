@@ -28,6 +28,7 @@
 #define METROID_DECORATECLIENT               596
 #define METROID_BWEEBWEEBWEEBWEE             597
 #define METROID_BWEEBWEEMORPH                598
+#define METROID_ENTER_CLIENTSIDE             599
 
 #define CLOCKWISE           0
 #define COUNTERCLOCKWISE    1

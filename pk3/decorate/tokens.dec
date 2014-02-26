@@ -24,6 +24,7 @@ actor PowerBeamIdle : Counter { Inventory.MaxAmount 26 }
 
 // Booleans
 actor InGame : Boolean {}
+actor DoomHealthCounter : Boolean {}
 actor HealthOver100 : Boolean {}
 actor HealthOver200 : Boolean {}
 actor HealthOver300 : Boolean {}
@@ -45,12 +46,14 @@ actor DisableMorph : Boolean {}
 
 actor MissileCharged : Boolean {}
 actor PowerBeamCharged : Boolean {}
+actor SynthFireRight : Boolean {}
 
 actor BorphMallAcquired : Boolean {}
 actor SuperMissileAcquired : Boolean {}
 actor SpaceJumpAcquired : Boolean {}
 actor CanSpaceJump : Boolean {}
 actor PowerBombAcquired : Boolean {}
+actor ChargeComboAcquired : Boolean {}
 
 actor EnemyFlyingDeath : Boolean {}
 

@@ -3,7 +3,8 @@ statusbar normal, forcescaled
 InInventory not BorphMallAcquired, 1
     {
     drawimage "samvisor", 0, 0;
-    drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 97, 25;
+    InInventory not DoomHealthCounter, 1 { drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 97, 25; }
+    InInventory DoomHealthCounter, 1 { drawnumber 4, METHUDF, Untranslated, Health, 97, 25; }
     drawbar "SAMHFULL", "SAMHEMPT", Health Health100, horizontal, 100, 24, 1;
     InInventory EnergyTankAcquired, 1 { drawimage "ETNKEMPT", 122, 20; }
     InInventory EnergyTankAcquired, 2 { drawimage "ETNKEMPT", 130, 20; }
@@ -77,9 +78,11 @@ InInventory not BorphMallAcquired, 1
     }
 InInventory BorphMallAcquired, 1
     {
-    drawimage "FLSCRBAR", 0, 0;
+    InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
+    InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
-    drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21;
+    InInventory not DoomHealthCounter, 1 { drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21; }
+    InInventory DoomHealthCounter, 1 { drawnumber 4, METHUDF, Untranslated, Health, 84, 21; }
     InInventory EnergyTankAcquired, 1 { drawimage "FTNKEMPT", 26, 7; }
     InInventory EnergyTankAcquired, 2 { drawimage "FTNKEMPT", 34, 7; }
     InInventory EnergyTankAcquired, 3 { drawimage "FTNKEMPT", 42, 7; }
@@ -146,9 +149,11 @@ gamemode cooperative, singleplayer
 
 statusbar fullscreen, forcescaled
 {
-    drawimage "FLSCRBAR", 0, 0;
+    InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
+    InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
-    drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21;
+    InInventory not DoomHealthCounter, 1 { drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21; }
+    InInventory DoomHealthCounter, 1 { drawnumber 4, METHUDF, Untranslated, Health, 84, 21; }
     InInventory EnergyTankAcquired, 1 { drawimage "FTNKEMPT", 26, 7; }
     InInventory EnergyTankAcquired, 2 { drawimage "FTNKEMPT", 34, 7; }
     InInventory EnergyTankAcquired, 3 { drawimage "FTNKEMPT", 42, 7; }
