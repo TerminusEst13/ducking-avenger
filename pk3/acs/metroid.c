@@ -70,10 +70,10 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_noenemydrops");
     }
 
-    if (!GetCVar("metroid_cannonbfg"))
+    if (!GetCVar("metroid_doomcannon"))
     {
-        ConsoleCommand("set metroid_cannonbfg 0");
-        ConsoleCommand("archivecvar metroid_cannonbfg");
+        ConsoleCommand("set metroid_doomcannon 0");
+        ConsoleCommand("archivecvar metroid_doomcannon");
     }
 
     if (!GetCVar("metroid_dropstay"))
@@ -616,7 +616,7 @@ script METROID_DECORATE (int which)
         break;
 
     case 13:
-        if(GetCvar("metroid_cannonbfg") == 1)
+        if(GetCvar("metroid_doomcannon") == 1)
         setresultvalue(1);
         else setresultvalue(0);
         break;
