@@ -337,13 +337,18 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
         TNT1 A 0 Radius_Quake(2,8,0,1,0)
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"ComboCoop")
-    ComboCoop:
         TNT1 A 0 A_FireCustomMissile("SpazerComboMissile1",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerComboMissile2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerComboMissile3",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerComboMissile4",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("SpazerComboMissile5",0,0,12,-2,0,0)
         goto ComboFinish
+    ComboCoop:
+        TNT1 A 0 A_FireCustomMissile("SpazerComboMissile1Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerComboMissile2Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerComboMissile3Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerComboMissile4Coop",0,0,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("SpazerComboMissile5Coop",0,0,12,-2,0,0)
     ComboFinish:
         TNT1 A 0 A_TakeInventory("MissileAmmo",5)
         TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))

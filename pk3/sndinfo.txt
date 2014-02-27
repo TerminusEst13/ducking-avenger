@@ -162,6 +162,7 @@ combo/long              CMBLONG
 combo/plasma            CMBPLASM
 combo/wave              CMBWAVE
 combo/ice               CMBICE
+combo/power             CMBPOWER
 combo/plasmafire        CCMBFIRE // Taken from Aenima's Mercenaries
 combo/icefreeze         CCMBFREZ // Taken from Fatal/Fake
 

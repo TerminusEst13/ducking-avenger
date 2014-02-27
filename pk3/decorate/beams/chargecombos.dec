@@ -1,3 +1,41 @@
+ACTOR PowerComboMissile
+{
+    Radius 12
+    Height 8
+    Speed 40
+    Damage (240)
+    Projectile
+    +FORCERADIUSDMG
+    //MissileHeight 32
+    Scale 1.25
+    DeathSound "missile/hit"
+    Obituary "%k wrecked %o with a Power Missile."
+    DamageType "PowerCombo"
+    Decal Scorch
+    States
+    {
+    Spawn:
+        CPWM A 1 Bright A_SpawnItemEx("PowerTrail",0,0,1,0,0,0,0,160)
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("MissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("PowerBoltChargedExplosion",0,0,0,0,0,0,0,160,0)
+        TNT1 AAAAAAAAAA 0 A_GiveInventory("GrossHack",1)//A_RadiusThrust(50000,256,0)
+        //TNT1 A 0 A_SpawnItemEx("SuperMissileThrust",0,0,0,0,0,0,0,32)
+        TNT1 A 1 Bright A_Explode(384,128,0)
+        TNT1 A 0
+        Stop
+    }
+}
+
+actor PowerComboMissileCoop : PowerComboMissile { +THRUSPECIES Species "Player" }
+
+actor GrossHack : ArtiBlastRadius { +INVENTORY.AUTOACTIVATE }
+
 ACTOR IceComboMissile
 {
     Radius 12
@@ -287,6 +325,8 @@ ACTOR IceComboMissile
     }
 }
 
+actor IceComboMissileCoop : IceComboMissile { +THRUSPECIES Species "Player" }
+
 actor IceComboPuff
 { 
     Alpha 0.95
@@ -373,6 +413,44 @@ ACTOR WaveComboMissile
     }
 }
 
+actor WaveComboMissileCoop : WaveComboMissile
+{
+    +THRUSPECIES
+    Species "Player"
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,18,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,36,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,54,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,72,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,90,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,108,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,126,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,144,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,162,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,180,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,198,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,216,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,234,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,252,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,270,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,288,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,306,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,324,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,342,48)
+        TNT1 A 0 A_SpawnItemEx("WaveComboMissileMiniCoop",0,0,0,20,0,random(-100,400)/100.00,360,48)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 AA 0 A_SpawnItemEx("WaveMissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("WaveMissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 1 Bright A_Explode(96,128,0)
+        TNT1 A 0
+        Stop
+    }
+}
+
 ACTOR WaveComboMissileMini
 {
     Radius 8
@@ -411,6 +489,8 @@ ACTOR WaveComboMissileMini
     }
 }
 
+actor WaveComboMissileMiniCoop : WaveComboMissileMini { +THRUSPECIES Species "Player" }
+
 
 ACTOR PlasmaComboMissile
 {
@@ -447,6 +527,8 @@ ACTOR PlasmaComboMissile
     }
 }
 
+actor PlasmaComboMissileCoop : PlasmaComboMissile { +THRUSPECIES Species "Player" }
+
 ACTOR LongComboMissile : FastProjectile
 {
     Radius 12
@@ -478,6 +560,8 @@ ACTOR LongComboMissile : FastProjectile
         Stop
     }
 }
+
+actor LongComboMissileCoop : LongComboMissile { +THRUSPECIES Species "Player" }
 
 ACTOR SpazerComboMissile1
 {
@@ -561,6 +645,12 @@ ACTOR SpazerComboMissile5 : SpazerComboMissile1
         goto Spawn1
     }
 }
+
+actor SpazerComboMissile1Coop : SpazerComboMissile1 { +THRUSPECIES Species "Player" }
+actor SpazerComboMissile2Coop : SpazerComboMissile2 { +THRUSPECIES Species "Player" }
+actor SpazerComboMissile3Coop : SpazerComboMissile3 { +THRUSPECIES Species "Player" }
+actor SpazerComboMissile4Coop : SpazerComboMissile4 { +THRUSPECIES Species "Player" }
+actor SpazerComboMissile5Coop : SpazerComboMissile5 { +THRUSPECIES Species "Player" }
 
 // These combo explosions look ugly as sin, but they're pretty much the only
 // thing I can do for now aside from manually recoloring every single sprite.

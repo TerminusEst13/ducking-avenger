@@ -82,6 +82,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_dropstay");
     }
 
+    if (!GetCVar("metroid_nobfg"))
+    {
+        ConsoleCommand("set metroid_nobfg 0");
+        ConsoleCommand("archivecvar metroid_nobfg");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -631,6 +637,12 @@ script METROID_DECORATE (int which)
 
     case 16:
         if(GetCvar("metroid_dropstay") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
+
+    case 17:
+        if(GetCvar("metroid_nobfg") == 1)
         setresultvalue(1);
         else setresultvalue(0);
         break;
