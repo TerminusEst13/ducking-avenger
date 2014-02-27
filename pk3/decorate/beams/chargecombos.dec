@@ -8,7 +8,7 @@ ACTOR IceComboMissile
     +FORCERADIUSDMG
     +NODAMAGETHRUST
     Scale 1.25
-    DeathSound "missile/hit"
+    DeathSound "combo/icefreeze"
     Obituary "%k crushed %o with an Ice Missile."
     DamageType "IceCombo"
     Decal Scorch
@@ -20,6 +20,7 @@ ACTOR IceComboMissile
     Death:
         TNT1 A 0
         TNT1 A 0 A_Scream
+        TNT1 A 0 A_PlaySoundEx("missile/hit",5)
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceSpark",random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-7000,7000)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160)
         TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrail",0,0,Random(-200,200),3,Random(-200,200))
         TNT1 AAAAAAAAAAAAA 0 A_CustomMissile("IceTrailFlicker",0,0,Random(-200,200),3,Random(-200,200))
@@ -643,6 +644,7 @@ actor BigFireSpawner
     Radius 1
     Speed 1
     DamageType "PlasmaCombo"
+    //ActiveSound "combo/plasmafire"
     Monster
     -SHOOTABLE
     -ISMONSTER // How's that for irony?
@@ -654,6 +656,10 @@ actor BigFireSpawner
     states
     {
     Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySound("combo/plasmafire")
+    Spawn1:
+        TNT1 A 0 A_JumpIfInventory("Health200",4,"Spawn2")
         TNT1 A 1 A_SpawnItemEx("BigFireRise", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(0,100)/100.00, 0, 150)
         TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
@@ -694,15 +700,17 @@ actor BigFireSpawner
         TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         //TNT1 A 0 A_Jump(16,"Spawn2")
-        TNT1 A 0 A_Jump(96,"Spawn")
+        TNT1 A 0 A_GiveInventory("Health200",1)
+        TNT1 A 0 A_Jump(96,"Spawn1")
         TNT1 A 0 A_JumpIfInventory("Health100",12,"Death")
         TNT1 A 0 A_GiveInventory("Health100",1)
         loop
     Spawn2:
         TNT1 A 0 
-        TNT1 A 0 A_SpawnItemEx("BigFireSpawner",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        TNT1 A 0 A_TakeInventory("Health200",200)//A_SpawnItemEx("BigFireSpawner",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
         goto Spawn
     Death:
+        TNT1 A 0
         TNT1 A 0
         stop
     }

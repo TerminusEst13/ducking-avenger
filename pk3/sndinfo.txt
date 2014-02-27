@@ -162,6 +162,11 @@ combo/long              CMBLONG
 combo/plasma            CMBPLASM
 combo/wave              CMBWAVE
 combo/ice               CMBICE
+combo/plasmafire        CCMBFIRE // Taken from Aenima's Mercenaries
+combo/icefreeze         CCMBFREZ // Taken from Fatal/Fake
+
+$limit combo/plasmafire 0
+$volume combo/plasmafire 0.5
 
 // Items
 item/get                ITEMGET // Taken from Doom 64
