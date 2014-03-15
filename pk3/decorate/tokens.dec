@@ -1,6 +1,7 @@
 // Counters
 actor BombCount : Counter { Inventory.MaxAmount 3 }
 actor BoostBallCount : Counter { Inventory.MaxAmount 17 }
+actor SpeedBoostCounter : Counter { Inventory.MaxAmount 11 }
 
 actor Health100 : Counter { Inventory.MaxAmount 100 }
 actor Health200 : Counter { Inventory.MaxAmount 200 }
@@ -47,6 +48,7 @@ actor DisableMorph : Boolean {}
 actor MissileCharged : Boolean {}
 actor PowerBeamCharged : Boolean {}
 actor SynthFireRight : Boolean {}
+actor SpeedBoosterActive : Boolean {}
 
 actor BorphMallAcquired : Boolean {}
 actor SuperMissileAcquired : Boolean {}
@@ -54,6 +56,7 @@ actor SpaceJumpAcquired : Boolean {}
 actor CanSpaceJump : Boolean {}
 actor PowerBombAcquired : Boolean {}
 actor ChargeComboAcquired : Boolean {}
+actor SpeedBoosterAcquired : Boolean {}
 
 actor EnemyFlyingDeath : Boolean {}
 

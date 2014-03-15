@@ -1077,3 +1077,8 @@ function int RealPlayerCount(void)
 
     return ret;
 }
+
+function int actorVelMagnitude(int tid) 
+{
+    return magnitudeThree_f(GetActorVelX(tid), GetActorVelY(tid), GetActorVelZ(tid));
+}

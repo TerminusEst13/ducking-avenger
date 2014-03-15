@@ -1,0 +1,53 @@
+actor SpeedBoosterPrepare : PowerSpeed
+{
+    Powerup.Duration 0x7FFFFFFF
+    Speed 2.15
+}
+
+actor SpeedBooster : PowerSpeed
+{
+    Powerup.Duration 0x7FFFFFFF
+    Speed 2.25
+}
+
+actor SpeedBoosterFlashing : CustomInventory
+{
+    +INVENTORY.AUTOACTIVATE
+    Inventory.MaxAmount 0
+    States
+    {
+    Spawn:
+    Use:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(255,"RedFlash","OrangeFlash","YellowFlash","GreenFlash","BlueFlash","PurpleFlash","WhiteFlash")
+        goto RedFlash
+    RedFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("Red",0.35,14)
+        stop
+    OrangeFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("Orange",0.35,14)
+        stop
+    YellowFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("Yellow",0.35,14)
+        stop
+    GreenFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("Green",0.35,14)
+        stop
+    BlueFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("Blue",0.4,14)
+        stop
+    PurpleFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("Purple",0.4,14)
+        stop
+    WhiteFlash:
+        TNT1 A 0
+        TNT1 A 0 A_SetBlend("White",0.3,14)
+        stop
+    }
+}

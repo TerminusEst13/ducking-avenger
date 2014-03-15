@@ -24,7 +24,6 @@ actor MorphBallPlayer : PlayerPawn
     +DOOMBOUNCE
     +NOBLOOD
     -THRUSPECIES
-    -DONTBLAST
     Species "Player"
     States
     {
@@ -74,7 +73,6 @@ actor MorphBallPlayer : PlayerPawn
     CoOpModeOn:
         TNT1 A 0
         TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
-        TNT1 A 0 A_ChangeFlag("DONTBLAST",1)
         MARU A 1
         goto Spawn
     }

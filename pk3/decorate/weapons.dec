@@ -8,6 +8,10 @@ actor WeaponPickup: CustomInventory
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,3,0,0) == 1, "PickupFail")
         stop
 
+    CheckStaySuper:
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,18,0,0) == 1, "PickupFail")
+        stop
+
     PickupFail:
         TNT1 A 0
         fail
@@ -168,6 +172,7 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000
     Scale 0.1
     +NOGRAVITY
     +FLOATBOB
+    Inventory.RespawnTics 4200
     States
     {
     Spawn:
@@ -181,6 +186,6 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000
         TNT1 A 0 A_GiveInventory("ChargeComboAcquired")
         TNT1 A 0 A_PlaySound("weapon/get", 5)
         TNT1 A 0 A_SetBlend("FF FF FF", 0.75, 35)
-        goto CheckStay
+        goto CheckStaySuper
     }
 }

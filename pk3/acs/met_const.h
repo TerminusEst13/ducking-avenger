@@ -16,6 +16,7 @@
 #define METROID_LONG_COORDSHIT               468
 
 #define METROID_OPEN_CLIENT                  551
+#define METROID_SPEEDBOOSTER                 586
 #define METROID_MORPHCAMERA                  587
 #define METROID_MORPHBALL                    588
 #define METROID_UNLOADING                    589

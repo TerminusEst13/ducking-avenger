@@ -88,6 +88,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_nobfg");
     }
 
+    if (!GetCVar("metroid_permabfg"))
+    {
+        ConsoleCommand("set metroid_permabfg 0");
+        ConsoleCommand("archivecvar metroid_permabfg");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -315,6 +321,10 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("MissileChargeLevel",999);
     TakeInventory("MissileCharged",999);
     TakeInventory("SynthFireRight",999);
+    TakeInventory("SpeedBooster",999);
+    TakeInventory("SpeedBoosterPrepare",999);
+    TakeInventory("SpeedBoostCounter",999);
+    TakeInventory("SpeedBoosterActive",999);
 
     GiveInventory("BombCount",999);
 }
@@ -646,6 +656,12 @@ script METROID_DECORATE (int which)
         setresultvalue(1);
         else setresultvalue(0);
         break;
+
+    case 18:
+        if(GetCvar("metroid_permabfg") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
     }
 }
 
@@ -685,4 +701,48 @@ script METROID_POWERBOMB (int scaleI, int scaleF, int speedF)
     SetActorVelocity(0, FixedMul(x, scale), FixedMul(y, scale), FixedMul(z, scale), 0, 0);
     // PrintBold(s:"(", f:x, s:", ", f:y, s:", ", f:z, s:"): ", f:scale, s:" -> (", f:GetActorVelX(0), s:", ", f:GetActorVelY(0), s:", ", f:GetActorVelZ(0), s:")");
     // printf("(%f, %f, %f): %f -> (%f, %f, %f)\n", x, y, z, scale, GetActorVelX(0), GetActorVelY(0), GetActorVelZ(0));
+}
+
+script METROID_SPEEDBOOSTER ENTER
+{
+    int buttons;
+    int x;
+    int y;
+    int xb;
+    int yb;
+    while (1)
+    {
+    buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+    if (CheckInventory("SpeedBoosterAcquired") == 1)
+    {
+        xb = x;
+        yb = y;
+        x = GetActorX(0);
+        y = GetActorY(0);
+
+        if ((buttons & (BT_SPEED | BT_FORWARD)) == (BT_SPEED | BT_FORWARD) && (xb != x) && (yb != y))//(buttons & BT_SPEED && buttons & BT_FORWARD)// (buttons & (BT_SPEED | BT_FORWARD) == (BT_SPEED | BT_FORWARD))
+        {
+        
+            if (CheckInventory("SpeedBoostCounter") == 0) { ActivatorSound("speedboost/start",127); }
+            GiveInventory("SpeedBoosterPrepare",1);
+            GiveInventory("SpeedBoosterActive",1);
+            GiveInventory("SpeedBoostCounter",1);
+            
+            if (CheckInventory("SpeedBoostCounter") > 8)
+            {
+                ActivatorSound("speedboost/loop",127);
+                GiveInventory("SpeedBooster",1);
+                GiveInventory("SpeedBoosterFlashing",1);
+            }
+        }
+	    else
+	    {
+            TakeInventory("SpeedBooster",1);
+            TakeInventory("SpeedBoosterPrepare",1);
+            TakeInventory("SpeedBoostCounter",0x7FFFFFFF);
+            if (CheckInventory("SpeedBoosterActive") == 1) { TakeInventory("SpeedBoosterActive",1); delay(70); } // If you were successfully speed boosting just before, you can't just spam it again as soon as the last one finished.
+        }
+    }
+    delay(9);
+    }
 }
