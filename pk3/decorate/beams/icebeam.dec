@@ -20,6 +20,7 @@ ACTOR "Ice Beam" : Weapon
         SOUL B -1
         Stop
     Ready:
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         IBEM A 1 A_WeaponReady
         Loop
     Select:
@@ -161,6 +162,7 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
     HoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
         TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
         IBEM QQ 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner7",0,0,0,0,0,0)
@@ -267,6 +269,7 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_PlaySoundEx("supermissile/ready","soundslot7")
     AltHoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         IBEM AA 1
         TNT1 A 0 A_Refire
         TNT1 A 0 A_TakeInventory("MissileCharged",1)
@@ -331,6 +334,45 @@ ACTOR "Ice Beam" : Weapon
         IBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         IBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+    D_RUNNIN:
+        TNT1 A 0
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+        TNT1 A 0 Offset(0,32)
+        IBEM A 1 Offset(0,40)
+        IBEM A 1 Offset(0,50)
+        IBEM A 1 Offset(0,60)
+        IBEM A 1 Offset(0,70)
+        IBEM A 1 Offset(0,80)
+        IBEM A 1 Offset(0,90)
+        IBEM A 1 Offset(0,100)
+        IBEM A 1 Offset(0,110)
+        IBEM A 1 Offset(0,120)
+        IBEM A 1 Offset(0,130)
+        IBEM A 1 Offset(0,140)
+    IdleLoop:
+        TNT1 A 1
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
+        goto BackToNormal
+    BackToNormal:
+        IBEM A 1 Offset(0,140)
+        IBEM A 1 Offset(0,130)
+        IBEM A 1 Offset(0,120)
+        IBEM A 1 Offset(0,110)
+        IBEM A 1 Offset(0,100)
+        IBEM A 1 Offset(0,90)
+        IBEM A 1 Offset(0,80)
+        IBEM A 1 Offset(0,70)
+        IBEM A 1 Offset(0,60)
+        IBEM A 1 Offset(0,50)
+        IBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
         Goto Ready
     }
 }

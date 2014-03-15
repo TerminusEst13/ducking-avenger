@@ -21,6 +21,7 @@ ACTOR "Long Beam" : Weapon
         MEGA B -1
         Stop
     Ready:
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         LBEM A 1 A_WeaponReady
         Loop
     Select:
@@ -158,6 +159,7 @@ ACTOR "Long Beam" : Weapon
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
     HoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
         TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
         LBEM QQ 1 BRIGHT A_FireCustomMissile("LongBeamChargingSpawner7",0,0,0,0,0,0)
@@ -264,6 +266,7 @@ ACTOR "Long Beam" : Weapon
         TNT1 A 0 A_PlaySoundEx("supermissile/ready","soundslot7")
     AltHoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         LBEM AA 1
         TNT1 A 0 A_Refire
         TNT1 A 0 A_TakeInventory("MissileCharged",1)
@@ -328,6 +331,45 @@ ACTOR "Long Beam" : Weapon
         LBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         LBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         LBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+    D_RUNNIN:
+        TNT1 A 0
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+        TNT1 A 0 Offset(0,32)
+        LBEM A 1 Offset(0,40)
+        LBEM A 1 Offset(0,50)
+        LBEM A 1 Offset(0,60)
+        LBEM A 1 Offset(0,70)
+        LBEM A 1 Offset(0,80)
+        LBEM A 1 Offset(0,90)
+        LBEM A 1 Offset(0,100)
+        LBEM A 1 Offset(0,110)
+        LBEM A 1 Offset(0,120)
+        LBEM A 1 Offset(0,130)
+        LBEM A 1 Offset(0,140)
+    IdleLoop:
+        TNT1 A 1
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
+        goto BackToNormal
+    BackToNormal:
+        LBEM A 1 Offset(0,140)
+        LBEM A 1 Offset(0,130)
+        LBEM A 1 Offset(0,120)
+        LBEM A 1 Offset(0,110)
+        LBEM A 1 Offset(0,100)
+        LBEM A 1 Offset(0,90)
+        LBEM A 1 Offset(0,80)
+        LBEM A 1 Offset(0,70)
+        LBEM A 1 Offset(0,60)
+        LBEM A 1 Offset(0,50)
+        LBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
         Goto Ready
     }
 }

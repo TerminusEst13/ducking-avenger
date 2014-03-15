@@ -263,6 +263,7 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0 A_PlaySoundEx("supermissile/ready","soundslot7")
     AltHoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         PBEM AA 1
         TNT1 A 0 A_Refire
         TNT1 A 0 A_TakeInventory("MissileCharged",1)
@@ -334,6 +335,8 @@ ACTOR "Power Beam" : Weapon
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 Offset(0,32)
         PBEM A 1 Offset(0,40)

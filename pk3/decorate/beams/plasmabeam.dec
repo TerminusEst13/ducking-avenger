@@ -22,6 +22,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
         SOUL B -1
         Stop
     Ready:
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         MBEM A 1 A_WeaponReady
         Loop
     Select:
@@ -163,6 +164,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
     HoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
         TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
         MBEM QQ 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner7",0,0,0,0,0,0)
@@ -269,6 +271,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_PlaySoundEx("supermissile/ready","soundslot7")
     AltHoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         MBEM AA 1
         TNT1 A 0 A_Refire
         TNT1 A 0 A_TakeInventory("MissileCharged",1)
@@ -333,6 +336,45 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
         MBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         MBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         MBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+    D_RUNNIN:
+        TNT1 A 0
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+        TNT1 A 0 Offset(0,32)
+        MBEM A 1 Offset(0,40)
+        MBEM A 1 Offset(0,50)
+        MBEM A 1 Offset(0,60)
+        MBEM A 1 Offset(0,70)
+        MBEM A 1 Offset(0,80)
+        MBEM A 1 Offset(0,90)
+        MBEM A 1 Offset(0,100)
+        MBEM A 1 Offset(0,110)
+        MBEM A 1 Offset(0,120)
+        MBEM A 1 Offset(0,130)
+        MBEM A 1 Offset(0,140)
+    IdleLoop:
+        TNT1 A 1
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
+        goto BackToNormal
+    BackToNormal:
+        MBEM A 1 Offset(0,140)
+        MBEM A 1 Offset(0,130)
+        MBEM A 1 Offset(0,120)
+        MBEM A 1 Offset(0,110)
+        MBEM A 1 Offset(0,100)
+        MBEM A 1 Offset(0,90)
+        MBEM A 1 Offset(0,80)
+        MBEM A 1 Offset(0,70)
+        MBEM A 1 Offset(0,60)
+        MBEM A 1 Offset(0,50)
+        MBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
         Goto Ready
     }
 }
