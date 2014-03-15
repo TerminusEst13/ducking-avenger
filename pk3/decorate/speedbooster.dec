@@ -4,10 +4,22 @@ actor SpeedBoosterPrepare : PowerSpeed
     Speed 2.15
 }
 
+actor SpeedWalkerPrepare : PowerSpeed
+{
+    Powerup.Duration 0x7FFFFFFF
+    Speed 1.075
+}
+
 actor SpeedBooster : PowerSpeed
 {
     Powerup.Duration 0x7FFFFFFF
     Speed 2.25
+}
+
+actor SpeedWalker : PowerSpeed
+{
+    Powerup.Duration 0x7FFFFFFF
+    Speed 1.125
 }
 
 actor SpeedBoosterFlashing : CustomInventory

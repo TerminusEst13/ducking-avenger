@@ -2,14 +2,33 @@
 #include "zcommon.acs"
 #include "commonFuncs.h"
 
-#include "met_const.h"
-#include "met_spacejump.h"
-#include "met_longbeam.h"
+world int 0:MaxJumpCount;
 
 int SamusHealth[PLAYERMAX];
 int SamusArmor[PLAYERMAX];
 int playerOnFoot[PLAYERMAX];
-//int IsServer = 0;
+int IsServer;
+
+int playerJumps[PLAYERMAX] = {0};
+int hasKicked[PLAYERMAX]   = {0};
+int grabbing[PLAYERMAX]    = {0};
+int dontGrab[PLAYERMAX]    = {0};
+int oldLedgeVals[PLAYERMAX][2] = {{0}};
+
+int CPlayerGrounds[PLAYERMAX][2];
+int PlayerGrounds[PLAYERMAX][2];
+int DidSpecials[PLAYERMAX];
+
+int ClientEnterLocks[PLAYERMAX];
+
+
+int array_wolfmove[PLAYERMAX];
+int array_vanillaAnim[PLAYERMAX];
+
+#include "met_const.h"
+#include "met_funcs.h"
+#include "met_spacejump.h"
+#include "met_longbeam.h"
 
 
 
@@ -346,6 +365,7 @@ script METROID_ENTER ENTER
     int barhp;
     int oarmor;
     int armor;
+    int pln = PlayerNumber();
 
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
@@ -397,6 +417,13 @@ script METROID_ENTER ENTER
         if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
         else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
 
+        // Clientside shit
+        if (array_vanillaAnim[pln]) { GiveInventory("DoomHealthCounter", 1); }
+        else { TakeInventory("DoomHealthCounter", 0x7FFFFFFF); }
+        
+        if (array_wolfmove[pln]) { GiveInventory("AlwaysRunIsOn", 1); }
+        else { TakeInventory("AlwaysRunIsOn", 0x7FFFFFFF); }
+
         // Loaded shit
         if (GetCVar("metroid_loaded") == 1)
         {
@@ -428,12 +455,36 @@ script METROID_ENTER ENTER
 
 script METROID_ENTER_CLIENTSIDE ENTER clientside
 {
+    int execInt, oExecInt, execStr;
+    int pln = PlayerNumber();
+
     while(1)
     {
-        if (GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
-        else { if (CheckInventory("DoomHealthCounter") == 1) { TakeInventory("DoomHealthCounter",1); }}
+            oExecInt = execInt;
+            execInt = SamsaraClientVars();
+            
+            if (execInt != oExecInt)
+            {
+                execStr = StrParam(s:"puke -", d:SAMSARA_PUKE, s:" ", d:execInt, s:" ", d:pln);
+                ConsoleCommand(execStr);
+            }
+        //if (GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
+        //else { if (CheckInventory("DoomHealthCounter") == 1) { TakeInventory("DoomHealthCounter",1); }}
+
+        //if (GetCvar("cl_run") == 1) { if (CheckInventory("AlwaysRunIsOn") == 0) { GiveInventory("AlwaysRunIsOn",1); }}
+        //else { if (CheckInventory("AlwaysRunIsOn") == 1) { TakeInventory("AlwaysRunIsOn",1); }}
+
         delay(1);
     }
+}
+
+script SAMSARA_PUKE (int values, int pln) net
+{
+    array_wolfmove[pln]     = values & 1;
+    array_vanillaAnim[pln]  = values & 2;
+    /*array_ballgag[pln]      = values & 4;
+    array_weaponBar[pln]    = values & 8;
+    array_pickupswitch[pln] = values & 16;*/
 }
 
    // These are stupidly hacky and a wasteful pair of scripts, but I'm
@@ -665,7 +716,7 @@ script METROID_DECORATE (int which)
     }
 }
 
-/*script METROID_DECORATE_CLIENT (int which) clientside
+script METROID_DECORATECLIENT (int which) clientside
 {
     switch (which)
     {
@@ -674,8 +725,20 @@ script METROID_DECORATE (int which)
         setresultvalue(1);
         else setresultvalue(0);
         break;
+
+    case 1:
+        if(GetCvar("metroid_cl_doomhealth") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
+
+    case 2:
+        if(GetCvar("cl_run") == 1)
+        setresultvalue(1);
+        else setresultvalue(0);
+        break;
     }
-}*/
+}
 
 script METROID_POWERBOMB (int scaleI, int scaleF, int speedF)
 {
@@ -724,14 +787,16 @@ script METROID_SPEEDBOOSTER ENTER
         {
         
             if (CheckInventory("SpeedBoostCounter") == 0) { ActivatorSound("speedboost/start",127); }
-            GiveInventory("SpeedBoosterPrepare",1);
+            if (CheckInventory("AlwaysRunIsOn") == 1 ) { TakeInventory("SpeedWalkerPrepare",1); GiveInventory("SpeedBoosterPrepare",1); }
+            else { TakeInventory("SpeedBoosterPrepare",1); GiveInventory("SpeedWalkerPrepare",1); }
             GiveInventory("SpeedBoosterActive",1);
             GiveInventory("SpeedBoostCounter",1);
             
             if (CheckInventory("SpeedBoostCounter") > 8)
             {
                 ActivatorSound("speedboost/loop",127);
-                GiveInventory("SpeedBooster",1);
+                if (CheckInventory("AlwaysRunIsOn") == 1 ) { TakeInventory("SpeedWalkerPrepare",1); TakeInventory("SpeedWalker",1); GiveInventory("SpeedBoosterPrepare",1); GiveInventory("SpeedBooster",1); /*Print(s:"AlwaysRun is on.");*/ }
+                else { TakeInventory("SpeedBoosterPrepare",1); TakeInventory("SpeedBooster",1); GiveInventory("SpeedWalkerPrepare",1); GiveInventory("SpeedWalker",1); /*Print(s:"AlwaysRun is off.");*/ }
                 GiveInventory("SpeedBoosterFlashing",1);
             }
         }
@@ -739,6 +804,8 @@ script METROID_SPEEDBOOSTER ENTER
 	    {
             TakeInventory("SpeedBooster",1);
             TakeInventory("SpeedBoosterPrepare",1);
+            TakeInventory("SpeedWalker",1);
+            TakeInventory("SpeedWalkerPrepare",1);
             TakeInventory("SpeedBoostCounter",0x7FFFFFFF);
             if (CheckInventory("SpeedBoosterActive") == 1) { TakeInventory("SpeedBoosterActive",1); delay(70); } // If you were successfully speed boosting just before, you can't just spam it again as soon as the last one finished.
         }

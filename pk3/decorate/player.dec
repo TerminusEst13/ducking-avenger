@@ -105,6 +105,7 @@ actor SamusPlayer : PlayerPawn
         Loop
 
     See:
+        TNT1 A 0 A_JumpIfInventory("SpeedWalker",1,"SpeedSee")
         TNT1 A 0 A_JumpIfInventory("SpeedBooster",1,"SpeedSee")
         PLAY A 1
         PLAY A 0 A_CheckFloor("WalkSound")
@@ -116,6 +117,7 @@ actor SamusPlayer : PlayerPawn
         goto ContinueOn
 
     ContinueOn:
+        TNT1 A 0 A_JumpIfInventory("SpeedWalker",1,"SpeedContinueOn")
         TNT1 A 0 A_JumpIfInventory("SpeedBooster",1,"SpeedContinueOn")
         PLAY ABB 3
         PLAY C 1
@@ -128,6 +130,7 @@ actor SamusPlayer : PlayerPawn
         goto ContinueOn2
 
     ContinueOn2:
+        TNT1 A 0 A_JumpIfInventory("SpeedWalker",1,"SpeedContinueOn2")
         TNT1 A 0 A_JumpIfInventory("SpeedBooster",1,"SpeedContinueOn2")
         PLAY CDD 3
         goto Spawn

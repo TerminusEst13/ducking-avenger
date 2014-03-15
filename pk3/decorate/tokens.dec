@@ -25,6 +25,7 @@ actor PowerBeamIdle : Counter { Inventory.MaxAmount 26 }
 
 // Booleans
 actor InGame : Boolean {}
+actor AlwaysRunIsOn : Boolean {}
 actor DoomHealthCounter : Boolean {}
 actor HealthOver100 : Boolean {}
 actor HealthOver200 : Boolean {}
