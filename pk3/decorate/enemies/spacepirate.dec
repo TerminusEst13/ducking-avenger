@@ -5,6 +5,7 @@ ACTOR SpacePirate replaces WolfensteinSS 17010
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
+    PainChance "IceCombo", 64
     PainChance 80
     Scale 0.75
     Speed 12
@@ -209,7 +210,7 @@ actor PirateguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        PIRT Z 350
+        PIRT Z 2100
         PIRT Z 1 A_Jump(128, "Death")
         Loop
     }

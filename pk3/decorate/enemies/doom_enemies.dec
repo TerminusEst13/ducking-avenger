@@ -5,7 +5,7 @@ actor FrozenDummy
     +NOBLOOD
     Height 56
     Radius 16
-    Health 4
+    Health 15
     Speed 0
     Mass 0x7fffffff
     Translation "Ice"
@@ -13,10 +13,11 @@ actor FrozenDummy
     DamageFactor "Normal", 0.75
     DamageFactor "IceBeamExplode", 0.0
     DamageFactor "IceChargedExplode", 0.0
+    DamageFactor "IceCombo", 0.0
     States
     {
     Spawn:
-        PLAY G 350
+        PLAY G 2100
         PLAY G 1 A_Jump(128, "Death")
         Loop
     Death:
@@ -38,7 +39,7 @@ actor FrozenDummy
 actor Metroid_Zombieguy : Zombieman replaces Zombieman
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     DropItem "BlankPuff"
     States
     {
@@ -126,7 +127,7 @@ actor ZombieguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        POSS G 350
+        POSS G 2100
         POSS G 1 A_Jump(128, "Death")
         Loop
     }
@@ -136,7 +137,7 @@ actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
 {
     DamageFactor "NoDamage", 0.0
     DropItem "BlankPuff"
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     States
     {
     Pain.IceCharged:
@@ -223,7 +224,7 @@ actor ShotguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        SPOS G 350
+        SPOS G 2100
         SPOS G 1 A_Jump(128, "Death")
         Loop
     }
@@ -233,7 +234,7 @@ actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
 {
     DamageFactor "NoDamage", 0.0
     DropItem "BlankPuff"
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     States
     {
     Pain.IceCharged:
@@ -320,7 +321,7 @@ actor ChainguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        CPOS G 350
+        CPOS G 2100
         CPOS G 1 A_Jump(128, "Death")
         Loop
     }
@@ -329,7 +330,7 @@ actor ChainguyFrozen : FrozenDummy
 actor Metroid_Impguy : DoomImp replaces DoomImp
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -416,7 +417,7 @@ actor ImpguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        TROO H 350
+        TROO H 2100
         TROO H 1 A_Jump(128, "Death")
         Loop
     }
@@ -425,7 +426,7 @@ actor ImpguyFrozen : FrozenDummy
 actor Metroid_Demonguy : Demon replaces Demon
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -493,7 +494,7 @@ actor DemonguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        SARG H 350
+        SARG H 2100
         SARG H 1 A_Jump(128, "Death")
         Loop
     }
@@ -502,7 +503,7 @@ actor DemonguyFrozen : FrozenDummy
 actor Metroid_Spectreguy : Spectre replaces Spectre
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -567,7 +568,7 @@ actor Metroid_Spectreguy : Spectre replaces Spectre
 actor Metroid_Cacoguy : Cacodemon replaces Cacodemon
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -636,7 +637,7 @@ actor CacoguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        HEAD E 350
+        HEAD E 2100
         HEAD E 1 A_Jump(128, "Death")
         Loop
     }
@@ -645,7 +646,7 @@ actor CacoguyFrozen : FrozenDummy
 actor Metroid_Lostguy : LostSoul replaces LostSoul
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -706,7 +707,7 @@ actor LostguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        SKUL E 350
+        SKUL E 2100
         SKUL E 1 A_Jump(128, "Death")
         Loop
     }
@@ -719,7 +720,7 @@ actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -790,7 +791,7 @@ actor BaronguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        BOSS H 350
+        BOSS H 2100
         BOSS H 1 A_Jump(128, "Death")
         Loop
     }
@@ -803,7 +804,7 @@ actor Metroid_Knightguy : HellKnight replaces HellKnight
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -873,7 +874,7 @@ actor Metroid_Vileguy : Archvile replaces Archvile
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -946,7 +947,7 @@ actor VileguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        VILE Q 350
+        VILE Q 2100
         VILE Q 1 A_Jump(128, "Death")
         Loop
     }
@@ -955,7 +956,7 @@ actor VileguyFrozen : FrozenDummy
 actor Metroid_Spiderguy : Arachnotron replaces Arachnotron
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -1028,7 +1029,7 @@ actor SpiderguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        BSPI I 350
+        BSPI I 2100
         BSPI I 1 A_Jump(128, "Death")
         Loop
     }
@@ -1039,7 +1040,7 @@ actor Metroid_Fatguy : Fatso replaces Fatso
     DamageFactor "NoDamage", 0.0
     PainChance "IceBeam", 96
     PainChance "IceCharged", 128
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -1115,7 +1116,7 @@ actor FatguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        FATT J 350
+        FATT J 2100
         FATT J 1 A_Jump(128, "Death")
         Loop
     }
@@ -1124,7 +1125,7 @@ actor FatguyFrozen : FrozenDummy
 actor Metroid_Painguy : PainElemental replaces PainElemental
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -1197,7 +1198,7 @@ actor PainguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        PAIN G 350
+        PAIN G 2100
         PAIN G 1 A_Jump(128, "Death")
         Loop
     }
@@ -1206,7 +1207,7 @@ actor PainguyFrozen : FrozenDummy
 actor Metroid_Coolguy : Revenant replaces Revenant
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -1276,7 +1277,7 @@ actor CoolguyFrozen : FrozenDummy
     States
     {
     Spawn:
-        SKEL L 350
+        SKEL L 2100
         SKEL L 1 A_Jump(128, "Death")
         Loop
     }
@@ -1285,7 +1286,7 @@ actor CoolguyFrozen : FrozenDummy
 /*actor Metroid_Naziguy : WolfensteinSS replaces WolfensteinSS
 {
     DamageFactor "NoDamage", 0.0
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
     {
@@ -1392,7 +1393,7 @@ actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     States
     {
     Pain.IceCombo:
@@ -1449,7 +1450,7 @@ actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
     PainChance "IceBeamExplode", 64
-    PainChance "IceCombo", 255
+    PainChance "IceCombo", 64
     States
     {
     Pain.IceCombo:
