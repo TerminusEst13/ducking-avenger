@@ -73,13 +73,13 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "SpazerCombo", 0.5
     DamageFactor "PlasmaBeam", 0.45
     DamageFactor "PlasmaCharged", 0.65
-    DamageFactor "PlasmaCombo", 0.65
+    DamageFactor "PlasmaCombo", 0.75
     DamageFactor "WaveBeam", 0.45
     DamageFactor "WaveCharged", 0.65
     DamageFactor "WaveCombo", 0.65
     DamageFactor "IceBeam", 0.45
     DamageFactor "IceCharged", 0.65
-    DamageFactor "IceCombo", 0.65
+    DamageFactor "IceCombo", 2.00
     DamageFactor "IceBeamExplode", 0.75
     DamageFactor "IceChargedExplode", 0.75
     DamageFactor "LongBeam", 0.45

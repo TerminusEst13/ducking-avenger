@@ -13,6 +13,7 @@ actor MorphBallPlayer : PlayerPawn
     DamageFactor "NoDamage", 0.0
     DamageFactor "Drowning", 0.0
     DamageFactor "Normal", 0.85
+    DamageFactor "IceCombo", 2.00
     RadiusDamageFactor 0.95
     Player.StartItem "BombCount", 3
     Player.SoundClass "Hunter"
@@ -34,6 +35,13 @@ actor MorphBallPlayer : PlayerPawn
     See:
         MARU BBCDDEFFA 1
         Loop
+
+    Pain.IceCombo:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySoundEx("ibeam/chill","soundslot7")
+        TNT1 A 0 A_SetBlend("89D5FF",0.5,175)
+        TNT1 A 0 ACS_ExecuteAlways(594,0,1,0,0)
+        Goto See
 
     Death:
         TNT1 A 0
