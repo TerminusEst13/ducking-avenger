@@ -32,7 +32,8 @@ actor SpeedBoosterFlashing : CustomInventory
     Use:
         TNT1 A 0
         TNT1 A 0 A_Jump(255,"RedFlash","OrangeFlash","YellowFlash","GreenFlash","BlueFlash","PurpleFlash","WhiteFlash")
-        goto RedFlash
+        TNT1 A 0
+        goto Use
     RedFlash:
         TNT1 A 0
         TNT1 A 0 A_SetBlend("Red",0.35,14)
