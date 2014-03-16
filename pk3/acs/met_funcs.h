@@ -183,18 +183,13 @@ function void Lunge(int force)
     SetActorVelocity(0, velX, velY, velZ, 0, 1);
 }
 
-
-
-
-
-
-function int SamsaraClientVars(void)
+function int MetroidClientVars(void)
 {
     //int switchOnPickup  = !!GetCVar("switchonpickup");
     //int weaponBar       = !!GetCVar("samsara_cl_weaponhud");
     //int ballgag         = !!GetCVar("samsara_cl_ballgag");
-    int classicAnims    = !!GetCVar("metroid_cl_doomhealth");
-    int wolfmove        = !!GetCVar("cl_run");
+    int doomHealth        = !!GetCVar("metroid_cl_doomhealth");
+    int runrunruu         = !!GetCVar("cl_run");
 
-    return /*(switchOnPickup << 4) + (weaponBar << 3) + (ballgag << 2) +*/ (classicAnims << 1) + wolfmove;
+    return /*(switchOnPickup << 4) + (weaponBar << 3) + (ballgag << 2) +*/ (doomHealth << 1) + runrunruu;
 }

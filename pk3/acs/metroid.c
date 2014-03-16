@@ -21,9 +21,8 @@ int DidSpecials[PLAYERMAX];
 
 int ClientEnterLocks[PLAYERMAX];
 
-
-int array_wolfmove[PLAYERMAX];
-int array_vanillaAnim[PLAYERMAX];
+int array_runrunruu[PLAYERMAX];
+int array_doomHealth[PLAYERMAX];
 
 #include "met_const.h"
 #include "met_funcs.h"
@@ -427,10 +426,10 @@ script METROID_ENTER ENTER
         else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
 
         // Clientside shit
-        if (array_vanillaAnim[pln]) { GiveInventory("DoomHealthCounter", 1); }
+        if (array_doomHealth[pln]) { GiveInventory("DoomHealthCounter", 1); }
         else { TakeInventory("DoomHealthCounter", 0x7FFFFFFF); }
         
-        if (array_wolfmove[pln]) { GiveInventory("AlwaysRunIsOn", 1); }
+        if (array_runrunruu[pln]) { GiveInventory("AlwaysRunIsOn", 1); }
         else { TakeInventory("AlwaysRunIsOn", 0x7FFFFFFF); }
 
         // Loaded shit
@@ -470,11 +469,11 @@ script METROID_ENTER_CLIENTSIDE ENTER clientside
     while(1)
     {
             oExecInt = execInt;
-            execInt = SamsaraClientVars();
+            execInt = MetroidClientVars();
             
             if (execInt != oExecInt)
             {
-                execStr = StrParam(s:"puke -", d:SAMSARA_PUKE, s:" ", d:execInt, s:" ", d:pln);
+                execStr = StrParam(s:"puke -", d:METROID_PUKE, s:" ", d:execInt, s:" ", d:pln);
                 ConsoleCommand(execStr);
             }
         //if (GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
@@ -487,10 +486,10 @@ script METROID_ENTER_CLIENTSIDE ENTER clientside
     }
 }
 
-script SAMSARA_PUKE (int values, int pln) net
+script METROID_PUKE (int values, int pln) net
 {
-    array_wolfmove[pln]     = values & 1;
-    array_vanillaAnim[pln]  = values & 2;
+    array_runrunruu[pln]     = values & 1;
+    array_doomHealth[pln]    = values & 2;
     /*array_ballgag[pln]      = values & 4;
     array_weaponBar[pln]    = values & 8;
     array_pickupswitch[pln] = values & 16;*/
