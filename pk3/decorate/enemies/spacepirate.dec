@@ -1,4 +1,4 @@
-ACTOR SpacePirate 17010
+ACTOR SpacePirate replaces WolfensteinSS 17010
 {
     Health 150
     PainChance "IceBeam", 96
