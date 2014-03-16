@@ -6,3 +6,63 @@ map TITLEMAP "Title Map"
     Lightning
     SmoothLighting
 }
+
+skill baby // Heh.
+{
+    ACSReturn = 0
+    EasyBossBrain
+    SpawnFilter = Baby // Hehhhh.
+    DamageFactor = 0.75
+    AmmoFactor = 2
+    Name = "Hatchling"
+    //MustConfirm = "Your cowardice shames your ancestors."
+}
+
+skill easy
+{
+    ACSReturn = 1
+    EasyBossBrain
+    SpawnFilter = Easy
+    Name = "Space Cadet"
+    //MustConfirm = "You will never feel true victory."
+}
+
+skill normal
+{
+    ACSReturn = 2
+    SpawnFilter = Normal
+    Name = "Bounty Hunter"
+    //MustConfirm = "Your honor as a soldier will be tested."
+}
+
+skill hard
+{
+    ACSReturn = 3
+    SpawnFilter = Hard
+    Name = "Chozo Warrior"
+    //MustConfirm = "Your endeavors will become legend."
+}
+
+skill nightmare
+{
+    ACSReturn = 4
+    FastMonsters
+    DamageFactor = 1.25
+    SpawnFilter = Nightmare
+    Name = "Galactic Protector"
+    //MustConfirm = "Your every step will be suffering."
+}
+
+skill ohgodhelpme
+{
+    ACSReturn = 5
+    FastMonsters
+    DisableCheats
+    RespawnTime = 60
+    RespawnLimit = 3
+    DamageFactor = 1.5
+    Aggressiveness = 1.0
+    SpawnFilter = Nightmare
+    Name = "   "
+    MustConfirm = "Pray to whatever god you worship."
+}
