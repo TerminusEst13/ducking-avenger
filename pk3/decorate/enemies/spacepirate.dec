@@ -7,6 +7,7 @@ ACTOR SpacePirate replaces WolfensteinSS 17010
     PainChance "IceBeamExplode", 64
     PainChance "IceCombo", 64
     PainChance 80
+    DamageFactor "SpeedBooster", 2.0
     Scale 0.75
     Speed 12
     Radius 24

@@ -64,3 +64,28 @@ actor SpeedBoosterFlashing : CustomInventory
         stop
     }
 }
+
+actor SpeedBoosterDamage
+{
+    Radius 1
+    Height 1
+    Speed 0
+    +FORCERADIUSDMG
+    +NOTELEPORT
+    +NOCLIP
+    +NODAMAGETHRUST
+    +PIERCEARMOR
+    +DONTREFLECT
+    +NOEXTREMEDEATH
+    -SOLID
+    Obituary "%k ran %o over."
+    DamageType "SpeedBooster"
+    States
+    {
+      Spawn:
+        TNT1 A 1
+        TNT1 A 1 A_Explode(256,16,0)
+        stop
+    }
+}
+

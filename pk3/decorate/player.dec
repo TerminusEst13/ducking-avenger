@@ -92,6 +92,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "Bomb", 0.75
     DamageFactor "PowerBomb", 0.35
     DamageFactor "LittleMacUppercut", 3.0
+    DamageFactor "SpeedBooster", 0.25
     RadiusDamageFactor 0.75
     Player.ColorRange 16,47 // Oh man, Tumblr's going to have me by the balls for this.
     +NOSKIN
@@ -211,7 +212,7 @@ actor SamusPlayer : PlayerPawn
 
 
     SpeedSee:
-        PLAY A 1 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
+        PLAY A 1 A_SpawnItemEx("SpeedBoosterDamage",64,0,0,0,0,0,0,48)
         PLAY A 0 A_CheckFloor("SpeedWalkSound")
         PLAY A 1
         goto SpeedContinueOn
@@ -221,8 +222,8 @@ actor SamusPlayer : PlayerPawn
         goto SpeedContinueOn
 
     SpeedContinueOn:
-        PLAY ABB 2 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
-        PLAY C 1 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
+        PLAY ABB 2 A_SpawnItemEx("SpeedBoosterDamage",64,0,0,0,0,0,0,48)
+        PLAY C 1 A_SpawnItemEx("SpeedBoosterDamage",64,0,0,0,0,0,0,48)
         PLAY A 0 A_CheckFloor("SpeedWalkSound2")
         PLAY C 1
         goto SpeedContinueOn2
@@ -232,7 +233,7 @@ actor SamusPlayer : PlayerPawn
         goto SpeedContinueOn2
 
     SpeedContinueOn2:
-        PLAY CDD 2 A_SpawnItemEx("BoostBallDamage",64,0,0,0,0,0,0,48)
+        PLAY CDD 2 A_SpawnItemEx("SpeedBoosterDamage",64,0,0,0,0,0,0,48)
         TNT1 A 0 A_JumpIfInventory("SpeedBooster",1,"SpeedSee")
         goto Spawn
     }

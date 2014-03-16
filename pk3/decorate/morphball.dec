@@ -13,7 +13,6 @@ actor MorphBallPlayer : PlayerPawn
     DamageFactor "NoDamage", 0.0
     DamageFactor "Drowning", 0.0
     DamageFactor "Normal", 0.85
-    DamageFactor "IceCombo", 2.00
     RadiusDamageFactor 0.95
     Player.StartItem "BombCount", 3
     Player.SoundClass "Hunter"
@@ -128,6 +127,7 @@ actor MorphBallPlayerDM : MorphBallPlayer
     DamageFactor "IceCharged", 1.1
     DamageFactor "IceBeamExplode", 0.75
     DamageFactor "IceChargedExplode", 1.15
+    DamageFactor "IceCombo", 2.00
     DamageFactor "LongBeam", 1.25
     DamageFactor "LongCharged", 1.25
     DamageFactor "DoomCannon", 1.1
@@ -136,6 +136,7 @@ actor MorphBallPlayerDM : MorphBallPlayer
     DamageFactor "BoostBall", 1.1
     DamageFactor "Bomb", 0.9
     DamageFactor "PowerBomb", 0.55
+    DamageFactor "SpeedBooster", 0.25
     RadiusDamageFactor 1.1
 }
 

@@ -39,6 +39,7 @@ actor FrozenDummy
 actor Metroid_Zombieguy : Zombieman replaces Zombieman
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     PainChance "IceCombo", 64
     DropItem "BlankPuff"
     States
@@ -136,6 +137,7 @@ actor ZombieguyFrozen : FrozenDummy
 actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     DropItem "BlankPuff"
     PainChance "IceCombo", 64
     States
@@ -233,6 +235,7 @@ actor ShotguyFrozen : FrozenDummy
 actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     DropItem "BlankPuff"
     PainChance "IceCombo", 64
     States
@@ -330,6 +333,7 @@ actor ChainguyFrozen : FrozenDummy
 actor Metroid_Impguy : DoomImp replaces DoomImp
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -426,6 +430,7 @@ actor ImpguyFrozen : FrozenDummy
 actor Metroid_Demonguy : Demon replaces Demon
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -503,6 +508,7 @@ actor DemonguyFrozen : FrozenDummy
 actor Metroid_Spectreguy : Spectre replaces Spectre
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -646,6 +652,7 @@ actor CacoguyFrozen : FrozenDummy
 actor Metroid_Lostguy : LostSoul replaces LostSoul
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States
@@ -716,6 +723,7 @@ actor LostguyFrozen : FrozenDummy
 actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 0.5
     PainChance "IceBeam", 96
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
@@ -870,6 +878,7 @@ actor Metroid_Knightguy : HellKnight replaces HellKnight
 actor Metroid_Vileguy : Archvile replaces Archvile
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 0.5
     PainChance "IceBeam", 96
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
@@ -1388,6 +1397,7 @@ actor NaziguyFrozen : FrozenDummy
 actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 0.5
     DamageFactor "PlasmaCombo", 0.375
     PainChance "IceBeam", 96
     PainChance "IceCharged", 128
@@ -1445,6 +1455,7 @@ actor Metroid_Cyberguy : Cyberdemon replaces Cyberdemon
 actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 0.5
     DamageFactor "PlasmaCombo", 0.375
     PainChance "IceBeam", 96
     PainChance "IceCharged", 128
