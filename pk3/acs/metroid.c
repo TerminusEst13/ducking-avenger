@@ -785,6 +785,8 @@ script METROID_SPEEDBOOSTER ENTER
     while (1)
     {
     buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+    if (CheckInventory("BorphMallAcquired") == 0)
+    {
     if (CheckInventory("SpeedBoosterAcquired") == 1)
     {
         xb = x;
@@ -818,7 +820,7 @@ script METROID_SPEEDBOOSTER ENTER
             TakeInventory("SpeedBoostCounter",0x7FFFFFFF);
             if (CheckInventory("SpeedBoosterActive") == 1) { TakeInventory("SpeedBoosterActive",1); delay(70); } // If you were successfully speed boosting just before, you can't just spam it again as soon as the last one finished.
         }
-    }
+    }}
     delay(9);
     }
 }
