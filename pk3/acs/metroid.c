@@ -200,6 +200,7 @@ script METROID_MORPHBALL (int morphshit)
     {
     case 0:
         if(CheckInventory("PowerInvulnerable") == 1) { ActivatorSound("morphball/denied", 127); Print(s:"Morphing while invulnerable is temporarily disabled due to a bug.\n\nSorry."); terminate; }
+        if(CheckInventory("SpeedBoosterActive") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
         // Play sound...
         ActivatorSound("morphball/morph", 127);
 
