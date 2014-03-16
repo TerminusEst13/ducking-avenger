@@ -113,6 +113,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_permabfg");
     }
 
+    if (!GetCVar("metroid_soultanks"))
+    {
+        ConsoleCommand("set metroid_soultanks 0");
+        ConsoleCommand("archivecvar metroid_soultanks");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -674,7 +680,7 @@ script METROID_DECORATE (int which)
         break;
 
     case 11:
-        if(isFreeForAll() || isTeamgame())
+        if(GetCvar("metroid_soultanks") == 1)
         setresultvalue(1);
         else setresultvalue(0);
         break;
