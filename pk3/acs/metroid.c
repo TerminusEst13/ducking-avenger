@@ -345,6 +345,8 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("SpeedBoosterPrepare",999);
     TakeInventory("SpeedBoostCounter",999);
     TakeInventory("SpeedBoosterActive",999);
+    TakeInventory("SpeedWalker",999);
+    TakeInventory("SpeedWalkerPrepare",999);
 
     GiveInventory("BombCount",999);
 }
