@@ -17,6 +17,7 @@ ACTOR "Doom Cannon" : Weapon 17521
     +FLOATBOB
     +NOAUTOAIM
     +NO_AUTO_SWITCH
+    +UNDROPPABLE
     Decal Doom_BulletChip
     States
     {

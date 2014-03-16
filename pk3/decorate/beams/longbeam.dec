@@ -14,6 +14,7 @@ ACTOR "Long Beam" : Weapon
     +NOALERT
     +NOAUTOAIM
     +NO_AUTO_SWITCH
+    +UNDROPPABLE
     Decal DoomImpScorch
     States
     {
