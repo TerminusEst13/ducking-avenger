@@ -15,3 +15,10 @@ QUITMSG11 = "WSASYSCALLFAILURE\n10107 (0x277B)";
 QUITMSG12 = "[17218826182.2832] Kernel shutting down.";
 QUITMSG13 = "STOP: 0x0000007E\n(0xC0000005,0x46069F2E,0xF79B0AC4,0xF79B07C0)\n\nBeginning dump of physical memory.";
 QUITMSG14 = "Kernel panic: /dev/kmem not found";
+
+CONFIRM_BABY        = "There are fewer enemy spawns, you take less damage, and you gather more missiles.\n\nYou are a coward.";
+CONFIRM_EASY        = "There are fewer enemy spawns.\n\nYou are training for battle.";
+CONFIRM_NORMAL      = "There are normalized enemy spawns.\n\nYou are aspiring for valor.";
+CONFIRM_HARD        = "There are numerous enemy spawns.\n\nYou are ready for war.";
+CONFIRM_NIGHTMARE   = "There are numerous enemies spawn, you take more damage, and enemies are faster.\n\nYou are prepared to suffer.";
+CONFIRM_OHGODHELPME = "You will die.\n\nThey will not.";

@@ -3,6 +3,7 @@ statusbar normal, forcescaled
 InInventory not BorphMallAcquired, 1
     {
     drawimage "samvisor", 0, 0;
+    GameMode Teamplay, TeamGame, OneFlagCTF, CTF, Skulltag, TeamLMS, TeamPossession { drawimage translatable "samvisoc", 0, 0; }
     InInventory not DoomHealthCounter, 1 { drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 97, 25; }
     InInventory DoomHealthCounter, 1 { drawnumber 4, METHUDF, Untranslated, Health, 97, 25; }
     drawbar "SAMHFULL", "SAMHEMPT", Health Health100, horizontal, 100, 24, 1;
@@ -80,6 +81,7 @@ InInventory BorphMallAcquired, 1
     {
     InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
     InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
+    GameMode Teamplay, TeamGame, OneFlagCTF, CTF, Skulltag, TeamLMS, TeamPossession { drawimage translatable "FLSCRBA4", 0, 0; }
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
     InInventory not DoomHealthCounter, 1 { drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21; }
     InInventory DoomHealthCounter, 1 { drawnumber 4, METHUDF, Untranslated, Health, 84, 21; }
@@ -151,6 +153,7 @@ statusbar fullscreen, forcescaled
 {
     InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
     InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
+    GameMode Teamplay, TeamGame, OneFlagCTF, CTF, Skulltag, TeamLMS, TeamPossession { drawimage translatable "FLSCRBA4", 0, 0; }
     drawbar "FBARFULL", "FBAREMPT", Health Health100, horizontal, 25, 15, 1;
     InInventory not DoomHealthCounter, 1 { drawnumber 2, METHUDF, Untranslated, PlayerTotalHealth, fillzeros, 84, 21; }
     InInventory DoomHealthCounter, 1 { drawnumber 4, METHUDF, Untranslated, Health, 84, 21; }

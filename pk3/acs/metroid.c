@@ -378,7 +378,7 @@ script METROID_ENTER ENTER
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
-    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); if (GetCvar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
+    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); if (GetCvar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
@@ -468,9 +468,12 @@ script METROID_ENTER_CLIENTSIDE ENTER clientside
 
     while(1)
     {
+
+    if (ConsolePlayerNumber() != PlayerNumber()) { Delay(1); continue; }
+
             oExecInt = execInt;
             execInt = MetroidClientVars();
-            
+
             if (execInt != oExecInt)
             {
                 execStr = StrParam(s:"puke -", d:METROID_PUKE, s:" ", d:execInt, s:" ", d:pln);
@@ -486,8 +489,10 @@ script METROID_ENTER_CLIENTSIDE ENTER clientside
     }
 }
 
-script METROID_PUKE (int values, int pln) net
+script METROID_PUKE (int values) net
 {
+    int pln = PlayerNumber();
+
     array_runrunruu[pln]     = values & 1;
     array_doomHealth[pln]    = values & 2;
     /*array_ballgag[pln]      = values & 4;

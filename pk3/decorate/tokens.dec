@@ -52,6 +52,7 @@ actor SynthFireRight : Boolean {}
 actor SpeedBoosterActive : Boolean {}
 
 actor BorphMallAcquired : Boolean {}
+actor MissileTankAcquired : Boolean {}
 actor SuperMissileAcquired : Boolean {}
 actor SpaceJumpAcquired : Boolean {}
 actor CanSpaceJump : Boolean {}

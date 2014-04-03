@@ -63,6 +63,9 @@ actor SamusPlayer : PlayerPawn
     Player.StartItem "Health1100", 1100
     DamageFactor "NoDamage", 0.0
     DamageFactor "Drowning", 0.0
+    DamageFactor "Slime", 0.4
+    DamageFactor "Lava", 0.4
+    DamageFactor "Fire", 0.4
     DamageFactor "Normal", 0.75
     // Technically all this is covered by DamageFactor Normal, but I like having all the damagetypes listed in one place.
     DamageFactor "PowerBeam", 0.45
@@ -92,7 +95,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "Bomb", 0.75
     DamageFactor "PowerBomb", 0.35
     DamageFactor "LittleMacUppercut", 3.0
-    DamageFactor "SpeedBooster", 0.25
+    DamageFactor "SpeedBooster", 0.6
     RadiusDamageFactor 0.75
     Player.ColorRange 16,47 // Oh man, Tumblr's going to have me by the balls for this.
     +NOSKIN

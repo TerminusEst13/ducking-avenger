@@ -15,7 +15,7 @@ skill baby // Heh.
     DamageFactor = 0.75
     AmmoFactor = 2
     Name = "Hatchling"
-    //MustConfirm = "Your cowardice shames your ancestors."
+    MustConfirm = "$CONFIRM_BABY"
 }
 
 skill easy
@@ -24,7 +24,7 @@ skill easy
     EasyBossBrain
     SpawnFilter = Easy
     Name = "Space Cadet"
-    //MustConfirm = "You will never feel true victory."
+    MustConfirm = "$CONFIRM_EASY"
 }
 
 skill normal
@@ -32,7 +32,7 @@ skill normal
     ACSReturn = 2
     SpawnFilter = Normal
     Name = "Bounty Hunter"
-    //MustConfirm = "Your honor as a soldier will be tested."
+    MustConfirm = "$CONFIRM_NORMAL"
 }
 
 skill hard
@@ -40,7 +40,7 @@ skill hard
     ACSReturn = 3
     SpawnFilter = Hard
     Name = "Chozo Warrior"
-    //MustConfirm = "Your endeavors will become legend."
+    MustConfirm = "$CONFIRM_HARD"
 }
 
 skill nightmare
@@ -50,7 +50,7 @@ skill nightmare
     DamageFactor = 1.25
     SpawnFilter = Nightmare
     Name = "Galactic Protector"
-    //MustConfirm = "Your every step will be suffering."
+    MustConfirm = "$CONFIRM_NIGHTMARE"
 }
 
 skill ohgodhelpme
@@ -58,11 +58,13 @@ skill ohgodhelpme
     ACSReturn = 5
     FastMonsters
     DisableCheats
-    RespawnTime = 60
+    RespawnTime = 30
     RespawnLimit = 3
     DamageFactor = 1.5
+    //MonsterHealth = 1.25
     Aggressiveness = 1.0
     SpawnFilter = Nightmare
     Name = "   "
-    MustConfirm = "Pray to whatever god you worship."
+    //ReplaceActor = "Medikit", "Stimpack"
+    MustConfirm = "$CONFIRM_OHGODHELPME"
 }
