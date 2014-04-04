@@ -1,3 +1,8 @@
+gameinfo
+{
+	infopage = "METRTIP0", "CREDIT"
+}
+
 map TITLEMAP "Title Map"
 {
     next = "TITLEMAP"

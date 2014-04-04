@@ -1,0 +1,74 @@
+graphic metrtip0, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_1fctf, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_coop, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_ctf, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_dm, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_duel, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_inv, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_lms, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_poss, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_scp, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_st, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_tdm, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_term, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_tlms, 800, 600
+{
+    patch metroif1, 0, 0
+}
+
+graphic f1_tposs, 800, 600
+{
+    patch metroif1, 0, 0
+}

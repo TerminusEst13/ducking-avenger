@@ -542,7 +542,7 @@ ACTOR SoulsphereSpawner2 : RandomSpawner
     DropItem "EnergyTankPickup", 255
 }
 
-ACTOR SpaceJumpPickup : CustomInventory 17520
+ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17520
 {
     Inventory.PickupMessage "SPACE JUMP: ACQUIRED"
     Inventory.PickupSound "nrgtank/get"
