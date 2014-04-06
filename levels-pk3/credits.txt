@@ -58,3 +58,7 @@ TEXTURES:
 - N_WFAL0X (Nightmare)
 - ALLBLACK
 - Q1EX_026 (Quake)
+- METLDOOR (lihanchi)
+- METLDOO2 (Freedoom)
+- METLDOO3 (Freedoom)
+- METLDOO4 (Freedoom)

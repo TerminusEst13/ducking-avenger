@@ -1,7 +1,7 @@
-episode METINTRO
-{
-    name = "Metroid: Dreadnought"
-}
+//episode METINTRO
+//{
+//    name = "Metroid: Dreadnought"
+//}
 
 episode METTEST
 {
@@ -10,7 +10,7 @@ episode METTEST
 
 episode METDM01
 {
-    name = "Shitty PvP Test Map"
+    name = "Bounty Hunt"
 }
 
 map METTEST "Test Map"
@@ -28,12 +28,17 @@ map METINTRO "Carcosa Biomedical Research"
     SmoothLighting
 }
 
-map METDM01 "Test DM Map"
+map METDM01 "Archaeological Research Lab" // By TerminusEst13
 {
-    next = "METDM01"
+    next = "METDM02"
     music = "M_HUNTRS" // Kenji Yamamoto - Hunters
-    SKY1 = "HEXSKY1A", 1.5
-    SKY2 = "HEXSKY1B", 1.5
-    Lightning
+    SKY1 = "METSKY1"
+    SmoothLighting
+}
+
+map METDM02 "Combat Hall" // By Runsaber
+{
+    next = "METDM02"
+    music = "M_CBTHAL" // Lawrence Schwedler & James Phillipsen - Alinos
     SmoothLighting
 }
