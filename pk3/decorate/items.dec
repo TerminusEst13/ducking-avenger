@@ -78,9 +78,9 @@ actor SuperMissileAmmo_Dropped : CustomInventory
     Spawn:
         TNT1 A 0 A_JumpIfInventory("Health100",70,"RemoveCheck")
         TNT1 A 0 A_GiveInventory("Health100",1)
-        SPKU AAAAAAAAAA 1 BRIGHT //A_Look
-        SPKU BBBB 1 BRIGHT //A_Look
-        //TNT1 A 0 A_Stop
+        SPKU AAAAAAAAAA 1 BRIGHT A_Look
+        SPKU BBBB 1 BRIGHT A_Look
+        TNT1 A 0 A_Stop
         loop
     RemoveCheck:
         TNT1 A 0
@@ -99,6 +99,7 @@ actor SuperMissileAmmo_Dropped : CustomInventory
         stop
     PickupFail:
         TNT1 A 0
+        //SPKU A 1 BRIGHT // This is required, else it'll cause a crash.
         fail
 
     /*See:
@@ -224,6 +225,7 @@ actor Energy25 : Health replaces Medikit
     Renderstyle Add
     Scale 1
     Alpha 0.975
+    Scale 0.9
     +NOGRAVITY
     States
     {
@@ -259,7 +261,7 @@ actor Energy100 : Health //replaces Soulsphere
     Inventory.PickupMessage "Picked up a greater energy capsule."
     Inventory.PickupSound "health/50"
     Renderstyle Add
-    Scale 1.5
+    Scale 0.75
     Alpha 0.975
     +NOGRAVITY
     States

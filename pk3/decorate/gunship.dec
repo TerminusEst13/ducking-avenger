@@ -1,0 +1,701 @@
+actor PowerGunshipFlight : PowerFlight { Powerup.Duration 0x7FFFFFFF }
+
+actor GunshipForwardDash : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",70,"GoingForward7")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",40,"GoingForward6")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",22,"GoingForward5")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",15,"GoingForward4")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",10,"GoingForward3")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",6,"GoingForward2")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",3,"GoingForward1")
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.25,0,Sin(Pitch)*-0.25,1)
+        stop
+    GoingForward1:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.5,0,Sin(Pitch)*-0.5,1)
+        stop
+    GoingForward2:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.75,0,Sin(Pitch)*-0.75,1)
+        stop
+    GoingForward3:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*1.125,0,Sin(Pitch)*-1.125,1)
+        stop
+    GoingForward4:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*1.5,0,Sin(Pitch)*-1.5,1)
+        stop
+    GoingForward5:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*2,0,Sin(Pitch)*-2,1)
+        stop
+    GoingForward6:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*3,0,Sin(Pitch)*-3,1)
+        stop
+    GoingForward7:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*5,0,Sin(Pitch)*-5,1)
+        stop
+    }
+}
+
+actor GunshipForward : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",70,"GoingForward7")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",40,"GoingForward6")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",22,"GoingForward5")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",15,"GoingForward4")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",10,"GoingForward3")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",6,"GoingForward2")
+        TNT1 A 0 A_JumpIfInventory("GoingForwardCounter",3,"GoingForward1")
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.125,0,Sin(Pitch)*-0.125,1)
+        stop
+    GoingForward1:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.25,0,Sin(Pitch)*-0.25,1)
+        stop
+    GoingForward2:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.375,0,Sin(Pitch)*-0.375,1)
+        stop
+    GoingForward3:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.5625,0,Sin(Pitch)*-0.5625,1)
+        stop
+    GoingForward4:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*0.75,0,Sin(Pitch)*-0.75,1)
+        stop
+    GoingForward5:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*1,0,Sin(Pitch)*-1,1)
+        stop
+    GoingForward6:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*1.5,0,Sin(Pitch)*-1.5,1)
+        stop
+    GoingForward7:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*2.5,0,Sin(Pitch)*-2.5,1)
+        stop
+    }
+}
+
+actor GunshipBackward : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",70,"GoingBackward7")
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",40,"GoingBackward6")
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",22,"GoingBackward5")
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",15,"GoingBackward4")
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",10,"GoingBackward3")
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",6,"GoingBackward2")
+        TNT1 A 0 A_JumpIfInventory("GoingBackwardCounter",3,"GoingBackward1")
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-0.125,0,Sin(Pitch)*0.125,1)
+        stop
+    GoingBackward1:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-0.25,0,Sin(Pitch)*0.25,1)
+        stop
+    GoingBackward2:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-0.375,0,Sin(Pitch)*0.375,1)
+        stop
+    GoingBackward3:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-0.5625,0,Sin(Pitch)*0.5625,1)
+        stop
+    GoingBackward4:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-0.75,0,Sin(Pitch)*0.75,1)
+        stop
+    GoingBackward5:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-1,0,Sin(Pitch)*1,1)
+        stop
+    GoingBackward6:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-1.5,0,Sin(Pitch)*1.5,1)
+        stop
+    GoingBackward7:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeVelocity(Cos(Pitch)*-2.5,0,Sin(Pitch)*2.5,1)
+        stop
+    }
+}
+
+actor GunshipUp : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 ThrustThingZ(0,4,0,1)
+        stop
+    }
+}
+
+actor GunshipDown : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 ThrustThingZ(0,3,1,1)
+        stop
+    }
+}
+
+actor GunshipLeft : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 ThrustThing(angle*256/360+64, 1.5, 1, 0)
+        stop
+    }
+}
+
+actor GunshipRight : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 ThrustThing(angle*256/360+192, 1.5, 1, 0)
+        stop
+    }
+}
+
+actor GunshipLookUp : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",50,"LookUp7")
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",35,"LookUp6")
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",20,"LookUp5")
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",14,"LookUp4")
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",9,"LookUp3")
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",5,"LookUp2")
+        TNT1 A 0 A_JumpIfInventory("LookUpCounter",2,"LookUp1")
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-0.2)
+        stop
+    LookUp1:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-0.35)
+        stop
+    LookUp2:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-0.5)
+        stop
+    LookUp3:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-0.75)
+        stop
+    LookUp4:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-1)
+        stop
+    LookUp5:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-1.5)
+        stop
+    LookUp6:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-2)
+        stop
+    LookUp7:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch-3)
+        stop
+    }
+}
+
+actor GunshipLookDown : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",50,"LookDown7")
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",35,"LookDown6")
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",20,"LookDown5")
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",14,"LookDown4")
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",9,"LookDown3")
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",5,"LookDown2")
+        TNT1 A 0 A_JumpIfInventory("LookDownCounter",2,"LookDown1")
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+0.2)
+        stop
+    LookDown1:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+0.35)
+        stop
+    LookDown2:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+0.5)
+        stop
+    LookDown3:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+0.75)
+        stop
+    LookDown4:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+1)
+        stop
+    LookDown5:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+1.5)
+        stop
+    LookDown6:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+2)
+        stop
+    LookDown7:
+        TNT1 A 0
+        TNT1 A 0 A_SetPitch(pitch+3)
+        stop
+    }
+}
+
+actor GunshipLookLeft : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",50,"LookLeft7")
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",35,"LookLeft6")
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",20,"LookLeft5")
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",14,"LookLeft4")
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",9,"LookLeft3")
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",5,"LookLeft2")
+        TNT1 A 0 A_JumpIfInventory("LookLeftCounter",2,"LookLeft1")
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-0.2)
+        stop
+    LookLeft1:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-0.5)
+        stop
+    LookLeft2:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-1)
+        stop
+    LookLeft3:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-1.5)
+        stop
+    LookLeft4:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-2)
+        stop
+    LookLeft5:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-3)
+        stop
+    LookLeft6:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-4)
+        stop
+    LookLeft7:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle-6)
+        stop
+    }
+}
+
+actor GunshipLookRight : CustomInventory
+{
+    States
+    {
+    Pickup:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",50,"LookRight7")
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",35,"LookRight6")
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",20,"LookRight5")
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",14,"LookRight4")
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",9,"LookRight3")
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",5,"LookRight2")
+        TNT1 A 0 A_JumpIfInventory("LookRightCounter",2,"LookRight1")
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+0.2)
+        stop
+    LookRight1:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+0.5)
+        stop
+    LookRight2:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+1)
+        stop
+    LookRight3:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+1.5)
+        stop
+    LookRight4:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+2)
+        stop
+    LookRight5:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+3)
+        stop
+    LookRight6:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+4)
+        stop
+    LookRight7:
+        TNT1 A 0
+        TNT1 A 0 A_SetAngle(Angle+6)
+        stop
+    }
+}
+
+actor GunshipPlayer : PlayerPawn
+{
+    Radius 32
+    Height 56
+    Mass 500
+    Health 1000
+    //Gravity 0.1
+    Player.JumpZ 0
+    MaxStepHeight 12
+    Player.MaxHealth 1000
+    Player.Viewheight 41
+    Player.ForwardMove 0.95, 0.95
+    Player.SideMove 0.75, 0.75
+    DamageFactor "NoDamage", 0.0
+    DamageFactor "Drowning", 0.0
+    DamageFactor "Normal", 0.5
+    RadiusDamageFactor 0.35
+    Player.StartItem "PowerGunshipFlight", 1
+    Player.StartItem "Gunship Turrets", 1
+    Player.StartItem "IsAFuckingSpaceshipBoyeeee", 1
+    Player.SoundClass "Hunter"
+    Player.DisplayName "Gunship"
+    Player.MorphWeapon "Gunship Turrets"
+    Player.ColorRange 16,47
+    -PICKUP
+    +NOSKIN
+    +NOBLOOD
+    -THRUSPECIES
+    +LOWGRAVITY
+    Species "Player"
+    States
+    {
+    Spawn:
+        NOPE A 1
+        TNT1 A 0 ACS_ExecuteAlways(173,0,0,0,0)
+        TNT1 A 0 ACS_ExecuteAlways(584,0,0,0,0)
+        TNT1 A 0 SetPlayerProperty(0,1,0)
+    Spawn1:
+        NOPE A 1
+        loop
+
+    See:
+        NOPE A 2
+        Loop
+
+    Missile:
+        NOPE A 2 BRIGHT
+        goto Spawn1
+
+    Death:
+        TNT1 A 0
+        NOPE A 1 A_PlayerScream
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("BombExplodeSmaller",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MorphBallGas",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-300,300)/100.00,random(-300,300)/100.00,random(100,600)/100.00,random(-180,180),32)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart1",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart2",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart3",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart4",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart5",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart6",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart7",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 AAA 0 A_SpawnItemEx("MorphBallPart8",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
+        TNT1 A 0 A_TakeInventory("PowerGunshipFlight",1)
+        NOPE A 1 A_NoBlocking
+        NOPE A -1
+        Stop
+
+    CoOpModeOn:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
+        NOPE A 1
+        goto Spawn1
+    }
+}
+
+actor GunshipHat
+{
+    Radius 0
+    Height 0
+    Scale 0.65
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    States
+    {
+      Spawn:
+        GSHP A -1
+        loop
+    }
+}
+
+ACTOR "Gunship Turrets" : Weapon
+{
+    Weapon.SlotNumber 0
+    +NOAUTOAIM
+    +UNDROPPABLE
+    States
+    {
+    Ready:
+        //TNT1 A 1 A_JumpIfInventory("SynthFireRight",1,"AltFire")
+        //TNT1 A 1 A_JumpIfInventory("SynthFireLeft",1,"Fire")
+        TNT1 A 1 A_WeaponReady
+        Loop
+    Deselect:
+        TNT1 A 1 A_Lower
+        Loop
+    Select:
+        TNT1 A 1 A_Raise
+        Loop
+    Fire:
+        TNT1 A 0 A_JumpIfInventory("LaserSequence",1,"Fire2")
+        //TNT1 A 0 A_GiveInventory("HeatLevel",1)
+        TNT1 A 0 A_PlayWeaponSound("gunship/fire")
+        TNT1 A 0 A_FireCustomMissile("GunshipBlaster",0,1,-14,0)
+        TNT1 A 1 A_FireCustomMissile("GunshipBlaster",0,1,-21,-3)
+        TNT1 A 0 A_GiveInventory("LaserSequence",1)
+        TNT1 A 3
+        goto Ready
+    Fire2:
+        TNT1 A 0 A_PlayWeaponSound("gunship/fire")
+        TNT1 A 0 A_FireCustomMissile("GunshipBlaster",0,0,14,0)
+        TNT1 A 1 A_FireCustomMissile("GunshipBlaster",0,0,21,-3)
+        TNT1 A 0 A_TakeInventory("LaserSequence",1)
+        TNT1 A 3
+        Goto Ready
+    AltFire:
+        TNT1 A 0 A_PlayWeaponSound("missile/fire")
+        TNT1 A 0 A_FireCustomMissile("GunshipMissileShot",0,0,0,-32,0,0)
+        TNT1 A 35
+        Goto Ready
+    NuhUh:
+        TNT1 A 4 A_PlayWeaponSound("mecha/noweap")
+        TNT1 A 36 A_PlayWeaponSound("mecha/noweap")
+        Goto Ready
+    }
+}
+
+ACTOR GunshipBlaster
+{
+    Radius 8
+    Height 8
+    Speed 100
+    Damage (50)
+    PROJECTILE
+    DamageType "Gunship"
+    Scale 0.75
+    Decal DoomImpScorch
+    States
+    {
+    Spawn:
+        TNT1 A 1
+    Spawn1:
+        TNT1 A 1 A_SpawnItemEx("GunshipBlasterTrail", 0,               0,              2)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail",     momx /-35.0,     -momy /-35.0, 2+    momz /-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (2 *momx)/-35.0, -(2 *momy)/-35.0, 2+(2 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (3 *momx)/-35.0, -(3 *momy)/-35.0, 2+(3 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (4 *momx)/-35.0, -(4 *momy)/-35.0, 2+(4 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (5 *momx)/-35.0, -(5 *momy)/-35.0, 2+(5 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (6 *momx)/-35.0, -(6 *momy)/-35.0, 2+(6 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (7 *momx)/-35.0, -(7 *momy)/-35.0, 2+(7 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (8 *momx)/-35.0, -(8 *momy)/-35.0, 2+(8 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (9 *momx)/-35.0, -(9 *momy)/-35.0, 2+(9 *momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (10*momx)/-35.0, -(10*momy)/-35.0, 2+(10*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (11*momx)/-35.0, -(11*momy)/-35.0, 2+(11*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (12*momx)/-35.0, -(12*momy)/-35.0, 2+(12*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (13*momx)/-35.0, -(13*momy)/-35.0, 2+(13*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (14*momx)/-35.0, -(14*momy)/-35.0, 2+(14*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (15*momx)/-35.0, -(15*momy)/-35.0, 2+(15*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (16*momx)/-35.0, -(16*momy)/-35.0, 2+(16*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (17*momx)/-35.0, -(17*momy)/-35.0, 2+(17*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (18*momx)/-35.0, -(18*momy)/-35.0, 2+(18*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (19*momx)/-35.0, -(19*momy)/-35.0, 2+(19*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (20*momx)/-35.0, -(20*momy)/-35.0, 2+(20*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (21*momx)/-35.0, -(21*momy)/-35.0, 2+(21*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (22*momx)/-35.0, -(22*momy)/-35.0, 2+(22*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (23*momx)/-35.0, -(23*momy)/-35.0, 2+(23*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (24*momx)/-35.0, -(24*momy)/-35.0, 2+(24*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (25*momx)/-35.0, -(25*momy)/-35.0, 2+(25*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (26*momx)/-35.0, -(26*momy)/-35.0, 2+(26*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (27*momx)/-35.0, -(27*momy)/-35.0, 2+(27*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (28*momx)/-35.0, -(28*momy)/-35.0, 2+(28*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        TNT1 A 0 A_SpawnItemEx("GunshipBlasterTrail", (29*momx)/-35.0, -(29*momy)/-35.0, 2+(29*momz)/-35.0, 0,0,0, 0, SXF_ABSOLUTEANGLE)
+        //TNT1 A 1 BRIGHT
+        Loop
+            
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Explode(16,32,0)
+        TNT1 A 1 BRIGHT //A_PlaySound("katarn/extiny",6,1.0,0,ATTN_NORM)
+        TNT1 A 0 //A_SpawnItem("spark_puff")
+        Stop
+    }
+}
+
+actor GunshipBlasterTrail
+{
+    Scale 0.25
+    RenderStyle Add
+    Alpha 1.0
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    States
+    {
+    Spawn:
+        PLSE A 2 BRIGHT
+        stop
+    }
+}
+
+actor GunshipMissileShot
+{
+    Radius 11
+    Height 8
+    Speed 5
+    Damage (240)
+    Projectile
+    Scale 1.25
+    Decal Scorch
+    +MISSILE
+    +EXPLODEONWATER
+    +SKYEXPLODE
+    +FORCERADIUSDMG
+    //+ROCKETTRAIL
+    DeathSound "supermissile/hit"
+    States
+    {
+    Spawn:
+        GMSL A 10 //A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+    Spawn0:
+        GMSL AAAAAAAAAA 1 A_ScaleVelocity(1.1)
+    Spawn1:
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_ScaleVelocity(1.1)
+        loop
+        /*GMSL A 2 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_ScaleVelocity(1.25)
+        GMSL A 2 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_ScaleVelocity(1.5)
+        GMSL A 2 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_ScaleVelocity(1.5)
+        GMSL A 2 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_ScaleVelocity(1.5)
+        GMSL A 2 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+    Spawn2:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        //TNT1 A 0 Bright ThrustThing(angle*256/360, 3, 0, 0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        goto Spawn2
+    ThrustRight:
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        TNT1 A 0 ThrustThing(angle*256/360+64, 1, 0, 0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        goto Spawn2
+    ThrustLeft:
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        TNT1 A 0 ThrustThing(angle*256/360+192, 1, 0, 0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        goto Spawn2
+    ThrustDown:
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        TNT1 A 0 ThrustThingZ (0,2,1,1)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustUp")
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        goto Spawn2
+    ThrustUp:
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        TNT1 A 0 ThrustThingZ (0,2,0,1)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        GMSL A 1 A_SpawnItemEx("MissileTrail",-0.1*random(15,5),0.1*random(15,5),7,0.01*random(15,10),0.01*random(15,10),0.01*random(15,10),Random(0,360),128,0)
+        TNT1 A 0 A_Jump(64,"ThrustLeft")
+        TNT1 A 0 A_Jump(64,"ThrustRight")
+        TNT1 A 0 A_Jump(64,"ThrustDown")
+        loop*/
+    Death:
+        TNT1 A 0 A_Explode(384,128,0)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrailLarge",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,64)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrailLarge",random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-400,400)/100.00,random(-400,400)/100.00,random(-400,400)/100.00,random(-180,180),160,64)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SuperMissileSpatter",random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-500,500)/100.00,random(-180,180),160,64)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("SuperMissileSpatter2",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,64)
+        TNT1 AAAA 0 A_SpawnItemEx("SuperMissileExplosion",0,0,0,0,0,0,0,160)
+        TNT1 AA 0 A_SpawnItemEx("SuperMissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("SuperMissileExplosionVeryLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 1
+        stop
+    }
+}

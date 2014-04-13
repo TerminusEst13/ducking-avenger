@@ -194,6 +194,10 @@ rawenergy/shieldhit     SHLDHIT // Taken from Smash Bros. Brawl
 
 
 
+// Gunship
+gunship/fire            GNSHFIRE
+
+
 
 // Enemies
 

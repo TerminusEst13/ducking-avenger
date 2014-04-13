@@ -1,4 +1,11 @@
 // Counters
+actor GoingForwardCounter : Counter { Inventory.MaxAmount 70 }
+actor GoingBackwardCounter : Counter { Inventory.MaxAmount 70 }
+actor LookLeftCounter : Counter { Inventory.MaxAmount 70 }
+actor LookRightCounter : Counter { Inventory.MaxAmount 70 }
+actor LookUpCounter : Counter { Inventory.MaxAmount 70 }
+actor LookDownCounter : Counter { Inventory.MaxAmount 70 }
+
 actor BombCount : Counter { Inventory.MaxAmount 3 }
 actor BoostBallCount : Counter { Inventory.MaxAmount 17 }
 actor SpeedBoostCounter : Counter { Inventory.MaxAmount 11 }
@@ -24,6 +31,8 @@ actor PowerBeamIdle : Counter { Inventory.MaxAmount 26 }
 
 
 // Booleans
+actor IsASpacePirate : Boolean {}
+actor IsAFuckingSpaceshipBoyeeee : Boolean {}
 actor InGame : Boolean {}
 actor AlwaysRunIsOn : Boolean {}
 actor DoomHealthCounter : Boolean {}
@@ -48,8 +57,10 @@ actor DisableMorph : Boolean {}
 
 actor MissileCharged : Boolean {}
 actor PowerBeamCharged : Boolean {}
+actor SynthFireLeft : Boolean {}
 actor SynthFireRight : Boolean {}
 actor SpeedBoosterActive : Boolean {}
+actor LaserSequence : Boolean {}
 
 actor BorphMallAcquired : Boolean {}
 actor MissileTankAcquired : Boolean {}

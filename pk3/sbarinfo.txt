@@ -1,5 +1,13 @@
 statusbar normal, forcescaled
 {
+/*inInventory IsAFuckingSpaceshipBoyeeee, 1
+    {
+    drawimage "cockpit", 0, 0;
+    drawnumber 4, METHUDF, Untranslated, Health, 97, 25;
+    drawbar "SAMHFULL", "SAMHEMPT", Health, horizontal, 100, 24, 1;
+    }*/
+InInventory PowerBeamAcquired, 1
+{
 InInventory not BorphMallAcquired, 1
     {
     drawimage "samvisor", 0, 0;
@@ -148,8 +156,11 @@ gamemode cooperative, singleplayer
     InInventory YellowSkull, 1 { drawimage "YSKUICON", 292, 17; }
     }}
 }
+}
 
 statusbar fullscreen, forcescaled
+{
+InInventory PowerBeamAcquired, 1
 {
     InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
     InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
@@ -225,6 +236,7 @@ gamemode cooperative, singleplayer
     InInventory BlueSkull, 1 { drawimage "BSKUICON", 294, 11; }
     InInventory YellowSkull, 1 { drawimage "YSKUICON", 292, 17; }
     }
+}
 }
 
 statusbar automap, forcescaled

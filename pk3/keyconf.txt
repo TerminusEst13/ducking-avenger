@@ -1,5 +1,6 @@
 clearplayerclasses
 addplayerclass SamusPlayer
+//addplayerclass GunshipPlayer
 
 addslotdefault 1 "Power Beam"
 addslotdefault 2 "Spazer Beam"

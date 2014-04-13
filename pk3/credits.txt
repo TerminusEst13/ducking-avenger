@@ -20,7 +20,7 @@ GRAPHICS:
 - Cyberkill (Spanish Enye, slade, and tilde for smallfont)
 - Enterbrain (Plasma Beam/Ice Beam particles)
 - Bearborg/Mike12 (Ripping and polishing the Metroid Prime HUD)
-- Rundas45 (The basis of the fullscreen HUD)
+- Rundas45 (The basis of the fullscreen HUD, the health pickups)
 - Eriance (Spazer Beam particles)
 - Id Software (Bomb explode animation, from Doom 3)
 - PillowBlaster (Space Pirate shots, Power Bomb explosion sprites)
@@ -28,6 +28,7 @@ GRAPHICS:
 - Yoshio Sakamoto (His likeness used for the Icon of Sin)
 - VincentPrice (Making the model the Morph Ball was based off)
 - TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)
+- PresidentPeople (The dynamic lights for the Morph Ball)
 
 SOUNDS:
 =========
@@ -42,5 +43,5 @@ SOUNDS:
 CODE:
 =========
 - Repo Man (The basis of the Wave Beam projectile code)
-- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion)
+- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion, the gunship system...)
 - TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)

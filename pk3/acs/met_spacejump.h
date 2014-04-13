@@ -255,7 +255,7 @@ script METROID_SPACEJUMP_ENTER2 enter clientside
             playerTimers[pln][TIMER_CBACK]      = 0;
         }
 
-        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0 && CheckInventory("CanSpaceJump") && !CheckInventory("BorphMallAcquired"))
+        if (!(getTimer(pln, TIMER_BOUNCED) || wasGround) && keyPressed(BT_JUMP) && direction != 0 && CheckInventory("CanSpaceJump") && !CheckInventory("BorphMallAcquired") && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
         {
             switch (direction)
             {
@@ -319,7 +319,7 @@ script METROID_SPACEJUMP_ENTER2 enter clientside
             //Print(s:"walljump: ", d:i, s:" (", d:dDirection, s:")");
         }
 
-        if (keyPressed(BT_JUMP) && CheckInventory("CanSpaceJump") && !CheckInventory("BorphMallAcquired"))
+        if (keyPressed(BT_JUMP) && CheckInventory("CanSpaceJump") && !CheckInventory("BorphMallAcquired") && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
         {
             if (!(ground || (GetActorVelZ(0) < 0 && wasGround) || wasGround >= (MJUMP_DELAY-2) || inWater || dDirection != -1))
             {

@@ -597,6 +597,7 @@ ACTOR LongComboMissile : FastProjectile
     {
     Spawn:
         CLNM A 1 Bright A_SpawnItemEx("LasgunTrail",0,0,1,0,0,0,0,160)
+        TNT1 A 0 A_ScaleVelocity(1.1)
         Loop
     Death:
         TNT1 A 0
@@ -857,43 +858,43 @@ actor BigFireSpawner
     Spawn1:
         TNT1 A 0 A_JumpIfInventory("Health200",4,"Spawn2")
         TNT1 A 1 A_SpawnItemEx("BigFireRise", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(0,100)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         TNT1 A 0 A_SpawnItemEx("BigFireRise5", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         //TNT1 A 0 A_Wander
         TNT1 A 1 A_SpawnItemEx("BigFireRise8", Random(-400,400)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         TNT1 AA 1 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         //TNT1 A 0 A_Wander
         TNT1 AA 0 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         TNT1 A 1 A_SpawnItemEx("BigFireRise2", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         //TNT1 A 0 A_Wander
         TNT1 A 0 A_SpawnItemEx("BigFireRise6", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         TNT1 AA 1 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         //TNT1 A 0 A_Wander
         TNT1 A 1 A_SpawnItemEx("BigFireRise3", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         TNT1 A 0 A_SpawnItemEx("BigFireRise7", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         //TNT1 A 0 A_Wander
         TNT1 A 1 A_SpawnItemEx("BigFireRise9", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         TNT1 AA 0 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         //TNT1 A 0 A_Wander
         TNT1 AA 1 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
-        TNT1 A 0 A_Explode(3,96,0)
+        TNT1 A 0 A_Explode(4,96,0)
         TNT1 A 0 A_Wander
         //TNT1 A 0 A_Jump(16,"Spawn2")
         TNT1 A 0 A_GiveInventory("Health200",1)
