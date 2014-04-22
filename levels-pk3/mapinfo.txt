@@ -3,14 +3,14 @@
 //    name = "Metroid: Dreadnought"
 //}
 
-episode METTEST
-{
-    name = "Shitty PvE Test Map"
-}
-
 episode METDM01
 {
     name = "Bounty Hunt"
+}
+
+episode METTEST
+{
+    name = "Test Map"
 }
 
 map METTEST "Test Map"
@@ -28,7 +28,7 @@ map METINTRO "Carcosa Biomedical Research"
     SmoothLighting
 }
 
-map METDM01 "Archaeological Research Lab" // By TerminusEst13
+map METDM01 "Treading on Ancient Ground" // By TerminusEst13
 {
     next = "METDM02"
     music = "M_HUNTRS" // Kenji Yamamoto - Hunters
@@ -36,7 +36,7 @@ map METDM01 "Archaeological Research Lab" // By TerminusEst13
     SmoothLighting
 }
 
-map METDM02 "Combat Hall" // By Runsaber
+map METDM02 "The Hunt Continues" // By Runsaber
 {
     next = "METDM02"
     music = "M_CBTHAL" // Lawrence Schwedler & James Phillipsen - Alinos

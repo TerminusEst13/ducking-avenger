@@ -55,6 +55,7 @@ actor PBNotInThisLevel : Boolean {}
 actor PlayerMorphCamera : Boolean {}
 actor DisableMorph : Boolean {}
 
+actor BallBoosting : Boolean {}
 actor MissileCharged : Boolean {}
 actor PowerBeamCharged : Boolean {}
 actor SynthFireLeft : Boolean {}

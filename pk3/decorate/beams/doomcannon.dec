@@ -1,4 +1,4 @@
-ACTOR "Doom Cannon" : Weapon 17521
+ACTOR "Doom Cannon" : Weapon
 {
     Weapon.SelectionOrder 2000
     Inventory.PickupSound "cannon/get"
@@ -62,11 +62,16 @@ ACTOR "Doom Cannon" : Weapon 17521
         DCAN A 1 A_Raise
         loop
     Deselect:
+        TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
         DCAN RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        TNT1 A 0 A_JumpIfHealthLower(1, "DeadLower")
         XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
         XBEM A 0 A_Lower
+        loop
+    DeadLower:
+        XBEM A 1 A_Lower
         loop
     Fire:
         TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"FireChilled")

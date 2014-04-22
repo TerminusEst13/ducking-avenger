@@ -43,5 +43,5 @@ SOUNDS:
 CODE:
 =========
 - Repo Man (The basis of the Wave Beam projectile code)
-- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion, the gunship system...)
+- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion, the Chroma Storm, the gunship system...)
 - TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)

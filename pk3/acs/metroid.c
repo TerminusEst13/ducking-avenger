@@ -273,6 +273,7 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("MissileCharged",999);
         GiveInventory("MorphBallActivate", 1);
         TakeInventory("MorphBallDeactivate", 1);
+        TakeInventory("BallBoosting", 1);
         SetActorVelocity(0, velx,vely,velz, 0,0);
         playerOnFoot[pNum] = 0;
 
@@ -354,6 +355,7 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("SpeedBoosterActive",999);
     TakeInventory("SpeedWalker",999);
     TakeInventory("SpeedWalkerPrepare",999);
+    TakeInventory("BallBoosting",1);
 
     GiveInventory("BombCount",999);
 }
@@ -401,8 +403,6 @@ script METROID_ENTER ENTER
 
     while (1)
     {
-        if (isDead(0)) { terminate; }
-
         // Health bar shit
         if (GetActorProperty(0,APROP_Health) > 100) { GiveInventory("HealthOver100",1); } else { if (CheckInventory("HealthOver100") == 1) { TakeInventory("HealthOver100",1); }}
         if (GetActorProperty(0,APROP_Health) > 200) { GiveInventory("HealthOver200",1); } else { if (CheckInventory("HealthOver200") == 1) { TakeInventory("HealthOver200",1); }}
@@ -461,6 +461,7 @@ script METROID_ENTER ENTER
         else { TakeInventory("SynthFireRight", 0x7FFFFFFF); }
         }
 
+        if (isDead(0)) { terminate; }
         delay(1);
     }
 }
@@ -577,6 +578,7 @@ script METROID_RESPAWN RESPAWN
     ACS_ExecuteAlways(METROID_ENTER,0);
     ACS_ExecuteAlways(METROID_ENTER_CLIENTSIDE,0);
     ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+    ACS_ExecuteAlways(METROID_SPEEDBOOSTER,0);
 
     if (isSinglePlayer() || isCoop()) // This shouldn't ever matter in any PvP modes, since their inventory resets on death, but just in case.
     {
@@ -829,7 +831,15 @@ script METROID_SPEEDBOOSTER ENTER
             if (CheckInventory("SpeedBoosterActive") == 1) { TakeInventory("SpeedBoosterActive",1); delay(105); } // If you were successfully speed boosting just before, you can't just spam it again as soon as the last one finished.
         }
     }}
-    delay(9);
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(2);
+    if (isDead(0)) { terminate; }
+    delay(1);
     }
 }
 

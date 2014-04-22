@@ -11,9 +11,11 @@ GRAPHICS:
 
 SOUNDS:
 =========
-- Tormentor667 (Some thunder noises)
-- Hexen: Beyond Heretic (Some thunder noises)
-- The General Series 6000 (Some thunder noises)
+- Please refer to sndinfo.txt for a proper list.
+
+MAPS:
+=========
+- Runsaber (METDM02)
 
 TEXTURES:
 ==========

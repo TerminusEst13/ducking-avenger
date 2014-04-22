@@ -6,3 +6,5 @@ thunder4                AMBTHUN4 // Taken from The General Series 6000
 thunder5                AMBTHUN5 // Taken from The General Series 6000
 thunder6                AMBTHUN6 // Taken from The General Series 6000
 thunder7                AMBTHUN7 // Taken from The General Series 6000
+
+world/jumppad1          JUMPPAD1 // Taken from Smash Bros. Brawl

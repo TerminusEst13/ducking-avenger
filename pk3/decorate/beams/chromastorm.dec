@@ -1,0 +1,1906 @@
+const int BT_ATTACK     = 1;
+const int BT_ALTATTACK  = 32;
+
+actor HasInfiniteAmmo:          Boolean {}
+actor QuitParticlan:            Boolean {}
+
+actor DakkaBeamColor:           Counter {}
+actor DakkaBeamComboLevel:      Counter {}
+actor DakkaShotSprite:          Counter {}
+actor DakkaBeamChargeLevel:     Counter {}
+actor DakkaBeamCanMissile:      Boolean {}
+actor DakkaBeamCanSuper:        Boolean {}
+actor DakkaBeamInChargeCombo:   Boolean {}
+actor DakkaBeamComboShotsLeft:  Counter {}
+
+actor "Chroma Storm": Weapon
+{
+    Inventory.PickupMessage "fffsffr88 \cnerror"
+    
+    Weapon.AmmoType ""
+    Weapon.AmmoType2 "MissileAmmo"
+    Weapon.AmmoUse  0
+
+    Weapon.SelectionOrder 1750
+    Weapon.SlotNumber 4
+
+    States
+    {
+    // =====
+    // == UP, DOWN, IDLE STATES
+
+      Select:
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Raise
+        TNT1 A 1 A_Raise
+        loop
+
+      Deselect:
+        PBEM A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "PurpleDown")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "BlueDown")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "GreenDown")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "YellowDown")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "RedDown")
+        goto RedDown
+        
+      RedDown:
+        MBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ActualLower
+        
+      YellowDown:
+        PBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ActualLower
+        
+      GreenDown:
+        SBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ActualLower
+        
+      BlueDown:
+        IBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ActualLower
+
+      PurpleDown:
+        WBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ActualLower
+        
+      ActualLower:
+        XBEM A 0 A_JumpIfHealthLower(1, "DeadLower")
+        XBEM AAAAAAAAAAAAAAAAAAAAAAAAA 0 A_Lower
+        XBEM A 1 A_Lower
+        loop
+
+      DeadLower:
+        XBEM A 1 A_Lower
+        loop
+
+      Ready:
+        PBEM A 0 A_GiveInventory("DakkaBeamColor", 1)
+        PBEM A 0 ACS_ExecuteWithResult(476, 1)
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 6, "ResetReady")  // doing it this way for easy copypasting
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "PurpleReady")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "BlueReady")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "GreenReady")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "YellowReady")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "RedReady")
+        goto RedReady
+
+      ResetReady:
+        PBEM A 0 A_TakeInventory("DakkaBeamColor")
+        goto Ready
+
+    // MY KINGDOM FOR "####"
+
+      RedReady:
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM U 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM T 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM S 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM R 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM R 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM S 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM T 1 A_WeaponReady
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM U 1 A_WeaponReady
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        goto Ready
+
+      YellowReady:
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM U 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM T 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM S 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM R 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM R 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM S 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM T 1 A_WeaponReady
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM U 1 A_WeaponReady
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        goto Ready
+
+      GreenReady:
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM U 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM T 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM S 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM R 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM R 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM S 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM T 1 A_WeaponReady
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM U 1 A_WeaponReady
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        goto Ready
+
+      BlueReady:
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM U 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM T 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM S 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM R 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM R 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM S 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM T 1 A_WeaponReady
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM U 1 A_WeaponReady
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        goto Ready
+
+      PurpleReady:
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM U 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM T 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM S 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM R 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM R 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM S 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM T 1 A_WeaponReady
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM U 1 A_WeaponReady
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        goto Ready
+
+    // == UP, DOWN, IDLE STATES
+    // =====
+    // == DETERMINE COLOR AND CHARGE LEVEL
+
+      Fire:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_TakeInventory("DakkaBeamChargeLevel")
+        TNT1 A 0 A_TakeInventory("DakkaBeamInChargeCombo")
+        goto FireCommon
+
+      Hold:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_GiveInventory("DakkaBeamChargeLevel", 1)
+        goto FireCommon
+
+      DoRefire_IfChilled:
+        TNT1 A 0 A_JumpIfInventory("IceBeamChilled", 1, "DoRefire")
+        goto Fire
+
+      DoRefire:
+        TNT1 A 0 A_Refire   // semantics
+        goto Hold
+
+      FireCommon:
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "FireCombo")
+        goto FireNormal
+
+      FireNormal:
+        // try to guarantee no sound overlap
+        TNT1 A 0 A_PlaySound("metroid/dakkabeamfire", ACS_ExecuteWithResult(475, 1))
+
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 6, "ResetShot")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "PurpleShot")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "BlueShot")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "GreenShot")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "YellowShot")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "RedShot")
+        goto RedShot
+
+      ResetShot:
+        TNT1 A 0 A_TakeInventory("DakkaBeamColor")
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor")
+        goto RedShot
+
+    // == DETERMINE COLOR AND CHARGE LEVEL
+    // ====
+    // == COMBO SHIT
+
+      FireCombo:
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamComboShotsLeft", 1, "FireCombo2")
+        goto FireComboCheck
+
+      FireComboCheck:
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, "FireComboLoad")
+        TNT1 A 0 A_JumpIfInventory("MissileAmmo", 1, 1)
+        goto FireComboDry
+
+        TNT1 A 0 A_TakeInventory("MissileAmmo", 1)
+        goto FireComboLoad
+
+      FireComboLoad:
+        TNT1 A 0 A_GiveInventory("DakkaBeamComboShotsLeft", 4)
+        goto FireCombo2
+
+      FireComboDry:
+        TNT1 A 0 A_TakeInventory("DakkaBeamInChargeCombo")
+        goto FireNormal
+
+      FireCombo2:
+        LBEM A 0 A_TakeInventory("DakkaBeamComboShotsLeft", 1)
+        LBEM O 0 A_PlaySound("metroid/dakkalaser_hold",  5, 1.0, 1)
+
+        LBEM A 0 A_SpawnItemEx("DakkaBeamLaser", 0, 10, 32 + (ACS_ExecuteWithResult(475, 8) / 65536.0),
+                                                    32 * cos(pitch),0, 32 * -sin(pitch))
+        LBEM A 0 A_JumpIfInventory("RuneSpread", 1, "FireComboSpread")
+        goto FireCombo3
+
+      FireComboSpread:
+        LBEM A 0 A_SpawnItemEx("DakkaBeamLaser", 0, 10, 32 + (ACS_ExecuteWithResult(475, 8) / 65536.0),
+                                                    32 * cos(pitch),0, 32 * -sin(pitch), -15)
+
+        LBEM A 0 A_SpawnItemEx("DakkaBeamLaser", 0, 10, 32 + (ACS_ExecuteWithResult(475, 8) / 65536.0),
+                                                    32 * cos(pitch),0, 32 * -sin(pitch), 15)
+        goto FireCombo3
+
+      FireCombo3:
+        LBEM A 0 A_GiveInventory("DakkaBeamComboLevel")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 19, "ResetCombo")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 18, "ComboAnim18")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 17, "ComboAnim17")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 16, "ComboAnim16")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 15, "ComboAnim15")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 14, "ComboAnim14")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 13, "ComboAnim13")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 12, "ComboAnim12")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 11, "ComboAnim11")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 10, "ComboAnim10")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 9,  "ComboAnim9")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 8,  "ComboAnim8")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 7,  "ComboAnim7")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 6,  "ComboAnim6")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 5,  "ComboAnim5")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 4,  "ComboAnim4")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 3,  "ComboAnim3")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 2,  "ComboAnim2")
+        LBEM A 0 A_JumpIfInventory("DakkaBeamComboLevel", 1,  "ComboAnim1")
+        goto ComboAnim1
+
+      ResetCombo:
+        TNT1 A 0 A_TakeInventory("DakkaBeamComboLevel")
+        TNT1 A 0 A_TakeInventory("DakkaBeamComboLevel")
+        goto ComboAnim1
+
+      ComboAnim1:
+        LBEM O 1 bright offset(0, 33)
+        goto ComboEnd
+
+      ComboAnim2:
+        LBEM P 1 bright offset(1, 34)
+        goto ComboEnd
+
+      ComboAnim3:
+        LBEM Q 1 bright offset(1, 35)
+        goto ComboEnd
+
+      ComboAnim4:
+        LBEM P 1 bright offset(1, 34)
+        goto ComboEnd
+
+      ComboAnim5:
+        LBEM O 1 bright offset(1, 35)
+        goto ComboEnd
+
+      ComboAnim6:
+        LBEM N 1 bright offset(2, 35)
+        goto ComboEnd
+
+      ComboAnim7:
+        LBEM M 1 bright offset(1, 35)
+        goto ComboEnd
+
+      ComboAnim8:
+        LBEM L 1 bright offset(2, 35)
+        goto ComboEnd
+
+      ComboAnim9:
+        LBEM A 1 bright offset(1, 35)
+        goto ComboEnd
+
+      ComboAnim10:
+        LBEM R 1 bright offset(1, 34)
+        goto ComboEnd
+
+      ComboAnim11:
+        LBEM S 1 bright offset(1, 35)
+        goto ComboEnd
+
+      ComboAnim12:
+        LBEM T 1 bright offset(1, 34)
+        goto ComboEnd
+
+      ComboAnim13:
+        LBEM S 1 bright offset(0, 34)
+        goto ComboEnd
+
+      ComboAnim14:
+        LBEM R 1 bright offset(0, 33)
+        goto ComboEnd
+
+      ComboAnim15:
+        LBEM A 1 bright offset(1, 33)
+        goto ComboEnd
+
+      ComboAnim16:
+        LBEM L 1 bright offset(1, 34)
+        goto ComboEnd
+
+      ComboAnim17:
+        LBEM M 1 bright offset(2, 34)
+        goto ComboEnd
+
+      ComboAnim18:
+        LBEM N 1 bright offset(1, 34)
+        goto ComboEnd
+
+      ComboEnd:
+        LBEM O 0 A_Refire
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        LBEM O 0 A_PlaySound("metroid/dakkalaser_down", 7)
+        LBEM ONML 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        LBEM ARST 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        LBEM U 1 A_WeaponReady(WRF_NOPRIMARY | WRF_NOBOB)
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        XBEM A 5
+        goto Ready
+
+    // == COMBO SHIT
+    // ====
+    // == FIRE SHOT
+    // ==  (script 475 checks charge level against tics given, goes back to top
+    // ==       if tics given matches or exceeds it)
+        
+      RedShot:
+        TNT1 AAAA 0 A_FireCustomMissile("DBeamShot_Red", random(-25,25)/5.0, 0, 12, 0, 0, random(-25,25)/5.0)
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor", 1)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2) >= 1, "RedFast")
+        MBEM B 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM B 1 bright offset(3, 35)
+        MBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM C 1 bright offset(2, 34)
+        goto RedShot2
+
+      RedFast:
+        MBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM C 1 bright offset(2, 34)
+
+        MBEM H 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        MBEM H 0 A_JumpIfInventory("MissileAmmo", 1, 1)
+        goto RedShot2
+        MBEM H 0 A_JumpIfInventory("ChargeComboAcquired", 1, 1)
+        goto RedShot2
+        MBEM H 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "RedShot2")
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2, BT_ALTATTACK) >= 1, "ReadyCombo_Red")
+        goto RedShot2
+
+      RedShot2:
+        MBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM H 1 bright offset(3, 35)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 3) >= 1, "DoRefire")
+        MBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM H 1 bright offset(3, 35)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 4) >= 1, "DoRefire")
+        MBEM H 1 bright offset(3, 35)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 5) >= 1, "DoRefire")
+        MBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM H 1 bright offset(2, 34)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 6) >= 1, "DoRefire")
+        MBEM H 1 bright offset(2, 34)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 7) >= 1, "DoRefire")
+        MBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM H 1 bright offset(1, 33)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 8) >= 1, "DoRefire")
+        MBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        MBEM H 1 bright offset(0, 32)
+        MBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 9) >= 1, "DoRefire")
+        MBEM A 0 A_ClearRefire
+        
+        // Chilled shit, since I'm not making more state blocks for this
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 10) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 11) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 12) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 13) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 14) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 15) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 16) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 17) >= 1, "DoRefire_IfChilled")
+        MBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        MBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 18) >= 1, "DoRefire_IfChilled")
+        goto Ready
+
+        
+      YellowShot:
+        TNT1 AAAA 0 A_FireCustomMissile("DBeamShot_Yellow", random(-25,25)/5.0, 0, 12, 0, 0, random(-25,25)/5.0)
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor", 1)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2) >= 1, "YellowFast")
+        PBEM B 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM B 1 bright offset(3, 35)
+        PBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM C 1 bright offset(2, 34)
+        goto YellowShot2
+
+      YellowFast:
+        PBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM C 1 bright offset(2, 34)
+
+        PBEM H 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        PBEM H 0 A_JumpIfInventory("MissileAmmo", 1, 1)
+        goto YellowShot2
+        PBEM H 0 A_JumpIfInventory("ChargeComboAcquired", 1, 1)
+        goto YellowShot2
+        PBEM H 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "YellowShot2")
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2, BT_ALTATTACK) >= 1, "ReadyCombo_Yellow")
+        goto YellowShot2
+
+      YellowShot2:
+        PBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM H 1 bright offset(3, 35)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 3) >= 1, "DoRefire")
+        PBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM H 1 bright offset(3, 35)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 4) >= 1, "DoRefire")
+        PBEM H 1 bright offset(3, 35)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 5) >= 1, "DoRefire")
+        PBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM H 1 bright offset(2, 34)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 6) >= 1, "DoRefire")
+        PBEM H 1 bright offset(2, 34)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 7) >= 1, "DoRefire")
+        PBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM H 1 bright offset(1, 33)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 8) >= 1, "DoRefire")
+        PBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM H 1 bright offset(0, 32)
+        PBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 9) >= 1, "DoRefire")
+        PBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 1 bright A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_ClearRefire
+        
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 10) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 11) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 12) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 13) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 14) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 15) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 16) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 17) >= 1, "DoRefire_IfChilled")
+        PBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        PBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 18) >= 1, "DoRefire_IfChilled")
+        goto Ready
+
+        
+      GreenShot:
+        TNT1 AAAA 0 A_FireCustomMissile("DBeamShot_Green", random(-25,25)/5.0, 0, 12, 0, 0, random(-25,25)/5.0)
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor", 1)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2) >= 1, "GreenFast")
+        SBEM B 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM B 1 bright offset(3, 35)
+        SBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM C 1 bright offset(2, 34)
+        goto GreenShot2
+
+      GreenFast:
+        SBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM C 1 bright offset(2, 34)
+
+        SBEM H 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        SBEM H 0 A_JumpIfInventory("MissileAmmo", 1, 1)
+        goto GreenShot2
+        SBEM H 0 A_JumpIfInventory("ChargeComboAcquired", 1, 1)
+        goto GreenShot2
+        SBEM H 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "GreenShot2")
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2, BT_ALTATTACK) >= 1, "ReadyCombo_Green")
+        goto GreenShot2
+
+      GreenShot2:
+        SBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM H 1 bright offset(3, 35)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 3) >= 1, "DoRefire")
+        SBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM H 1 bright offset(3, 35)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 4) >= 1, "DoRefire")
+        SBEM H 1 bright offset(3, 35)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 5) >= 1, "DoRefire")
+        SBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM H 1 bright offset(2, 34)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 6) >= 1, "DoRefire")
+        SBEM H 1 bright offset(2, 34)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 7) >= 1, "DoRefire")
+        SBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM H 1 bright offset(1, 33)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 8) >= 1, "DoRefire")
+        SBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM H 1 bright offset(0, 32)
+        SBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 9) >= 1, "DoRefire")
+        SBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_ClearRefire
+        
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 10) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 11) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 12) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 13) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 14) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 15) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 16) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 17) >= 1, "DoRefire_IfChilled")
+        SBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        SBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 18) >= 1, "DoRefire_IfChilled")
+        goto Ready
+
+        
+      BlueShot:
+        TNT1 AAAA 0 A_FireCustomMissile("DBeamShot_Blue", random(-25,25)/5.0, 0, 12, 0, 0, random(-25,25)/5.0)
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor", 1)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2) >= 1, "BlueFast")
+        IBEM B 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM B 1 bright offset(3, 35)
+        IBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM C 1 bright offset(2, 34)
+        goto BlueShot2
+
+      BlueFast:
+        IBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM C 1 bright offset(2, 34)
+
+        IBEM H 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        IBEM H 0 A_JumpIfInventory("MissileAmmo", 1, 1)
+        goto BlueShot2
+        IBEM H 0 A_JumpIfInventory("ChargeComboAcquired", 1, 1)
+        goto BlueShot2
+        IBEM H 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "BlueShot2")
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2, BT_ALTATTACK) >= 1, "ReadyCombo_Blue")
+        goto BlueShot2
+
+      BlueShot2:
+        IBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM H 1 bright offset(3, 35)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 3) >= 1, "DoRefire")
+        IBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM H 1 bright offset(3, 35)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 4) >= 1, "DoRefire")
+        IBEM H 1 bright offset(3, 35)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 5) >= 1, "DoRefire")
+        IBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM H 1 bright offset(2, 34)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 6) >= 1, "DoRefire")
+        IBEM H 1 bright offset(2, 34)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 7) >= 1, "DoRefire")
+        IBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM H 1 bright offset(1, 33)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 8) >= 1, "DoRefire")
+        IBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM H 1 bright offset(0, 32)
+        IBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 9) >= 1, "DoRefire")
+        IBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_ClearRefire
+        
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 10) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 11) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 12) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 13) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 14) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 15) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 16) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 17) >= 1, "DoRefire_IfChilled")
+        IBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        IBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 18) >= 1, "DoRefire_IfChilled")
+        goto Ready
+        
+      PurpleShot:
+        TNT1 AAAA 0 A_FireCustomMissile("DBeamShot_Purple", random(-25,25)/5.0, 0, 12, 0, 0, random(-25,25)/5.0)
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor", 1)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2) >= 1, "PurpleFast")
+        WBEM B 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM B 1 bright offset(3, 35)
+        WBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM C 1 bright offset(2, 34)
+        goto PurpleShot2
+
+      PurpleFast:
+        WBEM C 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM C 1 bright offset(2, 34)
+
+        WBEM A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        WBEM H 0 A_JumpIfInventory("MissileAmmo", 1, 1)
+        goto PurpleShot2
+        WBEM H 0 A_JumpIfInventory("ChargeComboAcquired", 1, 1)
+        goto PurpleShot2
+        WBEM H 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "PurpleShot2")
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 2, BT_ALTATTACK) >= 1, "ReadyCombo_Purple")
+        goto PurpleShot2
+
+      PurpleShot2:
+        WBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM H 1 bright offset(3, 35)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 3) >= 1, "DoRefire")
+        WBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM H 1 bright offset(3, 35)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 4) >= 1, "DoRefire")
+        WBEM H 1 bright offset(3, 35)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 5) >= 1, "DoRefire")
+        WBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM H 1 bright offset(2, 34)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 6) >= 1, "DoRefire")
+        WBEM H 1 bright offset(2, 34)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 7) >= 1, "DoRefire")
+        WBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM H 1 bright offset(1, 33)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 8) >= 1, "DoRefire")
+        WBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM H 1 bright offset(0, 32)
+        WBEM H 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 9) >= 1, "DoRefire")
+        WBEM H 0 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_ClearRefire
+        
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 10) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 11) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 12) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 13) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 14) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 15) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 16) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 17) >= 1, "DoRefire_IfChilled")
+        WBEM A 1 A_WeaponReady(WRF_NOFIRE)
+        WBEM A 0 A_JumpIf(ACS_ExecuteWithResult(475, 0, 18) >= 1, "DoRefire_IfChilled")
+        goto Ready
+
+
+    // == FIRE SHOT
+    // =====
+    // == ENTER CHARGE COMBO
+
+    // 18 tics
+      ReadyCombo_Red:
+        MBEM A 0 A_PlaySound("supermissile/ready", CHAN_WEAPON)
+        MBEM A 0 A_GiveInventory("DakkaBeamInChargeCombo")
+        MBEM A 0 A_TakeInventory("DakkaBeamComboLevel")
+        MBEM RSTU 1         A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ComboBegin
+
+      ReadyCombo_Yellow:
+        PBEM A 0 A_PlaySound("supermissile/ready", CHAN_WEAPON)
+        PBEM A 0 A_GiveInventory("DakkaBeamInChargeCombo")
+        PBEM A 0 A_TakeInventory("DakkaBeamComboLevel")
+        PBEM RSTU 1         A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ComboBegin
+
+      ReadyCombo_Green:
+        SBEM A 0 A_PlaySound("supermissile/ready", CHAN_WEAPON)
+        SBEM A 0 A_GiveInventory("DakkaBeamInChargeCombo")
+        SBEM A 0 A_TakeInventory("DakkaBeamComboLevel")
+        SBEM RSTU 1         A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ComboBegin
+
+      ReadyCombo_Blue:
+        IBEM A 0 A_PlaySound("supermissile/ready", CHAN_WEAPON)
+        IBEM A 0 A_GiveInventory("DakkaBeamInChargeCombo")
+        IBEM A 0 A_TakeInventory("DakkaBeamComboLevel")
+        IBEM RSTU 1         A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ComboBegin
+
+      ReadyCombo_Purple:
+        WBEM A 0 A_PlaySound("supermissile/ready", CHAN_WEAPON)
+        WBEM A 0 A_GiveInventory("DakkaBeamInChargeCombo")
+        WBEM A 0 A_TakeInventory("DakkaBeamComboLevel")
+        WBEM RSTU 1         A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        goto ComboBegin
+
+      ComboBegin:
+        XBEM A 3            A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        LBEM UTSR 1         A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        LBEM A 3            A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        LBEM MNO 1 bright   A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
+        LBEM O 0 A_PlaySound("metroid/dakkalaser_start", CHAN_WEAPON)
+        goto Hold
+
+    // == ENTER CHARGE COMBO
+    // =====
+    // == MISSILES AND SHIT
+
+    // ====
+    // == NORMAL MISSILES
+    // ====
+
+      Missile:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        TNT1 A 0 A_TakeInventory("MissileAmmo", 1)
+        TNT1 A 0 A_PlayWeaponSound("missile/fire")
+        TNT1 A 0 A_AlertMonsters
+
+        TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+
+        TNT1 A 0 A_Recoil(2)
+        TNT1 A 0 Radius_Quake(1,8,0,1,0)
+
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"Missile_Coop")
+        goto Missile_DM
+
+      Missile_DM:
+        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+        goto MissileAnim
+
+      Missile_Coop:
+        TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,1,12,-2,0,0)
+        goto MissileAnim
+
+      MissileAnim:
+        PBEM A 0 A_JumpIfInventory("IceBeamChilled",1,"MissileAnim_Chilled")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "MissileAnim_Purple")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "MissileAnim_Blue")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "MissileAnim_Green")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "MissileAnim_Yellow")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "MissileAnim_Red")
+        goto MissileAnim_Red
+    
+      MissileAnim_Red:
+        MBEM A 0 A_Light2
+        MBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM A 0 A_Light1
+        MBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        MBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM A 0 A_Light0
+        MBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        MBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Red
+
+      MissileAnim_Yellow:
+        PBEM A 0 A_Light2
+        PBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM A 0 A_Light1
+        PBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        PBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM A 0 A_Light0
+        PBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        PBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Yellow
+
+      MissileAnim_Green:
+        SBEM A 0 A_Light2
+        SBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM A 0 A_Light1
+        SBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        SBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM A 0 A_Light0
+        SBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        SBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Green
+
+      MissileAnim_Blue:
+        IBEM A 0 A_Light2
+        IBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light1
+        IBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        IBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light0
+        IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Blue
+
+      MissileAnim_Purple:
+        WBEM A 0 A_Light2
+        WBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light1
+        WBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        WBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light0
+        WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Purple
+
+      MissileAnim_Chilled:
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "MissileAnim_PurpleC")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "MissileAnim_BlueC")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "MissileAnim_GreenC")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "MissileAnim_YellowC")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "MissileAnim_RedC")
+        goto MissileAnim_Red
+
+      MissileAnim_RedC:
+        MBEM A 0 A_Light2
+        MBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM A 0 A_Light1
+        MBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        MBEM J 2 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM A 0 A_Light0
+        MBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        MBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Red
+
+      MissileAnim_YellowC:
+        PBEM A 0 A_Light2
+        PBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM A 0 A_Light1
+        PBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        PBEM J 2 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM A 0 A_Light0
+        PBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        PBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Yellow
+
+      MissileAnim_GreenC:
+        SBEM A 0 A_Light2
+        SBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM A 0 A_Light1
+        SBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        SBEM J 2 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM A 0 A_Light0
+        SBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        SBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Green
+
+      MissileAnim_BlueC:
+        IBEM A 0 A_Light2
+        IBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light1
+        IBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        IBEM J 2 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light0
+        IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Blue
+
+      MissileAnim_PurpleC:
+        WBEM A 0 A_Light2
+        WBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light1
+        WBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        WBEM J 2 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light0
+        WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Purple
+
+    // ====
+    // == SUPER MISSILES
+    // ====
+
+      SuperMissile:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        TNT1 A 0 A_TakeInventory("SuperMissileAmmo",1)
+        TNT1 A 0 A_PlayWeaponSound("supermissile/fire")
+        TNT1 A 0 A_AlertMonsters
+
+        TNT1 A 0 A_ZoomFactor(0.925,ZOOM_INSTANT)
+
+        TNT1 A 0 A_Recoil(5)
+        TNT1 A 0 Radius_Quake(2,8,0,1,0)
+
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"SuperCoop")
+        goto SuperDM
+
+      SuperDM:
+        TNT1 A 0 A_FireCustomMissile("SuperMissile",0,0,12,-2,0,0)
+        goto SuperAnim
+
+      SuperCoop:
+        TNT1 A 0 A_FireCustomMissile("SuperMissileCoop",0,0,12,-2,0,0)
+        goto SuperAnim
+
+      SuperAnim:
+        TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))
+        TNT1 A 0 A_SetPitch(pitch-(random(300,500)/100.00))
+
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "SuperAnim_Purple")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "SuperAnim_Blue")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "SuperAnim_Green")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "SuperAnim_Yellow")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "SuperAnim_Red")
+        goto SuperAnim_Red
+
+      SuperAnim_Red:
+        MBEM A 0 A_Light2
+        MBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM A 0 A_Light1
+        MBEM A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        MBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM A 0 A_Light0
+        MBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        MBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Red
+
+      SuperAnim_Yellow:
+        PBEM A 0 A_Light2
+        PBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM A 0 A_Light1
+        PBEM A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        PBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM A 0 A_Light0
+        PBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        PBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Yellow
+
+      SuperAnim_Green:
+        SBEM A 0 A_Light2
+        SBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM A 0 A_Light1
+        SBEM A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        SBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM A 0 A_Light0
+        SBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        SBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Green
+
+      SuperAnim_Blue:
+        IBEM A 0 A_Light2
+        IBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light1
+        IBEM A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        IBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light0
+        IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Blue
+
+      SuperAnim_Purple:
+        WBEM A 0 A_Light2
+        WBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light1
+        WBEM A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        WBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light0
+        WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto AltEnd_Purple
+
+      AltEnd_Red:
+        MBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM U 0 ACS_ExecuteWithResult(476, 1)
+        MBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+      AltEnd_Yellow:
+        PBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM U 0 ACS_ExecuteWithResult(476, 1)
+        PBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+      AltEnd_Green:
+        SBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM U 0 ACS_ExecuteWithResult(476, 1)
+        SBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+      AltEnd_Blue:
+        IBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM U 0 ACS_ExecuteWithResult(476, 1)
+        IBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+      AltEnd_Purple:
+        WBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM U 0 ACS_ExecuteWithResult(476, 1)
+        WBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        Goto Ready
+
+    // == MISSILES AND SHIT
+    // =====
+    // == SPEED BOOSTER SHIT
+
+      D_RUNNIN:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
+        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
+        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
+        TNT1 A 0 A_TakeInventory("MissileCharged",1)
+        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
+        TNT1 A 0 A_ClearRefire
+        TNT1 A 0 Offset(0,32)
+        goto RUNDOWN
+
+      RUNDOWN:
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "RUNDOWN_Purple")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "RUNDOWN_Blue")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "RUNDOWN_Green")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "RUNDOWN_Yellow")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "RUNDOWN_Red")
+        goto RUNDOWN_Red
+
+      RUNDOWN_Red:
+        MBEM A 1 Offset(0,40)
+        MBEM A 1 Offset(0,50)
+        MBEM A 1 Offset(0,60)
+        MBEM A 1 Offset(0,70)
+        MBEM A 1 Offset(0,80)
+        MBEM A 1 Offset(0,90)
+        MBEM A 1 Offset(0,100)
+        MBEM A 1 Offset(0,110)
+        MBEM A 1 Offset(0,120)
+        MBEM A 1 Offset(0,130)
+        MBEM A 1 Offset(0,140)
+        goto IdleLoop
+
+      RUNDOWN_Yellow:
+        PBEM A 1 Offset(0,40)
+        PBEM A 1 Offset(0,50)
+        PBEM A 1 Offset(0,60)
+        PBEM A 1 Offset(0,70)
+        PBEM A 1 Offset(0,80)
+        PBEM A 1 Offset(0,90)
+        PBEM A 1 Offset(0,100)
+        PBEM A 1 Offset(0,110)
+        PBEM A 1 Offset(0,120)
+        PBEM A 1 Offset(0,130)
+        PBEM A 1 Offset(0,140)
+        goto IdleLoop
+
+      RUNDOWN_Green:
+        SBEM A 1 Offset(0,40)
+        SBEM A 1 Offset(0,50)
+        SBEM A 1 Offset(0,60)
+        SBEM A 1 Offset(0,70)
+        SBEM A 1 Offset(0,80)
+        SBEM A 1 Offset(0,90)
+        SBEM A 1 Offset(0,100)
+        SBEM A 1 Offset(0,110)
+        SBEM A 1 Offset(0,120)
+        SBEM A 1 Offset(0,130)
+        SBEM A 1 Offset(0,140)
+        goto IdleLoop
+
+      RUNDOWN_Blue:
+        IBEM A 1 Offset(0,40)
+        IBEM A 1 Offset(0,50)
+        IBEM A 1 Offset(0,60)
+        IBEM A 1 Offset(0,70)
+        IBEM A 1 Offset(0,80)
+        IBEM A 1 Offset(0,90)
+        IBEM A 1 Offset(0,100)
+        IBEM A 1 Offset(0,110)
+        IBEM A 1 Offset(0,120)
+        IBEM A 1 Offset(0,130)
+        IBEM A 1 Offset(0,140)
+        goto IdleLoop
+
+      RUNDOWN_Purple:
+        WBEM A 1 Offset(0,40)
+        WBEM A 1 Offset(0,50)
+        WBEM A 1 Offset(0,60)
+        WBEM A 1 Offset(0,70)
+        WBEM A 1 Offset(0,80)
+        WBEM A 1 Offset(0,90)
+        WBEM A 1 Offset(0,100)
+        WBEM A 1 Offset(0,110)
+        WBEM A 1 Offset(0,120)
+        WBEM A 1 Offset(0,130)
+        WBEM A 1 Offset(0,140)
+        goto IdleLoop
+
+      IdleLoop:
+        TNT1 A 1
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
+        TNT1 A 0 A_TakeInventory("DakkaBeamColor")
+        TNT1 A 0 A_GiveInventory("DakkaBeamColor", random(1, 5))
+
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "BackUp_Purple")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "BackUp_Blue")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "BackUp_Green")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 2, "BackUp_Yellow")
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 1, "BackUp_Red")
+        goto BackUp_Red
+
+      BackUp_Red:
+        MBEM A 1 Offset(0,140)
+        MBEM A 1 Offset(0,130)
+        MBEM A 1 Offset(0,120)
+        MBEM A 1 Offset(0,110)
+        MBEM A 1 Offset(0,100)
+        MBEM A 1 Offset(0,90)
+        MBEM A 1 Offset(0,80)
+        MBEM A 1 Offset(0,70)
+        MBEM A 1 Offset(0,60)
+        MBEM A 1 Offset(0,50)
+        MBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
+        Goto Ready
+
+      BackUp_Yellow:
+        PBEM A 1 Offset(0,140)
+        PBEM A 1 Offset(0,130)
+        PBEM A 1 Offset(0,120)
+        PBEM A 1 Offset(0,110)
+        PBEM A 1 Offset(0,100)
+        PBEM A 1 Offset(0,90)
+        PBEM A 1 Offset(0,80)
+        PBEM A 1 Offset(0,70)
+        PBEM A 1 Offset(0,60)
+        PBEM A 1 Offset(0,50)
+        PBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
+        Goto Ready
+
+      BackUp_Green:
+        SBEM A 1 Offset(0,140)
+        SBEM A 1 Offset(0,130)
+        SBEM A 1 Offset(0,120)
+        SBEM A 1 Offset(0,110)
+        SBEM A 1 Offset(0,100)
+        SBEM A 1 Offset(0,90)
+        SBEM A 1 Offset(0,80)
+        SBEM A 1 Offset(0,70)
+        SBEM A 1 Offset(0,60)
+        SBEM A 1 Offset(0,50)
+        SBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
+        Goto Ready
+
+      BackUp_Blue:
+        IBEM A 1 Offset(0,140)
+        IBEM A 1 Offset(0,130)
+        IBEM A 1 Offset(0,120)
+        IBEM A 1 Offset(0,110)
+        IBEM A 1 Offset(0,100)
+        IBEM A 1 Offset(0,90)
+        IBEM A 1 Offset(0,80)
+        IBEM A 1 Offset(0,70)
+        IBEM A 1 Offset(0,60)
+        IBEM A 1 Offset(0,50)
+        IBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
+        Goto Ready
+
+      BackUp_Purple:
+        WBEM A 1 Offset(0,140)
+        WBEM A 1 Offset(0,130)
+        WBEM A 1 Offset(0,120)
+        WBEM A 1 Offset(0,110)
+        WBEM A 1 Offset(0,100)
+        WBEM A 1 Offset(0,90)
+        WBEM A 1 Offset(0,80)
+        WBEM A 1 Offset(0,70)
+        WBEM A 1 Offset(0,60)
+        WBEM A 1 Offset(0,50)
+        WBEM A 1 Offset(0,40)
+        TNT1 A 0 Offset(0,32)
+        Goto Ready
+
+    // == SPEED BOOSTER SHIT
+    // =====
+    }
+}
+
+
+actor DakkaBeamShot
+{
+    Radius 6
+    Height 6
+
+    Projectile
+    Speed 50
+    Damage (3)
+
+    RenderStyle Add
+    Scale 0.35
+
+    States
+    {
+      Spawn:
+        XLSS A 0 bright
+        XLSS A 0 A_ChangeFlag("PAINLESS", random(0, 7) > 0) 
+        XLSS A 0 ACS_ExecuteAlways(474, 0, 0, 0, 3)
+        XLSS A 0 ACS_ExecuteAlways(474, 0, 1, 0, 1)
+        goto Spawn2
+
+      Spawn2:
+        XLSS A 3 bright
+        XLSS A 0 bright ThrustThingZ(0, random(9,18) / 2.0, random(0,1), 1)
+        XLSS A 0 bright ThrustThing((angle*256)/360 + (64 * (random(0,1)*2 - 1)), random(9,18) / 4.0, 1, 0)
+        loop
+
+      Death:
+        XLSE A 0 ACS_ExecuteAlways(477, 0, 0)
+        XLSE ABCDEF 2 bright
+        stop
+    }
+}
+
+actor DBeamShot_Red:    DakkaBeamShot { Translation "192:207=168:191" }
+actor DBeamShot_Yellow: DakkaBeamShot { Translation "192:207=[255,224,128]:[90,72,0]" }
+actor DBeamShot_Green:  DakkaBeamShot { Translation "192:207=[166,255,166]:[0,128,0]" }
+actor DBeamShot_Blue:   DakkaBeamShot { }
+actor DBeamShot_Purple: DakkaBeamShot { Translation "192:207=[255,128,255]:[90,0,90]" }
+actor DBeamShot_Pinkish:DakkaBeamShot { Translation "192:207=16:47" }
+
+
+actor DakkaBeamTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 0
+    Height 0
+
+    Scale 0.2
+    RenderStyle Add
+    Alpha 0.10
+
+    States
+    {
+      Spawn:
+        XLSE A 0 bright
+        XLSE ABCDEF 1 bright A_FadeOut(0.01)
+        stop
+    }
+}
+
+actor DakkaBeamParticle
+{
+    -SOLID
+    +NOBLOCKMONST
+    +THRUACTORS
+    +CLIENTSIDEONLY
+
+    Radius 2
+    Height 2
+
+    Projectile
+    -NOGRAVITY
+    Gravity 0.5
+
+    Scale 0.12
+    RenderStyle Add
+
+    States
+    {
+      Spawn:
+        XLSS A 0
+        XLSS A 0 ThrustThing(random(0, 256), random(4, 8) / 3.0, 1, 0)
+        XLSS A 0 ThrustThingZ(0, random(-4, 32) / 3.0, 0, 1)
+        goto Spawn2
+
+      Spawn2:
+        XLSS ABCDEF 1 bright A_FadeOut(0.05)
+        loop
+     
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor DakkaBeamComboShot
+{
+    Radius 6
+    Height 6
+
+    Projectile
+    Speed 50
+
+    +FORCERADIUSDMG
+    +NODAMAGETHRUST
+
+    -NOGRAVITY
+    Gravity 0.55
+
+    Scale 0.75
+
+    RenderStyle Add
+
+    States
+    {
+      Spawn:
+        DKCC A 0
+        DKCC A 0 ACS_ExecuteAlways(474, 0, 3, 0, 3)
+        goto Spawn2
+
+      Spawn2:
+        DKCC ABCD 3 bright
+        loop
+
+      Death:
+        DKCC A 0 ACS_ExecuteAlways(477, 0, 0)
+        DKCC A 0 A_ChangeFlag("NOGRAVITY", 1)
+        DKCC A 0 A_Stop
+
+        DKCC A 0 A_Explode(36, 96, 0)
+        DKCC A 0 A_SpawnItemEx("DakkaBeamComboShrapnel", 0,0,0, random(6,12),0,random(5,8), random(0,   120), SXF_TRANSFERTRANSLATION)
+        DKCC A 0 A_SpawnItemEx("DakkaBeamComboShrapnel", 0,0,0, random(6,12),0,random(5,8), random(120, 240), SXF_TRANSFERTRANSLATION)
+        DKCC A 0 A_SpawnItemEx("DakkaBeamComboShrapnel", 0,0,0, random(6,12),0,random(5,8), random(240, 360), SXF_TRANSFERTRANSLATION)
+        DKCC A 0 A_SpawnItemEx("DakkaBeamComboExplosion", 0,0,0, 0,0,0, 0, SXF_TRANSFERTRANSLATION)
+        DKCC EFGHIJKLMNOP 1 bright
+        stop
+    }
+}
+
+actor DBeamComboShot_Red:       DakkaBeamComboShot { Translation "192:207=168:191" }
+actor DBeamComboShot_Yellow:    DakkaBeamComboShot { Translation "192:207=[255,224,128]:[90,72,0]" }
+actor DBeamComboShot_Green:     DakkaBeamComboShot { Translation "192:207=[166,255,166]:[0,128,0]" }
+actor DBeamComboShot_Blue:      DakkaBeamComboShot {}
+actor DBeamComboShot_Purple:    DakkaBeamComboShot { Translation "192:207=[255,128,255]:[90,0,90]" }
+
+actor DakkaBeamComboExplosion
+{
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+
+    RenderStyle Add
+    Scale 0.65
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594) == 1, "Toaster")
+        TNT1 A 0 A_Jump(255, "Spawn3", "Spawn4", "Spawn5")
+        goto Spawn2
+
+      Spawn3:
+        DXP3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+
+      Spawn4:
+        DXP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+
+      Spawn5:
+        DXP5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
+        stop
+
+      Toaster:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor DakkaBeamComboTrail
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 0
+    Height 0
+
+    Scale 0.4
+    RenderStyle Add
+    Alpha 0.2
+
+    States
+    {
+      Spawn:
+        DKCC A 0 bright
+        DKCC ABCD 1 bright A_FadeOut(0.01)
+        loop
+    }
+}
+
+actor DakkaBeamComboParticle
+{
+    -SOLID
+    +NOBLOCKMONST
+    +THRUACTORS
+    +CLIENTSIDEONLY
+
+    Radius 2
+    Height 2
+
+    Projectile
+    -NOGRAVITY
+    Gravity 0.5
+
+    Scale 0.13
+    RenderStyle Add
+
+    States
+    {
+      Spawn:
+        XLSS A 0
+        XLSS A 0 ThrustThing(random(0, 256), random(4, 8) / 3.0, 1, 0)
+        XLSS A 0 ThrustThingZ(0, random(-4, 32) / 3.0, 0, 1)
+        goto Spawn2
+
+      Spawn2:
+        XLSS ABCDEF 1 bright A_FadeOut(0.04)
+        loop
+     
+      Death:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor DakkaBeamComboShrapnel
+{
+    Radius 4
+    Height 4
+
+    Projectile
+    Speed 15
+
+    +PUFFGETSOWNER
+    +FORCERADIUSDMG
+    +NODAMAGETHRUST
+
+    -NOGRAVITY
+    Gravity 0.45
+
+    +DOOMBOUNCE
+    BounceFactor     0.5
+    WallBounceFactor 0.75
+
+    Scale 0.5
+    RenderStyle Add
+
+    States
+    {
+      Spawn:
+        XLSS AA 0 bright ACS_ExecuteAlways(474, 0, 1, 0, 1)
+        goto Spawn2
+
+      Spawn2:
+        XLSS ABCDEF 1 bright
+        loop
+
+      Death:
+        DKCC A 0 ACS_ExecuteAlways(477, 0, 0)
+        XLSE A 0 A_Explode(6, 64, 0)
+        XLSE ABC 1 bright
+        XLSE DEF 2 bright
+        stop
+    }
+}
+actor DBeamShrapnel_Red:    DakkaBeamComboShrapnel { Translation "192:207=168:191" }
+actor DBeamShrapnel_Yellow: DakkaBeamComboShrapnel { Translation "192:207=[255,224,128]:[90,72,0]" }
+actor DBeamShrapnel_Green:  DakkaBeamComboShrapnel { Translation "192:207=[166,255,166]:[0,128,0]" }
+actor DBeamShrapnel_Blue:   DakkaBeamComboShrapnel { }
+actor DBeamShrapnel_Purple: DakkaBeamComboShrapnel { Translation "192:207=[255,128,255]:[90,0,90]" }
+
+actor DakkaBeamSpawner: Trigger
+{
+    States
+    {
+      Pickup:
+        BAL1 A 0 A_SpawnItemEx("DakkaBeamLaser_Red", 0, 10 + (ACS_ExecuteWithResult(475, 5, 4, 0) / 65536.0),
+                                                        32 + (ACS_ExecuteWithResult(475, 4, 4, 0) / 65536.0),
+                                                        32 * cos(pitch),0, 32 * -sin(pitch))
+
+        BAL1 A 0 A_SpawnItemEx("DakkaBeamLaser_Green", 0, 10 + (ACS_ExecuteWithResult(475, 5, 4, 33) / 65536.0),
+                                                          32 + (ACS_ExecuteWithResult(475, 4, 4, 33) / 65536.0),
+                                                          32 * cos(pitch),0, 32 * -sin(pitch))
+
+        BAL1 A 0 A_SpawnItemEx("DakkaBeamLaser_Blue", 0, 10 + (ACS_ExecuteWithResult(475, 5, 4, 67) / 65536.0),
+                                                         32 + (ACS_ExecuteWithResult(475, 4, 4, 67) / 65536.0),
+                                                         32 * cos(pitch),0, 32 * -sin(pitch))
+        stop
+    }
+}
+
+actor DBeamLaserItem: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_GiveInventory("HealthBonus")
+        TNT1 A 0 A_SpawnItemEx("DBeamLaserDamager",
+                                ACS_ExecuteWithResult(488, 0) / 65536.0,
+                                ACS_ExecuteWithResult(488, 1) / 65536.0,
+                                ACS_ExecuteWithResult(488, 2) / 65536.0,
+                                0,0,0, 0, SXF_ABSOLUTEPOSITION)
+        stop
+    }
+}
+
+
+actor DakkaBeamLaser: FastProjectile
+{
+    Radius 4
+    Height 4
+
+    Speed 32
+
+    +PUFFGETSOWNER
+    +THRUACTORS
+    +NOTIMEFREEZE
+    +SERVERSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 1 ACS_ExecuteWithResult(475, 2)
+        loop
+
+      Death:
+        TNT1 A 35 ACS_ExecuteWithResult(475, 3)
+        stop
+    }
+}
+
+actor DakkaBeamLaserDeath
+{
+    Radius 0
+    Height 0
+
+    +CLIENTSIDEONLY
+    +NOINTERACTION
+    +NOBLOCKMONST
+
+    RenderStyle Add
+    Alpha 0.75
+    Scale 0.45
+
+    States
+    {
+      Spawn:
+        XLSE AA 1 bright A_Jump(128, "Spawn2")
+        goto Spawn2
+
+      Spawn2:
+        XLSE BB 1 bright A_Jump(128, "Spawn3")
+        goto Spawn3
+
+      Spawn3:
+        XLSE CC 1 bright A_Jump(128, "Spawn4")
+        goto Spawn4
+
+      Spawn4:
+        XLSE DD 1 bright A_Jump(128, "Spawn5")
+        goto Spawn5
+
+      Spawn5:
+        XLSE EE 1 bright A_Jump(128, "Spawn6")
+        goto Spawn6
+
+      Spawn6:
+        XLSE FF 1 bright
+        stop
+    }
+}
+
+actor DBeamLaserDeath_Red:    DakkaBeamLaserDeath { Translation "192:207=168:191" }
+actor DBeamLaserDeath_Yellow: DakkaBeamLaserDeath { Translation "192:207=[255,224,128]:[90,72,0]" }
+actor DBeamLaserDeath_Green:  DakkaBeamLaserDeath { Translation "192:207=[166,255,166]:[0,128,0]" }
+actor DBeamLaserDeath_Blue:   DakkaBeamLaserDeath { }
+actor DBeamLaserDeath_Purple: DakkaBeamLaserDeath { Translation "192:207=[255,128,255]:[90,0,90]" }
+
+actor DakkaBeamLaser_Red: DakkaBeamLaser
+{
+    States
+    {
+      Death:
+        TNT1 A 35 ACS_ExecuteWithResult(475, 3, 0)
+        stop
+    }
+}
+
+actor DakkaBeamLaser_Green: DakkaBeamLaser
+{
+    States
+    {
+      Death:
+        TNT1 A 35 ACS_ExecuteWithResult(475, 3, 1)
+        stop
+    }
+}
+
+actor DakkaBeamLaser_Blue: DakkaBeamLaser
+{
+    States
+    {
+      Death:
+        TNT1 A 35 ACS_ExecuteWithResult(475, 3, 2)
+        stop
+    }
+}
+
+actor DakkaBeamLaserParticle
+{
+    Radius 0
+    Height 0
+
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +NOBLOCKMONST
+    +NOTIMEFREEZE
+    -SOLID
+
+    RenderStyle Add
+    Scale 0.33
+
+    States
+    {
+      Spawn:
+        XLSS ABC 1 bright
+        stop
+    }
+}
+
+actor DBeamLaserParticle_Red:    DakkaBeamLaserParticle { Translation "192:207=168:191" }
+actor DBeamLaserParticle_Yellow: DakkaBeamLaserParticle { Translation "192:207=[255,224,128]:[90,72,0]" }
+actor DBeamLaserParticle_Green:  DakkaBeamLaserParticle { Translation "192:207=[166,255,166]:[0,128,0]" }
+actor DBeamLaserParticle_Blue:   DakkaBeamLaserParticle { }
+actor DBeamLaserParticle_Purple: DakkaBeamLaserParticle { Translation "192:207=[255,128,255]:[90,0,90]" }
+
+actor DBeamLaserDamager
+{
+    Radius 4
+    Height 4
+
+    Projectile
+    Speed 0
+
+    +SERVERSIDEONLY
+    +PUFFGETSOWNER
+    +FORCERADIUSDMG
+    +NODAMAGETHRUST
+
+    States
+    {
+      Spawn:
+      Death:
+        TNT1 A 0
+        TNT1 A 0 A_ChangeFlag("PAINLESS", 1 - (random(0, 32) / 32))
+        TNT1 A 0 A_Explode(4, 48, 0)
+        stop
+    }
+}
+
+actor DBeamLaserPuff
+{
+    Radius 0
+    Height 0
+
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +NOBLOCKMONST
+    +NOTIMEFREEZE
+
+    RenderStyle Add
+    Alpha 0.3
+    Scale 0.15
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_Jump(255, "Spawn1", "Spawn2", "Spawn3")
+        goto Spawn1
+
+      Spawn1:
+        DXP3 A 1 bright
+        DXP3 CEGIKMOQSUWY 1 bright ACS_ExecuteWithResult(475, 7, 0, 95)
+        stop
+
+      Spawn2:
+        DXP4 A 1 bright
+        DXP4 CEGIKMOQ 1 bright ACS_ExecuteWithResult(475, 7, 0, 95)
+        stop
+
+      Spawn3: 
+        DXP5 A 1 bright
+        DXP5 CEGIKMOQSUW 1 bright ACS_ExecuteWithResult(475, 7, 0, 95)
+        stop
+    }
+}
+
+actor DBeamLaserPuff_Red:    DBeamLaserPuff { Translation "192:207=168:191" }
+actor DBeamLaserPuff_Yellow: DBeamLaserPuff { Translation "192:207=[255,224,128]:[90,72,0]" }
+actor DBeamLaserPuff_Green:  DBeamLaserPuff { Translation "192:207=[166,255,166]:[0,128,0]" }
+actor DBeamLaserPuff_Blue:   DBeamLaserPuff { }
+actor DBeamLaserPuff_Purple: DBeamLaserPuff { Translation "192:207=[255,128,255]:[90,0,90]" }
+
+actor DBeamSpawnDummy
+{
+    Radius 0
+    Height 0
+
+    -SOLID
+    +NOINTERACTION
+    +NOBLOCKMONST
+
+    States
+    {
+      Spawn:
+        TNT1 A 70
+        stop
+    }
+}

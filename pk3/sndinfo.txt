@@ -165,6 +165,11 @@ bullet/puff4            blrich4
 bullet/puff5            blrich5
 bullet/puff6            blrich6
 
+metroid/dakkabeamfire       sounds/beams/dakkabeam_fire.ogg
+metroid/dakkalaser_start    sounds/beams/dakkabeam_laserstart.ogg
+metroid/dakkalaser_hold     sounds/beams/dakkabeam_laserhold.ogg
+metroid/dakkalaser_down     sounds/beams/dakkabeam_laserdown.ogg
+
 // Charge Combos
 combo/ready             CHCMBCLK // Taken from Smash Bros. Melee
 combo/spazer            CMBSPAZR

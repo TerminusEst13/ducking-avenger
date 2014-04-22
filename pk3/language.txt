@@ -19,8 +19,8 @@ QUITMSG14 = "Kernel panic: /dev/kmem not found";
 CONFIRM_BABY        = "There are fewer enemy spawns, you take less damage, and you gather more missiles.\n\nYou are a coward.";
 CONFIRM_EASY        = "There are fewer enemy spawns.\n\nYou are training for battle.";
 CONFIRM_NORMAL      = "There are normalized enemy spawns.\n\nYou are aspiring for valor.";
-CONFIRM_HARD        = "There are numerous enemy spawns.\n\nYou are ready for war.";
-CONFIRM_NIGHTMARE   = "There are numerous enemies spawn, you take more damage, and enemies are faster.\n\nYou are prepared to suffer.";
+CONFIRM_HARD        = "There are more enemy spawns.\n\nYou are ready for war.";
+CONFIRM_NIGHTMARE   = "There are more enemy spawns, you take more damage, and enemies are faster.\n\nYou are prepared to suffer.";
 CONFIRM_OHGODHELPME = "You will die.\n\nThey will not.";
 
 PICKUP_BLUEFLAG = "\cfYou got the \cHblue Metroid!";

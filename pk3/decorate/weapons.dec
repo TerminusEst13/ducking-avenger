@@ -22,7 +22,7 @@ actor WeaponPickup: CustomInventory
     }
 }
 
-ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun
+ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun 17533
 {
     Inventory.PickupMessage "SPAZER BEAM: ACQUIRED"
     +AUTOACTIVATE
@@ -46,7 +46,7 @@ ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun
     }
 }
 
-ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun
+ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun 17534
 {
     Inventory.PickupMessage "PLASMA BEAM: ACQUIRED"
     +AUTOACTIVATE
@@ -70,7 +70,7 @@ ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun
     }
 }
 
-ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun
+ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun 17535
 {
     Inventory.PickupMessage "WAVE BEAM: ACQUIRED"
     +AUTOACTIVATE
@@ -94,7 +94,7 @@ ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun
     }
 }
 
-ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher
+ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher 17536
 {
     Inventory.PickupMessage "ICE BEAM: ACQUIRED"
     +AUTOACTIVATE
@@ -118,7 +118,7 @@ ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher
     }
 }
 
-ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle
+ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle 17537
 {
     Inventory.PickupMessage "LONG BEAM: ACQUIRED"
     +AUTOACTIVATE
@@ -142,7 +142,7 @@ ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle
     }
 }
 
-ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw
+ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw 17538
 {
     Inventory.PickupMessage "ffhhhsssss22 \cferror"
     +AUTOACTIVATE
@@ -165,9 +165,9 @@ ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw
     }
 }
 
-ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000
+ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
 {
-    Inventory.PickupMessage "BEAM CONVERSION UNIT: ACQUIRED"
+    Inventory.PickupMessage "ENERGY CONVERSION UNIT: ACQUIRED"
     +AUTOACTIVATE
     Scale 0.1
     +NOGRAVITY

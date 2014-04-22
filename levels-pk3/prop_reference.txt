@@ -1,0 +1,27 @@
+PROPS:
+17830 - Samus' Gunship
+
+ENEMIES:
+17010 - "Zebesian" Space Pirate
+
+ITEMS:
+17520 - Single Missile Pickup
+17521 - Missile Tank
+17522 - Super Missile Tank
+17523 - Power Bomb Tank
+17524 - Super Missile Pickup
+17525 - Power Bomb Pickup
+17526 - 15 Energy
+17527 - 30 Energy
+17528 - 100 Energy
+17529 - Energy Tank
+17530 - Space Jump
+17531 - Speed Booster
+17532 - Raw Energy
+17533 - Spazer Beam
+17534 - Plasma Beam
+17535 - Wave Beam
+17536 - Ice Beam
+17537 - Long Beam
+17538 - Doom Cannon
+17539 - Charge Combo

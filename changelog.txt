@@ -1,0 +1,21 @@
+From 1.777b to Alpha 2:
+==========================
+- The Morph Ball now has a pretty GLDef, thanks to President People.
+- The Morph Ball no longer allows the player to, well, morph when the flag is held.
+- Player death no longer freezes the life bar.
+- Speed Booster has a much longer delay after stopping before restarting.
+- Plasma Combo does slightly more damage.
+- Long Combo speeds up by 10% every tic.
+- Plasma Uncharged and Charged have had their radius and height slightly reduced.
+- 15/30/100 Energy now have different pickup sprites.
+- ACLO E sprite has been replaced with NOPE A.
+- Wall jump checks no longer get hung-up on lines that block monsters.
+- Items should no longer become invisible when metroid_dropstay is on.
+- Charging up the beams while Time Freeze is active no longer causes a massive amount of frozen trails.
+- Put DoomEd numbers on all relevant actors, as per mapper request.
+- After Boost Balling in mid-air, it is no longer possible to boost ball again until you have hit the ground.
+- The Power Bomb's damage arc has been reversed--instead of dealing most of its damage in the center and weakening as it spreads out, it deals most of its damage the farther out it spreads. Due to the sheer amount of actors clustered up in the center, this is barely a noticable damage nerf for the Power Bomb. All it means is that one-shotting Cybers is a bit more difficult, and that enemies two feet out no longer get tickled.
+- Rephrased a few lines in the difficulty settings for more clarification.
+- By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.
+- The Speed Booster script no longer overflows with copious respawning.
+- Dying now properly lowers your arm cannon on death.

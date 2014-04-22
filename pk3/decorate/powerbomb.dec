@@ -426,16 +426,16 @@ actor PowerBombShockwave
         TNT1 B 0
         TNT1 B 0 A_SpawnItemEx("PowerBombShockwaveClientside", 0,0,0, momx,momy,momz, 0, SXF_ABSOLUTEMOMENTUM)
         TNT1 B 0 A_ChangeFlag("NOINTERACTION", 0)
-        TNT1 AA 4 bright A_Explode(64, 160, 0) // First half-second
+        TNT1 AA 4 bright A_Explode(16, 128, 0) // First half-second
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        TNT1 A  4 bright A_Explode(64, 160, 0)
-        TNT1 AA 3 bright A_Explode(64, 160, 0)
-        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        TNT1 AAA 3 bright A_Explode(48, 160, 0) // Second half-second
+        TNT1 A  4 bright A_Explode(32, 128, 0)
+        TNT1 AA 3 bright A_Explode(32, 128, 0)
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
         TNT1 AAA 3 bright A_Explode(48, 160, 0) // Second half-second
         TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
-        TNT1 AAAAAAAAA 2 bright A_Explode(32, 160, 0) // Third half-second
+        TNT1 AAA 3 bright A_Explode(48, 160, 0) // Second half-second
+        TNT1 A 0 ACS_ExecuteWithResult(454, 1, 35)
+        TNT1 AAAAAAAAA 2 bright A_Explode(64, 160, 0) // Third half-second
         stop
     }
 }
