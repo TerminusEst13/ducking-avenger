@@ -19,3 +19,4 @@ From 1.777b to Alpha 2:
 - By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.
 - The Speed Booster script no longer overflows with copious respawning.
 - Dying now properly lowers your arm cannon on death.
+- The Missiles' rate of fire has been shortened by six tics.
