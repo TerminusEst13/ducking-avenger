@@ -15,7 +15,7 @@ actor DakkaBeamComboShotsLeft:  Counter {}
 
 actor "Chroma Storm": Weapon
 {
-    Inventory.PickupMessage "fffsffr88 \cnerror"
+    Inventory.PickupMessage "0x7fffffff \cjerror"
     
     Weapon.AmmoType ""
     Weapon.AmmoType2 "MissileAmmo"
@@ -79,6 +79,7 @@ actor "Chroma Storm": Weapon
         loop
 
       Ready:
+        TNT1 A 0 A_TakeInventory("DakkaBeamInChargeCombo")
         PBEM A 0 A_GiveInventory("DakkaBeamColor", 1)
         PBEM A 0 ACS_ExecuteWithResult(476, 1)
         TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 6, "ResetReady")  // doing it this way for easy copypasting
@@ -468,6 +469,7 @@ actor "Chroma Storm": Weapon
         goto ComboEnd
 
       ComboEnd:
+        LBEM O 0 A_JumpIfInventory("SpeedBoosterActive", 1, "D_RUNNIN")
         LBEM O 0 A_Refire
         LBEM O 0 A_PlaySound("silence", 5)
         LBEM O 0 A_StopSound(5)
@@ -1190,16 +1192,12 @@ actor "Chroma Storm": Weapon
 
       D_RUNNIN:
         TNT1 A 0 ACS_ExecuteWithResult(476, 0)
-        TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
-        TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
-        TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 Offset(0,32)
         goto RUNDOWN
 
       RUNDOWN:
+        TNT1 A 0 A_JumpIfInventory("DakkaBeamInChargeCombo", 1, "RUNDOWN_Combo")
         TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "RUNDOWN_Purple")
         TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "RUNDOWN_Blue")
         TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 3, "RUNDOWN_Green")
@@ -1275,6 +1273,30 @@ actor "Chroma Storm": Weapon
         WBEM A 1 Offset(0,120)
         WBEM A 1 Offset(0,130)
         WBEM A 1 Offset(0,140)
+        goto IdleLoop
+
+      RUNDOWN_Combo:
+        LBEM O 0 A_TakeInventory("DakkaBeamInChargeCombo")
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        LBEM O 0 A_PlaySound("metroid/dakkalaser_down", 7)
+        LBEM O 1 offset(0, 40)
+        LBEM N 1 offset(0, 50)
+        LBEM M 1 offset(0, 60)
+        LBEM L 1 offset(0, 70)
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        LBEM A 1 offset(0, 80)
+        LBEM R 1 offset(0, 90)
+        LBEM S 1 offset(0, 100)
+        LBEM T 1 offset(0, 110)
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5) 
+        LBEM U 1 offset(0, 120)
+        LBEM O 0 A_PlaySound("silence", 5)
+        LBEM O 0 A_StopSound(5)
+        XBEM A 1 offset(0, 130)
+        XBEM A 1 offset(0, 140)
         goto IdleLoop
 
       IdleLoop:
@@ -1804,7 +1826,7 @@ actor DakkaBeamLaserParticle
     -SOLID
 
     RenderStyle Add
-    Scale 0.33
+    Scale 0.45
 
     States
     {
