@@ -13,6 +13,8 @@ actor DakkaBeamCanSuper:        Boolean {}
 actor DakkaBeamInChargeCombo:   Boolean {}
 actor DakkaBeamComboShotsLeft:  Counter {}
 
+actor "DAKKA BEAM" : RandomSpawner { dropitem "Chroma Storm" }
+
 actor "Chroma Storm": Weapon
 {
     Inventory.PickupMessage "0x7fffffff \cjerror"
@@ -1142,7 +1144,7 @@ actor "Chroma Storm": Weapon
         goto AltEnd_Purple
 
       AltEnd_Red:
-        MBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         MBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         MBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         MBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
@@ -1151,7 +1153,7 @@ actor "Chroma Storm": Weapon
         Goto Ready
 
       AltEnd_Yellow:
-        PBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         PBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         PBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         PBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
@@ -1160,7 +1162,7 @@ actor "Chroma Storm": Weapon
         Goto Ready
 
       AltEnd_Green:
-        SBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         SBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         SBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         SBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
@@ -1169,7 +1171,7 @@ actor "Chroma Storm": Weapon
         Goto Ready
 
       AltEnd_Blue:
-        IBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         IBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         IBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         IBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
@@ -1178,7 +1180,7 @@ actor "Chroma Storm": Weapon
         Goto Ready
 
       AltEnd_Purple:
-        WBEM A 4 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         WBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         WBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         WBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
