@@ -36,6 +36,8 @@ actor IsAFuckingSpaceshipBoyeeee : Boolean {}
 actor InGame : Boolean {}
 actor AlwaysRunIsOn : Boolean {}
 actor DoomHealthCounter : Boolean {}
+actor NoMetroidPickupSystem : Boolean {}
+
 actor HealthOver100 : Boolean {}
 actor HealthOver200 : Boolean {}
 actor HealthOver300 : Boolean {}

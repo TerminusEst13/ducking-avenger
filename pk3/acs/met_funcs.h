@@ -187,9 +187,9 @@ function int MetroidClientVars(void)
 {
     //int switchOnPickup  = !!GetCVar("switchonpickup");
     //int weaponBar       = !!GetCVar("samsara_cl_weaponhud");
-    //int ballgag         = !!GetCVar("samsara_cl_ballgag");
+    int metpick           = !!GetCVar("metroid_cl_nometroidpickups");
     int doomHealth        = !!GetCVar("metroid_cl_doomhealth");
     int runrunruu         = !!GetCVar("cl_run");
 
-    return /*(switchOnPickup << 4) + (weaponBar << 3) + (ballgag << 2) +*/ (doomHealth << 1) + runrunruu;
+    return /*(switchOnPickup << 4) + (weaponBar << 3) +*/ (metpick << 2) + (doomHealth << 1) + runrunruu;
 }

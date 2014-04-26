@@ -23,6 +23,7 @@ int ClientEnterLocks[PLAYERMAX];
 
 int array_runrunruu[PLAYERMAX];
 int array_doomHealth[PLAYERMAX];
+int array_metpick[PLAYERMAX];
 
 #include "met_const.h"
 #include "met_funcs.h"
@@ -158,6 +159,12 @@ script METROID_OPEN_CLIENT OPEN clientside
     {
         ConsoleCommand("set metroid_cl_doomhealth 0");
         ConsoleCommand("archivecvar metroid_cl_doomhealth");
+    }
+
+    if (!GetCVar("metroid_cl_nometroidpickups"))
+    {
+        ConsoleCommand("set metroid_cl_nometroidpickups 0");
+        ConsoleCommand("archivecvar metroid_cl_nometroidpickups");
     }
 }
 
@@ -379,6 +386,9 @@ script METROID_ENTER ENTER
     int armor;
     int pln = PlayerNumber();
 
+    SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+    SetActorProperty(0, APROP_INVULNERABLE, 0);
+
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
@@ -398,7 +408,20 @@ script METROID_ENTER ENTER
     if (GetCvar("metroid_startingtanks") == 7) { GiveInventory("EnergyTankAcquired",7); SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
     if (GetCvar("metroid_startingtanks") == 8) { GiveInventory("EnergyTankAcquired",8); SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
     if (GetCvar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
-    if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); } }
+    if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
+
+    /*if (GameType () != GAME_TITLE_MAP)
+        {
+        SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+        SetActorProperty(0, APROP_INVULNERABLE, 1);
+        ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
+        LocalAmbientSound("system/samusappear",127);
+        delay(210);
+        SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+        SetActorProperty(0, APROP_INVULNERABLE, 0);
+        ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
+        }*/
+    }
     GiveInventory("InGame",1);
 
     while (1)
@@ -435,6 +458,9 @@ script METROID_ENTER ENTER
         
         if (array_runrunruu[pln]) { GiveInventory("AlwaysRunIsOn", 1); }
         else { TakeInventory("AlwaysRunIsOn", 0x7FFFFFFF); }
+        
+        if (array_metpick[pln]) { GiveInventory("NoMetroidPickupSystem", 1); }
+        else { TakeInventory("NoMetroidPickupSystem", 0x7FFFFFFF); }
 
         // Loaded shit
         if (GetCVar("metroid_loaded") == 1)
@@ -500,8 +526,8 @@ script METROID_PUKE (int values) net
 
     array_runrunruu[pln]     = values & 1;
     array_doomHealth[pln]    = values & 2;
-    /*array_ballgag[pln]      = values & 4;
-    array_weaponBar[pln]    = values & 8;
+    array_metpick[pln]       = values & 4;
+    /*array_weaponBar[pln]    = values & 8;
     array_pickupswitch[pln] = values & 16;*/
 }
 
@@ -602,6 +628,7 @@ script METROID_RESPAWN RESPAWN
 script METROID_DECORATE (int which)
 {
     int burrshet;
+    int i;
 
     switch (which)
     {
@@ -650,7 +677,7 @@ script METROID_DECORATE (int which)
         //SetActorProperty(0,APROP_HEALTH,(GetActorProperty(0,APROP_SPAWNHEALTH)));
 
         // Well that doesn't work. Guess we'll have to do this the hacky way.
-
+        delay(1);
         if (CheckInventory("EnergyTankAcquired") == 1) { SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
         if (CheckInventory("EnergyTankAcquired") == 2) { SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
         if (CheckInventory("EnergyTankAcquired") == 3) { SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
@@ -732,6 +759,552 @@ script METROID_DECORATE (int which)
         setresultvalue(1);
         else setresultvalue(0);
         break;
+
+    case 19:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRMTANK");
+        if (!CheckInventory("MissileTankAcquired") && (!isFreeForAll() || !isTeamGame()) )
+          {
+          GiveInventory("MissileTankAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          //ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
+          //LocalAmbientSound("system/samusitem",127);
+          LocalSetMusic("M_ITMGET");
+          //delay(210);
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          //ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("MissileTankAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("nrgtank/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("nrgtank/get",127); Log(s:"MISSILE TANK: ACQUIRED"); GiveInventory("MissileTankAcquired",1); }
+      break;
+
+// If I was a smart man I would figure out how to turn this into an array
+// that could handle minor changes so I don't need to repeat the same script
+// with just a few tweaks every time.
+
+    case 20:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRSTANK");
+        if (!CheckInventory("SuperMissileAcquired") && (!isFreeForAll() || !isTeamGame()) )
+          {
+          GiveInventory("SuperMissileAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("SuperMissileAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("nrgtank/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("nrgtank/get",127); Log(s:"SUPER MISSILE TANK: ACQUIRED"); GiveInventory("SuperMissileAcquired",1); }
+      break;
+
+// But alas, I am not a smart man.
+
+    case 21:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRPTANK");
+        if (!CheckInventory("PowerBombAcquired") && (!isFreeForAll() || !isTeamGame()) )
+          {
+          GiveInventory("PowerBombAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("PowerBombAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("nrgtank/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("nrgtank/get",127); Log(s:"POWER BOMB TANK: ACQUIRED"); GiveInventory("PowerBombAcquired",1); }
+      break;
+
+// In fact, I'm really kind of a stupid man.
+
+    case 22:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRSBOOS");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("SpeedBoosterAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("SpeedBoosterAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("nrgtank/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("nrgtank/get",127); Log(s:"SPEED BOOSTER: ACQUIRED"); GiveInventory("SpeedBoosterAcquired",1); }
+      break;
+
+    case 23:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRETANK");
+        if (CheckInventory("EnergyTankAcquired") == 0 && ( !isFreeForAll() || !isTeamGame() ))
+          {
+          GiveInventory("EnergyTankAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("EnergyTankAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("nrgtank/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("nrgtank/get",127); Log(s:"ENERGY TANK: ACQUIRED"); GiveInventory("EnergyTankAcquired",1); }
+      break;
+
+    case 24:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRSJUMP");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("SpaceJumpAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("SpaceJumpAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("nrgtank/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("nrgtank/get",127); Log(s:"SPACE JUMP: ACQUIRED"); GiveInventory("SpaceJumpAcquired",1); }
+      break;
+
+    case 25:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRECONV");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("ChargeComboAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGE2");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("ChargeComboAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("weapon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("weapon/get",127); Log(s:"ENERGY CONVERTER UNIT: ACQUIRED"); GiveInventory("ChargeComboAcquired",1); }
+      break;
+
+    case 26:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRSPBEM");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("SpazerBeamAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("SpazerBeamAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("weapon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("weapon/get",127); Log(s:"SPAZER BEAM: ACQUIRED"); GiveInventory("SpazerBeamAcquired",1); }
+      break;
+
+    case 27:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRPLBEM");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("PlasmaBeamAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("PlasmaBeamAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("weapon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("weapon/get",127); Log(s:"PLASMA BEAM: ACQUIRED"); GiveInventory("PlasmaBeamAcquired",1); }
+      break;
+
+    case 28:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRWVBEM");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("WaveBeamAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("WaveBeamAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("weapon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("weapon/get",127); Log(s:"WAVE BEAM: ACQUIRED"); GiveInventory("WaveBeamAcquired",1); }
+      break;
+
+    case 29:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRICBEM");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("IceBeamAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("IceBeamAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("weapon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("weapon/get",127); Log(s:"ICE BEAM: ACQUIRED"); GiveInventory("IceBeamAcquired",1); }
+      break;
+
+    case 30:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRLNBEM");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("LongBeamAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGET");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("LongBeamAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("weapon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("weapon/get",127); Log(s:"LONG BEAM: ACQUIRED"); GiveInventory("LongBeamAcquired",1); }
+      break;
+
+    case 31:
+      if (!CheckInventory("NoMetroidPickupSystem"))
+      {
+        SetFont("BNRUNOWN");
+        if ( !isFreeForAll() || !isTeamGame() )
+          {
+          GiveInventory("DoomCannonAcquired",1);
+          Thing_Stop(0);
+          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
+          LocalSetMusic("M_ITMGE3");
+          for(i = 0; i < 210; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 210;
+                  break; }
+              Delay(1);
+              }
+          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
+          LocalSetMusic("*");
+          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+        else
+          {
+          GiveInventory("DoomCannonAcquired",1);
+          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+          ActivatorSound("cannon/get",127);
+          for(i = 0; i < 70; i++)
+              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
+                  { i = 70;
+                  break; }
+              Delay(1);
+              }
+          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+          }
+      }
+      else
+      { ActivatorSound("cannon/get",127); Log(s:"dX000FFFsF \cferror"); GiveInventory("DoomCannonAcquired",1); }
+      break;
+
     }
 }
 
@@ -755,6 +1328,16 @@ script METROID_DECORATECLIENT (int which) clientside
         if(GetCvar("cl_run") == 1)
         setresultvalue(1);
         else setresultvalue(0);
+        break;
+
+    case 3:
+        if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
+        SetMusic("M_NOTHNG");
+        break;
+
+    case 4:
+        if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
+        SetMusic("*");
         break;
     }
 }

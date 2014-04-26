@@ -926,7 +926,7 @@ actor "Chroma Storm": Weapon
         MBEM A 0 A_Light0
         MBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         MBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        MBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Red
 
       MissileAnim_Yellow:
@@ -938,7 +938,7 @@ actor "Chroma Storm": Weapon
         PBEM A 0 A_Light0
         PBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         PBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        PBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Yellow
 
       MissileAnim_Green:
@@ -950,7 +950,7 @@ actor "Chroma Storm": Weapon
         SBEM A 0 A_Light0
         SBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         SBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Green
 
       MissileAnim_Blue:
@@ -962,7 +962,7 @@ actor "Chroma Storm": Weapon
         IBEM A 0 A_Light0
         IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Blue
 
       MissileAnim_Purple:
@@ -974,7 +974,7 @@ actor "Chroma Storm": Weapon
         WBEM A 0 A_Light0
         WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        WBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Purple
 
       MissileAnim_Chilled:
@@ -994,7 +994,7 @@ actor "Chroma Storm": Weapon
         MBEM A 0 A_Light0
         MBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         MBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        MBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Red
 
       MissileAnim_YellowC:
@@ -1006,7 +1006,7 @@ actor "Chroma Storm": Weapon
         PBEM A 0 A_Light0
         PBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         PBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        PBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Yellow
 
       MissileAnim_GreenC:
@@ -1018,7 +1018,7 @@ actor "Chroma Storm": Weapon
         SBEM A 0 A_Light0
         SBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         SBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        SBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Green
 
       MissileAnim_BlueC:
@@ -1030,7 +1030,7 @@ actor "Chroma Storm": Weapon
         IBEM A 0 A_Light0
         IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        IBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Blue
 
       MissileAnim_PurpleC:
@@ -1042,7 +1042,7 @@ actor "Chroma Storm": Weapon
         WBEM A 0 A_Light0
         WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        WBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Purple
 
     // ====
@@ -1144,46 +1144,36 @@ actor "Chroma Storm": Weapon
         goto AltEnd_Purple
 
       AltEnd_Red:
-        MBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        MBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        MBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        MBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM A 3 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        MBEM RSTU 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         MBEM U 0 ACS_ExecuteWithResult(476, 1)
         MBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
 
       AltEnd_Yellow:
-        PBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        PBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        PBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        PBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM A 3 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        PBEM RSTU 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         PBEM U 0 ACS_ExecuteWithResult(476, 1)
         PBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
 
       AltEnd_Green:
-        SBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        SBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        SBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        SBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM A 3 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        SBEM RSTU 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         SBEM U 0 ACS_ExecuteWithResult(476, 1)
         SBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
 
       AltEnd_Blue:
-        IBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        IBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        IBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        IBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM A 3 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        IBEM RSTU 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         IBEM U 0 ACS_ExecuteWithResult(476, 1)
         IBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
 
       AltEnd_Purple:
-        WBEM A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        WBEM R 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        WBEM S 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        WBEM T 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM A 3 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
+        WBEM RSTU 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         WBEM U 0 ACS_ExecuteWithResult(476, 1)
         WBEM U 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
@@ -1493,218 +1483,11 @@ actor DakkaBeamParticle
     }
 }
 
-actor DakkaBeamComboShot
-{
-    Radius 6
-    Height 6
-
-    Projectile
-    Speed 50
-
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
-
-    -NOGRAVITY
-    Gravity 0.55
-
-    Scale 0.75
-
-    RenderStyle Add
-
-    States
-    {
-      Spawn:
-        DKCC A 0
-        DKCC A 0 ACS_ExecuteAlways(474, 0, 3, 0, 3)
-        goto Spawn2
-
-      Spawn2:
-        DKCC ABCD 3 bright
-        loop
-
-      Death:
-        DKCC A 0 ACS_ExecuteAlways(477, 0, 0)
-        DKCC A 0 A_ChangeFlag("NOGRAVITY", 1)
-        DKCC A 0 A_Stop
-
-        DKCC A 0 A_Explode(36, 96, 0)
-        DKCC A 0 A_SpawnItemEx("DakkaBeamComboShrapnel", 0,0,0, random(6,12),0,random(5,8), random(0,   120), SXF_TRANSFERTRANSLATION)
-        DKCC A 0 A_SpawnItemEx("DakkaBeamComboShrapnel", 0,0,0, random(6,12),0,random(5,8), random(120, 240), SXF_TRANSFERTRANSLATION)
-        DKCC A 0 A_SpawnItemEx("DakkaBeamComboShrapnel", 0,0,0, random(6,12),0,random(5,8), random(240, 360), SXF_TRANSFERTRANSLATION)
-        DKCC A 0 A_SpawnItemEx("DakkaBeamComboExplosion", 0,0,0, 0,0,0, 0, SXF_TRANSFERTRANSLATION)
-        DKCC EFGHIJKLMNOP 1 bright
-        stop
-    }
-}
-
-actor DBeamComboShot_Red:       DakkaBeamComboShot { Translation "192:207=168:191" }
-actor DBeamComboShot_Yellow:    DakkaBeamComboShot { Translation "192:207=[255,224,128]:[90,72,0]" }
-actor DBeamComboShot_Green:     DakkaBeamComboShot { Translation "192:207=[166,255,166]:[0,128,0]" }
-actor DBeamComboShot_Blue:      DakkaBeamComboShot {}
-actor DBeamComboShot_Purple:    DakkaBeamComboShot { Translation "192:207=[255,128,255]:[90,0,90]" }
-
-actor DakkaBeamComboExplosion
-{
-    +CLIENTSIDEONLY
-    +NOINTERACTION
-
-    RenderStyle Add
-    Scale 0.65
-
-    States
-    {
-      Spawn:
-        TNT1 A 0
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594) == 1, "Toaster")
-        TNT1 A 0 A_Jump(255, "Spawn3", "Spawn4", "Spawn5")
-        goto Spawn2
-
-      Spawn3:
-        DXP3 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
-        stop
-
-      Spawn4:
-        DXP4 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
-        stop
-
-      Spawn5:
-        DXP5 ABCDEFGHIJKLMNOPQRSTUVWXYZ 1 BRIGHT
-        stop
-
-      Toaster:
-        TNT1 A 0
-        stop
-    }
-}
-
-actor DakkaBeamComboTrail
-{
-    +NOINTERACTION
-    +CLIENTSIDEONLY
-
-    Radius 0
-    Height 0
-
-    Scale 0.4
-    RenderStyle Add
-    Alpha 0.2
-
-    States
-    {
-      Spawn:
-        DKCC A 0 bright
-        DKCC ABCD 1 bright A_FadeOut(0.01)
-        loop
-    }
-}
-
-actor DakkaBeamComboParticle
-{
-    -SOLID
-    +NOBLOCKMONST
-    +THRUACTORS
-    +CLIENTSIDEONLY
-
-    Radius 2
-    Height 2
-
-    Projectile
-    -NOGRAVITY
-    Gravity 0.5
-
-    Scale 0.13
-    RenderStyle Add
-
-    States
-    {
-      Spawn:
-        XLSS A 0
-        XLSS A 0 ThrustThing(random(0, 256), random(4, 8) / 3.0, 1, 0)
-        XLSS A 0 ThrustThingZ(0, random(-4, 32) / 3.0, 0, 1)
-        goto Spawn2
-
-      Spawn2:
-        XLSS ABCDEF 1 bright A_FadeOut(0.04)
-        loop
-     
-      Death:
-        TNT1 A 0
-        stop
-    }
-}
-
-actor DakkaBeamComboShrapnel
-{
-    Radius 4
-    Height 4
-
-    Projectile
-    Speed 15
-
-    +PUFFGETSOWNER
-    +FORCERADIUSDMG
-    +NODAMAGETHRUST
-
-    -NOGRAVITY
-    Gravity 0.45
-
-    +DOOMBOUNCE
-    BounceFactor     0.5
-    WallBounceFactor 0.75
-
-    Scale 0.5
-    RenderStyle Add
-
-    States
-    {
-      Spawn:
-        XLSS AA 0 bright ACS_ExecuteAlways(474, 0, 1, 0, 1)
-        goto Spawn2
-
-      Spawn2:
-        XLSS ABCDEF 1 bright
-        loop
-
-      Death:
-        DKCC A 0 ACS_ExecuteAlways(477, 0, 0)
-        XLSE A 0 A_Explode(6, 64, 0)
-        XLSE ABC 1 bright
-        XLSE DEF 2 bright
-        stop
-    }
-}
-actor DBeamShrapnel_Red:    DakkaBeamComboShrapnel { Translation "192:207=168:191" }
-actor DBeamShrapnel_Yellow: DakkaBeamComboShrapnel { Translation "192:207=[255,224,128]:[90,72,0]" }
-actor DBeamShrapnel_Green:  DakkaBeamComboShrapnel { Translation "192:207=[166,255,166]:[0,128,0]" }
-actor DBeamShrapnel_Blue:   DakkaBeamComboShrapnel { }
-actor DBeamShrapnel_Purple: DakkaBeamComboShrapnel { Translation "192:207=[255,128,255]:[90,0,90]" }
-
-actor DakkaBeamSpawner: Trigger
-{
-    States
-    {
-      Pickup:
-        BAL1 A 0 A_SpawnItemEx("DakkaBeamLaser_Red", 0, 10 + (ACS_ExecuteWithResult(475, 5, 4, 0) / 65536.0),
-                                                        32 + (ACS_ExecuteWithResult(475, 4, 4, 0) / 65536.0),
-                                                        32 * cos(pitch),0, 32 * -sin(pitch))
-
-        BAL1 A 0 A_SpawnItemEx("DakkaBeamLaser_Green", 0, 10 + (ACS_ExecuteWithResult(475, 5, 4, 33) / 65536.0),
-                                                          32 + (ACS_ExecuteWithResult(475, 4, 4, 33) / 65536.0),
-                                                          32 * cos(pitch),0, 32 * -sin(pitch))
-
-        BAL1 A 0 A_SpawnItemEx("DakkaBeamLaser_Blue", 0, 10 + (ACS_ExecuteWithResult(475, 5, 4, 67) / 65536.0),
-                                                         32 + (ACS_ExecuteWithResult(475, 4, 4, 67) / 65536.0),
-                                                         32 * cos(pitch),0, 32 * -sin(pitch))
-        stop
-    }
-}
-
 actor DBeamLaserItem: Trigger
 {
     States
     {
       Pickup:
-        TNT1 A 0 A_GiveInventory("HealthBonus")
         TNT1 A 0 A_SpawnItemEx("DBeamLaserDamager",
                                 ACS_ExecuteWithResult(488, 0) / 65536.0,
                                 ACS_ExecuteWithResult(488, 1) / 65536.0,
@@ -1747,6 +1530,7 @@ actor DakkaBeamLaserDeath
     +CLIENTSIDEONLY
     +NOINTERACTION
     +NOBLOCKMONST
+    +NOTIMEFREEZE
 
     RenderStyle Add
     Alpha 0.75
@@ -1828,7 +1612,7 @@ actor DakkaBeamLaserParticle
     -SOLID
 
     RenderStyle Add
-    Scale 0.45
+    Scale 0.33
 
     States
     {

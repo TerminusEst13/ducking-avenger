@@ -1,6 +1,6 @@
 // Every time I look at this code, I stare for a little bit, then sigh wistfully
-// because I know Samus will never be able to grab a dude, hoist him up high
-// above her head, then swing him down hard onto the mat.
+// because I know Samus will never be able to grab a dude high above her head,
+// then swing him down hard onto the mat before the ref counts him out.
 
 actor PowerBomb
 {

@@ -326,8 +326,8 @@ ACTOR NothingArmor1 : BlankPuff replaces ArmorBonus {}
 
 ACTOR EnergyTankPickup : CustomInventory replaces Megasphere 17529
 {
-    Inventory.PickupMessage "ENERGY TANK: ACQUIRED"
-    Inventory.PickupSound "nrgtank/get"
+    Inventory.PickupMessage ""//"ENERGY TANK: ACQUIRED"
+    Inventory.PickupSound "shabadoobietachihenshin"//"nrgtank/get"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
     +NOGRAVITY
@@ -342,7 +342,8 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere 17529
     Pickup:
         TNT1 A 0 A_JumpIfInventory("ETNotInThisLevel",1,"PickupFail")
         TNT1 A 0 A_JumpIfInventory("EnergyTankAcquired",10,"PickupFailCheck")
-        TNT1 A 0 A_GiveInventory("EnergyTankAcquired",1)
+        //TNT1 A 0 A_GiveInventory("EnergyTankAcquired",1)
+        TNT1 A 0 ACS_ExecuteAlways(594,0,23,0,0)
         TNT1 A 0 ACS_ExecuteAlways(594,0,5,0,0)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
         TNT1 A 0 ACS_ExecuteAlways(594,0,7,0,0)//A_GiveInventory("NotInThisLevel",1)
@@ -364,8 +365,8 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere 17529
 
 ACTOR MissileTankPickup : CustomInventory replaces Backpack 17521
 {
-    Inventory.PickupMessage "MISSILE TANK: ACQUIRED"
-    Inventory.PickupSound "nrgtank/get"
+    Inventory.PickupMessage ""//"MISSILE TANK: ACQUIRED"
+    Inventory.PickupSound "wappanappadappakappafappaooheehooheehowwwwwwbabyyeah"//"nrgtank/get"
     +AUTOACTIVATE
     States
     {
@@ -375,9 +376,10 @@ ACTOR MissileTankPickup : CustomInventory replaces Backpack 17521
         loop
     Pickup:
         //TNT1 A 0 A_JumpIfInventory("NotInThisLevel",1,"PickupFail")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,19,0,0)
         TNT1 A 0 ACS_ExecuteAlways(594,0,6,0,0)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
-        TNT1 A 0 A_GiveInventory("MissileTankAcquired",1)
+        //TNT1 A 0 A_GiveInventory("MissileTankAcquired",1)
         //TNT1 A 0 ACS_ExecuteAlways(594,0,7,0,0)//A_GiveInventory("NotInThisLevel",1)
         stop
     PickupFail:
@@ -388,8 +390,8 @@ ACTOR MissileTankPickup : CustomInventory replaces Backpack 17521
 
 ACTOR SuperMissileTankPickup : CustomInventory replaces GreenArmor 17522
 {
-    Inventory.PickupMessage "SUPER MISSILE TANK: ACQUIRED"
-    Inventory.PickupSound "nrgtank/get"
+    Inventory.PickupMessage ""//"SUPER MISSILE TANK: ACQUIRED"
+    Inventory.PickupSound "canyoufeelthesunshinebrighteningupyourday"//"nrgtank/get"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
     States
@@ -400,9 +402,10 @@ ACTOR SuperMissileTankPickup : CustomInventory replaces GreenArmor 17522
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("SMNotInThisLevel",1,"PickupFail")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,20,0,0)
         TNT1 A 0 ACS_ExecuteAlways(594,0,9,0,0)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
-        TNT1 A 0 A_GiveInventory("SuperMissileAcquired",1)
+        //TNT1 A 0 A_GiveInventory("SuperMissileAcquired",1)
         TNT1 A 0 ACS_ExecuteAlways(594,0,14,0,0)//A_GiveInventory("NotInThisLevel",1)
         stop
     PickupFail:
@@ -556,8 +559,8 @@ ACTOR SoulsphereSpawner2 : RandomSpawner
 
 ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
 {
-    Inventory.PickupMessage "SPACE JUMP: ACQUIRED"
-    Inventory.PickupSound "nrgtank/get"
+    Inventory.PickupMessage ""//"SPACE JUMP: ACQUIRED"
+    Inventory.PickupSound "lupacchimagictachigo"//"nrgtank/get"
     Renderstyle Add
     Alpha 0.9
     +AUTOACTIVATE
@@ -572,7 +575,8 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("SpaceJumpAcquired",1,"PickupFail")
-        TNT1 A 0 A_GiveInventory("SpaceJumpAcquired",1)
+        //TNT1 A 0 A_GiveInventory("SpaceJumpAcquired",1)
+        TNT1 A 0 ACS_ExecuteAlways(594,0,24,0,0)
         TNT1 A 0 A_GiveInventory("CanSpaceJump",1)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
         stop
@@ -582,10 +586,10 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
     }
 }
 
-ACTOR SpeedBoosterPickup : CustomInventory replaces RadSuit 17531
+ACTOR SpeedBoosterPickup : CustomInventory replaces BlurSphere 17531
 {
-    Inventory.PickupMessage "SPEED BOOSTER: ACQUIRED"
-    Inventory.PickupSound "nrgtank/get"
+    Inventory.PickupMessage ""//"SPEED BOOSTER: ACQUIRED"
+    Inventory.PickupSound "boooooooooooooooooobs"//"nrgtank/get"
     +AUTOACTIVATE
     +NOGRAVITY
     +FLOATBOB
@@ -597,7 +601,8 @@ ACTOR SpeedBoosterPickup : CustomInventory replaces RadSuit 17531
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterAcquired",1,"PickupFail")
-        TNT1 A 0 A_GiveInventory("SpeedBoosterAcquired",1)
+        TNT1 A 0 ACS_ExecuteAlways(594,0,22,0,0)
+        //TNT1 A 0 A_GiveInventory("SpeedBoosterAcquired",1)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
         stop
     PickupFail:
@@ -608,8 +613,8 @@ ACTOR SpeedBoosterPickup : CustomInventory replaces RadSuit 17531
 
 ACTOR PowerBombTankPickup : CustomInventory replaces Berserk 17523
 {
-    Inventory.PickupMessage "POWER BOMB TANK: ACQUIRED"
-    Inventory.PickupSound "nrgtank/get"
+    Inventory.PickupMessage ""//"POWER BOMB TANK: ACQUIRED"
+    Inventory.PickupSound "comeonbananaarmsknightofspearbaron"//"nrgtank/get"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
     States
@@ -620,9 +625,10 @@ ACTOR PowerBombTankPickup : CustomInventory replaces Berserk 17523
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("PBNotInThisLevel",1,"PickupFail")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,21,0,0)
         TNT1 A 0 ACS_ExecuteAlways(594,0,12,0,0)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
-        TNT1 A 0 A_GiveInventory("PowerBombAcquired",1)
+        //TNT1 A 0 A_GiveInventory("PowerBombAcquired",1)
         TNT1 A 0 ACS_ExecuteAlways(594,0,15,0,0)//A_GiveInventory("NotInThisLevel",1)
         stop
     PickupFail:
