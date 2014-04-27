@@ -70,8 +70,6 @@ script 474 (int which, int transferVelocity, int count) clientside
     }
 }
 
-#define LASER_ROTATETICS 72
-
 #define CHARGELEVELS 19
 int DakkaBeamFireTimes[CHARGELEVELS] = 
 {
@@ -179,18 +177,6 @@ script 475 (int which, int a1, int a2)
         ACS_ExecuteWithResult(489, x,y,z);
         break;
        
-      case 4:
-      case 5:
-        radius = a1;
-        offset = Timer();
-        offset += round(itof(a2 * LASER_ROTATETICS) / 100);
-        offset %= LASER_ROTATETICS;
-        offset *= (1.0 / LASER_ROTATETICS);
-
-        if (which == 4) { ret = radius * cos(offset); }
-        else { ret = radius * sin(offset); }
-        break;
-
       case 6:
         SetActivatorToTarget(0);
 
@@ -410,20 +396,6 @@ script 484 (int x, int y, int z) clientside
     ACS_ExecuteWithResult(487);
 }
 
-script 485 (int x, int y, int z) clientside
-{
-    if (GetCVar("dakkabeam_cl_debug") >= 1) { Log(s:"Test (485) - ", f:x, s:", ", f:y, s:", ", f:z); }
-
-    Hack_EndX = x;
-    Hack_EndY = y;
-    Hack_EndZ = z;
-    Hack_ArgsSet[3] = 1;
-    Hack_ArgsSet[4] = 1;
-    Hack_ArgsSet[5] = 1;
-
-    ACS_ExecuteWithResult(487);
-}
-
 script 486 (int x, int y, int z) clientside
 {
     int i;
@@ -442,6 +414,10 @@ script 486 (int x, int y, int z) clientside
 
     ACS_ExecuteWithResult(487);
 }
+
+#define LASER_ROTATETICS 72
+#define LASER_NOEFFECTS_FADELENGTH 192
+#define LASER_BASEALPHA 0.5
 
 script 487 (void) clientside
 {
@@ -464,6 +440,9 @@ script 487 (void) clientside
     for (i = 0; i < 9; i++) { Hack_ArgsSet[i] = 0; }
 
     int pln = PlayerNumber();
+    int noeffects = GetCVar("metroid_cl_noeffects");
+    int density   = middle(1, GetCVar("metroid_cl_chromabeamdensity"), 32);
+    int cvarinfo = GetCVar("metroid_info_usescvarinfo") == 420420420; // if we have cvarinfo, the laser went SUPERFAST instantly
 
     int  x  = Hack_StartX,  y  = Hack_StartY,  z  = Hack_StartZ;
     int tx  = Hack_EndX,   ty  = Hack_EndY,   tz  = Hack_EndZ;
@@ -495,18 +474,35 @@ script 487 (void) clientside
     x += vx1;
     y += vy1;
 
-    int tid = unusedTID(8000, 13000);
+    int tid       = unusedTID(8000, 13000);
+    int tid_start = unusedTID(8001, 13000);
     int hx, hy, hz, ex, ey, ez;
 
-    int c, ticOffset, offset;
+    int c, ticOffset, offset, alpha;
+
+    // We do this here so that calculations don't get fucked up,
+    //   and so that velocity doesn't send the beam flying,
+    //   which GZDoom does apparently? IUNO
+    // If it starts happening in Zandronum too, just remove the if part.
+    if (cvarinfo) { x -= vx1; y -= vy1; z -= vz1; }
 
     ticOffset =  Timer() % LASER_ROTATETICS;
     ticOffset *= 1.0;
     ticOffset /= LASER_ROTATETICS;
 
-    for (i = 0; i < magI; i += 8)
+    for (i = 0; i < magI; i += density)
     {
         hx = itof(i);
+
+        alpha = max(0, LASER_NOEFFECTS_FADELENGTH - i)
+              + max(0, (i + LASER_NOEFFECTS_FADELENGTH) - magI);
+
+        alpha = min(alpha, LASER_NOEFFECTS_FADELENGTH);
+
+        alpha = (alpha * alpha) / LASER_NOEFFECTS_FADELENGTH;
+        alpha = itof(alpha) / LASER_NOEFFECTS_FADELENGTH;
+
+        alpha = FixedMul(min(1.0, 0.125 * density), alpha);
 
         for (c = 0; c < COLORCOUNT; c++)
         {
@@ -523,14 +519,35 @@ script 487 (void) clientside
             ey = FixedMul(hx, my_x) + FixedMul(hy, my_y) + FixedMul(hz, my_z);
             ez = FixedMul(hx, mz_x)                      + FixedMul(hz, mz_z);
 
-            if (i == 0) { Spawn(start, x+ex, y+ey, z+ez, tid); }
-            Spawn(trail, x+ex, y+ey, z+ez, tid);
-            if (i + 8 >= magI) { Spawn(end, x+ex, y+ey, z+ez); }
-        }
+            if (i == 0 && !noeffects)
+            {
+                Spawn(start, x+ex, y+ey, z+ez, tid_start);
+                SetActorVelocity(tid_start, vx1, vy1, vz1, 0, 0);
+                Thing_ChangeTID(tid_start, 0);
+            }
 
+            if (!(noeffects && alpha <= 0))
+            {
+                Spawn(trail, x+ex, y+ey, z+ez, tid);
+            }
+
+            if (!noeffects && (i + density >= magI)) { Spawn(end, x+ex, y+ey, z+ez); }
+        }
+        
+        if (noeffects)
+        {
+            SetActorVelocity(tid, vx1, vy1, vz1, 0, 0);
+            SetActorProperty(tid, APROP_Alpha, FixedMul(LASER_BASEALPHA, alpha));
+            Thing_ChangeTID(tid, 0);
+        }
     }
 
-    SetActorVelocity(tid, vx1, vy1, vz1, 0, 0);
+    if (!noeffects)
+    {
+        SetActorVelocity(tid, vx1, vy1, vz1, 0, 0);
+        SetActorProperty(tid, APROP_Alpha, min(1.0, FixedMul(LASER_BASEALPHA, 0.125 * density)));
+        Thing_ChangeTID(tid, 0);
+    }
 }
 
 script 488 (int which)
@@ -573,3 +590,13 @@ script 489 (int x, int y, int z)
     }
 }
 
+script 485 open clientside
+{
+    int cvarinfo = GetCVar("metroid_info_usescvarinfo") == 420420420; // I am mature.
+
+    if (!(GetCVar("metroid_cl_chromabeamdensity") || cvarinfo))
+    {
+        ConsoleCommand("set metroid_cl_chromabeamdensity 8");
+        ConsoleCommand("archivecvar metroid_cl_chromabeamdensity");
+    }
+}

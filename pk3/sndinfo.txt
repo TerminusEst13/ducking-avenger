@@ -1,5 +1,7 @@
 silence                 QUIET
 system/healthsiren      WARNSRN
+//system/samusappear      JNGLARIV
+//system/samusitem        JNGLITEM
 
 menu/activate        MENUUP // Bring up the main menu. - Taken from Metroid Prime 3
 menu/clear           MENUDOWN // Close main menu. - Taken from Metroid Prime 3

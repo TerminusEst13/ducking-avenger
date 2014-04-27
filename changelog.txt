@@ -1,5 +1,6 @@
 From 1.777b to Alpha 2:
 ==========================
+- Implemented changelog. Neat.
 - The Morph Ball now has a pretty GLDef, thanks to President People.
 - The Morph Ball no longer allows the player to, well, morph when the flag is held.
 - Player death no longer freezes the life bar.
@@ -20,3 +21,6 @@ From 1.777b to Alpha 2:
 - The Speed Booster script no longer overflows with copious respawning.
 - Dying now properly lowers your arm cannon on death.
 - The Missiles' rate of fire has been shortened by six tics.
+- The Speed Booster now replaces the Partial Invisibility sphere rather than the Radsuit.
+- An optional Metroid-style system has been implemented--on picking up a major item, the world freezes, a banner pops up, and the fanfare plays. For those who want nothing to do with this, hit the Use button to break out, or type 'metroid_cl_nometroidpickups 1' in the console.
+- Picking up the Space Jump will give the Morph Ball the ability to jump while morphed. This does not work for metroid_spacejump 1.

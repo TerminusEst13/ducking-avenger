@@ -234,6 +234,7 @@ script METROID_MORPHBALL (int morphshit)
         Thing_SetTranslation(newTID, -1);
         if (isSinglePlayer() || isCoop()) { MorphActor(0, "MorphBallPlayer", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog"); }
         else { MorphActor(0, "MorphBallPlayerDM", "", 0x7FFFFFFF, 194, "emptytelefog", "emptytelefog"); }
+        if (CheckInventory("SpaceJumpAcquired") == 1) { SetActorProperty(0,APROP_JumpZ,6.0); }
         Thing_ChangeTID(0, myTID);
         SetActivator(newTID);
         Thing_SetTranslation(myTID, -1);
