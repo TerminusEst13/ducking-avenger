@@ -8,7 +8,7 @@ ACTOR "Doom Cannon" : Weapon
     Weapon.AmmoUse 0
     Weapon.AmmoType2 "MissileAmmo"
     Weapon.SlotNumber 0
-    Weapon.AmmoUse2 1
+    Weapon.AmmoUse2 0
     +AMMO_OPTIONAL
     +ALT_AMMO_OPTIONAL
     +NOAUTOFIRE
@@ -245,19 +245,22 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_TakeInventory("MissileCharged",1)
         TNT1 A 0 A_TakeInventory("MissileChargeLevel",34) // Already done in AltHold, but just in case.
         TNT1 A 0 A_ClearRefire
-        TNT1 A 0 A_JumpIfNoAmmo("Ready")
+        TNT1 A 0 A_JumpIfInventory("MissileAmmo",1,1)
+        goto Ready // welp turns out the charge combo breaks horribly
+        TNT1 A 0 //A_JumpIfNoAmmo("Ready")
         TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"AltFireChilled")
         TNT1 A 0 A_PlayWeaponSound("missile/fire")
         TNT1 A 0 A_Recoil(2)
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"AltFireCoop")
-        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,0,12,-2,0,0)
         goto AltFireFinish
     AltFireCoop:
-        TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,1,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,0,12,-2,0,0)
     AltFireFinish:
         TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_TakeInventory("MissileAmmo",1)
         TNT1 A 0 A_Light2
         DCAN I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
@@ -274,8 +277,9 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_Recoil(2)
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
-        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
+        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,0,12,-2,0,0)
         TNT1 A 0 A_AlertMonsters
+        TNT1 A 0 A_TakeInventory("MissileAmmo",1)
         TNT1 A 0 A_Light2
         DCAN I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
@@ -397,17 +401,17 @@ ACTOR "Doom Cannon" : Weapon
 
     ReadyCombo:
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNINCombo")
         SSAW AB 3 A_WeaponReady
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNINCombo")
         SSAW AB 3 A_WeaponReady
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNINCombo")
         SSAW AB 3 A_WeaponReady
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNINCombo")
         SSAW AB 3 A_WeaponReady
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNINCombo")
         SSAW AB 3 A_WeaponReady
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNINCombo")
         SSAW AB 3 A_WeaponReady
         Loop
     FireCombo:
@@ -616,10 +620,10 @@ ACTOR ChainsawShot
 	Radius 6
 	Height 8
 	Speed 40
-	Damage 10
+	Damage 15
+    Scale 1.5
     RenderStyle Add
     Alpha 0.5
-    Scale 1.1
     DamageType "DoomCombo"
 	Projectile
     +RIPPER
@@ -653,9 +657,10 @@ ACTOR SteelTrailA
 	Height 8
 	Speed 0
 	Damage 0
+    Scale 1.25
 	Projectile
 	Renderstyle Add
-	Alpha 0.5
+	Alpha 0.45
 	States
 	{
 	Spawn:
