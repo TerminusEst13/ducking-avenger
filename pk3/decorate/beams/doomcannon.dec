@@ -386,17 +386,20 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_JumpIfInventory("MissileAmmo",10,1)
         goto HoldFinal2
         TNT1 A 0
-        DCAN Q 20 BRIGHT A_PlaySoundEx("combo/ready","soundslot7")
+        DCAN Q 10 BRIGHT A_PlaySoundEx("combo/ready","soundslot7")
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
         TNT1 A 0 A_ClearRefire
-        TNT1 A 0 A_SetBlend("black",1,35)
         TNT1 A 0 A_TakeInventory("MissileAmmo",10)
+        DCAN RSTUVW 1 BRIGHT
+        XCAN A 1 BRIGHT
+        DCAS AB 2 BRIGHT
         TNT1 A 0 A_PlaySoundEx("dchain/raise","soundslot5",0,0)
+        DCAS CDEFGH 2 BRIGHT
         TNT1 A 0 A_GiveInventory("TheReturnOfSamusReturns",1)
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
-        SSAW ABABABABABAB 3 A_WeaponReady
+        SSAW ABABABAABBAABBAABBAAABBB 1 A_WeaponReady
         Goto Ready
 
     ReadyCombo:
@@ -480,10 +483,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_PlayWeaponSound("dchain/deselect")
         SSAW A 5
         SSAW B 7
-        SSAW A 9
-        SSAW B 12
-        SSAW A 15
-        SSAW A 0 A_SetBlend("Black",1,35)
+        DCAS HGFEDCBA 2 BRIGHT
         TNT1 A 0 A_TakeInventory("TheReturnOfSamusReturns",1)
         goto Deselect
 
