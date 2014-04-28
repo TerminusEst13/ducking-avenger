@@ -1431,6 +1431,7 @@ actor DakkaBeamTrail
 {
     +NOINTERACTION
     +CLIENTSIDEONLY
+    +DONTSPLASH
 
     Radius 0
     Height 0
@@ -1453,6 +1454,7 @@ actor DakkaBeamParticle
     -SOLID
     +NOBLOCKMONST
     +THRUACTORS
+    +DONTSPLASH
     +CLIENTSIDEONLY
 
     Radius 2
@@ -1530,6 +1532,7 @@ actor DakkaBeamLaserDeath
     +CLIENTSIDEONLY
     +NOINTERACTION
     +NOBLOCKMONST
+    +DONTSPLASH
     +NOTIMEFREEZE
 
     RenderStyle Add
