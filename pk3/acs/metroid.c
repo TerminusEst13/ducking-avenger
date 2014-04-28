@@ -255,6 +255,7 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("PowerBeamChargeLevel",999);
         //TakeInventory("PowerBeamCharged",999);
         TakeInventory("PowerBeamIdle",999);
+        TakeInventory("TheReturnOfSamusReturns",999);
         TakeInventory("MissileChargeLevel",999);
         TakeInventory("MissileCharged",999);
         playerOnFoot[pNum] = 1;
@@ -363,6 +364,7 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("SpeedBoosterActive",999);
     TakeInventory("SpeedWalker",999);
     TakeInventory("SpeedWalkerPrepare",999);
+    TakeInventory("TheReturnOfSamusReturns",999);
     TakeInventory("BallBoosting",1);
 
     GiveInventory("BombCount",999);
@@ -765,7 +767,7 @@ script METROID_DECORATE (int which)
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRMTANK");
-        if (!CheckInventory("MissileTankAcquired") && (!isFreeForAll() || !isTeamGame()) )
+        if (!CheckInventory("MissileTankAcquired") && CheckInventory("CoopModeOn") )
           {
           GiveInventory("MissileTankAcquired",1);
           Thing_Stop(0);
@@ -803,7 +805,8 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("nrgtank/get",127); Log(s:"MISSILE TANK: ACQUIRED"); GiveInventory("MissileTankAcquired",1); }
+      { ActivatorSound("nrgtank/get",127); GiveInventory("MissileTankAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,5,0,0); }
       break;
 
 // If I was a smart man I would figure out how to turn this into an array
@@ -814,7 +817,7 @@ script METROID_DECORATE (int which)
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRSTANK");
-        if (!CheckInventory("SuperMissileAcquired") && (!isFreeForAll() || !isTeamGame()) )
+        if (!CheckInventory("SuperMissileAcquired") && CheckInventory("CoopModeOn") )
           {
           GiveInventory("SuperMissileAcquired",1);
           Thing_Stop(0);
@@ -848,7 +851,8 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("nrgtank/get",127); Log(s:"SUPER MISSILE TANK: ACQUIRED"); GiveInventory("SuperMissileAcquired",1); }
+      { ActivatorSound("nrgtank/get",127); GiveInventory("SuperMissileAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,6,0,0); }
       break;
 
 // But alas, I am not a smart man.
@@ -857,7 +861,7 @@ script METROID_DECORATE (int which)
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRPTANK");
-        if (!CheckInventory("PowerBombAcquired") && (!isFreeForAll() || !isTeamGame()) )
+        if (!CheckInventory("PowerBombAcquired") && CheckInventory("CoopModeOn") )
           {
           GiveInventory("PowerBombAcquired",1);
           Thing_Stop(0);
@@ -891,7 +895,8 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("nrgtank/get",127); Log(s:"POWER BOMB TANK: ACQUIRED"); GiveInventory("PowerBombAcquired",1); }
+      { ActivatorSound("nrgtank/get",127); GiveInventory("PowerBombAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,7,0,0); }
       break;
 
 // In fact, I'm really kind of a stupid man.
@@ -900,7 +905,7 @@ script METROID_DECORATE (int which)
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRSBOOS");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("SpeedBoosterAcquired",1);
           Thing_Stop(0);
@@ -934,14 +939,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("nrgtank/get",127); Log(s:"SPEED BOOSTER: ACQUIRED"); GiveInventory("SpeedBoosterAcquired",1); }
+      { ActivatorSound("nrgtank/get",127); GiveInventory("SpeedBoosterAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,8,0,0); }
       break;
 
     case 23:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRETANK");
-        if (CheckInventory("EnergyTankAcquired") == 0 && ( !isFreeForAll() || !isTeamGame() ))
+        if (CheckInventory("EnergyTankAcquired") == 0 && CheckInventory("CoopModeOn") )
           {
           GiveInventory("EnergyTankAcquired",1);
           Thing_Stop(0);
@@ -975,14 +981,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("nrgtank/get",127); Log(s:"ENERGY TANK: ACQUIRED"); GiveInventory("EnergyTankAcquired",1); }
+      { ActivatorSound("nrgtank/get",127); GiveInventory("EnergyTankAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,9,0,0); }
       break;
 
     case 24:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRSJUMP");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("SpaceJumpAcquired",1);
           Thing_Stop(0);
@@ -1016,14 +1023,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("nrgtank/get",127); Log(s:"SPACE JUMP: ACQUIRED"); GiveInventory("SpaceJumpAcquired",1); }
+      { ActivatorSound("nrgtank/get",127); GiveInventory("SpaceJumpAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,10,0,0); }
       break;
 
     case 25:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRECONV");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("ChargeComboAcquired",1);
           Thing_Stop(0);
@@ -1057,14 +1065,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("weapon/get",127); Log(s:"ENERGY CONVERTER UNIT: ACQUIRED"); GiveInventory("ChargeComboAcquired",1); }
+      { ActivatorSound("weapon/get",127); GiveInventory("ChargeComboAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,11,0,0); }
       break;
 
     case 26:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRSPBEM");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("SpazerBeamAcquired",1);
           Thing_Stop(0);
@@ -1098,14 +1107,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("weapon/get",127); Log(s:"SPAZER BEAM: ACQUIRED"); GiveInventory("SpazerBeamAcquired",1); }
+      { ActivatorSound("weapon/get",127); GiveInventory("SpazerBeamAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,12,0,0); }
       break;
 
     case 27:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRPLBEM");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("PlasmaBeamAcquired",1);
           Thing_Stop(0);
@@ -1139,14 +1149,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("weapon/get",127); Log(s:"PLASMA BEAM: ACQUIRED"); GiveInventory("PlasmaBeamAcquired",1); }
+      { ActivatorSound("weapon/get",127); GiveInventory("PlasmaBeamAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,13,0,0); }
       break;
 
     case 28:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRWVBEM");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("WaveBeamAcquired",1);
           Thing_Stop(0);
@@ -1180,14 +1191,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("weapon/get",127); Log(s:"WAVE BEAM: ACQUIRED"); GiveInventory("WaveBeamAcquired",1); }
+      { ActivatorSound("weapon/get",127); GiveInventory("WaveBeamAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,14,0,0); }
       break;
 
     case 29:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRICBEM");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("IceBeamAcquired",1);
           Thing_Stop(0);
@@ -1221,14 +1233,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("weapon/get",127); Log(s:"ICE BEAM: ACQUIRED"); GiveInventory("IceBeamAcquired",1); }
+      { ActivatorSound("weapon/get",127); GiveInventory("IceBeamAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,15,0,0); }
       break;
 
     case 30:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRLNBEM");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("LongBeamAcquired",1);
           Thing_Stop(0);
@@ -1262,14 +1275,15 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("weapon/get",127); Log(s:"LONG BEAM: ACQUIRED"); GiveInventory("LongBeamAcquired",1); }
+      { ActivatorSound("weapon/get",127); GiveInventory("LongBeamAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,16,0,0); }
       break;
 
     case 31:
       if (!CheckInventory("NoMetroidPickupSystem"))
       {
         SetFont("BNRUNOWN");
-        if ( !isFreeForAll() || !isTeamGame() )
+        if ( CheckInventory("CoopModeOn") )
           {
           GiveInventory("DoomCannonAcquired",1);
           Thing_Stop(0);
@@ -1303,7 +1317,8 @@ script METROID_DECORATE (int which)
           }
       }
       else
-      { ActivatorSound("cannon/get",127); Log(s:"dX000FFFsF \cferror"); GiveInventory("DoomCannonAcquired",1); }
+      { ActivatorSound("cannon/get",127); GiveInventory("DoomCannonAcquired",1); 
+          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,17,0,0); }
       break;
 
     }
@@ -1311,6 +1326,8 @@ script METROID_DECORATE (int which)
 
 script METROID_DECORATECLIENT (int which) clientside
 {
+    if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
+
     switch (which)
     {
     case 0:
@@ -1332,13 +1349,63 @@ script METROID_DECORATECLIENT (int which) clientside
         break;
 
     case 3:
-        if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
         SetMusic("M_NOTHNG");
         break;
 
     case 4:
-        if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
         SetMusic("*");
+        break;
+
+    case 5:
+        Log(s:"MISSILE TANK: ACQUIRED");
+        break;
+
+    case 6:
+        Log(s:"SUPER MISSILE TANK: ACQUIRED");
+        break;
+
+    case 7:
+        Log(s:"POWER BOMB TANK: ACQUIRED");
+        break;
+
+    case 8:
+        Log(s:"SPEED BOOSTER: ACQUIRED");
+        break;
+
+    case 9:
+        Log(s:"ENERGY TANK: ACQUIRED");
+        break;
+
+    case 10:
+        Log(s:"SPACE JUMP: ACQUIRED");
+        break;
+
+    case 11:
+        Log(s:"ENERGY CONVERTER UNIT: ACQUIRED");
+        break;
+
+    case 12:
+        Log(s:"SPAZER BEAM: ACQUIRED");
+        break;
+
+    case 13:
+        Log(s:"PLASMA BEAM: ACQUIRED");
+        break;
+
+    case 14:
+        Log(s:"WAVE BEAM: ACQUIRED");
+        break;
+
+    case 15:
+        Log(s:"ICE BEAM: ACQUIRED");
+        break;
+
+    case 16:
+        Log(s:"LONG BEAM: ACQUIRED");
+        break;
+
+    case 17:
+        Log(s:"dX000FFFsF \cferror");
         break;
     }
 }
