@@ -64,6 +64,7 @@ actor SynthFireLeft : Boolean {}
 actor SynthFireRight : Boolean {}
 actor SpeedBoosterActive : Boolean {}
 actor LaserSequence : Boolean {}
+actor TheReturnOfSamusReturns : Boolean {}
 
 actor BorphMallAcquired : Boolean {}
 actor MissileTankAcquired : Boolean {}
