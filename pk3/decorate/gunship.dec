@@ -470,6 +470,7 @@ ACTOR "Gunship Turrets" : Weapon
     Weapon.SlotNumber 0
     +NOAUTOAIM
     +UNDROPPABLE
+    +CHEATNOTWEAPON
     States
     {
     Ready:
