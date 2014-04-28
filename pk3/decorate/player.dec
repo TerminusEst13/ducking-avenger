@@ -89,6 +89,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "LongCharged", 0.65
     DamageFactor "LongCombo", 0.65
     DamageFactor "DoomCannon", 0.65
+    DamageFactor "DoomCombo", 0.65
     DamageFactor "Missile", 0.45
     DamageFactor "SuperMissile", 0.45
     DamageFactor "BoostBall", 0.65
