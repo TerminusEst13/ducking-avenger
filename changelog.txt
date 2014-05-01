@@ -26,3 +26,5 @@ From 1.777b to Alpha 2:
 - Picking up the Space Jump will give the Morph Ball the ability to jump while morphed. This does not work for metroid_spacejump 1.
 - The Ice Combo now checks for ten missiles instead of five.
 - The Doom Cannon now has its Charge Combo.
+- The Ice Beam's blast radius in co-op is expanded, allowing the player to catch more enemies with one shot. The Ice Beam's blast radius in PvP is ever-so-slightly expanded.
+- All Charged beams aside from Ice have had their damage dramatically increased in co-op, to make charging up more viable.

@@ -219,7 +219,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_PlayWeaponSound("dcann/chfire")
         DCAN A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Recoil(3)
-        TNT1 A 0 A_FireBullets(11.2,7.1,20,15,"DoomBulletPuff",FBF_NORANDOM)
+        TNT1 A 0 A_FireBullets(11.2,7.1,20,20,"DoomBulletPuff",FBF_NORANDOM)
         TNT1 A 0 Radius_Quake(2,8,0,1,0)
         TNT1 A 0 A_SetPitch(pitch-random(100,400)/100.00)
         TNT1 A 0 A_SetAngle(angle-random(-200,200)/100.00)

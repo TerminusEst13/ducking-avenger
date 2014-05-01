@@ -696,9 +696,9 @@ actor SpazerBolt1Charged : SpazerBolt1 { Damage (30) DamageType "SpazerCharged" 
 actor SpazerBolt2Charged : SpazerBolt2 { Damage (30) DamageType "SpazerCharged" }
 actor SpazerBolt3Charged : SpazerBolt3 { Damage (30) DamageType "SpazerCharged" }
 
-actor SpazerBolt1CoopCharged : SpazerBolt1Coop { Damage (25) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
-actor SpazerBolt2CoopCharged : SpazerBolt2Coop { Damage (25) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
-actor SpazerBolt3CoopCharged : SpazerBolt3Coop { Damage (25) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
+actor SpazerBolt1CoopCharged : SpazerBolt1Coop { Damage (35) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
+actor SpazerBolt2CoopCharged : SpazerBolt2Coop { Damage (35) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
+actor SpazerBolt3CoopCharged : SpazerBolt3Coop { Damage (35) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
 
 actor SpazerBoltCharged1 : SpazerBolt1Charged
 {
@@ -714,7 +714,7 @@ actor SpazerBoltCharged1 : SpazerBolt1Charged
     }
 }
 
-actor SpazerBoltCharged1Coop : SpazerBoltCharged1 { Damage (25) Species "Player" +THRUSPECIES  }
+actor SpazerBoltCharged1Coop : SpazerBoltCharged1 { Damage (35) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged2 : SpazerBolt1Charged
 {
@@ -730,7 +730,7 @@ actor SpazerBoltCharged2 : SpazerBolt1Charged
     }
 }
 
-actor SpazerBoltCharged2Coop : SpazerBoltCharged2 { Damage (25) Species "Player" +THRUSPECIES  }
+actor SpazerBoltCharged2Coop : SpazerBoltCharged2 { Damage (35) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged3 : SpazerBolt1Charged
 {
@@ -746,7 +746,7 @@ actor SpazerBoltCharged3 : SpazerBolt1Charged
     }
 }
 
-actor SpazerBoltCharged3Coop : SpazerBoltCharged3 { Damage (25) Species "Player" +THRUSPECIES  }
+actor SpazerBoltCharged3Coop : SpazerBoltCharged3 { Damage (35) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged4 : SpazerBolt1Charged
 {
@@ -762,7 +762,7 @@ actor SpazerBoltCharged4 : SpazerBolt1Charged
     }
 }
 
-actor SpazerBoltCharged4Coop : SpazerBoltCharged4 { Damage (25) Species "Player" +THRUSPECIES  }
+actor SpazerBoltCharged4Coop : SpazerBoltCharged4 { Damage (35) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged5 : SpazerBolt1Charged
 {
@@ -778,7 +778,7 @@ actor SpazerBoltCharged5 : SpazerBolt1Charged
     }
 }
 
-actor SpazerBoltCharged5Coop : SpazerBoltCharged5 { Damage (25) Species "Player" +THRUSPECIES  }
+actor SpazerBoltCharged5Coop : SpazerBoltCharged5 { Damage (35) Species "Player" +THRUSPECIES  }
 
 actor SpazerBoltCharged6 : SpazerBolt1Charged
 {
@@ -794,4 +794,4 @@ actor SpazerBoltCharged6 : SpazerBolt1Charged
     }
 }
 
-actor SpazerBoltCharged6Coop : SpazerBoltCharged6 { Damage (25) Species "Player" +THRUSPECIES  }
+actor SpazerBoltCharged6Coop : SpazerBoltCharged6 { Damage (35) Species "Player" +THRUSPECIES  }

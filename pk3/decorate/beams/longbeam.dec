@@ -183,7 +183,7 @@ ACTOR "Long Beam" : Weapon
         TNT1 A 0 A_FireBullets(0,0,1,135,"LongBeamPuffCharged",FBF_NORANDOM)
         goto ChargedFinish
     ChargedCoop:
-        TNT1 A 0 A_FireBullets(0,0,1,255,"LongBeamPuffCharged",FBF_NORANDOM)
+        TNT1 A 0 A_FireBullets(0,0,1,320,"LongBeamPuffCharged",FBF_NORANDOM)
     ChargedFinish:
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)

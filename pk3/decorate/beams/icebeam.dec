@@ -431,7 +431,7 @@ ACTOR IceBoltExplosion
     {
       Spawn:
 		TNT1 A 0
-		TNT1 A 1 A_Explode(32,64,0)
+		TNT1 A 1 A_Explode(32,96,0)
         Stop
     }
 }
@@ -462,7 +462,7 @@ actor IceBoltExplosionCoop : IceBoltExplosion
     {
       Spawn:
 		TNT1 A 0
-		TNT1 A 1 A_Explode(32,128,0)
+		TNT1 A 1 A_Explode(32,160,0)
         Stop
     }
 }
@@ -792,7 +792,7 @@ ACTOR IceBoltChargedExplosion
     {
       Spawn:
 		TNT1 A 0
-		TNT1 A 1 A_Explode(64,96,0)
+		TNT1 A 1 A_Explode(64,112,0)
         Stop
     }
 }
@@ -803,7 +803,7 @@ actor IceBoltChargedExplosionCoop : IceBoltChargedExplosion
     {
       Spawn:
 		TNT1 A 0
-		TNT1 A 1 A_Explode(64,128,0)
+		TNT1 A 1 A_Explode(64,192,0)
         Stop
     }
 }

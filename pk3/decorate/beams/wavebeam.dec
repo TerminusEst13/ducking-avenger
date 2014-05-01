@@ -812,9 +812,53 @@ ACTOR WaveBoltCharged3 : WaveBoltCharged
     }
 }
 
-actor WaveBoltChargedCoop : WaveBoltCharged { Damage (50) Species "Player" +THRUSPECIES }
-actor WaveBoltCharged2Coop : WaveBoltCharged2 { Damage (50) Species "Player" +THRUSPECIES }
-actor WaveBoltCharged3Coop : WaveBoltCharged3 { Damage (50) Species "Player" +THRUSPECIES }
+actor WaveBoltChargedCoop : WaveBoltCharged
+{
+    Damage (50)
+    Species "Player"
+    +THRUSPECIES
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
+        WTRL A 2 BRIGHT A_Scream
+        WTRL BCD 2 BRIGHT 
+        stop
+    }
+}
+
+actor WaveBoltCharged2Coop : WaveBoltCharged2
+{
+    Damage (50)
+    Species "Player"
+    +THRUSPECIES
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
+        WTRL A 2 BRIGHT A_Scream
+        WTRL BCD 2 BRIGHT 
+        stop
+    }
+}
+
+actor WaveBoltCharged3Coop : WaveBoltCharged3
+{
+    Damage (50)
+    Species "Player"
+    +THRUSPECIES
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
+        WTRL A 2 BRIGHT A_Scream
+        WTRL BCD 2 BRIGHT 
+        stop
+    }
+}
 
 actor WaveSplatterShot
 {
