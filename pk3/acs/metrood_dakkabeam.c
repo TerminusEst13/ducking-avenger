@@ -449,7 +449,7 @@ script 487 (void) clientside
     int vx1 = Hack_VelX,   vy1 = Hack_VelY,   vz1 = Hack_VelZ;
     int vx  = tx-x,         vy = ty-y,         vz = tz-z;
     int mag = magnitudeThree_f(vx, vy, vz);
-    int magI = ftoi(mag);
+    int magI = min(ftoi(mag), 1024);
 
     vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
 
@@ -579,7 +579,7 @@ script 489 (int x, int y, int z)
 
     vx = tx-x; vy = ty-y; vz = tz-z; mag = magnitudeThree_f(vx, vy, vz);
     vx = FixedDiv(vx, mag); vy = FixedDiv(vy, mag); vz = FixedDiv(vz, mag);
-    magI = ftoi(mag);
+    magI = min(ftoi(mag), 1024);
 
     for (i = 0; i < magI; i += 16)
     {
