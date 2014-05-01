@@ -393,7 +393,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_ClearRefire
         TNT1 A 0 A_TakeInventory("MissileAmmo",10)
         DCAN RSTUVW 1 BRIGHT
-        XCAN A 1 BRIGHT
+        XBEM A 1 BRIGHT
         DCAS AB 2 BRIGHT
         TNT1 A 0 A_PlaySoundEx("dchain/raise","soundslot5",0,0)
         DCAS CDEFGH 2 BRIGHT
