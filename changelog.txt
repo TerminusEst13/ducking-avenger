@@ -20,7 +20,7 @@ From 1.777b to Alpha 2:
 - By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.
 - The Speed Booster script no longer overflows with copious respawning.
 - Dying now properly lowers your arm cannon on death.
-- The Missiles' rate of fire has been shortened by six tics.
+- The Missiles' rate of fire has been shortened by eight tics.
 - The Speed Booster now replaces the Partial Invisibility sphere rather than the Radsuit.
 - An optional Metroid-style system has been implemented--on picking up a major item, the world freezes, a banner pops up, and the fanfare plays. For those who want nothing to do with this, hit the Use button to break out, or type 'metroid_cl_nometroidpickups 1' in the console.
 - Picking up the Space Jump will give the Morph Ball the ability to jump while morphed. This does not work for metroid_spacejump 1.
@@ -28,3 +28,5 @@ From 1.777b to Alpha 2:
 - The Doom Cannon now has its Charge Combo.
 - The Ice Beam's blast radius in co-op is expanded, allowing the player to catch more enemies with one shot. The Ice Beam's blast radius in PvP is ever-so-slightly expanded.
 - All Charged beams aside from Ice have had their damage dramatically increased in co-op, to make charging up more viable.
+- metroid_loaded has changed from activated-whenever to activated-on-first-spawn, and has been expanded on--1 gives you all weapons, 2 gives you more missiles, 3 gives you even more missiles, 4 gives you all weapons and more missiles, 5 gives you weapons/missiles/super missiles/power bombs, 6 gives you weapons/missiles/super missiles/power bombs/charge combo/speed booster.
+- The Bomb ammo regeneration has been changed to be work via ACS rather than Decorate, which means that Spread should no longer give infinite bombs and Time Freeze should no longer stop bombs.

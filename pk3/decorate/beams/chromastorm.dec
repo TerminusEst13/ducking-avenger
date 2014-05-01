@@ -926,7 +926,7 @@ actor "Chroma Storm": Weapon
         MBEM A 0 A_Light0
         MBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         MBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        MBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        MBEM FFGGH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Red
 
       MissileAnim_Yellow:
@@ -938,7 +938,7 @@ actor "Chroma Storm": Weapon
         PBEM A 0 A_Light0
         PBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         PBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        PBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        PBEM FFGGH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Yellow
 
       MissileAnim_Green:
@@ -950,7 +950,7 @@ actor "Chroma Storm": Weapon
         SBEM A 0 A_Light0
         SBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         SBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        SBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        SBEM FFGGH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Green
 
       MissileAnim_Blue:
@@ -962,7 +962,7 @@ actor "Chroma Storm": Weapon
         IBEM A 0 A_Light0
         IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        IBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM FFGGH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Blue
 
       MissileAnim_Purple:
@@ -974,7 +974,7 @@ actor "Chroma Storm": Weapon
         WBEM A 0 A_Light0
         WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
-        WBEM FFFGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM FFGGH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto AltEnd_Purple
 
       MissileAnim_Chilled:

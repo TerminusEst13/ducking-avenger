@@ -402,28 +402,83 @@ script METROID_ENTER ENTER
     ACS_ExecuteAlways(351,0,0,0);
 
     if (!CheckInventory("InGame")) {
-    if (GetCvar("metroid_startingtanks") == 1) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
-    if (GetCvar("metroid_startingtanks") == 2) { GiveInventory("EnergyTankAcquired",2); SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
-    if (GetCvar("metroid_startingtanks") == 3) { GiveInventory("EnergyTankAcquired",3); SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
-    if (GetCvar("metroid_startingtanks") == 4) { GiveInventory("EnergyTankAcquired",4); SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
-    if (GetCvar("metroid_startingtanks") == 5) { GiveInventory("EnergyTankAcquired",5); SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
-    if (GetCvar("metroid_startingtanks") == 6) { GiveInventory("EnergyTankAcquired",6); SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
-    if (GetCvar("metroid_startingtanks") == 7) { GiveInventory("EnergyTankAcquired",7); SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
-    if (GetCvar("metroid_startingtanks") == 8) { GiveInventory("EnergyTankAcquired",8); SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
-    if (GetCvar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
-    if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
 
-    /*if (GameType () != GAME_TITLE_MAP)
+        if (GetCVar("metroid_loaded") == 1)
         {
-        SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-        SetActorProperty(0, APROP_INVULNERABLE, 1);
-        ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-        LocalAmbientSound("system/samusappear",127);
-        delay(210);
-        SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
-        SetActorProperty(0, APROP_INVULNERABLE, 0);
-        ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-        }*/
+            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
+            GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
+            GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
+            GiveInventory("Ice Beam",1); GiveInventory("IceBeamAcquired",1);
+            GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1);
+        }
+
+        if (GetCvar("metroid_loaded") == 2) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }
+
+        if (GetCvar("metroid_loaded") == 3) { SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); }
+
+        if (GetCVar("metroid_loaded") == 4)
+        {
+            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
+            GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
+            GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
+            GiveInventory("Ice Beam",1); GiveInventory("IceBeamAcquired",1);
+            GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1);
+            SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); 
+        }
+
+        if (GetCVar("metroid_loaded") == 5)
+        {
+            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
+            GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
+            GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
+            GiveInventory("Ice Beam",1); GiveInventory("IceBeamAcquired",1);
+            GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1);
+            SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); 
+            SetAmmoCapacity("SuperMissileAmmo",4); GiveInventory("SuperMissileAmmo",4); GiveInventory("SuperMissileAcquired",1); 
+            SetAmmoCapacity("PowerBombAmmo",2); GiveInventory("PowerBombAmmo",2); GiveInventory("PowerBombAcquired",1); 
+        }
+
+        if (GetCVar("metroid_loaded") == 6)
+        {
+            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
+            GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
+            GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
+            GiveInventory("Ice Beam",1); GiveInventory("IceBeamAcquired",1);
+            GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1);
+            SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); 
+            SetAmmoCapacity("SuperMissileAmmo",4); GiveInventory("SuperMissileAmmo",4); GiveInventory("SuperMissileAcquired",1); 
+            SetAmmoCapacity("PowerBombAmmo",2); GiveInventory("PowerBombAmmo",2); GiveInventory("PowerBombAcquired",1); 
+            GiveInventory("SpeedBoosterAcquired",1);
+            GiveInventory("ChargeComboAcquired",1);
+            GiveInventory("SpaceJumpAcquired",1);
+        }
+
+        if (GetCvar("metroid_startingtanks") == 1) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
+        if (GetCvar("metroid_startingtanks") == 2) { GiveInventory("EnergyTankAcquired",2); SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
+        if (GetCvar("metroid_startingtanks") == 3) { GiveInventory("EnergyTankAcquired",3); SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
+        if (GetCvar("metroid_startingtanks") == 4) { GiveInventory("EnergyTankAcquired",4); SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
+        if (GetCvar("metroid_startingtanks") == 5) { GiveInventory("EnergyTankAcquired",5); SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
+        if (GetCvar("metroid_startingtanks") == 6) { GiveInventory("EnergyTankAcquired",6); SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
+        if (GetCvar("metroid_startingtanks") == 7) { GiveInventory("EnergyTankAcquired",7); SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
+        if (GetCvar("metroid_startingtanks") == 8) { GiveInventory("EnergyTankAcquired",8); SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
+        if (GetCvar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
+        if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
+
+        /*if (GameType () != GAME_TITLE_MAP)
+            {
+            SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+            SetActorProperty(0, APROP_INVULNERABLE, 1);
+            ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
+            LocalAmbientSound("system/samusappear",127);
+            delay(210);
+            SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+            SetActorProperty(0, APROP_INVULNERABLE, 0);
+            ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
+            }*/
     }
     GiveInventory("InGame",1);
 
@@ -464,16 +519,6 @@ script METROID_ENTER ENTER
         
         if (array_metpick[pln]) { GiveInventory("NoMetroidPickupSystem", 1); }
         else { TakeInventory("NoMetroidPickupSystem", 0x7FFFFFFF); }
-
-        // Loaded shit
-        if (GetCVar("metroid_loaded") == 1)
-        {
-            if (CheckInventory("Spazer Beam") == 0) { GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1); }
-            if (CheckInventory("Plasma Beam") == 0) { GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1); }
-            if (CheckInventory("Wave Beam") == 0) { GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1); }
-            if (CheckInventory("Ice Beam") == 0) { GiveInventory("Ice Beam",1); GiveInventory("IceBeamAcquired",1); }
-            if (CheckInventory("Long Beam") == 0) { GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1); }
-        }
 
         // Armor shit
         oarmor = armor;
@@ -1321,6 +1366,12 @@ script METROID_DECORATE (int which)
           ACS_ExecuteAlways(METROID_DECORATECLIENT,0,17,0,0); }
       break;
 
+    case 32:
+        delay(32);
+        if (isCoop() || isSinglePlayer()) { GiveInventory("BombCount",1); }
+        else { delay(8); GiveInventory("BombCount",1); }
+        break;
+
     }
 }
 
@@ -1472,8 +1523,8 @@ script METROID_SPEEDBOOSTER ENTER
                 GiveInventory("SpeedBoosterFlashing",1);
             }
         }
-	    else
-	    {
+        else
+        {
             TakeInventory("SpeedBooster",1);
             TakeInventory("SpeedBoosterPrepare",1);
             TakeInventory("SpeedWalker",1);

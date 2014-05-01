@@ -260,7 +260,7 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_Light0
         TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
         SBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        SBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
+        SBEM EEFFFEEGGHH 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         SBEM A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
     AltFireChilled:
