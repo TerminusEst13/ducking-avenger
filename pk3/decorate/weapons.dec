@@ -175,7 +175,7 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
 {
     Inventory.PickupMessage ""//"ENERGY CONVERSION UNIT: ACQUIRED"
     +AUTOACTIVATE
-    Scale 0.1
+    //Scale 0.1
     +NOGRAVITY
     +FLOATBOB
     Inventory.RespawnTics 4200
@@ -185,7 +185,7 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,17,0,0) == 1, "NoPickup")
     Spawn2:
-        CCMB ABCDEFGHIJKLMNOP 2 bright
+        CCMB A 2 bright
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("MissileTankAcquired",1,1)

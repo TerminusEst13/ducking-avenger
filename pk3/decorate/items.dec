@@ -330,14 +330,13 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere 17529
     Inventory.PickupSound "shabadoobietachihenshin"//"nrgtank/get"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
-    +NOGRAVITY
+    //+NOGRAVITY
     +FLOATBOB
-    Scale 0.17
     States
     {
     Spawn:
-        ETNK A 10 BRIGHT
-        ETNK A 5
+        ETNK ABCDEF 10 BRIGHT
+        ETNK FEDCBAAAAAA 5 BRIGHT
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("ETNotInThisLevel",1,"PickupFail")
@@ -561,12 +560,12 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
 {
     Inventory.PickupMessage ""//"SPACE JUMP: ACQUIRED"
     Inventory.PickupSound "lupacchimagictachigo"//"nrgtank/get"
-    Renderstyle Add
-    Alpha 0.9
+    //Renderstyle Add
+    //Alpha 0.9
     +AUTOACTIVATE
     +NOGRAVITY
-    +FLOATBOB
-    Scale 0.175
+    //+FLOATBOB
+    //Scale 0.175
     States
     {
     Spawn:
@@ -592,7 +591,7 @@ ACTOR SpeedBoosterPickup : CustomInventory replaces BlurSphere 17531
     Inventory.PickupSound "boooooooooooooooooobs"//"nrgtank/get"
     +AUTOACTIVATE
     +NOGRAVITY
-    +FLOATBOB
+    //+FLOATBOB
     States
     {
     Spawn:
