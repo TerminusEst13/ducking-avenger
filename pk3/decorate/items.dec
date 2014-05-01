@@ -563,8 +563,8 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
     //Renderstyle Add
     //Alpha 0.9
     +AUTOACTIVATE
-    +NOGRAVITY
-    //+FLOATBOB
+    //+NOGRAVITY
+    +FLOATBOB
     //Scale 0.175
     States
     {
@@ -590,8 +590,8 @@ ACTOR SpeedBoosterPickup : CustomInventory replaces BlurSphere 17531
     Inventory.PickupMessage ""//"SPEED BOOSTER: ACQUIRED"
     Inventory.PickupSound "boooooooooooooooooobs"//"nrgtank/get"
     +AUTOACTIVATE
-    +NOGRAVITY
-    //+FLOATBOB
+    //+NOGRAVITY
+    +FLOATBOB
     States
     {
     Spawn:
