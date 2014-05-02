@@ -29,8 +29,9 @@ GRAPHICS:
 - VincentPrice (Making the model the Morph Ball was based off)
 - TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)
 - PresidentPeople (The dynamic lights for the Morph Ball)
-- Revae (Chainsaw sprites)
+- Revae (Chainsaw attack sprites)
 - Xaser (Chainsaw projectile sprites)
+- Sgt. Shivers (For the Arm Cannon/Chainsaw conversion sprites)
 
 SOUNDS:
 =========

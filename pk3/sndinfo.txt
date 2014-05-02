@@ -1,7 +1,9 @@
 silence                 QUIET
 system/healthsiren      WARNSRN
-//system/samusappear      JNGLARIV
-//system/samusitem        JNGLITEM
+system/samusappear      JNGLARIV
+system/samusitem        JNGLITE1
+system/samusitembig     JNGLITE2
+system/samusitemunk     JNGLITE3
 
 menu/activate        MENUUP // Bring up the main menu. - Taken from Metroid Prime 3
 menu/clear           MENUDOWN // Close main menu. - Taken from Metroid Prime 3
@@ -86,6 +88,10 @@ speedloop2              SPDBSTL2
 
 $limit speedloop1 0
 $limit speedloop2 0
+
+// Beams
+
+beam/deselect           WPNDSLCT
 
 // Power Beam
 pbeam/fire              PBEAMFIR
@@ -201,6 +207,9 @@ health/50               HEALF50
 health/100              HEALF100
 weapon/get              WEAPGET // Taken from Metroid Prime
 nrgtank/get             ENRGTANK // Taken from Metroid Prime 3
+movement/get            MOVEGET
+charge/get              CHARGGET
+arsenal/get             ARSEGET
 cannon/get              DCANNGET
 rawenergy/idle          RAWENIDL // Taken from Zero Tolerance
 rawenergy/get           RAWENPKU // Taken from...MechWarrior, I think?

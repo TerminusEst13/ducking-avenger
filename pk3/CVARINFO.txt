@@ -10,9 +10,16 @@ server int metroid_nolevellimiter = 0;
 server int metroid_jumpcount = 2;
 server int metroid_nomorph = 0;
 server int metroid_noenemydrops = 0;
+server int metroid_permabfg = 0;
+server int metroid_soultanks = 0;
+server int metroid_nobfg = 0;
+server int metroid_doomcannon = 0;
+server int metroid_dropstay = 0;
 
 // Clientside cvars
 user int metroid_cl_noeffects = 0;
 user int metroid_cl_nosiren = 0;
 user int metroid_cl_morphcamera = 1;
 user int metroid_cl_doomhealth = 0;
+user int metroid_cl_nometroidpickups = 0;
+user int metroid_cl_chromabeamdensity = 8;
