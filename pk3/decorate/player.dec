@@ -182,7 +182,7 @@ actor SamusPlayer : PlayerPawn
         SAMS DCDC 4
         SAMS I 2 A_PlayerScream
         SAMS I 3 A_NoBlocking
-        SAMS J 5
+        SAMS J 4
         TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart1",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
         TNT1 AAA 0 A_SpawnItemEx("MorphBallPart2",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
         TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart3",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
@@ -191,7 +191,7 @@ actor SamusPlayer : PlayerPawn
         TNT1 AAA 0 A_SpawnItemEx("MorphBallPart6",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
         TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart7",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
         TNT1 AAA 0 A_SpawnItemEx("MorphBallPart8",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
-        SAMS KLM 5
+        SAMS KLM 4
         NOPE A 1
         NOPE A -1
         Stop

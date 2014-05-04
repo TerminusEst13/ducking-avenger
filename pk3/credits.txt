@@ -32,6 +32,7 @@ GRAPHICS:
 - Revae (Chainsaw attack sprites)
 - Xaser (Chainsaw projectile sprites)
 - Sgt. Shivers (For the Arm Cannon/Chainsaw conversion sprites)
+- Mr. Giga (Base sprites for the Chroma Storm pickup)
 
 SOUNDS:
 =========
@@ -46,5 +47,5 @@ SOUNDS:
 CODE:
 =========
 - Repo Man (The basis of the Wave Beam projectile code)
-- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion, the Chroma Storm, the gunship system...)
+- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion, the Chroma Storm, reworking the Metroid pickup system, the gunship system...)
 - TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)
