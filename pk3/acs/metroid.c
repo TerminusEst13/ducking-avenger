@@ -394,6 +394,9 @@ script METROID_ENTER ENTER
     int oarmor;
     int armor;
     int pln = PlayerNumber();
+    int frozen = 0, wasfrozen;
+    int jumpz = GetActorProperty(0, APROP_JumpZ);
+    int frozenjumpz = FixedDiv(jumpz, sqrt(2.0));
 
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
     SetActorProperty(0, APROP_INVULNERABLE, 0);
@@ -540,6 +543,13 @@ script METROID_ENTER ENTER
         if (keyDown(BT_ALTATTACK)) { GiveInventory("SynthFireRight", 1); }
         else { TakeInventory("SynthFireRight", 0x7FFFFFFF); }
         }
+
+        // FREEZE, MOFUCKA
+        wasfrozen = frozen;
+        frozen = CheckInventory("IceBeamChilled");
+
+        if (!wasfrozen && frozen) { SetActorProperty(0, APROP_JumpZ, frozenjumpz); }
+        if (!frozen && wasfrozen) { SetActorProperty(0, APROP_JumpZ, jumpz); }
 
         if (isDead(0)) { terminate; }
         delay(1);
