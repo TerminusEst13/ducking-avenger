@@ -22,6 +22,7 @@ actor "Chroma Storm": Weapon
     Weapon.AmmoType ""
     Weapon.AmmoType2 "MissileAmmo"
     Weapon.AmmoUse  0
+    Obituary "%k left %o seeing red."
 
     Weapon.SelectionOrder 1750
     Weapon.SlotNumber 9
