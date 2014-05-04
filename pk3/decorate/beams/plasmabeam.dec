@@ -388,8 +388,8 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
 actor PlasmaBolt
 {
-    Radius 12
-    Height 10
+    Radius 8
+    Height 8
     Projectile
     +NOGRAVITY
     +RIPPER
@@ -756,7 +756,7 @@ actor PlasmaBeamCharging7 : PlasmaBeamCharging1 { scale 0.15 }
 
 actor PlasmaBoltCharged
 {
-    Radius 14
+    Radius 12
     Height 10
     Projectile
     +NOGRAVITY

@@ -386,8 +386,8 @@ ACTOR "Ice Beam" : Weapon
 
 actor IceBolt
 {
-    Radius 10
-    Height 12
+    Radius 8
+    Height 10
     Projectile
     +NOGRAVITY
     Speed 30
@@ -726,8 +726,8 @@ actor IceBeamCharging7 : IceBeamCharging1 { scale 0.15 }
 
 actor IceBoltCharged
 {
-    Radius 12
-    Height 12
+    Radius 10
+    Height 10
     Projectile
     +NOGRAVITY
     Speed 45
