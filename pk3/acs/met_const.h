@@ -116,42 +116,23 @@ int BigPickupMsgFonts[PICKUPTYPES] =
     "BNRUNOWN",
 };
 
-int BigPickupPauseCases[PICKUPTYPES] =
+int BigPickupSounds[PICKUPTYPES][3] =
 {
-    3,
-    3,
-    3,
-    3,
-    3,
-    3,
+    {"M_ITMGET", "GrossSoundHack1", "arsenal/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "arsenal/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "arsenal/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "nrgtank/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "movement/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "movement/get"}, 
 
-    3,
-    3,
-    3,
-    3,
-    3,
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
 
-    5,
-    6,
-};
-
-int BigPickupSounds[PICKUPTYPES] =
-{
-    "arsenal/get",
-    "arsenal/get",
-    "arsenal/get",
-    "nrgtank/get",
-    "movement/get",
-    "movement/get",
-
-    "weapon/get",
-    "weapon/get",
-    "weapon/get",
-    "weapon/get",
-    "weapon/get",
-
-    "charge/get",
-    "cannon/get",
+    {"M_ITMGE2", "GrossSoundHack2", "charge/get"}, 
+    {"M_ITMGE3", "GrossSoundHack3", "cannon/get"}, 
 };
 
 int BigPickupMessages[PICKUPTYPES] = 

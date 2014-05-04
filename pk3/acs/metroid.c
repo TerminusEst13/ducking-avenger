@@ -838,9 +838,8 @@ script METROID_DECORATE (int which, int a1, int a2)
         int forceNoPause    = !!a2;
         int whichPickup     = a1;
         int giveItem        = BigPickupItems[whichPickup];
-        int freezeCase      = BigPickupPauseCases[whichPickup];
         int message         = BigPickupMsgFonts[whichPickup];
-        int giveSound       = BigPickupSounds[whichPickup];
+        int giveSound       = BigPickupSounds[whichPickup][2];
         int hadItem         = !!CheckInventory(giveItem);
 
         GiveInventory(giveItem, 1);
@@ -860,7 +859,7 @@ script METROID_DECORATE (int which, int a1, int a2)
                 SetActorProperty(0, APROP_INVULNERABLE, 1);
 
                 HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-                ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, freezeCase);
+                ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 3, whichPickup);
 
                 for (i = 0; i < 210; i++)
                 {
@@ -870,7 +869,7 @@ script METROID_DECORATE (int which, int a1, int a2)
 
                 SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
                 SetActorProperty(0, APROP_INVULNERABLE, 0);
-                ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
+                ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 4);
 
                 TakeInventory("PowerTimeFreezer",0x7FFFFFFF);
                 HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
@@ -929,13 +928,18 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         else setresultvalue(0);
         break;
 
+
     case 3:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("M_ITMGET"); }
+        if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
+        int pickupMus = BigPickupSounds[a1][0];
+        int soundItem = BigPickupSounds[a1][1];
+
+        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic(pickupMus); }
         else
         {
             // [ijon] testmusicvol is safer than snd_musicvolume - it does no lasting damage.
             ConsoleCommand("testmusicvol 0");
-            GiveInventory("GrossSoundHack1",1);     // system/samusitem
+            GiveInventory(soundItem, 1);
         }
         break;
 
@@ -944,23 +948,6 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         else { ConsoleCommand("testmusicvol 1"); }
         break;
 
-    case 5:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("M_ITMGE2"); }
-        else 
-        {
-            ConsoleCommand("testmusicvol 0");
-            GiveInventory("GrossSoundHack2",1);     // system/samusitembig
-        }
-        break;
-
-    case 6:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("M_ITMGE3"); }
-        else 
-        {
-            ConsoleCommand("testmusicvol 0");
-            GiveInventory("GrossSoundHack3",1);     // system/samusitemunk
-        }
-        break;
 
       case 7:
         if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
