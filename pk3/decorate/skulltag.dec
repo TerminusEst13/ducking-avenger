@@ -1,0 +1,138 @@
+// Weapon/item spawners for Skulltag-specific maps. Wahey!
+
+actor NothingArmor2 : BlankPuff replaces MaxArmorBonus
+{
+    Game Doom
+    SpawnID 167
+}
+
+actor NothingHealth2: BlankPuff replaces MaxHealthBonus
+{
+    Game Doom
+    SpawnID 166
+}
+
+actor Minigun : CustomInventory 5014
+{
+    Game Doom
+    SpawnID 214
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 1,"SpawnChromaStorm")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 2,"SpawnWaveBeam")
+        TNT1 A 1
+        stop
+    SpawnChromaStorm:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("ChromaStormSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    SpawnWaveBeam:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("WaveBeamSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    }
+}
+
+ACTOR ChromaStormSpawner : RandomSpawner // Hack.
+{
+    DropItem "ChromaStormPickup", 255
+}
+
+ACTOR WaveBeamSpawner : RandomSpawner // Hack, hack.
+{
+    DropItem "WaveBeamPickup", 255
+}
+
+actor GrenadeLauncher : CustomInventory 5011
+{
+    Game Doom
+    SpawnID 163
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 1,"SpawnGrenadeLauncherReplacementNotInYet")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 2,"SpawnIceBeam")
+        TNT1 A 1
+        stop
+    SpawnGrenadeLauncherReplacementNotInYet:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("IceBeamSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    SpawnIceBeam:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("IceBeamSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    }
+}
+
+ACTOR IceBeamSpawner : RandomSpawner // Hack, hack, hack.
+{
+    DropItem "IceBeamPickup", 255
+}
+
+actor Railgun : CustomInventory 5012
+{
+    Game Doom
+    SpawnID 164
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 1,"SpawnRailgunReplacementNotInYet")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 2,"SpawnLongBeam")
+        TNT1 A 1
+        stop
+    SpawnRailgunReplacementNotInYet:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("LongBeamSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    SpawnLongBeam:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("LongBeamSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    }
+}
+
+ACTOR LongBeamSpawner : RandomSpawner // Hack, hack, hack, hack.
+{
+    DropItem "LongBeamPickup", 255
+}
+
+actor BFG10k : CustomInventory 5013
+{
+    Game Doom
+    SpawnID 165
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 1,"SpawnBFG10kReplacementNotInYet")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,19,0,0) == 2,"SpawnChargeCombo")
+        TNT1 A 1
+        stop
+    SpawnBFG10kReplacementNotInYet:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("ChargeComboSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    SpawnChargeCombo:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("ChargeComboSpawner",0,0,0,0,0,0,0,32)
+        TNT1 A 1
+        stop
+    }
+}
+
+ACTOR ChargeComboSpawner : RandomSpawner // Hack, hack, hack, hack, hack.
+{
+    DropItem "ChargeComboPickup", 255
+}

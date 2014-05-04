@@ -15,6 +15,7 @@ server int metroid_soultanks = 0;
 server int metroid_nobfg = 0;
 server int metroid_doomcannon = 0;
 server int metroid_dropstay = 0;
+server int metroid_skulltagweapons = 0;
 
 // Clientside cvars
 user int metroid_cl_noeffects = 0;

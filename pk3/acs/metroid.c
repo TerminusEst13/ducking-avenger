@@ -119,6 +119,12 @@ script METROID_OPEN OPEN
         ConsoleCommand("archivecvar metroid_soultanks");
     }
 
+    if (!GetCVar("metroid_skulltagweapons"))
+    {
+        ConsoleCommand("set metroid_skulltagweapons 0");
+        ConsoleCommand("archivecvar metroid_skulltagweapons");
+    }
+
     while (1)
     {
         if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
@@ -696,6 +702,7 @@ script METROID_RESPAWN RESPAWN
 script METROID_DECORATE (int which, int a1, int a2)
 {
     int burrshet;
+    int result;
     int pln = PlayerNumber();
     int i;
 
@@ -827,6 +834,11 @@ script METROID_DECORATE (int which, int a1, int a2)
         if(GetCvar("metroid_permabfg") == 1)
         setresultvalue(1);
         else setresultvalue(0);
+        break;
+
+    case 19:
+        result = GetCVar("metroid_skulltagweapons");
+        setresultvalue(result);
         break;
 
     // [ijon] IT'S MOTHERFUCKING *ARRAY TIME*
