@@ -4,19 +4,19 @@ actor WeaponPickup: CustomInventory
     Inventory.PickupSound "silence"
     States
     {
-    CheckStay:
+      CheckStay:
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,3,0,0) == 1, "PickupFail")
         stop
-
-    CheckStaySuper:
+        
+      CheckStaySuper:
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,18,0,0) == 1, "PickupFail")
         stop
-
-    PickupFail:
+        
+      PickupFail:
         TNT1 A 0
         fail
-
-    NoPickup:
+        
+      NoPickup:
         TNT1 A 0
         stop
     }
@@ -24,24 +24,24 @@ actor WeaponPickup: CustomInventory
 
 ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun 17533
 {
-    Inventory.PickupMessage ""//"SPAZER BEAM: ACQUIRED"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
     Scale 0.55
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         WPPK S 10 BRIGHT
         WPPK S 5
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("Spazer Beam",1,"PickupFail")
-        //TNT1 A 0 A_GiveInventory("SpazerBeamAcquired")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,26,0,0)
         TNT1 A 0 A_GiveInventory("Spazer Beam")
-        //TNT1 A 0 A_PlaySound("weapon/get", 5)
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 6)
         TNT1 A 0 A_SetBlend("70 F4 2B", 0.25, 8)
         goto CheckStay
     }
@@ -49,24 +49,24 @@ ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun 17533
 
 ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun 17534
 {
-    Inventory.PickupMessage ""//"PLASMA BEAM: ACQUIRED"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
     Scale 0.55
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         WPPK P 10 BRIGHT
         WPPK P 5
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("Plasma Beam",1,"PickupFail")
-        //TNT1 A 0 A_GiveInventory("PlasmaBeamAcquired")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,27,0,0)
         TNT1 A 0 A_GiveInventory("Plasma Beam")
-        //TNT1 A 0 A_PlaySound("weapon/get", 5)
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 7)
         TNT1 A 0 A_SetBlend("FF 1F 1F", 0.25, 8)
         goto CheckStay
     }
@@ -74,24 +74,24 @@ ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun 17534
 
 ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun 17535
 {
-    Inventory.PickupMessage ""//"WAVE BEAM: ACQUIRED"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
     Scale 0.55
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         WPPK W 10 BRIGHT
         WPPK W 5
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("Wave Beam",1,"PickupFail")
-        //TNT1 A 0 A_GiveInventory("WaveBeamAcquired")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,28,0,0)
         TNT1 A 0 A_GiveInventory("Wave Beam")
-        //TNT1 A 0 A_PlaySound("weapon/get", 5)
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 8)
         TNT1 A 0 A_SetBlend("FF 1F FF", 0.25, 8)
         goto CheckStay
     }
@@ -99,24 +99,24 @@ ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun 17535
 
 ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher 17536
 {
-    Inventory.PickupMessage ""//"ICE BEAM: ACQUIRED"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
     Scale 0.55
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         WPPK I 10 BRIGHT
         WPPK I 5
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("Ice Beam",1,"PickupFail")
-        //TNT1 A 0 A_GiveInventory("IceBeamAcquired")
         TNT1 A 0 A_GiveInventory("Ice Beam")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,29,0,0)
-        //TNT1 A 0 A_PlaySound("weapon/get", 5)
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 9)
         TNT1 A 0 A_SetBlend("3F BB FF", 0.25, 8)
         goto CheckStay
     }
@@ -124,24 +124,24 @@ ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher 17536
 
 ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle 17537
 {
-    Inventory.PickupMessage ""//"LONG BEAM: ACQUIRED"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
     Scale 0.55
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,4,0,0) == 1, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         WPPK L 10 BRIGHT
         WPPK L 5
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("Long Beam",1,"PickupFail")
-        //TNT1 A 0 A_GiveInventory("LongBeamAcquired")
         TNT1 A 0 A_GiveInventory("Long Beam")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,30,0,0)
-        //TNT1 A 0 A_PlaySound("weapon/get", 5)
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 10)
         TNT1 A 0 A_SetBlend("FA FA FA", 0.25, 8)
         goto CheckStay
     }
@@ -149,23 +149,23 @@ ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle 17537
 
 ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw 17538
 {
-    Inventory.PickupMessage ""//"ffhhhsssss22 \cferror"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,13,0,0) == 0, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         DCPK ABCD 5 bright
         DCPK ABCD 5
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("Doom Cannon",1,"PickupFail")
-        //TNT1 A 0 A_GiveInventory("DoomCannonAcquired")
         TNT1 A 0 A_GiveInventory("Doom Cannon")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,31,0,0)
-        //TNT1 A 0 A_PlaySound("cannon/get", 5)
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 12)
         TNT1 A 0 A_SetBlend("00 00 00", 0.75, 35)
         goto CheckStay
     }
@@ -173,28 +173,27 @@ ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw 17538
 
 ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
 {
-    Inventory.PickupMessage ""//"ENERGY CONVERSION UNIT: ACQUIRED"
+    Inventory.PickupMessage ""
     +AUTOACTIVATE
-    //Scale 0.1
     +NOGRAVITY
     +FLOATBOB
     Inventory.RespawnTics 4200
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,17,0,0) == 1, "NoPickup")
-    Spawn2:
+
+      Spawn2:
         CCMB A 2 bright
         loop
-    Pickup:
+
+      Pickup:
         TNT1 A 0 A_JumpIfInventory("MissileTankAcquired",1,1)
         goto PickupFail
-        TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("ChargeComboAcquired",1,"PickupFail")
-        TNT1 A 0 ACS_ExecuteAlways(594,0,25,0,0)
-        //TNT1 A 0 A_GiveInventory("ChargeComboAcquired")
-        //TNT1 A 0 A_PlaySound("weapon/get", 5)
+
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 11)
         TNT1 A 0 A_SetBlend("FF FF FF", 0.75, 35)
         goto CheckStaySuper
     }
