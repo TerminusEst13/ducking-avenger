@@ -25,12 +25,6 @@ int TeamColorCodes[TEAMCOUNT] =
     "\ch", "\cg", "\cd", "\cf", "\cm", "\cj", "\ci", "\ct"
 };
 
-int msgColors[22] = 
-{
-    "\ca", "\cb", "\cc", "\cd", "\ce", "\cf", "\cg", "\ch", "\ci", "\cj", "\ck",
-    "\cl", "\cm", "\cn", "\co", "\cp", "\cq", "\cr", "\cs", "\ct", "\cu", "\cv"
-};
-
 function int itof(int x) { return x << 16; }
 function int ftoi(int x) { return x >> 16; }
 
@@ -555,69 +549,12 @@ function int strcmp(int str1, int str2)
         
         k = GetChar(str1, i); l = GetChar(str2, i);
 
-        if (k > l) { return  1; }
-        if (k < l) { return -1; }
+        if (k > j) { return  1; }
+        if (k < j) { return -1; }
     }
     return 0;
 }
 
-function int strstr(int string, int from, int to)
-{
-    int ret = "";
-    int len = StrLen(string);
-    int fromLen = StrLen(from);
-
-    int i, j, c;
-    int charsFound  = 0;
-    int lastEnd     = -1;
-    int lastWasWord = 0;
-
-    for (i = 0; i < len; i++)
-    {
-        int chr     = GetChar(string, i);
-        int fromChr = GetChar(from, charsFound);
-        lastWasWord = 0;
-
-        if (chr == fromChr)
-        {
-            charsFound++;
-
-            if (charsFound == fromLen)
-            {
-                charsFound  = 0;
-                lastEnd     = i;
-                lastWasWord = 1;
-
-                ret = StrParam(s:ret, s:to);
-            }
-        }
-        else
-        {
-            for (j = 0; j <= charsFound; j++)
-            {
-                c = GetChar(string, lastEnd + j + 1);
-                if (c == 92) { ret = StrParam(s:ret, s:"\\"); }
-                else { ret = StrParam(s:ret, c:c); }
-            }
-
-            charsFound  = 0;
-            lastEnd     = i;
-        }
-    }
-
-    if (!lastWasWord) // dump whatever is left
-    {
-        for (j = 0; j <= charsFound; j++)
-        {
-            c = GetChar(string, lastEnd + j + 1);
-            if (c == 92) { ret = StrParam(s:ret, s:"\\"); }
-            else { ret = StrParam(s:ret, c:c); }
-        }
-    }
-        
-
-    return ret;
-}
 
 // End StrParam
 
@@ -757,7 +694,6 @@ function void SetInventory(int item, int amount)
     GiveAmmo(item, amount - count);
     return;
 }
-
 function int ToggleInventory(int inv)
 {
     if (CheckInventory(inv))
@@ -983,14 +919,18 @@ function int _defaulttid(int def, int alwaysPropagate)
         Thing_ChangeTID(0, tid);
     }
 
-    if (alwaysPropagate) { Thing_ChangeTID(0, tid); }
+    if ((changed || (alwaysPropagate == 1)) && (alwaysPropagate != 2))
+    {
+        ACS_ExecuteAlways(DEFAULTTID_SCRIPT, 0, tid,0,0);
+    }
+
     return tid;
 }
 
-function int HeightFromJumpZ(int jumpz, int gravFactor)
+script DEFAULTTID_SCRIPT (int tid) clientside
 {
-    if (jumpz < 0) { return 0; }
-    return FixedDiv(FixedMul(jumpz, jumpz), gravFactor << 1);
+    if (ConsolePlayerNumber() == -1) { terminate; }
+    Thing_ChangeTID(0, tid);
 }
 
 function int JumpZFromHeight(int height, int gravFactor)
@@ -1053,16 +993,13 @@ function int distance_ftoi(int x1, int y1, int z1, int x2, int y2, int z2)
 function void printDebugInfo(void)
 {
     int classify    = ClassifyActor(0);
-    int dead        = classify & ACTOR_DEAD;
+    int fead        = classify & ACTOR_DEAD;
     int player      = classify & ACTOR_PLAYER;
     int pln         = PlayerNumber();
-    int tid         = ActivatorTID();
 
     Log(s:" -- DEBUG INFO -- ");
 
     Log(s:"Executed on tic ", d:Timer(), s:" on map ", d:GetLevelInfo(LEVELINFO_LEVELNUM));
-    Log(s:"Has TID of ", d:tid, s:" - sharing with ", d:ThingCount(0, tid) - 1, s:" actors");
-    Log(s:"Position: (", f:GetActorX(0), s:", ", f:GetActorY(0), s:", ", f:GetActorZ(0), s:")");
 
     if (classify & (ACTOR_PLAYER | ACTOR_MONSTER))
     {
@@ -1083,7 +1020,7 @@ function int PlayerTeamCount(int teamNo)
     int i, ret;
     for (i = 0; i < PLAYERMAX; i++)
     {
-        if (GetPlayerInfo(i, PLAYERINFO_TEAM) == teamNo) { ret++; }
+        if (GetPlayerInfo(i, PLAYERINFO_TEAM) == teamNO) { ret++; }
     }
     return ret;
 }
@@ -1098,34 +1035,6 @@ function int upper(int chr)
 {
     if (chr > 90 && chr < 123) { return chr-32; }
     return chr;
-}
-
-function int strLower(int string)
-{
-    int ret = "";
-    int len = StrLen(string);
-    int i;
-
-    for (i = 0; i < len; i++)
-    {
-        ret = StrParam(s:ret, c:lower(GetChar(string, i)));
-    }
-
-    return ret;
-}
-
-function int strUpper(int string)
-{
-    int ret = "";
-    int len = StrLen(string);
-    int i;
-
-    for (i = 0; i < len; i++)
-    {
-        ret = StrParam(s:ret, c:upper(GetChar(string, i)));
-    }
-
-    return ret;
 }
 
 function int AddActorProperty(int tid, int prop, int amount)
@@ -1169,43 +1078,7 @@ function int RealPlayerCount(void)
     return ret;
 }
 
-function int quadSlope(int orgX, int orgY, int pntX, int pntY, int floatY)
-{
-    int dist = abs(pntX - orgX);
-    int height = pntY - orgY;
-    int negative = 0;
-
-    if (height == 0) { return 0; }
-
-    if (height < 0)
-    {
-        negative = -1;
-        height = -height;
-    }
-    
-    int slope = cond(floatY, sqrt(height), sqrt(itof(height)));
-
-    slope = (slope / dist);
-
-    slope = FixedMul(slope, slope);
-
-    if (negative) { return -slope; }
-    return slope;
-}
-
-function int actorVelMagnitude(int tid)
+function int actorVelMagnitude(int tid) 
 {
     return magnitudeThree_f(GetActorVelX(tid), GetActorVelY(tid), GetActorVelZ(tid));
-}
-
-function int isAmmo(int name)
-{
-    return GetAmmoCapacity(name) > 0;
-}
-
-function int intcmp(int x, int y)
-{
-    if (x < y) { return -1; }
-    if (x > y) { return  1; }
-    return 0;
 }
