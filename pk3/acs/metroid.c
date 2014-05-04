@@ -394,6 +394,10 @@ script METROID_ENTER ENTER
     int oarmor;
     int armor;
     int pln = PlayerNumber();
+    int frozen = 0, wasfrozen;
+    int jumpz = GetActorProperty(0, APROP_JumpZ);
+    int frozenjumpz = FixedDiv(jumpz, sqrt(2.0));
+    int i;
 
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
     SetActorProperty(0, APROP_INVULNERABLE, 0);
@@ -541,6 +545,16 @@ script METROID_ENTER ENTER
         else { TakeInventory("SynthFireRight", 0x7FFFFFFF); }
         }
 
+        // FREEZE, MOFUCKA
+        wasfrozen = frozen;
+        frozen = CheckInventory("IceBeamChilled");
+
+        if (!wasfrozen && frozen) { SetActorProperty(0, APROP_JumpZ, frozenjumpz); }
+        if (!frozen && wasfrozen) { SetActorProperty(0, APROP_JumpZ, jumpz); }
+
+        // Clear pickup status
+        for (i = 0; i < PICKUPTYPES; i++) { GotBigPickup[pln][i] = 0; }
+
         if (isDead(0)) { terminate; }
         delay(1);
     }
@@ -679,9 +693,10 @@ script METROID_RESPAWN RESPAWN
 // DECORATE CHECKS
 // =====================
 
-script METROID_DECORATE (int which)
+script METROID_DECORATE (int which, int a1, int a2)
 {
     int burrshet;
+    int pln = PlayerNumber();
     int i;
 
     switch (which)
@@ -814,561 +829,71 @@ script METROID_DECORATE (int which)
         else setresultvalue(0);
         break;
 
-    case 19:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRMTANK");
-        if (!CheckInventory("MissileTankAcquired") && isSinglePlayer())
-          {
-          GiveInventory("MissileTankAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          //LocalAmbientSound("system/samusitem",127);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0); //LocalSetMusic("M_ITMGET");
-          //delay(210);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0); //LocalSetMusic("*");
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
+    // [ijon] IT'S MOTHERFUCKING *ARRAY TIME*
+    //      NOW WITH 200% MORE INDEXES FOR THAT ALL-NATURAL ASSKICKING TASTE
+
+      case 20:
+        if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
+
+        int forceNoPause    = !!a2;
+        int whichPickup     = a1;
+        int giveItem        = BigPickupItems[whichPickup];
+        int message         = BigPickupMsgFonts[whichPickup];
+        int giveSound       = BigPickupSounds[whichPickup][2];
+        int hadItem         = !!CheckInventory(giveItem);
+
+        GiveInventory(giveItem, 1);
+
+        if (GotBigPickup[pln][whichPickup]) { break; }
+        GotBigPickup[pln][whichPickup] = 1;
+
+        if (!(CheckInventory("NoMetroidPickupSystem") || forceNoPause))
+        {
+            SetFont(message);
+
+            if (!hadItem && isSinglePlayer())
+            {
+                Thing_Stop(0);
+                GiveInventory("PowerTimeFreezer", 1);
+                SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
+                SetActorProperty(0, APROP_INVULNERABLE, 1);
+
+                HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
+                ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 3, whichPickup);
+
+                for (i = 0; i < 210; i++)
+                {
+                    if (keyDown(BT_USE)) { break; }
+                    Delay(1);
+                }
+
+                SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
+                SetActorProperty(0, APROP_INVULNERABLE, 0);
+                ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 4);
+
+                TakeInventory("PowerTimeFreezer",0x7FFFFFFF);
+                HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+            }
+            else
+            {
+                HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
+                ActivatorSound(giveSound, 127);
+
+                for(i = 0; i < 52; i++)
+                {
+                    if (keyDown(BT_USE)) { break; }
+                    Delay(1);
+                }
+
+                HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
+            }
+        }
         else
-          {
-          GiveInventory("MissileTankAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("arsenal/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("arsenal/get",127); GiveInventory("MissileTankAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,5,0,0); }
-      break;
-
-// If I was a smart man I would figure out how to turn this into an array
-// that could handle minor changes so I don't need to repeat the same script
-// with just a few tweaks every time.
-
-    case 20:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRSTANK");
-        if (!CheckInventory("SuperMissileAcquired") && isSinglePlayer())
-          {
-          GiveInventory("SuperMissileAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("SuperMissileAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("arsenal/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("arsenal/get",127); GiveInventory("SuperMissileAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,6,0,0); }
-      break;
-
-// But alas, I am not a smart man.
-
-    case 21:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRPTANK");
-        if (!CheckInventory("PowerBombAcquired") && isSinglePlayer())
-          {
-          GiveInventory("PowerBombAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("PowerBombAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("arsenal/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("arsenal/get",127); GiveInventory("PowerBombAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,7,0,0); }
-      break;
-
-// In fact, I'm really kind of a stupid man.
-
-    case 22:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRSBOOS");
-        if (isSinglePlayer())
-          {
-          GiveInventory("SpeedBoosterAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("SpeedBoosterAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("movement/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("movement/get",127); GiveInventory("SpeedBoosterAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,8,0,0); }
-      break;
-
-    case 23:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRETANK");
-        if (CheckInventory("EnergyTankAcquired") == 0 && isSinglePlayer() )
-          {
-          GiveInventory("EnergyTankAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("EnergyTankAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("nrgtank/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("nrgtank/get",127); GiveInventory("EnergyTankAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,9,0,0); }
-      break;
-
-    case 24:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRSJUMP");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("SpaceJumpAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("SpaceJumpAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("movement/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("movement/get",127); GiveInventory("SpaceJumpAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,10,0,0); }
-      break;
-
-    case 25:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRECONV");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("ChargeComboAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,18,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("ChargeComboAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("charge/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("charge/get",127); GiveInventory("ChargeComboAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,11,0,0); }
-      break;
-
-    case 26:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRSPBEM");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("SpazerBeamAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("SpazerBeamAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("weapon/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("weapon/get",127); GiveInventory("SpazerBeamAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,12,0,0); }
-      break;
-
-    case 27:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRPLBEM");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("PlasmaBeamAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("PlasmaBeamAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("weapon/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("weapon/get",127); GiveInventory("PlasmaBeamAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,13,0,0); }
-      break;
-
-    case 28:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRWVBEM");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("WaveBeamAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("WaveBeamAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("weapon/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("weapon/get",127); GiveInventory("WaveBeamAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,14,0,0); }
-      break;
-
-    case 29:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRICBEM");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("IceBeamAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("IceBeamAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("weapon/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("weapon/get",127); GiveInventory("IceBeamAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,15,0,0); }
-      break;
-
-    case 30:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRLNBEM");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("LongBeamAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("LongBeamAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("weapon/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("weapon/get",127); GiveInventory("LongBeamAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,16,0,0); }
-      break;
-
-    case 31:
-      if (!CheckInventory("NoMetroidPickupSystem"))
-      {
-        SetFont("BNRUNOWN");
-        if ( isSinglePlayer() )
-          {
-          GiveInventory("DoomCannonAcquired",1);
-          Thing_Stop(0);
-          if (isSinglePlayer()) { GiveInventory("PowerTimeFreezer",1); }
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
-          SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 1);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,19,0,0);
-          for(i = 0; i < 210; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 210;
-                  break; }
-              Delay(1);
-              }
-          SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN); SetActorProperty(0, APROP_INVULNERABLE, 0);
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-          if (isSinglePlayer()) { TakeInventory("PowerTimeFreezer",0x7FFFFFFF); }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-        else
-          {
-          GiveInventory("DoomCannonAcquired",1);
-          HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.25, 3);
-          ActivatorSound("cannon/get",127);
-          for(i = 0; i < 52; i++)
-              { if(GetPlayerInput(-1, INPUT_BUTTONS) & BT_USE)
-                  { i = 70;
-                  break; }
-              Delay(1);
-              }
-          HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
-          }
-      }
-      else
-      { ActivatorSound("cannon/get",127); GiveInventory("DoomCannonAcquired",1); 
-          ACS_ExecuteAlways(METROID_DECORATECLIENT,0,17,0,0); }
-      break;
+        {
+            ActivatorSound(giveSound, 127);
+            ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 7, whichPickup);
+        }
+        break;
 
     case 32:
         delay(32);
@@ -1379,7 +904,7 @@ script METROID_DECORATE (int which)
     }
 }
 
-script METROID_DECORATECLIENT (int which) clientside
+script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
 {
     if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
 
@@ -1403,96 +928,31 @@ script METROID_DECORATECLIENT (int which) clientside
         else setresultvalue(0);
         break;
 
+
     case 3:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("M_ITMGET"); }
+        if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
+        int pickupMus = BigPickupSounds[a1][0];
+        int soundItem = BigPickupSounds[a1][1];
+
+        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic(pickupMus); }
         else
         {
-            ConsoleCommand("set oldMus $snd_musicvolume");
-            ConsoleCommand("snd_musicvolume 0");
-            GiveInventory("GrossSoundHack1",1);//LocalAmbientSound("system/samusitem",127); // Turns out this doesn't work during time freeze.
+            // [ijon] testmusicvol is safer than snd_musicvolume - it does no lasting damage.
+            ConsoleCommand("testmusicvol 0");
+            GiveInventory(soundItem, 1);
         }
         break;
 
     case 4:
         if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
-        else
-        {
-            ConsoleCommand("snd_musicvolume $oldMus");
-            ConsoleCommand("unset oldMus");
-        }
+        else { ConsoleCommand("testmusicvol 1"); }
         break;
 
-    case 5:
-        Log(s:"MISSILE TANK: ACQUIRED");
-        break;
 
-    case 6:
-        Log(s:"SUPER MISSILE TANK: ACQUIRED");
-        break;
-
-    case 7:
-        Log(s:"POWER BOMB TANK: ACQUIRED");
-        break;
-
-    case 8:
-        Log(s:"SPEED BOOSTER: ACQUIRED");
-        break;
-
-    case 9:
-        Log(s:"ENERGY TANK: ACQUIRED");
-        break;
-
-    case 10:
-        Log(s:"SPACE JUMP: ACQUIRED");
-        break;
-
-    case 11:
-        Log(s:"ENERGY CONVERTER UNIT: ACQUIRED");
-        break;
-
-    case 12:
-        Log(s:"SPAZER BEAM: ACQUIRED");
-        break;
-
-    case 13:
-        Log(s:"PLASMA BEAM: ACQUIRED");
-        break;
-
-    case 14:
-        Log(s:"WAVE BEAM: ACQUIRED");
-        break;
-
-    case 15:
-        Log(s:"ICE BEAM: ACQUIRED");
-        break;
-
-    case 16:
-        Log(s:"LONG BEAM: ACQUIRED");
-        break;
-
-    case 17:
-        Log(s:"dX000FFFsF \cferror");
-        break;
-
-    case 18:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("M_ITMGE2"); }
-        else 
-        {
-            ConsoleCommand("set oldMus $snd_musicvolume");
-            ConsoleCommand("snd_musicvolume 0");
-            GiveInventory("GrossSoundHack2",1);//LocalAmbientSound("system/samusitembig",127);
-        }
-        break;
-
-    case 19:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("M_ITMGE3"); }
-        else 
-        {
-            ConsoleCommand("set oldMus $snd_musicvolume");
-            ConsoleCommand("snd_musicvolume 0");
-            GiveInventory("GrossSoundHack3",1);//LocalAmbientSound("system/samusitemunk",127);
-        }
-        break;
+      case 7:
+        if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
+        int pickupColor = msgColors[GetCVar("msg0color")];
+        Log(s:pickupColor, s:strstr(BigPickupMessages[a1], "\c-", pickupColor));
     }
 }
 

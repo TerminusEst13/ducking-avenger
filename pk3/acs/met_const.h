@@ -73,3 +73,84 @@ int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 
 #define TIMER_HBACK      6
 
 #define TRAILCOUNT 3
+
+#define PICKUPTYPES 13
+
+int GotBigPickup[PLAYERMAX][PICKUPTYPES];
+
+int BigPickupItems[PICKUPTYPES] = 
+{
+    "SuperMissileAcquired",     // 0
+    "MissileTankAcquired",
+    "PowerBombAcquired",
+    "EnergyTankAcquired",
+    "SpeedBoosterAcquired",
+    "SpaceJumpAcquired",        // 5
+
+    "SpazerBeamAcquired",
+    "PlasmaBeamAcquired",
+    "WaveBeamAcquired",
+    "IceBeamAcquired",
+    "LongBeamAcquired",         // 10
+
+    "ChargeComboAcquired",
+    "DoomCannonAcquired",
+};
+
+int BigPickupMsgFonts[PICKUPTYPES] =
+{
+    "BNRSTANK",
+    "BNRMTANK",
+    "BNRPTANK",
+    "BNRETANK",
+    "BNRSBOOS",
+    "BNRSJUMP",
+
+    "BNRSPBEM",
+    "BNRPLBEM",
+    "BNRWVBEM",
+    "BNRICBEM",
+    "BNRLNBEM",
+
+    "BNRECONV",
+    "BNRUNOWN",
+};
+
+int BigPickupSounds[PICKUPTYPES][3] =
+{
+    {"M_ITMGET", "GrossSoundHack1", "arsenal/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "arsenal/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "arsenal/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "nrgtank/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "movement/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "movement/get"}, 
+
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+    {"M_ITMGET", "GrossSoundHack1", "weapon/get"}, 
+
+    {"M_ITMGE2", "GrossSoundHack2", "charge/get"}, 
+    {"M_ITMGE3", "GrossSoundHack3", "cannon/get"}, 
+};
+
+int BigPickupMessages[PICKUPTYPES] = 
+{
+    "SUPER MISSILE TANK: ACQUIRED",
+    "MISSILE TANK: ACQUIRED",
+    "POWER BOMB TANK: ACQUIRED",
+    "ENERGY TANK: ACQUIRED",
+    "SPEED BOOSTER: ACQUIRED",
+    "SPACE JUMP: ACQUIRED",
+
+    "SPAZER BEAM: ACQUIRED",
+    "PLASMA BEAM: ACQUIRED",
+    "WAVE BEAM: ACQUIRED",
+    "ICE BEAM: ACQUIRED",
+    "LONG BEAM: ACQUIRED",
+
+    "ENERGY CONVERTER UNIT: ACQUIRED",
+    "dX000FFFsF \cferror",
+};
+
