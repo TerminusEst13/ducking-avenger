@@ -408,6 +408,8 @@ script METROID_ENTER ENTER
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
     SetActorProperty(0, APROP_INVULNERABLE, 0);
 
+    if (GameType () == GAME_TITLE_MAP) { terminate; }
+
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
     ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
