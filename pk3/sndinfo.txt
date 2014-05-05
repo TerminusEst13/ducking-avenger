@@ -181,6 +181,7 @@ bullet/puff4            blrich4
 bullet/puff5            blrich5
 bullet/puff6            blrich6
 
+$limit metroid/dakkabeamfire 0
 metroid/dakkabeamfire       sounds/beams/dakkabeam_fire.ogg
 metroid/dakkalaser_start    sounds/beams/dakkabeam_laserstart.ogg
 metroid/dakkalaser_hold     sounds/beams/dakkabeam_laserhold.ogg
