@@ -65,6 +65,8 @@ InInventory not BorphMallAcquired, 1
     IsSelected "Long Beam" { drawimage "LBEAMUSE", 38, 188; }
     InInventory DoomCannonAcquired, 1 { drawimage "DCANNGET", 4, 150; }
     IsSelected "Doom Cannon" { drawimage "DCANNUSE", 4, 150; }
+    InInventory ChromaStormAcquired, 1 { drawimage "CSTRMGET", 26, 164; }
+    IsSelected "Chroma Storm" { drawimage "CSTRMUSE", 26, 164; }
     drawbar "SHLBFULL", "SHLBEMPT", Armor, horizontal, 100, 24;
     InInventory SuperMissileAcquired, 1 { drawimage "SMISSGET", 273, 15; drawnumber 3, METHUDF, Untranslated, SuperMissileAmmo, fillzeros, 318, 14; }
     InInventory PowerBombAcquired, 1 { drawimage "PBOMBGET", 29, 15; drawnumber 3, METHUDF, Untranslated, PowerBombAmmo, fillzeros, 25, 14; }
@@ -217,6 +219,7 @@ InInventory PowerBeamAcquired, 1
     IsSelected "Ice Beam" { drawimage "WPFSICBM", 254, 4; }
     IsSelected "Long Beam" { drawimage "WPFSLNBM", 254, 4; }
     IsSelected "Doom Cannon" { drawimage "WPFSDMCN", 254, 4; }
+    IsSelected "Chroma Storm" { drawimage "WPFSCSTR", 254, 4; }
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}

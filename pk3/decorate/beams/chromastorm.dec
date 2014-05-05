@@ -25,7 +25,7 @@ actor "Chroma Storm": Weapon
     Obituary "%k left %o seeing red."
 
     Weapon.SelectionOrder 1750
-    Weapon.SlotNumber 9
+    Weapon.SlotNumber 7
 
     States
     {
