@@ -709,9 +709,7 @@ script METROID_DECORATE (int which, int a1, int a2)
     switch (which)
     {
     case 0:
-        if(GetCvar("metroid_cl_noeffects") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("metroid_cl_noeffects"));
         break;
 
     case 1:
@@ -736,34 +734,16 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 3:
-        if(GetCvar("sv_weaponstay") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("sv_weaponstay"));
         break;
 
     case 4:
-        if(GetCvar("sv_noweaponspawn") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("sv_noweaponspawn"));
         break;
 
     case 5:
-        //SetActorProperty(0,APROP_SPAWNHEALTH,(GetActorProperty(0,APROP_SPAWNHEALTH))+100);
-        //delay(1);
-        //SetActorProperty(0,APROP_HEALTH,(GetActorProperty(0,APROP_SPAWNHEALTH)));
-
-        // Well that doesn't work. Guess we'll have to do this the hacky way.
-        delay(1);
-        if (CheckInventory("EnergyTankAcquired") == 1) { SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
-        if (CheckInventory("EnergyTankAcquired") == 2) { SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
-        if (CheckInventory("EnergyTankAcquired") == 3) { SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
-        if (CheckInventory("EnergyTankAcquired") == 4) { SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
-        if (CheckInventory("EnergyTankAcquired") == 5) { SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
-        if (CheckInventory("EnergyTankAcquired") == 6) { SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
-        if (CheckInventory("EnergyTankAcquired") == 7) { SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
-        if (CheckInventory("EnergyTankAcquired") == 8) { SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
-        if (CheckInventory("EnergyTankAcquired") == 9) { SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
-        if (CheckInventory("EnergyTankAcquired") == 10) { SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
+        SetActorProperty(0, APROP_SpawnHealth,  (1 + CheckInventory("EnergyTankAcquired")) * 100);
+        SetActorProperty(0, APROP_Health, max(GetActorProperty(0, APROP_Health), (1 + CheckInventory("EnergyTankAcquired")) * 100));
         break;
 
     case 6:
@@ -787,15 +767,11 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 10:
-        if(GetCvar("metroid_noenergydrops") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("metroid_noenergydrops"));
         break;
 
     case 11:
-        if(GetCvar("metroid_soultanks") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("metroid_soultanks"));
         break;
 
     case 12:
@@ -806,8 +782,8 @@ script METROID_DECORATE (int which, int a1, int a2)
 
     case 13:
         if(GetCvar("metroid_doomcannon") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(1);
+        else SetResultValue(0);
         break;
 
     case 14:
@@ -819,26 +795,19 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 16:
-        if(GetCvar("metroid_dropstay") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("metroid_dropstay"));
         break;
 
     case 17:
-        if(GetCvar("metroid_nobfg") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("metroid_nobfg"));
         break;
 
     case 18:
-        if(GetCvar("metroid_permabfg") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+        SetResultValue(!!GetCVar("metroid_permabfg"));
         break;
 
     case 19:
-        result = GetCVar("metroid_skulltagweapons");
-        setresultvalue(result);
+        SetResultValue(!!GetCVar("metroid_skulltagweapons"));
         break;
 
     // [ijon] IT'S MOTHERFUCKING *ARRAY TIME*
@@ -922,26 +891,20 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
 
     switch (which)
     {
-    case 0:
-        if(GetCvar("metroid_cl_noeffects") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+      case 0:
+        SetResultValue(!!GetCVar("metroid_cl_noeffects"));
         break;
 
-    case 1:
-        if(GetCvar("metroid_cl_doomhealth") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+      case 1:
+        SetResultValue(!!GetCVar("metroid_cl_doomhealth"));
         break;
 
-    case 2:
-        if(GetCvar("cl_run") == 1)
-        setresultvalue(1);
-        else setresultvalue(0);
+      case 2:
+        SetResultValue(!!GetCVar("cl_run"));
         break;
 
 
-    case 3:
+      case 3:
         if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
         int pickupMus = BigPickupSounds[a1][0];
         int soundItem = BigPickupSounds[a1][1];
@@ -955,16 +918,16 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         }
         break;
 
-    case 4:
+      case 4:
         if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
         else { ConsoleCommand("testmusicvol 1"); }
         break;
-
 
       case 7:
         if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
         int pickupColor = msgColors[GetCVar("msg0color")];
         Log(s:pickupColor, s:strstr(BigPickupMessages[a1], "\c-", pickupColor));
+        break;
     }
 }
 
