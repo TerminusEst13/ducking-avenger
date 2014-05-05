@@ -159,7 +159,7 @@ ACTOR ChromaStormPickup : WeaponPickup 17540
         TNT1 A 0 A_SpawnItemEx("ChromaStormTrail1",0,0,43,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("ChromaStormTrail2",0,0,43,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("ChromaStormTrail3",0,0,43,0,0,0,0,160)
-        CBPK AAABCDEFFGG 1 BRIGHT
+        CBPK AAABCDEFFGG 1 BRIGHT A_FaceConsolePlayer
         loop
     Pickup:
         TNT1 A 0 A_JumpIfInventory("Chroma Storm",1,"PickupFail")
