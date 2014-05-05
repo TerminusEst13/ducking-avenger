@@ -422,6 +422,7 @@ script METROID_ENTER ENTER
         if (GetCVar("metroid_loaded") == 1)
         {
             if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -436,6 +437,7 @@ script METROID_ENTER ENTER
         if (GetCVar("metroid_loaded") == 4)
         {
             if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -447,6 +449,7 @@ script METROID_ENTER ENTER
         if (GetCVar("metroid_loaded") == 5)
         {
             if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -460,6 +463,7 @@ script METROID_ENTER ENTER
         if (GetCVar("metroid_loaded") == 6)
         {
             if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
