@@ -434,7 +434,7 @@ actor SpazerBolt1
     +NOGRAVITY
     +PAINLESS
     Speed 60
-    Damage (20)
+    Damage (25)
     Scale 0.5
     RenderStyle Add
     Alpha 0.75
@@ -460,10 +460,11 @@ actor SpazerBolt1
     }
 }
 
-actor SpazerBolt1Coop : SpazerBolt1 { Damage (15) Species "Player" +THRUSPECIES }
+actor SpazerBolt1Coop : SpazerBolt1 { Damage (20) Species "Player" +THRUSPECIES }
 
 actor SpazerBolt2 : SpazerBolt1
 {
+    Damage (20)
     -PAINLESS
     States
     {
@@ -478,6 +479,7 @@ actor SpazerBolt2Coop : SpazerBolt2 { Damage (15) Species "Player" +THRUSPECIES 
 
 actor SpazerBolt3 : SpazerBolt1
 {
+    Damage (20)
     States
     {
     Spawn:
@@ -693,16 +695,17 @@ actor SpazerBeamCharging5 : SpazerBeamCharging1 { scale 0.12 }
 actor SpazerBeamCharging6 : SpazerBeamCharging1 { scale 0.135 }
 actor SpazerBeamCharging7 : SpazerBeamCharging1 { scale 0.15 }
 
-actor SpazerBolt1Charged : SpazerBolt1 { Damage (30) DamageType "SpazerCharged" }
-actor SpazerBolt2Charged : SpazerBolt2 { Damage (30) DamageType "SpazerCharged" }
-actor SpazerBolt3Charged : SpazerBolt3 { Damage (30) DamageType "SpazerCharged" }
+actor SpazerBolt1Charged : SpazerBolt1 { Damage (35) DamageType "SpazerCharged" }
+actor SpazerBolt2Charged : SpazerBolt2 { Damage (35) DamageType "SpazerCharged" }
+actor SpazerBolt3Charged : SpazerBolt3 { Damage (35) DamageType "SpazerCharged" }
 
-actor SpazerBolt1CoopCharged : SpazerBolt1Coop { Damage (35) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
-actor SpazerBolt2CoopCharged : SpazerBolt2Coop { Damage (35) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
-actor SpazerBolt3CoopCharged : SpazerBolt3Coop { Damage (35) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
+actor SpazerBolt1CoopCharged : SpazerBolt1Coop { Damage (40) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
+actor SpazerBolt2CoopCharged : SpazerBolt2Coop { Damage (40) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
+actor SpazerBolt3CoopCharged : SpazerBolt3Coop { Damage (40) Species "Player" +THRUSPECIES DamageType "SpazerCharged" }
 
 actor SpazerBoltCharged1 : SpazerBolt1Charged
 {
+    Damage (30)
     -PAINLESS
     States
     {
@@ -719,6 +722,7 @@ actor SpazerBoltCharged1Coop : SpazerBoltCharged1 { Damage (35) Species "Player"
 
 actor SpazerBoltCharged2 : SpazerBolt1Charged
 {
+    Damage (30)
     -PAINLESS
     States
     {
@@ -735,6 +739,7 @@ actor SpazerBoltCharged2Coop : SpazerBoltCharged2 { Damage (35) Species "Player"
 
 actor SpazerBoltCharged3 : SpazerBolt1Charged
 {
+    Damage (30)
     -PAINLESS
     States
     {
@@ -751,6 +756,7 @@ actor SpazerBoltCharged3Coop : SpazerBoltCharged3 { Damage (35) Species "Player"
 
 actor SpazerBoltCharged4 : SpazerBolt1Charged
 {
+    Damage (30)
     -PAINLESS
     States
     {
@@ -767,6 +773,7 @@ actor SpazerBoltCharged4Coop : SpazerBoltCharged4 { Damage (35) Species "Player"
 
 actor SpazerBoltCharged5 : SpazerBolt1Charged
 {
+    Damage (30)
     -PAINLESS
     States
     {
@@ -783,6 +790,7 @@ actor SpazerBoltCharged5Coop : SpazerBoltCharged5 { Damage (35) Species "Player"
 
 actor SpazerBoltCharged6 : SpazerBolt1Charged
 {
+    Damage (30)
     -PAINLESS
     States
     {
