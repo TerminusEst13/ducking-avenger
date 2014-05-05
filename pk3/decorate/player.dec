@@ -259,14 +259,15 @@ actor SamusFrozen
     Health 4
     Speed 0
     Mass 0x7fffffff
-    Translation "Ice"
+    YScale 0.85
+    //Translation "Ice"
     DamageFactor "NoDamage", 0.0
     DamageFactor "Normal", 0.75
     States
     {
     Spawn:
-        SAMS C 350
-        SAMS C 1 A_Jump(128, "Death")
+        SAMS Z 350
+        SAMS Z 1 A_Jump(128, "Death")
         Loop
     Death:
         TNT1 A 0
