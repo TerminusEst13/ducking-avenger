@@ -84,3 +84,4 @@ actor WaveBeamAcquired : Boolean {}
 actor IceBeamAcquired : Boolean {}
 actor LongBeamAcquired : Boolean {}
 actor DoomCannonAcquired : Boolean {}
+actor ChromaStormAcquired : Boolean {}

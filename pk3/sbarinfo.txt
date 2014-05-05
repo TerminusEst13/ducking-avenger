@@ -1,12 +1,6 @@
 statusbar normal, forcescaled
 {
-/*inInventory IsAFuckingSpaceshipBoyeeee, 1
-    {
-    drawimage "cockpit", 0, 0;
-    drawnumber 4, METHUDF, Untranslated, Health, 97, 25;
-    drawbar "SAMHFULL", "SAMHEMPT", Health, horizontal, 100, 24, 1;
-    }*/
-InInventory PowerBeamAcquired, 1
+InInventory InGame, 1
 {
 InInventory not BorphMallAcquired, 1
     {

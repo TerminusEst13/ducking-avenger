@@ -74,7 +74,7 @@ int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 
 
 #define TRAILCOUNT 3
 
-#define PICKUPTYPES 13
+#define PICKUPTYPES 14
 
 int GotBigPickup[PLAYERMAX][PICKUPTYPES];
 
@@ -95,6 +95,7 @@ int BigPickupItems[PICKUPTYPES] =
 
     "ChargeComboAcquired",
     "DoomCannonAcquired",
+    "ChromaStormAcquired",
 };
 
 int BigPickupMsgFonts[PICKUPTYPES] =
@@ -114,6 +115,7 @@ int BigPickupMsgFonts[PICKUPTYPES] =
 
     "BNRECONV",
     "BNRUNOWN",
+    "BNRCHRST",
 };
 
 int BigPickupSounds[PICKUPTYPES][3] =
@@ -133,6 +135,7 @@ int BigPickupSounds[PICKUPTYPES][3] =
 
     {"M_ITMGE2", "GrossSoundHack2", "charge/get"}, 
     {"M_ITMGE3", "GrossSoundHack3", "cannon/get"}, 
+    {"M_ITMGE4", "GrossSoundHack4", "chroma/get"}, 
 };
 
 int BigPickupMessages[PICKUPTYPES] = 
@@ -151,6 +154,7 @@ int BigPickupMessages[PICKUPTYPES] =
     "LONG BEAM: ACQUIRED",
 
     "ENERGY CONVERTER UNIT: ACQUIRED",
-    "dX000FFFsF \cferror",
+    "\cjdX000FFFsF \cferror",
+    "CHROMA STORM: ACQUIRED",
 };
 

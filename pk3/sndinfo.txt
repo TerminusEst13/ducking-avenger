@@ -4,6 +4,7 @@ system/samusappear      JNGLARIV
 system/samusitem        JNGLITE1
 system/samusitembig     JNGLITE2
 system/samusitemunk     JNGLITE3
+system/samusitemskl     JNGLITE4
 
 menu/activate        MENUUP // Bring up the main menu. - Taken from Metroid Prime 3
 menu/clear           MENUDOWN // Close main menu. - Taken from Metroid Prime 3
@@ -211,6 +212,7 @@ movement/get            MOVEGET
 charge/get              CHARGGET
 arsenal/get             ARSEGET
 cannon/get              DCANNGET
+chroma/get              CSTRMGET
 rawenergy/idle          RAWENIDL // Taken from Zero Tolerance
 rawenergy/get           RAWENPKU // Taken from...MechWarrior, I think?
 rawenergy/shieldhit     SHLDHIT // Taken from Smash Bros. Brawl

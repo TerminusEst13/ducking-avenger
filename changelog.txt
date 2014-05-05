@@ -7,7 +7,7 @@ From 1.777b to Alpha 2:
 - Speed Booster has a much longer delay after stopping before restarting.
 - Plasma Combo does slightly more damage.
 - Long Combo speeds up by 10% every tic.
-- Plasma Uncharged and Charged have had their radius and height slightly reduced.
+- Plasma and Ice Uncharged and Charged have had their radius and height slightly reduced.
 - 15/30/100 Energy now have different pickup sprites.
 - ACLO E sprite has been replaced with NOPE A.
 - Wall jump checks no longer get hung-up on lines that block monsters.
@@ -30,3 +30,7 @@ From 1.777b to Alpha 2:
 - All Charged beams aside from Ice have had their damage dramatically increased in co-op, to make charging up more viable.
 - metroid_loaded has changed from activated-whenever to activated-on-first-spawn, and has been expanded on--1 gives you all weapons, 2 gives you more missiles, 3 gives you even more missiles, 4 gives you all weapons and more missiles, 5 gives you weapons/missiles/super missiles/power bombs, 6 gives you weapons/missiles/super missiles/power bombs/charge combo/speed booster.
 - The Bomb ammo regeneration has been changed to be work via ACS rather than Decorate, which means that Spread should no longer give infinite bombs and Time Freeze should no longer stop bombs.
+- Skulltag weapons now have their replacers, handled by metroid_skulltagweapons. 1 to spawn unique weapons, 2 to spawn normal weapons, 0 to not spawn anything at all.
+- New weapon designed by ijon tichy has been implemented; the Chroma Storm, a rainbow herald of pure dakka!
+- MaxArmorBonus and MaxHealthBonus now no longer appear.
+- Being chilled now reduces your jump height as well.
