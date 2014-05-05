@@ -3,7 +3,7 @@ ACTOR PowerMissile
     Radius 12
     Height 8
     Speed 40
-    Damage (60)
+    Damage (40)
     Projectile
     +FORCERADIUSDMG
     DeathSound "missile/hit"
@@ -21,13 +21,30 @@ ACTOR PowerMissile
         TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
         TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("MissileExplosionLarge",0,0,0,0,0,0,0,160)
-        TNT1 A 1 Bright A_Explode(96,128,0)
+        TNT1 A 1 Bright A_Explode(64,128,0)
         TNT1 A 0
         Stop
     }
 }
 
-actor PowerMissileCoop : PowerMissile { Species "Player" +THRUSPECIES }
+actor PowerMissileCoop : PowerMissile
+{
+    Species "Player"
+    +THRUSPECIES
+    Damage (60)
+    States
+    {
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_Scream
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("MissileTrail",random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,128)
+        TNT1 AA 0 A_SpawnItemEx("MissileExplosionSmall",0,0,0,0,0,0,0,160)
+        TNT1 A 0 A_SpawnItemEx("MissileExplosionLarge",0,0,0,0,0,0,0,160)
+        TNT1 A 1 Bright A_Explode(96,128,0)
+        TNT1 A 0
+        Stop
+    }
+}
 
 actor MissileTrail
 {
