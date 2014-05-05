@@ -1436,6 +1436,7 @@ actor DakkaBeamTrail
     +NOINTERACTION
     +CLIENTSIDEONLY
     +DONTSPLASH
+    +NOTIMEFREEZE
 
     Radius 0
     Height 0
@@ -1460,6 +1461,7 @@ actor DakkaBeamParticle
     +THRUACTORS
     +DONTSPLASH
     +CLIENTSIDEONLY
+    +NOTIMEFREEZE
 
     Radius 2
     Height 2
@@ -1647,6 +1649,7 @@ actor DBeamLaserDamager
     +PUFFGETSOWNER
     +FORCERADIUSDMG
     +NODAMAGETHRUST
+    +NOTIMEFREEZE
 
     States
     {
@@ -1668,6 +1671,7 @@ actor DBeamLaserPuff
     +CLIENTSIDEONLY
     +NOBLOCKMONST
     +NOTIMEFREEZE
+    +DONTSPLASH
 
     RenderStyle Add
     Alpha 0.3
@@ -1711,6 +1715,7 @@ actor DBeamSpawnDummy
     -SOLID
     +NOINTERACTION
     +NOBLOCKMONST
+    +NOTIMEFREEZE
 
     States
     {
