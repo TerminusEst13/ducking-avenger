@@ -490,8 +490,8 @@ script METROID_ENTER ENTER
         if (GetCvar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
         if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
 
-        /*if (GameType () != GAME_TITLE_MAP)
-            {
+        /*if (GameType () != GAME_TITLE_MAP && isSinglePlayer())
+        {
             SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
             SetActorProperty(0, APROP_INVULNERABLE, 1);
             ACS_ExecuteAlways(METROID_DECORATECLIENT,0,3,0,0);
@@ -500,7 +500,7 @@ script METROID_ENTER ENTER
             SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
             SetActorProperty(0, APROP_INVULNERABLE, 0);
             ACS_ExecuteAlways(METROID_DECORATECLIENT,0,4,0,0);
-            }*/
+        }*/
     }
     GiveInventory("InGame",1);
 
@@ -525,7 +525,7 @@ script METROID_ENTER ENTER
         GiveInventory("PlayerTotalHealth", min(barhp, 99));
 
         // Spacejump shit
-        if (GetCVar("metroid_spacejump") == 1) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
+        if (GetCVar("metroid_spacejump") == 1 || CheckInventory("CoopModeOn") == 0) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
         else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("SpaceJumpAcquired") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}}
 
         // Nomorph shit
@@ -843,7 +843,7 @@ script METROID_DECORATE (int which, int a1, int a2)
                 Thing_Stop(0);
                 GiveInventory("PowerTimeFreezer", 1);
                 SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-                SetActorProperty(0, APROP_INVULNERABLE, 1);
+                if (!CheckInventory("PowerInvulnerable")) { SetActorProperty(0, APROP_INVULNERABLE, 1); }
 
                 HudMessage(s:"A"; HUDMSG_PLAIN, 1, 0, 0.5, 0.3, 6);
                 ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 3, whichPickup);
@@ -855,7 +855,7 @@ script METROID_DECORATE (int which, int a1, int a2)
                 }
 
                 SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
-                SetActorProperty(0, APROP_INVULNERABLE, 0);
+                if (!CheckInventory("PowerInvulnerable")) { SetActorProperty(0, APROP_INVULNERABLE, 0); }
                 ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 4);
 
                 TakeInventory("PowerTimeFreezer",0x7FFFFFFF);
