@@ -584,7 +584,7 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
 
       Pickup:
         TNT1 A 0 A_JumpIfInventory("SpaceJumpAcquired",1,"PickupFail")
-        TNT1 A 0 ACS_ExecuteWithResult(594,0,20, 5) // pickup message
+        TNT1 A 0 ACS_ExecuteWithResult(594, 20, 5) // pickup message
         TNT1 A 0 A_GiveInventory("CanSpaceJump",1)
         TNT1 A 0 A_SetBlend("White", 0.5, 16)
         stop
