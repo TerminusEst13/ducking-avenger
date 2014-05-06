@@ -176,7 +176,7 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
     Inventory.PickupMessage ""
     +AUTOACTIVATE
     +NOGRAVITY
-    +FLOATBOB
+    //+FLOATBOB
     Inventory.RespawnTics 4200
     States
     {
