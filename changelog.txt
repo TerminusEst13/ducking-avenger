@@ -34,3 +34,4 @@ From 1.777b to Alpha 2:
 - New weapon designed by ijon tichy has been implemented; the Chroma Storm, a rainbow herald of pure dakka!
 - MaxArmorBonus and MaxHealthBonus now no longer appear.
 - Being chilled now reduces your jump height as well.
+- Floatbob removed from items.

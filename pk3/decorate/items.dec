@@ -337,7 +337,8 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere 17529
     Inventory.PickupSound "no_fun_allowed"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
-    +FLOATBOB
+    +NOGRAVITY
+    //+FLOATBOB
     States
     {
       Spawn:
@@ -574,7 +575,8 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
     Inventory.PickupMessage ""
     Inventory.PickupSound "you_are_under_arrest_for_intent_to_enjoy"
     +AUTOACTIVATE
-    +FLOATBOB
+    +NOGRAVITY
+    //+FLOATBOB
     States
     {
       Spawn:
@@ -600,7 +602,8 @@ ACTOR SpeedBoosterPickup : CustomInventory replaces BlurSphere 17531
     Inventory.PickupMessage ""
     Inventory.PickupSound "you_have_the_right_to_remain_silent"
     +AUTOACTIVATE
-    +FLOATBOB
+    +NOGRAVITY
+    //+FLOATBOB
     States
     {
       Spawn:
