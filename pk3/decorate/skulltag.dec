@@ -176,6 +176,8 @@ ACTOR ChromaStormTrail1
     RenderStyle Add
     Alpha 0.75
     +NOINTERACTION
+    +NOCLIP
+    -SOLID
     +CLIENTSIDEONLY
     States
     {

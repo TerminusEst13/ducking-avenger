@@ -307,7 +307,7 @@ ACTOR "Bombs" : Weapon
     }
 }
 
-ACTOR BoostBallWeakness : PowerProtection { Powerup.Duration 0x7FFFFFFF DamageFactor "Normal", 3.0 }
+ACTOR BoostBallWeakness : PowerProtection { Powerup.Duration 0x7FFFFFFF DamageFactor "Normal", 2.0 }
 
 ACTOR MorphBallBomb
 {
@@ -321,7 +321,7 @@ ACTOR MorphBallBomb
     States
     {
     Spawn:
-        MBOM ABCDABCD 4
+        MBOM ABCDABCD 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,128,0)
         //TNT1 A 0 A_GiveToTarget("BombCount",1)
@@ -337,7 +337,7 @@ ACTOR MorphBallBombDM : MorphBallBomb
     States
     {
     Spawn:
-        MBOM ABCDABCDAB 4
+        MBOM ABCDABCDAB 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,96,0)
         //TNT1 A 0 A_GiveToTarget("BombCount",1)
@@ -381,7 +381,7 @@ ACTOR MorphBallBombCharged : MorphBallBomb
     States
     {
     Spawn:
-        MBOM ABCDAB 4
+        MBOM ABCDAB 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom2")
         TNT1 A 0 A_Explode(96,128,0)
         TNT1 A 0 A_GiveToTarget("BombCount",1)

@@ -35,3 +35,7 @@ From 1.777b to Alpha 2:
 - MaxArmorBonus and MaxHealthBonus now no longer appear.
 - Being chilled now reduces your jump height as well.
 - Floatbob removed from items.
+- Charging up for Boost Ball now gives you a 2x weakness to everything, due to diverting energy to motion rather than shields.
+- GLDefs have been included.
+- The Long Charge Combo explosion now has double the radius.
+- Slightly fewer smoke puffs on the Doom Cannon.
