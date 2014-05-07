@@ -1,43 +1,48 @@
 From 1.777b to Alpha 2:
 ==========================
-- Implemented changelog. Neat.
-- The Morph Ball now has a pretty GLDef, thanks to President People.
+GAMEPLAY:
 - The Morph Ball no longer allows the player to, well, morph when the flag is held.
-- Player death no longer freezes the life bar.
 - Speed Booster has a much longer delay after stopping before restarting.
 - Plasma Combo does slightly more damage.
-- Long Combo speeds up by 10% every tic.
+- Long Combo speeds up by 10% every tic and has double the explosive radius.
 - Plasma and Ice Uncharged and Charged have had their radius and height slightly reduced.
-- 15/30/100 Energy now have different pickup sprites.
-- ACLO E sprite has been replaced with NOPE A.
 - Wall jump checks no longer get hung-up on lines that block monsters.
-- Items should no longer become invisible when metroid_dropstay is on.
-- Charging up the beams while Time Freeze is active no longer causes a massive amount of frozen trails.
-- Put DoomEd numbers on all relevant actors, as per mapper request.
 - After Boost Balling in mid-air, it is no longer possible to boost ball again until you have hit the ground.
 - The Power Bomb's damage arc has been reversed--instead of dealing most of its damage in the center and weakening as it spreads out, it deals most of its damage the farther out it spreads. Due to the sheer amount of actors clustered up in the center, this is barely a noticable damage nerf for the Power Bomb. All it means is that one-shotting Cybers is a bit more difficult, and that enemies two feet out no longer get tickled.
-- Rephrased a few lines in the difficulty settings for more clarification.
-- By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.
-- The Speed Booster script no longer overflows with copious respawning.
-- Dying now properly lowers your arm cannon on death.
 - The Missiles' rate of fire has been shortened by eight tics.
 - The Speed Booster now replaces the Partial Invisibility sphere rather than the Radsuit.
 - An optional Metroid-style system has been implemented--on picking up a major item, the world freezes, a banner pops up, and the fanfare plays. For those who want nothing to do with this, hit the Use button to break out, or type 'metroid_cl_nometroidpickups 1' in the console.
 - Picking up the Space Jump will give the Morph Ball the ability to jump while morphed. This does not work for metroid_spacejump 1.
-- The Ice Combo now checks for ten missiles instead of five.
 - The Doom Cannon now has its Charge Combo.
 - The Ice Beam's blast radius in co-op is expanded, allowing the player to catch more enemies with one shot. The Ice Beam's blast radius in PvP is ever-so-slightly expanded.
 - All Charged beams aside from Ice have had their damage dramatically increased in co-op, to make charging up more viable.
 - metroid_loaded has changed from activated-whenever to activated-on-first-spawn, and has been expanded on--1 gives you all weapons, 2 gives you more missiles, 3 gives you even more missiles, 4 gives you all weapons and more missiles, 5 gives you weapons/missiles/super missiles/power bombs, 6 gives you weapons/missiles/super missiles/power bombs/charge combo/speed booster.
-- The Bomb ammo regeneration has been changed to be work via ACS rather than Decorate, which means that Spread should no longer give infinite bombs and Time Freeze should no longer stop bombs.
 - Skulltag weapons now have their replacers, handled by metroid_skulltagweapons. 1 to spawn unique weapons, 2 to spawn normal weapons, 0 to not spawn anything at all.
 - New weapon designed by ijon tichy has been implemented; the Chroma Storm, a rainbow herald of pure dakka!
-- MaxArmorBonus and MaxHealthBonus now no longer appear.
 - Being chilled now reduces your jump height as well.
-- Floatbob removed from items.
 - Charging up for Boost Ball now gives you a 2x weakness to everything, due to diverting energy to motion rather than shields.
-- GLDefs have been included.
-- The Long Charge Combo explosion now has double the radius.
-- Slightly fewer smoke puffs on the Doom Cannon.
+- The center bolt of the Spazer is slightly more powerful than the outer bolts.
 - Samus now recoils back slightly on being hit, like in Metroid.
 - For those who aren't sure what's happening in the chaos of PvP, metroid_cl_hitindicator has been added. On activation, whenever you put an opponent in the pain state, they will give you a visual and audio indicator of your hit.
+
+BUGFIXES:
+- Player death no longer freezes the life bar.
+- Items should no longer become invisible when metroid_dropstay is on.
+- Charging up the beams while Time Freeze is active no longer causes a massive amount of frozen trails.
+- Put DoomEd numbers on all relevant actors, as per mapper request.
+- The Speed Booster script no longer overflows with copious respawning.
+- The Ice Combo now checks for ten missiles instead of five.
+- The Bomb ammo regeneration has been changed to be work via ACS rather than Decorate, which means that Spread should no longer give infinite bombs and Time Freeze should no longer stop bombs.
+- MaxArmorBonus and MaxHealthBonus now no longer appear.
+- Floatbob removed from items to keep them from floating into space.
+
+POLISH:
+- Implemented changelog. Neat.
+- The Morph Ball now has a pretty GLDef, thanks to President People.
+- 15/30/100 Energy now have different pickup sprites.
+- ACLO E sprite has been replaced with NOPE A.
+- Rephrased a few lines in the difficulty settings for more clarification.
+- By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.
+- Dying now properly lowers your arm cannon on death.
+- GLDefs have been included.
+- Slightly fewer smoke puffs on the Doom Cannon.
