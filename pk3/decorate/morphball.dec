@@ -161,7 +161,7 @@ actor MorphBallPlayerDM : MorphBallPlayer
     DamageFactor "LongCharged", 3.50
     DamageFactor "DoomCannon", 1.1
     DamageFactor "DoomCombo", 1.1
-    DamageFactor "Missile", 1.1
+    DamageFactor "Missile", 1.5
     DamageFactor "SuperMissile", 0.75
     DamageFactor "BoostBall", 1.1
     DamageFactor "Bomb", 0.9
