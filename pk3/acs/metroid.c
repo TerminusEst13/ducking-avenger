@@ -24,6 +24,7 @@ int ClientEnterLocks[PLAYERMAX];
 int array_runrunruu[PLAYERMAX];
 int array_doomHealth[PLAYERMAX];
 int array_metpick[PLAYERMAX];
+int array_hitindic[PLAYERMAX];
 
 #include "met_const.h"
 #include "met_funcs.h"
@@ -177,6 +178,12 @@ script METROID_OPEN_CLIENT OPEN clientside
     {
         ConsoleCommand("set metroid_cl_pickupmusic 0");
         ConsoleCommand("archivecvar metroid_cl_pickupmusic");
+    }
+
+    if (!GetCVar("metroid_cl_hitindicator"))
+    {
+        ConsoleCommand("set metroid_cl_hitindicator 0");
+        ConsoleCommand("archivecvar metroid_cl_hitindicator");
     }
 }
 
@@ -541,6 +548,9 @@ script METROID_ENTER ENTER
         
         if (array_metpick[pln]) { GiveInventory("NoMetroidPickupSystem", 1); }
         else { TakeInventory("NoMetroidPickupSystem", 0x7FFFFFFF); }
+        
+        if (array_hitindic[pln]) { GiveInventory("MetroidHitIndicatorActive", 1); }
+        else { TakeInventory("MetroidHitIndicatorActive", 0x7FFFFFFF); }
 
         // Armor shit
         oarmor = armor;
@@ -607,8 +617,8 @@ script METROID_PUKE (int values) net
     array_runrunruu[pln]     = values & 1;
     array_doomHealth[pln]    = values & 2;
     array_metpick[pln]       = values & 4;
-    /*array_weaponBar[pln]    = values & 8;
-    array_pickupswitch[pln] = values & 16;*/
+    array_hitindic[pln]      = values & 8;
+    /*array_pickupswitch[pln] = values & 16;*/
 }
 
    // These are stupidly hacky and a wasteful pair of scripts, but I'm
@@ -928,6 +938,16 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
         else { ConsoleCommand("testmusicvol 1"); }
         break;
+
+      case 5:
+      if (CheckInventory("MetroidHitIndicatorActive") == 1)
+      {
+        LocalAmbientSound("system/hitindicator", 127);
+        GiveInventory("MetroidHitOpponent",1);
+        Delay(1);
+        TakeInventory("MetroidHitOpponent",1);
+      }
+      break;
 
       case 7:
         if (a1 < 0 || a1 >= PICKUPTYPES) { break; }

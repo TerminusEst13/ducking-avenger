@@ -37,6 +37,8 @@ actor InGame : Boolean {}
 actor AlwaysRunIsOn : Boolean {}
 actor DoomHealthCounter : Boolean {}
 actor NoMetroidPickupSystem : Boolean {}
+Actor MetroidHitIndicatorActive : Boolean {}
+Actor MetroidHitOpponent : Boolean {}
 
 actor HealthOver100 : Boolean {}
 actor HealthOver200 : Boolean {}

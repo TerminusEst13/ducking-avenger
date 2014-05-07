@@ -2,6 +2,7 @@ statusbar normal, forcescaled
 {
 InInventory InGame, 1
 {
+InInventory MetroidHitOpponent, 1 { drawimage "ENEMYHIT", 0, 0; }
 InInventory not BorphMallAcquired, 1
     {
     drawimage "samvisor", 0, 0;
@@ -156,8 +157,9 @@ gamemode cooperative, singleplayer
 
 statusbar fullscreen, forcescaled
 {
-InInventory PowerBeamAcquired, 1
+InInventory InGame, 1
 {
+    InInventory MetroidHitOpponent, 1 { drawimage "ENEMYHIT", 0, 0; }
     InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
     InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
     GameMode Teamplay, TeamGame, OneFlagCTF, CTF, Skulltag, TeamLMS, TeamPossession { drawimage translatable "FLSCRBA4", 0, 0; }

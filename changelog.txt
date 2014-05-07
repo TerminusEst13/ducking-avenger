@@ -39,3 +39,5 @@ From 1.777b to Alpha 2:
 - GLDefs have been included.
 - The Long Charge Combo explosion now has double the radius.
 - Slightly fewer smoke puffs on the Doom Cannon.
+- Samus now recoils back slightly on being hit, like in Metroid.
+- For those who aren't sure what's happening in the chaos of PvP, metroid_cl_hitindicator has been added. On activation, whenever you put an opponent in the pain state, they will give you a visual and audio indicator of your hit.

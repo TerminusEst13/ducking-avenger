@@ -23,4 +23,5 @@ user int metroid_cl_nosiren = 0;
 user int metroid_cl_morphcamera = 1;
 user int metroid_cl_doomhealth = 0;
 user int metroid_cl_nometroidpickups = 0;
+user int metroid_cl_hitindicator = 0;
 user int metroid_cl_chromabeamdensity = 8;

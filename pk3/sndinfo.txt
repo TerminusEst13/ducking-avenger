@@ -5,6 +5,7 @@ system/samusitem        JNGLITE1
 system/samusitembig     JNGLITE2
 system/samusitemunk     JNGLITE3
 system/samusitemskl     JNGLITE4
+system/hitindicator     ENEMYHIT // Taken from Metroid: Zero Mission
 
 menu/activate        MENUUP // Bring up the main menu. - Taken from Metroid Prime 3
 menu/clear           MENUDOWN // Close main menu. - Taken from Metroid Prime 3
