@@ -342,8 +342,9 @@ PointLight PowerBombExplodeRing
     Size 128
     DontLightSelf 1
 }
- 
+
 Object MorphBallPlayer { Frame MARU { Light MorphGlow }}
+Object MorphBallPlayerDM { Frame MARU { Light MorphGlow }}
 Object MorphBallBomb { Frame MBOMA { Light BombGlow1 }
                        Frame MBOMB { Light BombGlow2 }
                        Frame MBOMC { Light BombGlow3 }
