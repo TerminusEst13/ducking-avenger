@@ -27,6 +27,8 @@ actor "Chroma Storm": Weapon
     Weapon.SelectionOrder 1750
     Weapon.SlotNumber 7
 
+    Inventory.Icon "WEAPCSTR"
+    
     States
     {
     // =====

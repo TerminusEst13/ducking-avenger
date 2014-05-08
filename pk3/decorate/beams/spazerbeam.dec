@@ -15,6 +15,9 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
+
+    Inventory.Icon "WEAPSPBM"
+
     States
     {
     Spawn:

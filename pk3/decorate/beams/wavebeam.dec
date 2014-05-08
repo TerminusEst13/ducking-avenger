@@ -15,6 +15,9 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
+
+    Inventory.Icon "WEAPWVBM"
+
     States
     {
     Spawn:
