@@ -35,6 +35,7 @@ BUGFIXES:
 - The Bomb ammo regeneration has been changed to be work via ACS rather than Decorate, which means that Spread should no longer give infinite bombs and Time Freeze should no longer stop bombs.
 - MaxArmorBonus and MaxHealthBonus now no longer appear.
 - Floatbob removed from items to keep them from floating into space.
+- Cacodemon and Lost Soul no longer momentarily turn into a zombieman on freeze.
 
 POLISH:
 - Implemented changelog. Neat.
@@ -47,3 +48,4 @@ POLISH:
 - GLDefs have been included.
 - Slightly fewer smoke puffs on the Doom Cannon.
 - The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the "exit level while morphed" glitch.
+- The Lost Frame's pain frame is now BRIGHT.
