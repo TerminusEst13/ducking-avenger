@@ -156,10 +156,16 @@ script METROID_OPEN_CLIENT OPEN clientside
         ConsoleCommand("archivecvar metroid_cl_nosiren");
     }
 
-    if (!GetCVar("metroid_cl_morphcamera"))
+    if (!GetCVar("metroid_cl_nomorphcamera"))
     {
-        ConsoleCommand("set metroid_cl_morphcamera 1");
-        ConsoleCommand("archivecvar metroid_cl_morphcamera");
+        ConsoleCommand("set metroid_cl_nomorphcamera 0");
+        ConsoleCommand("archivecvar metroid_cl_nomorphcamera");
+    }
+
+    // [ijon] Deprecated CVar, remove from premises
+    if (GetCVar("metroid_cl_morphcamera"))
+    {
+        ConsoleCommand("unset metroid_cl_morphcamera");
     }
 
     if (!GetCVar("metroid_cl_doomhealth"))
@@ -232,21 +238,23 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
     int pNum = PlayerNumber();
     int tid = unusedTID(32000, 42000);
+    int fuckyocamera = 0;
+    int fuckyoEVERYTHING = 0;
 
-    /*while (1)
+    while (!fuckyoEVERYTHING)
     {
-        SetChasecam(dist, height, tid, 1);
-        Delay(1);
-    }*/
-    if (GetCvar("metroid_cl_morphcamera") == 1)
-    {
-        while (1)//(GetCvar("metroid_cl_morphcamera") == 1 && CheckInventory("PlayerMorphCamera") == 0)
+        fuckyocamera = isDead(0) || !!GetCVar("metroid_cl_nomorphcamera");
+        fuckyoEVERYTHING = CheckInventory("PlayerMorphCamera");
+
+        if (fuckyocamera || fuckyoEVERYTHING)
+        {
+            if (ThingCount(0, tid)) { Thing_Remove(tid); }
+        }
+        else
         {
             SetChasecam(dist, height, tid, 1);
-            Delay(1);
-            if (isDead(0)) { if (ThingCount(0, tid)) { Thing_Remove(tid); terminate; } }
-            if (CheckInventory("PlayerMorphCamera") == 1) { Thing_Remove(tid); terminate; }
         }
+        Delay(1);
     }
 }
 
