@@ -8,8 +8,8 @@ actor DakkaBeamColor:           Counter {}
 actor DakkaBeamComboLevel:      Counter {}
 actor DakkaShotSprite:          Counter {}
 actor DakkaBeamChargeLevel:     Counter {}
-actor DakkaBeamCanMissile:      Boolean {}
-actor DakkaBeamCanSuper:        Boolean {}
+actor Metroid_CanMissile:      Boolean {}
+actor Metroid_CanSuper:        Boolean {}
 actor DakkaBeamInChargeCombo:   Boolean {}
 actor DakkaBeamComboShotsLeft:  Counter {}
 
@@ -42,7 +42,7 @@ actor "Chroma Storm": Weapon
       Deselect:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("beam/deselect","soundslot5")
-    Deselect2:
+      Deselect2:
         PBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 5, "PurpleDown")
         TNT1 A 0 A_JumpIfInventory("DakkaBeamColor", 4, "BlueDown")
@@ -105,186 +105,186 @@ actor "Chroma Storm": Weapon
     // MY KINGDOM FOR "####"
 
       RedReady:
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM U 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM T 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM S 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM R 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM A 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM A 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM A 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM R 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM S 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM T 1 A_WeaponReady
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        MBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        MBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         MBEM U 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         goto Ready
 
       YellowReady:
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM U 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM T 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM S 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM R 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM A 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM A 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM A 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM R 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM S 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM T 1 A_WeaponReady
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        PBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        PBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         PBEM U 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         goto Ready
 
       GreenReady:
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM U 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM T 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM S 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM R 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM A 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM A 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM A 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM R 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM S 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM T 1 A_WeaponReady
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        SBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        SBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         SBEM U 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         goto Ready
 
       BlueReady:
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM U 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM T 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM S 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM R 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM A 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM A 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM A 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM R 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM S 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM T 1 A_WeaponReady
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        IBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        IBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         IBEM U 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         goto Ready
 
       PurpleReady:
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM U 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM T 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM S 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM R 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM A 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM A 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM A 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM R 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM S 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM T 1 A_WeaponReady
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanMissile", 1, "Missile")
-        WBEM A 0 A_JumpIfInventory("DakkaBeamCanSuper",   1, "SuperMissile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        WBEM A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
         WBEM U 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         goto Ready
