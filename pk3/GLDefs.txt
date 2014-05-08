@@ -431,6 +431,16 @@ PulseLight EnergyGlow3
     DontLightSelf 1
 }
 
+PulseLight EnergyGlow4
+{
+    Color 0.85 0.85 0.85
+    Size 25
+    SecondarySize 35
+    Interval 1
+    Offset 0 22 0
+    DontLightSelf 1
+}
+
 PointLight MissileGlow1
 {
     Color 0.45 0.2 0.45
@@ -657,6 +667,7 @@ Object WaveBeamPickup { Frame WPPK { Light WaveWeaponGlow }}
 Object IceBeamPickup { Frame WPPK { Light IceWeaponGlow }}
 Object LongBeamPickup { Frame WPPK { Light LongWeaponGlow }}
 Object ChargeComboPickup { Frame CCMB { Light ComboWeaponGlow }}
+Object RawEnergy { Frame EFLD { Light EnergyGlow4 }}
 
 Object ChromaStormTrail1 { Frame CBPKH { Light ChromaGlow1 }
                            Frame CBPKI { Light ChromaGlow2 }

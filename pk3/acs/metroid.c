@@ -244,6 +244,7 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
         {
             SetChasecam(dist, height, tid, 1);
             Delay(1);
+            if (isDead(0)) { if (ThingCount(0, tid)) { Thing_Remove(tid); terminate; } }
             if (CheckInventory("PlayerMorphCamera") == 1) { Thing_Remove(tid); terminate; }
         }
     }
