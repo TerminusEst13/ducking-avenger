@@ -223,6 +223,7 @@ InInventory PowerBeamAcquired, 1
     IsSelected "Ice Beam" { drawimage "WPFSICBM", 254, 4; }
     IsSelected "Long Beam" { drawimage "WPFSLNBM", 254, 4; }
     IsSelected "Doom Cannon" { drawimage "WPFSDMCN", 254, 4; }
+    IsSelected "Chroma Storm" { drawimage "WPFSCSTM", 254, 4; }
     IsSelected "Bombs" { InInventory BombCount, 1 { drawimage "BOMBICON", 254, 4; }
                          InInventory BombCount, 2 { drawimage "BOMBICON", 265, 4; }
                          InInventory BombCount, 3 { drawimage "BOMBICON", 276, 4; }}
