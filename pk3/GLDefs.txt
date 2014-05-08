@@ -220,119 +220,133 @@ PointLight ExplodeRing1
 PointLight ExplodeRing2
 {
     Color 0.25 0.95 0.8
-    Size 12
+    Size 10
     DontLightSelf 1
 }
 
 PointLight ExplodeRing3
 {
     Color 0.25 0.95 0.8
-    Size 18
+    Size 14
     DontLightSelf 1
 }
 
 PointLight ExplodeRing4
 {
     Color 0.25 0.95 0.8
-    Size 24
+    Size 18
     DontLightSelf 1
 }
 
 PointLight ExplodeRing5
 {
     Color 0.25 0.95 0.8
-    Size 30
+    Size 22
     DontLightSelf 1
 }
 
 PointLight ExplodeRing6
 {
     Color 0.25 0.95 0.8
-    Size 36
+    Size 26
+    DontLightSelf 1
+}
+
+PointLight ExplodeRing7
+{
+    Color 0.25 0.95 0.8
+    Size 30
     DontLightSelf 1
 }
 
 PointLight ExplodeRing8
 {
     Color 0.25 0.95 0.8
-    Size 42
+    Size 34
     DontLightSelf 1
 }
 
 PointLight ExplodeRing9
 {
     Color 0.25 0.95 0.8
-    Size 48
+    Size 38
     DontLightSelf 1
 }
 
 PointLight ExplodeRing10
 {
     Color 0.25 0.95 0.8
-    Size 54
+    Size 42
     DontLightSelf 1
 }
 
 PointLight ExplodeRing11
 {
     Color 0.25 0.95 0.8
-    Size 60
+    Size 46
     DontLightSelf 1
 }
 
 PointLight ExplodeRing12
 {
     Color 0.25 0.95 0.8
-    Size 63
+    Size 50
     DontLightSelf 1
 }
 
 PointLight ExplodeRing13
 {
     Color 0.25 0.95 0.8
-    Size 66
+    Size 54
+    DontLightSelf 1
+}
+
+PointLight ExplodeRing14
+{
+    Color 0.25 0.95 0.8
+    Size 56
     DontLightSelf 1
 }
 
 PointLight ExplodeRing15
 {
     Color 0.2 0.9 0.75
-    Size 69
+    Size 58
     DontLightSelf 1
 }
 
 PointLight ExplodeRing16
 {
     Color 0.15 0.85 0.7
-    Size 72
+    Size 60
     DontLightSelf 1
 }
 
 PointLight ExplodeRing17
 {
     Color 0.1 0.8 0.65
-    Size 75
+    Size 62
     DontLightSelf 1
 }
 
 PointLight ExplodeRing18
 {
     Color 0.05 0.75 0.6
-    Size 78
+    Size 64
     DontLightSelf 1
 }
 
 PointLight ExplodeRing19
 {
     Color 0.0 0.7 0.55
-    Size 81
+    Size 66
     DontLightSelf 1
 }
 
 PointLight ExplodeRing20
 {
     Color 0.0 0.65 0.5
-    Size 84
+    Size 68
     DontLightSelf 1
 }
 
