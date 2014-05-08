@@ -71,6 +71,7 @@ actor SpaceChecker
     Speed 0
     -SOLID
     -SHOOTABLE
+    +NOBLOCKMONST
     States
     {
     Spawn:
