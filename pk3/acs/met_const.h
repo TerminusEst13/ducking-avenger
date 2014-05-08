@@ -1,3 +1,6 @@
+#define METROID_SV_CVAR_VERSION    1
+#define METROID_CL_CVAR_VERSION    1
+
 #define METROID_BASE                         354
 
 #define METROID_SPACEJUMP_ENTER2             351

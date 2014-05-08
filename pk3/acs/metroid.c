@@ -30,6 +30,7 @@ int array_hitindic[PLAYERMAX];
 #include "met_funcs.h"
 #include "met_spacejump.h"
 #include "met_longbeam.h"
+#include "met_chroma.h"
 
 
 
@@ -42,100 +43,34 @@ script METROID_OPEN OPEN
     IsServer = 1;
     int cjumps, oldcjumps;
 
-    if (!GetCVar("metroid_noaircontrol"))
+    if (M_GetCVar("metroid_runbefore") != METROID_SV_CVAR_VERSION)
     {
-        ConsoleCommand("set metroid_noaircontrol 0");
-        ConsoleCommand("archivecvar metroid_noaircontrol");
-    }
-
-    if (!GetCVar("metroid_spacejump"))
-    {
-        ConsoleCommand("set metroid_spacejump 0");
-        ConsoleCommand("archivecvar metroid_spacejump");
-    }
-
-    if (!GetCVar("metroid_loaded"))
-    {
-        ConsoleCommand("set metroid_loaded 0");
-        ConsoleCommand("archivecvar metroid_loaded");
-    }
-
-    if (!GetCVar("metroid_startingtanks"))
-    {
-        ConsoleCommand("set metroid_startingtanks 0");
-        ConsoleCommand("archivecvar metroid_startingtanks");
-    }
-
-    if (!GetCVar("metroid_nolevellimiter"))
-    {
-        ConsoleCommand("set metroid_nolevellimiter 1");
-        ConsoleCommand("archivecvar metroid_nolevellimiter");
-    }
-
-    if (!GetCVar("metroid_jumpcount"))
-    {
-        ConsoleCommand("set metroid_jumpcount 2");
-        ConsoleCommand("archivecvar metroid_jumpcount");
-    }
-
-    if (!GetCVar("metroid_nomorph"))
-    {
-        ConsoleCommand("set metroid_nomorph 0");
-        ConsoleCommand("archivecvar metroid_nomorph");
-    }
-
-    if (!GetCVar("metroid_noenemydrops"))
-    {
-        ConsoleCommand("set metroid_noenemydrops 0");
-        ConsoleCommand("archivecvar metroid_noenemydrops");
-    }
-
-    if (!GetCVar("metroid_doomcannon"))
-    {
-        ConsoleCommand("set metroid_doomcannon 0");
-        ConsoleCommand("archivecvar metroid_doomcannon");
-    }
-
-    if (!GetCVar("metroid_dropstay"))
-    {
-        ConsoleCommand("set metroid_dropstay 0");
-        ConsoleCommand("archivecvar metroid_dropstay");
-    }
-
-    if (!GetCVar("metroid_nobfg"))
-    {
-        ConsoleCommand("set metroid_nobfg 0");
-        ConsoleCommand("archivecvar metroid_nobfg");
-    }
-
-    if (!GetCVar("metroid_permabfg"))
-    {
-        ConsoleCommand("set metroid_permabfg 0");
-        ConsoleCommand("archivecvar metroid_permabfg");
-    }
-
-    if (!GetCVar("metroid_soultanks"))
-    {
-        ConsoleCommand("set metroid_soultanks 0");
-        ConsoleCommand("archivecvar metroid_soultanks");
-    }
-
-    if (!GetCVar("metroid_skulltagweapons"))
-    {
-        ConsoleCommand("set metroid_skulltagweapons 0");
-        ConsoleCommand("archivecvar metroid_skulltagweapons");
+        M_SetCVar("metroid_runbefore", METROID_SV_CVAR_VERSION);
+        M_DefaultCVar("metroid_noaircontrol",       0);
+        M_DefaultCVar("metroid_spacejump",          0);
+        M_DefaultCVar("metroid_loaded",             0);
+        M_DefaultCVar("metroid_startingtanks",      0);
+        M_DefaultCVar("metroid_nolevellimiter",     0);
+        M_DefaultCVar("metroid_jumpcount",          2);
+        M_DefaultCVar("metroid_nomorph",            0);
+        M_DefaultCVar("metroid_noenemydrops",       0);
+        M_DefaultCVar("metroid_doomcannon",         0);
+        M_DefaultCVar("metroid_dropstay",           0);
+        M_DefaultCVar("metroid_nobfg",              0);
+        M_DefaultCVar("metroid_permabfg",           0);
+        M_DefaultCVar("metroid_soultanks",          0);
+        M_DefaultCVar("metroid_skulltagweapons",    0);
     }
 
     while (1)
     {
-        if (!GetCvar("compat_clientssendfullbuttoninfo")) { ConsoleCommand("set compat_clientssendfullbuttoninfo 1"); }
-        if (!GetCvar("sv_chasecam")) { ConsoleCommand("set sv_chasecam 1"); }
+        M_SetCVar_ZandOnly("compat_clientssendfullbuttoninfo", 1);
 
-        if (GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
-        else if (GetCVar("metroid_noaircontrol") == 1) { SetAirControl(0.00390625); }
+        if      (M_GetCVar("metroid_noaircontrol") == 0) { SetAirControl(0.225); }
+        else if (M_GetCVar("metroid_noaircontrol") == 1) { SetAirControl(0.00390625); }
 
         oldcjumps = cjumps;
-        cjumps = GetCVar("metroid_jumpcount");
+        cjumps = M_GetCVar("metroid_jumpcount");
         if (cjumps != oldcjumps) { MaxJumpCount = cjumps; }
 
         delay(1);
@@ -144,52 +79,19 @@ script METROID_OPEN OPEN
 
 script METROID_OPEN_CLIENT OPEN clientside
 {
-    if (!GetCVar("metroid_cl_noeffects"))
+    if (M_GetCVar("metroid_cl_runbefore") != METROID_CL_CVAR_VERSION)
     {
-        ConsoleCommand("set metroid_cl_noeffects 0");
-        ConsoleCommand("archivecvar metroid_cl_noeffects");
-    }
-
-    if (!GetCVar("metroid_cl_nosiren"))
-    {
-        ConsoleCommand("set metroid_cl_nosiren 0");
-        ConsoleCommand("archivecvar metroid_cl_nosiren");
-    }
-
-    if (!GetCVar("metroid_cl_nomorphcamera"))
-    {
-        ConsoleCommand("set metroid_cl_nomorphcamera 0");
-        ConsoleCommand("archivecvar metroid_cl_nomorphcamera");
-    }
-
-    // [ijon] Deprecated CVar, remove from premises
-    if (GetCVar("metroid_cl_morphcamera"))
-    {
-        ConsoleCommand("unset metroid_cl_morphcamera");
-    }
-
-    if (!GetCVar("metroid_cl_doomhealth"))
-    {
-        ConsoleCommand("set metroid_cl_doomhealth 0");
-        ConsoleCommand("archivecvar metroid_cl_doomhealth");
-    }
-
-    if (!GetCVar("metroid_cl_nometroidpickups"))
-    {
-        ConsoleCommand("set metroid_cl_nometroidpickups 0");
-        ConsoleCommand("archivecvar metroid_cl_nometroidpickups");
-    }
-
-    if (!GetCVar("metroid_cl_pickupmusic"))
-    {
-        ConsoleCommand("set metroid_cl_pickupmusic 0");
-        ConsoleCommand("archivecvar metroid_cl_pickupmusic");
-    }
-
-    if (!GetCVar("metroid_cl_hitindicator"))
-    {
-        ConsoleCommand("set metroid_cl_hitindicator 0");
-        ConsoleCommand("archivecvar metroid_cl_hitindicator");
+        M_SetCVar("metroid_cl_runbefore", METROID_CL_CVAR_VERSION);
+        M_DefaultCVar("metroid_cl_noeffects",           0);
+        M_DefaultCVar("metroid_cl_nosiren",             0);
+        M_DefaultCVar("metroid_cl_nomorphcamera",       0);
+        M_DefaultCVar("metroid_cl_pickupmusic",         0);
+        M_DefaultCVar("metroid_cl_nometroidpickups",    0);
+        M_DefaultCVar("metroid_cl_hitindicator",        0);
+        M_DefaultCVar("metroid_cl_chromabeamdensity",   0);
+        
+        // [ijon] Deprecated CVar, remove from premises
+        M_RemoveCVar("metroid_cl_morphcamera");
     }
 }
 
@@ -207,10 +109,10 @@ script METROID_OPEN_CLIENT OPEN clientside
     switch (bitches)
     {
     case 0:
-        if (GetCvar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
+        if (M_GetCVar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
         { //ConsoleCommand("chase");
           //ACS_ExecuteAlways(495,0,90,32); TakeInventory("PlayerMorphCamera",1); }
-        while (GetCvar("metroid_cl_morphcamera") == 1 && CheckInventory("PlayerMorphCamera") == 0)
+        while (M_GetCVar("metroid_cl_morphcamera") == 1 && CheckInventory("PlayerMorphCamera") == 0)
         {
             SetChasecam(dist, height, tid, 1);
             Delay(1);
@@ -219,7 +121,7 @@ script METROID_OPEN_CLIENT OPEN clientside
         break;
 
     case 1:
-        if (GetCvar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
+        if (M_GetCVar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
         { //ConsoleCommand("chase");
           ChangeCamera(0,0,0); GiveInventory("PlayerMorphCamera",1); }
         break;
@@ -227,7 +129,7 @@ script METROID_OPEN_CLIENT OPEN clientside
     case 2:
         delay(1);
         if (CheckInventory("PlayerMorphCamera") == 0)
-        { if (GetCvar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
+        { if (M_GetCVar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
         { ConsoleCommand("chase"); GiveInventory("PlayerMorphCamera",1); } }
         break;
     }
@@ -243,7 +145,7 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
 
     while (!fuckyoEVERYTHING)
     {
-        fuckyocamera = isDead(0) || !!GetCVar("metroid_cl_nomorphcamera");
+        fuckyocamera = isDead(0) || !!M_GetCVar("metroid_cl_nomorphcamera");
         fuckyoEVERYTHING = CheckInventory("PlayerMorphCamera");
 
         if (fuckyocamera || fuckyoEVERYTHING)
@@ -465,7 +367,7 @@ script METROID_ENTER ENTER
     if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); GiveInventory("PlayerMorphCamera",1); }
     //ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
-    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }//if (GetCvar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
+    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }//if (M_GetCVar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.
@@ -473,10 +375,10 @@ script METROID_ENTER ENTER
 
     if (!CheckInventory("InGame")) {
 
-        if (GetCVar("metroid_loaded") == 1)
+        if (M_GetCVar("metroid_loaded") == 1)
         {
-            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
-            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
+            if (M_GetCVar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (M_GetCVar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -484,14 +386,14 @@ script METROID_ENTER ENTER
             GiveInventory("Long Beam",1); GiveInventory("LongBeamAcquired",1);
         }
 
-        if (GetCvar("metroid_loaded") == 2) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }
+        if (M_GetCVar("metroid_loaded") == 2) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }
 
-        if (GetCvar("metroid_loaded") == 3) { SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); }
+        if (M_GetCVar("metroid_loaded") == 3) { SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); }
 
-        if (GetCVar("metroid_loaded") == 4)
+        if (M_GetCVar("metroid_loaded") == 4)
         {
-            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
-            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
+            if (M_GetCVar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (M_GetCVar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -500,10 +402,10 @@ script METROID_ENTER ENTER
             SetAmmoCapacity("MissileAmmo",20); GiveInventory("MissileAmmo",15); GiveInventory("MissileTankAcquired",1); 
         }
 
-        if (GetCVar("metroid_loaded") == 5)
+        if (M_GetCVar("metroid_loaded") == 5)
         {
-            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
-            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
+            if (M_GetCVar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (M_GetCVar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -514,10 +416,10 @@ script METROID_ENTER ENTER
             SetAmmoCapacity("PowerBombAmmo",2); GiveInventory("PowerBombAmmo",2); GiveInventory("PowerBombAcquired",1); 
         }
 
-        if (GetCVar("metroid_loaded") == 6)
+        if (M_GetCVar("metroid_loaded") == 6)
         {
-            if (GetCvar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
-            if (GetCvar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
+            if (M_GetCVar("metroid_doomcannon") == 1) { GiveInventory("Doom Cannon",1); GiveInventory("DoomCannonAcquired",1); }
+            if (M_GetCVar("metroid_skulltagweapons") == 1) { GiveInventory("Chroma Storm",1); GiveInventory("ChromaStormAcquired",1); }
             GiveInventory("Spazer Beam",1); GiveInventory("SpazerBeamAcquired",1);
             GiveInventory("Plasma Beam",1); GiveInventory("PlasmaBeamAcquired",1);
             GiveInventory("Wave Beam",1); GiveInventory("WaveBeamAcquired",1);
@@ -532,16 +434,16 @@ script METROID_ENTER ENTER
             GiveInventory("CanSpaceJump",1);
         }
 
-        if (GetCvar("metroid_startingtanks") == 1) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
-        if (GetCvar("metroid_startingtanks") == 2) { GiveInventory("EnergyTankAcquired",2); SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
-        if (GetCvar("metroid_startingtanks") == 3) { GiveInventory("EnergyTankAcquired",3); SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
-        if (GetCvar("metroid_startingtanks") == 4) { GiveInventory("EnergyTankAcquired",4); SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
-        if (GetCvar("metroid_startingtanks") == 5) { GiveInventory("EnergyTankAcquired",5); SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
-        if (GetCvar("metroid_startingtanks") == 6) { GiveInventory("EnergyTankAcquired",6); SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
-        if (GetCvar("metroid_startingtanks") == 7) { GiveInventory("EnergyTankAcquired",7); SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
-        if (GetCvar("metroid_startingtanks") == 8) { GiveInventory("EnergyTankAcquired",8); SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
-        if (GetCvar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
-        if (GetCvar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
+        if (M_GetCVar("metroid_startingtanks") == 1) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
+        if (M_GetCVar("metroid_startingtanks") == 2) { GiveInventory("EnergyTankAcquired",2); SetActorProperty(0,APROP_SPAWNHEALTH,300); SetActorProperty(0,APROP_HEALTH,300); }
+        if (M_GetCVar("metroid_startingtanks") == 3) { GiveInventory("EnergyTankAcquired",3); SetActorProperty(0,APROP_SPAWNHEALTH,400); SetActorProperty(0,APROP_HEALTH,400); }
+        if (M_GetCVar("metroid_startingtanks") == 4) { GiveInventory("EnergyTankAcquired",4); SetActorProperty(0,APROP_SPAWNHEALTH,500); SetActorProperty(0,APROP_HEALTH,500); }
+        if (M_GetCVar("metroid_startingtanks") == 5) { GiveInventory("EnergyTankAcquired",5); SetActorProperty(0,APROP_SPAWNHEALTH,600); SetActorProperty(0,APROP_HEALTH,600); }
+        if (M_GetCVar("metroid_startingtanks") == 6) { GiveInventory("EnergyTankAcquired",6); SetActorProperty(0,APROP_SPAWNHEALTH,700); SetActorProperty(0,APROP_HEALTH,700); }
+        if (M_GetCVar("metroid_startingtanks") == 7) { GiveInventory("EnergyTankAcquired",7); SetActorProperty(0,APROP_SPAWNHEALTH,800); SetActorProperty(0,APROP_HEALTH,800); }
+        if (M_GetCVar("metroid_startingtanks") == 8) { GiveInventory("EnergyTankAcquired",8); SetActorProperty(0,APROP_SPAWNHEALTH,900); SetActorProperty(0,APROP_HEALTH,900); }
+        if (M_GetCVar("metroid_startingtanks") == 9) { GiveInventory("EnergyTankAcquired",9); SetActorProperty(0,APROP_SPAWNHEALTH,1000); SetActorProperty(0,APROP_HEALTH,1000); }
+        if (M_GetCVar("metroid_startingtanks") == 10) { GiveInventory("EnergyTankAcquired",10); SetActorProperty(0,APROP_SPAWNHEALTH,1100); SetActorProperty(0,APROP_HEALTH,1100); }
 
         /*if (GameType () != GAME_TITLE_MAP && isSinglePlayer())
         {
@@ -578,12 +480,12 @@ script METROID_ENTER ENTER
         GiveInventory("PlayerTotalHealth", min(barhp, 99));
 
         // Spacejump shit
-        if (GetCVar("metroid_spacejump") == 1 || CheckInventory("CoopModeOn") == 0) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
-        else if (GetCVar("metroid_spacejump") == 0) { if (CheckInventory("SpaceJumpAcquired") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}}
+        if (M_GetCVar("metroid_spacejump") == 1 || CheckInventory("CoopModeOn") == 0) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
+        else if (M_GetCVar("metroid_spacejump") == 0) { if (CheckInventory("SpaceJumpAcquired") == 0) { if (CheckInventory("CanSpaceJump") == 1) { TakeInventory("CanSpaceJump",1); }}}
 
         // Nomorph shit
-        if (GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
-        else if (GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
+        if (M_GetCVar("metroid_nomorph") == 1) { if (CheckInventory("DisableMorph") == 0) { GiveInventory("DisableMorph",1); }}
+        else if (M_GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
 
         // Clientside shit
         if (array_doomHealth[pln]) { GiveInventory("DoomHealthCounter", 1); }
@@ -646,7 +548,7 @@ script METROID_ENTER_CLIENTSIDE ENTER clientside
                 execStr = StrParam(s:"puke -", d:METROID_PUKE, s:" ", d:execInt, s:" ", d:pln);
                 ConsoleCommand(execStr);
             }
-        //if (GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
+        //if (M_GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
         //else { if (CheckInventory("DoomHealthCounter") == 1) { TakeInventory("DoomHealthCounter",1); }}
 
         //if (GetCvar("cl_run") == 1) { if (CheckInventory("AlwaysRunIsOn") == 0) { GiveInventory("AlwaysRunIsOn",1); }}
@@ -682,7 +584,7 @@ script METROID_BWEEBWEEBWEEBWEE ENTER clientside
     if (isDead(0)) { terminate; }
     if (GetActorProperty(0,APROP_HEALTH) > 0) {
         if (GetActorProperty(0,APROP_HEALTH) <= 30) {
-            if (GetCvar("metroid_cl_nosiren") == 0) {
+            if (M_GetCVar("metroid_cl_nosiren") == 0) {
                 LocalAmbientSound("system/healthsiren",96); }}}
     delay(2);
     if (isDead(0)) { terminate; }
@@ -715,7 +617,7 @@ script METROID_BWEEBWEEMORPH (void) clientside
     if (isDead(0)) { endloop = 1; }
     if (GetActorProperty(0,APROP_HEALTH) > 0) {
         if (GetActorProperty(0,APROP_HEALTH) <= 30) {
-            if (GetCvar("metroid_cl_nosiren") == 0) {
+            if (M_GetCVar("metroid_cl_nosiren") == 0) {
                 LocalAmbientSound("system/healthsiren",96); }}}
     delay(2);
     if (isDead(0)) { terminate; }
@@ -771,7 +673,7 @@ script METROID_DECORATE (int which, int a1, int a2)
     switch (which)
     {
     case 0:
-        SetResultValue(!!GetCVar("metroid_cl_noeffects"));
+        SetResultValue(!!M_GetCVar("metroid_cl_noeffects"));
         break;
 
     case 1:
@@ -815,7 +717,7 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 7:
-        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("ETNotInThisLevel",1); }
+        if(M_GetCVar("metroid_nolevellimiter") == 0) { GiveInventory("ETNotInThisLevel",1); }
         break;
 
     case 8:
@@ -829,11 +731,11 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 10:
-        SetResultValue(!!GetCVar("metroid_noenergydrops"));
+        SetResultValue(!!M_GetCVar("metroid_noenergydrops"));
         break;
 
     case 11:
-        SetResultValue(!!GetCVar("metroid_soultanks"));
+        SetResultValue(!!M_GetCVar("metroid_soultanks"));
         break;
 
     case 12:
@@ -843,33 +745,33 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 13:
-        if(GetCvar("metroid_doomcannon") == 1)
+        if(M_GetCVar("metroid_doomcannon") == 1)
         SetResultValue(1);
         else SetResultValue(0);
         break;
 
     case 14:
-        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("SMNotInThisLevel",1); }
+        if(M_GetCVar("metroid_nolevellimiter") == 0) { GiveInventory("SMNotInThisLevel",1); }
         break;
 
     case 15:
-        if(GetCvar("metroid_nolevellimiter") == 0) { GiveInventory("PBNotInThisLevel",1); }
+        if(M_GetCVar("metroid_nolevellimiter") == 0) { GiveInventory("PBNotInThisLevel",1); }
         break;
 
     case 16:
-        SetResultValue(!!GetCVar("metroid_dropstay"));
+        SetResultValue(!!M_GetCVar("metroid_dropstay"));
         break;
 
     case 17:
-        SetResultValue(!!GetCVar("metroid_nobfg"));
+        SetResultValue(!!M_GetCVar("metroid_nobfg"));
         break;
 
     case 18:
-        SetResultValue(!!GetCVar("metroid_permabfg"));
+        SetResultValue(!!M_GetCVar("metroid_permabfg"));
         break;
 
     case 19:
-        SetResultValue(!!GetCVar("metroid_skulltagweapons"));
+        SetResultValue(!!M_GetCVar("metroid_skulltagweapons"));
         break;
 
     // [ijon] IT'S MOTHERFUCKING *ARRAY TIME*
@@ -954,11 +856,11 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
     switch (which)
     {
       case 0:
-        SetResultValue(!!GetCVar("metroid_cl_noeffects"));
+        SetResultValue(!!M_GetCVar("metroid_cl_noeffects"));
         break;
 
       case 1:
-        SetResultValue(!!GetCVar("metroid_cl_doomhealth"));
+        SetResultValue(!!M_GetCVar("metroid_cl_doomhealth"));
         break;
 
       case 2:
@@ -971,7 +873,7 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         int pickupMus = BigPickupSounds[a1][0];
         int soundItem = BigPickupSounds[a1][1];
 
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic(pickupMus); }
+        if(M_GetCVar("metroid_cl_pickupmusic") == 1) { LocalSetMusic(pickupMus); }
         else
         {
             // [ijon] testmusicvol is safer than snd_musicvolume - it does no lasting damage.
@@ -981,7 +883,7 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         break;
 
       case 4:
-        if(GetCvar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
+        if(M_GetCVar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
         else { ConsoleCommand("testmusicvol 1"); }
         break;
 

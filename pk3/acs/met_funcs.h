@@ -330,3 +330,40 @@ function int SetChasecam(int dist, int height, int tid, int withvel)
     ChangeCamera(tid, 0, 0);
     return 0;
 }
+
+function int met_cvarinfo(void)
+{
+    return GetCVar("metroid_usescvarinfo") == 819849666;
+}
+
+function int M_GetCVar(int var)
+{
+    if (met_cvarinfo()) { return GetCVar(var); }
+    return defaultCVar(var, 0);
+}
+
+function int M_DefaultCVar(int var, int val)
+{
+    if (met_cvarinfo()) { return GetCVar(var); }
+    return defaultCVar(var, val);
+}
+
+function int M_SetCVar(int var, int val)
+{
+    if (met_cvarinfo()) { SetCVar(var, val); }
+    else { SaveCVar(var, val); }
+
+    return GetCVar(var);
+}
+
+function int M_SetCVar_ZandOnly(int var, int val)
+{
+    if (!met_cvarinfo()) { SaveCVar(var, val); }
+    return GetCVar(var);
+}
+
+function void M_RemoveCVar(int var)
+{
+    if (met_cvarinfo()) { SetCVar(var, 0); } // can't actually remove cvars in zdoom
+    else { ConsoleCommand(StrParam(s:"unset ", s:var)); }
+}
