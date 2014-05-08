@@ -32,6 +32,14 @@ int array_hitindic[PLAYERMAX];
 #include "met_longbeam.h"
 #include "met_chroma.h"
 
+int GotSpazer;
+int GotPlasma;
+int GotWave;
+int GotIce;
+int GotLong;
+int GotCharge;
+int GotDoom;
+
 
 // CVAR HANDLING SHIT
 // ==================
@@ -487,6 +495,21 @@ script METROID_ENTER ENTER
         // Clear pickup status
         for (i = 0; i < PICKUPTYPES; i++) { GotBigPickup[pln][i] = 0; }
 
+
+        // Global variables
+        if (isSinglePlayer())
+        {
+            if (CheckInventory("SpazerBeamAcquired") == 1) { GotSpazer = 1; }
+            if (CheckInventory("PlasmaBeamAcquired") == 1) { GotPlasma = 1; }
+            if (CheckInventory("WaveBeamAcquired") == 1) { GotWave = 1; }
+            if (CheckInventory("IceBeamAcquired") == 1) { GotIce = 1; }
+            if (CheckInventory("LongBeamAcquired") == 1) { GotLong = 1; }
+            if (CheckInventory("DoomCannonAcquired") == 1) { GotDoom = 1; }
+            if (CheckInventory("ChargeComboAcquired") == 1) { GotCharge = 1; }
+        }
+        // You have no idea how much I'm trying to avoid GotMilk = 1;
+        // WAIT SHIT I JUST DID IT
+
         if (isDead(0)) { terminate; }
         delay(1);
     }
@@ -802,6 +825,44 @@ script METROID_DECORATE (int which, int a1, int a2)
             ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 7, whichPickup);
         }
         break;
+
+    // These are a stupidly hacky and wasteful set of scripts.
+    // If I could get GetActorInventory to work fine, they wouldn't be needed!
+    case 21:
+        if (isSinglePlayer() && GotSpazer == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+
+    case 22:
+        if (isSinglePlayer() && GotPlasma == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+
+    case 23:
+        if (isSinglePlayer() && GotWave == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+
+    case 24:
+        if (isSinglePlayer() && GotIce == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+
+    case 25:
+        if (isSinglePlayer() && GotLong == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+
+    case 26:
+        if (isSinglePlayer() && GotDoom == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+
+    case 27:
+        if (isSinglePlayer() && GotCharge == 1) { SetResultValue(1); }
+        else { SetResultValue(0); }
+        break;
+    // Chroma Storm probably won't be needed since I assume it'll only spawn on multiplayer maps.
 
     case 32:
         delay(32);

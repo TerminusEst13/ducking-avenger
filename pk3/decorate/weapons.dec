@@ -19,6 +19,16 @@ actor WeaponPickup: CustomInventory
       NoPickup:
         TNT1 A 0
         stop
+
+      MissileTankTime:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("MissileTankPickup",0,0,0,0,0,0,0,32)
+        stop
+
+      SuperMissileTankTime:
+        TNT1 A 0
+        TNT1 A 0 A_SpawnItemEx("SuperMissileTankPickup",0,0,0,0,0,0,0,32)
+        stop
     }
 }
 
@@ -36,6 +46,7 @@ ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun 17533
       Spawn2:
         WPPK S 10 BRIGHT
         WPPK S 5
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,21,0,0) == 1, "MissileTankTime")
         loop
 
       Pickup:
@@ -61,6 +72,7 @@ ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun 17534
       Spawn2:
         WPPK P 10 BRIGHT
         WPPK P 5
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,22,0,0) == 1, "MissileTankTime")
         loop
 
       Pickup:
@@ -86,6 +98,7 @@ ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun 17535
       Spawn2:
         WPPK W 10 BRIGHT
         WPPK W 5
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,23,0,0) == 1, "MissileTankTime")
         loop
 
       Pickup:
@@ -111,6 +124,7 @@ ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher 17536
       Spawn2:
         WPPK I 10 BRIGHT
         WPPK I 5
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,24,0,0) == 1, "MissileTankTime")
         loop
 
       Pickup:
@@ -136,6 +150,7 @@ ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle 17537
       Spawn2:
         WPPK L 10 BRIGHT
         WPPK L 5
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,25,0,0) == 1, "MissileTankTime")
         loop
 
       Pickup:
@@ -160,6 +175,7 @@ ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw 17538
       Spawn2:
         DCPK ABCD 5 bright
         DCPK ABCD 5
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,26,0,0) == 1, "NoPickup")
         loop
 
       Pickup:
@@ -186,6 +202,7 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
 
       Spawn2:
         CCMB A 2 bright
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,27,0,0) == 1, "SuperMissileTankTime")
         loop
 
       Pickup:
