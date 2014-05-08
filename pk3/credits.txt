@@ -5,6 +5,14 @@ SPECIAL THANKS TO:
 - Graf Zahl, Randy Heit (For the ZDoom/GZDoom engine)
 - Torr Samaho and the Zandronum team (For picking up where Skulltag left off)
 - /vr/ (For their help, guidance, and enthusiasm for both Doom and Metroid)
+- ijon tichy (As usual, an incredible code guru. Responsible for:
+ ^- : The Space Jump code (taken from Parkmore)
+ ^- : The Long Beam code (taken from Lelweps)
+ ^- : The Power Bomb's explosion (taken from Redeemer)
+ ^- : The Chroma Storm
+ ^- : Reworking the Metroid pickup system
+ ^- : The gunship system
+ ^- : Redoing the chasecam system
 
 GRAPHICS:
 =========
@@ -47,5 +55,4 @@ SOUNDS:
 CODE:
 =========
 - Repo Man (The basis of the Wave Beam projectile code)
-- Ijon Tichy (The Space Jump code (taken from Parkmore), the Long Beam code (taken from Lelweps), and the Power Bomb's explosion, the Chroma Storm, reworking the Metroid pickup system, the gunship system...)
 - TheMisterCat (The lingering fire for the Plasma Beam Charge Combo)
