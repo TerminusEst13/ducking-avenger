@@ -669,40 +669,6 @@ Object LongBeamPickup { Frame WPPK { Light LongWeaponGlow }}
 Object ChargeComboPickup { Frame CCMB { Light ComboWeaponGlow }}
 Object RawEnergy { Frame EFLD { Light EnergyGlow4 }}
 
-Object ChromaStormTrail1 { Frame CBPKH { Light ChromaGlow1 }
-                           Frame CBPKI { Light ChromaGlow2 }
-                           Frame CBPKJ { Light ChromaGlow3 }
-                           Frame CBPKK { Light ChromaGlow4 }
-                           Frame CBPKL { Light ChromaGlow5 }
-                           Frame CBPKM { Light ChromaGlow6 }
-                           Frame CBPKN { Light ChromaGlow7 }
-                           Frame CBPKO { Light ChromaGlow8 }
-                           Frame CBPKP { Light ChromaGlow9 }
-                           Frame CBPKQ { Light ChromaGlow10 }
-                           Frame CBPKR { Light ChromaGlow11 }}
-Object ChromaStormTrail2 { Frame CBPKH { Light ChromaGlow1 }
-                           Frame CBPKI { Light ChromaGlow2 }
-                           Frame CBPKJ { Light ChromaGlow3 }
-                           Frame CBPKK { Light ChromaGlow4 }
-                           Frame CBPKL { Light ChromaGlow5 }
-                           Frame CBPKM { Light ChromaGlow6 }
-                           Frame CBPKN { Light ChromaGlow7 }
-                           Frame CBPKO { Light ChromaGlow8 }
-                           Frame CBPKP { Light ChromaGlow9 }
-                           Frame CBPKQ { Light ChromaGlow10 }
-                           Frame CBPKR { Light ChromaGlow11 }}
-Object ChromaStormTrail3 { Frame CBPKH { Light ChromaGlow1 }
-                           Frame CBPKI { Light ChromaGlow2 }
-                           Frame CBPKJ { Light ChromaGlow3 }
-                           Frame CBPKK { Light ChromaGlow4 }
-                           Frame CBPKL { Light ChromaGlow5 }
-                           Frame CBPKM { Light ChromaGlow6 }
-                           Frame CBPKN { Light ChromaGlow7 }
-                           Frame CBPKO { Light ChromaGlow8 }
-                           Frame CBPKP { Light ChromaGlow9 }
-                           Frame CBPKQ { Light ChromaGlow10 }
-                           Frame CBPKR { Light ChromaGlow11 }}
-
 
 // Missiles
 // ===================
