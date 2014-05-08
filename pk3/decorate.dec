@@ -79,6 +79,43 @@ actor SpaceChecker
     }
 }
 
+actor ChasecamChecker
+{
+    Radius 1
+    Height 1
+
+    +SERVERSIDEONLY
+    +NOGRAVITY
+    -SOLID
+    +NOBLOCKMONST
+
+    States
+    {
+      Spawn:
+        TNT1 A 18
+        stop
+    }
+}
+
+actor ChasecamActor
+{
+    Radius 0
+    Height 0
+
+    +NOINTERACTION
+    +NOBLOCKMONST
+    +THRUACTORS
+    +NOGRAVITY
+    +NOTELEPORT
+
+    States
+    {
+      Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
 actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
 
 #include "decorate/tokens.dec"

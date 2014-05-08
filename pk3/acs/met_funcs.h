@@ -193,3 +193,140 @@ function int MetroidClientVars(void)
 
     return /*(switchOnPickup << 4) +*/ (hitindic << 3) + (metpick << 2) + (doomHealth << 1) + runrunruu;
 }
+
+function int SetChasecam(int dist, int height, int tid, int withvel)
+{
+    if (PlayerNumber() == -1) { return 1; }
+
+    int testtid = unusedTID(30000, 40000);
+    int mytid   = defaultTID(-1);
+
+    int angle, pitch;
+    int  x,  y,  z;     // Temporary x, y, z
+    int px, py, pz;     // Player viewpoint position
+    int vx, vy, vz;     // Unit vector that goes out from activator
+    int ex, ey, ez;     // End spawn point
+    int i;
+
+    px = GetActorX(0);
+    py = GetActorY(0);
+    pz = GetActorZ(0);
+
+    int endheight = 0;
+    int eh1 = 0;
+
+    height = itof(height) + GetActorViewHeight(mytid);
+    
+    // First, find height chasecam should start at, if the height given dun werk
+    for (z = 0; z <= height; z += 1.0)
+    {
+        if (Spawn("ChasecamChecker", px, py, pz + z, testtid))
+        {
+            if (GetActorZ(testtid) != (pz + z))
+            {
+                Thing_Remove(testtid);
+                break;
+            }
+
+            Thing_Remove(testtid);
+        }
+        else
+        {
+            break;
+        }
+
+        endheight = eh1;
+        eh1 = z;
+    }
+
+    pz += endheight;
+
+    angle = GetActorAngle(0);
+    pitch = GetActorPitch(0);
+
+    vx = FixedMul(cos(angle + 0.5), cos(pitch));
+    vy = FixedMul(sin(angle + 0.5), cos(pitch));
+    vz = -sin(pitch + 0.5);
+
+    // if it hits the floor or ceiling, KEEP it at that height.
+    int clampingHeight = 0;
+    int heightClamp;
+
+    // heh, ez = pz
+    ex = px; ey = py; ez = pz;
+
+    for (i = 0; i < dist; i++)
+    {
+        x = px + (i * vx);
+        y = py + (i * vy);
+        z = pz;
+
+        if (clampingHeight) { z = heightClamp; }
+        else { z += i * vz; }
+
+        if (Spawn("ChasecamChecker", x, y, z, testtid))
+        {
+            if (GetActorFloorZ(testtid)   + 2.0 > z
+             || GetActorCeilingZ(testtid) - 2.0 < z)
+            {
+                clampingHeight = 1;
+                heightClamp = GetActorZ(testtid);
+            }
+
+            Thing_Remove(testtid);
+        }
+        else
+        {
+            break;
+        }
+        
+        ex = x; ey = y; ez = z;
+    }
+
+    // V[XYZ] IS NOW VELOCITY GO FUCK YOURSELF
+    vx = GetActorVelX(0);
+    vy = GetActorVelY(0);
+    vz = GetActorVelZ(0);
+
+    i = 0;
+    if (ThingCount(0, tid) == 1)
+    {
+        if (withvel)
+        {
+            i = SetActorPosition(tid, ex-vx, ey-vy, ez-vz, 0);
+            if (i) { SetActorVelocity(tid, vx, vy, vz, 0, 0); }
+            //Log(s:"setpos 1: ", d:i);
+        }
+
+        if (i == 0)
+        {
+            i = SetActorPosition(tid, ex, ey, ez, 0);
+            if (i) { SetActorVelocity(tid, 0, 0, 0, 0, 0); }
+            //Log(s:"setpos 2: ", d:i);
+        }
+    }
+    
+    if (i == 0)
+    { 
+        if (ThingCount(0, tid)) { Thing_Remove(tid); }
+
+        if (withvel)
+        {
+            i = Spawn("ChasecamActor", ex-vx, ey-vy, ez-vz, tid);
+            if (i) { SetActorVelocity(tid, vx, vy, vz, 0, 0); }
+            //Log(s:"spawn 1: ", d:i);
+        }
+
+        if (i == 0)
+        {
+            i = Spawn("ChasecamActor", ex, ey, ez, tid);
+            //Log(s:"spawn 2: ", d:i);
+        }
+    }
+
+    SetActorAngle(tid, angle);
+    SetActorPitch(tid, pitch);
+
+    ChangeCamera(tid, 0, 0);
+    return 0;
+}

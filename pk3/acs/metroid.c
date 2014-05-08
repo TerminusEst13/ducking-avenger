@@ -191,21 +191,31 @@ script METROID_OPEN_CLIENT OPEN clientside
 // MORPH BALL CAMERA SHIT
 // ========================
 
-Script METROID_MORPHCAMERA (int bitches) CLIENTSIDE
+/*Script METROID_MORPHCAMERA (int bitches) CLIENTSIDE
 {
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
     int pNum = PlayerNumber();
+
+    int tid = unusedTID(32000, 42000);
 
     switch (bitches)
     {
     case 0:
         if (GetCvar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
-        { ConsoleCommand("chase"); TakeInventory("PlayerMorphCamera",1); }
+        { //ConsoleCommand("chase");
+          //ACS_ExecuteAlways(495,0,90,32); TakeInventory("PlayerMorphCamera",1); }
+        while (GetCvar("metroid_cl_morphcamera") == 1 && CheckInventory("PlayerMorphCamera") == 0)
+        {
+            SetChasecam(dist, height, tid, 1);
+            Delay(1);
+        }
+        else { ThingRemove(tid); }
         break;
 
     case 1:
         if (GetCvar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
-        { ConsoleCommand("chase"); GiveInventory("PlayerMorphCamera",1); }
+        { //ConsoleCommand("chase");
+          ChangeCamera(0,0,0); GiveInventory("PlayerMorphCamera",1); }
         break;
 
     case 2:
@@ -214,6 +224,28 @@ Script METROID_MORPHCAMERA (int bitches) CLIENTSIDE
         { if (GetCvar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
         { ConsoleCommand("chase"); GiveInventory("PlayerMorphCamera",1); } }
         break;
+    }
+}*/
+
+script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
+{
+    if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
+    int pNum = PlayerNumber();
+    int tid = unusedTID(32000, 42000);
+
+    /*while (1)
+    {
+        SetChasecam(dist, height, tid, 1);
+        Delay(1);
+    }*/
+    if (GetCvar("metroid_cl_morphcamera") == 1)
+    {
+        while (1)//(GetCvar("metroid_cl_morphcamera") == 1 && CheckInventory("PlayerMorphCamera") == 0)
+        {
+            SetChasecam(dist, height, tid, 1);
+            Delay(1);
+            if (CheckInventory("PlayerMorphCamera") == 1) { Thing_Remove(tid); terminate; }
+        }
     }
 }
 
@@ -279,7 +311,8 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("MissileCharged",999);
         playerOnFoot[pNum] = 1;
 
-        ACS_ExecuteAlways(METROID_MORPHCAMERA,0,0);
+        TakeInventory("PlayerMorphCamera",1);
+        ACS_ExecuteAlways(METROID_MORPHCAMERA,0,90,4);
         ACS_ExecuteAlways(METROID_BWEEBWEEMORPH,0);
         break;
 
@@ -305,7 +338,9 @@ script METROID_MORPHBALL (int morphshit)
         SetActorVelocity(0, velx,vely,velz, 0,0);
         playerOnFoot[pNum] = 0;
 
-        ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1);
+        //ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1);
+        //ACS_ExecuteAlways(495,0,0,0);
+        GiveInventory("PlayerMorphCamera",1);
 
         ACS_ExecuteAlways(352,0,0,0);
         ACS_ExecuteAlways(351,0,0,0);
@@ -387,11 +422,12 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("BallBoosting",1);
 
     GiveInventory("BombCount",999);
+    GiveInventory("PlayerMorphCamera",999);
 }
 
 script METROID_DEATH DEATH
 {
-    if (CheckInventory("BorphMallAcquired")) { ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1); }
+    if (CheckInventory("BorphMallAcquired")) { GiveInventory("PlayerMorphCamera",999); }//ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1); }
     ACS_ExecuteAlways(589,0);
 }
 
@@ -417,8 +453,8 @@ script METROID_ENTER ENTER
 
     if (GameType () == GAME_TITLE_MAP) { terminate; }
 
-    if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); }
-    ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
+    if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); GiveInventory("PlayerMorphCamera",1); }
+    //ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
 
     if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }//if (GetCvar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
@@ -484,6 +520,7 @@ script METROID_ENTER ENTER
             GiveInventory("SpeedBoosterAcquired",1);
             GiveInventory("ChargeComboAcquired",1);
             GiveInventory("SpaceJumpAcquired",1);
+            GiveInventory("CanSpaceJump",1);
         }
 
         if (GetCvar("metroid_startingtanks") == 1) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); }
