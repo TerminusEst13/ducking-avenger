@@ -1,3 +1,6 @@
+#define METROID_SV_CVAR_VERSION    1
+#define METROID_CL_CVAR_VERSION    1
+
 #define METROID_BASE                         354
 
 #define METROID_SPACEJUMP_ENTER2             351
@@ -182,32 +185,11 @@ int DakkaBeamFireTimes[CHARGELEVELS] =
     9, 8, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2,
 };
 
-int SoundSlotIndex[PLAYERMAX];
-
 // LASERS MOTHERFUCKER
 
 #define LASER_ROTATETICS 72
 #define LASER_NOEFFECTS_FADELENGTH 192
 #define LASER_BASEALPHA 0.5
-
-int TempCoords[PLAYERMAX][3];
-int TempTrail;
-int TempPuff;
-int TempEnd;
-
-int Hack_ArgsSet[10];
-
-int Hack_StartX;
-int Hack_StartY;
-int Hack_StartZ;
-
-int Hack_EndX;
-int Hack_EndY;
-int Hack_EndZ;
-
-int Hack_VelX;
-int Hack_VelY;
-int Hack_VelZ;
 
 #define COLORCOUNT 3
 

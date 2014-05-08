@@ -1,6 +1,6 @@
 script 474 (int which, int transferVelocity, int count) clientside
 {
-    if (GetCVar("metroid_cl_noeffects")) { terminate; } // ramon pls
+    if (M_GetCVar("metroid_cl_noeffects")) { terminate; } // ramon pls
     if (which < 0 || which >= PARTICLECOUNT) { terminate; }
     int particle = DakkaBeamParticles[which];
     int fadeRate = DakkaBeamFadeRates[which];
@@ -46,6 +46,8 @@ script 474 (int which, int transferVelocity, int count) clientside
         Delay(1);
     }
 }
+
+int SoundSlotIndex[PLAYERMAX];
 
 script 475 (int which, int a1, int a2)
 {
@@ -287,22 +289,36 @@ script 478 enter
     }
 }
 
+
+// LASERS MOTHERFUCKER
+
+int CB_TempCoords[PLAYERMAX][3];
+int TempTrail;
+int TempPuff;
+int TempEnd;
+
+int Hack_ArgsSet[10];
+
+int Hack_StartX;
+int Hack_StartY;
+int Hack_StartZ;
+
+int Hack_EndX;
+int Hack_EndY;
+int Hack_EndZ;
+
+int Hack_VelX;
+int Hack_VelY;
+int Hack_VelZ;
+
 script 484 (int x, int y, int z) clientside
 {
-    if (GetCVar("dakkabeam_cl_debug") >= 1) { Log(s:"Test (484) - ", f:x, s:", ", f:y, s:", ", f:z); }
-    
     int nx = itof(rightShort(x));
     int ny = itof(rightShort(y));
     int nz = itof(rightShort(z));
     x = itof(leftShort(x));
     y = itof(leftShort(y));
     z = itof(leftShort(z));
-
-    if (GetCVar("dakkabeam_cl_debug") >= 1)
-    {
-        Log(s:"start: (", f:x, s:", ", f:y, s:", ", f:z, s:")");
-        Log(s:"end:   (", f:nx, s:", ", f:ny, s:", ", f:nz, s:")");
-    }
 
     Hack_StartX = x;
     Hack_StartY = y;
@@ -324,8 +340,6 @@ script 486 (int x, int y, int z) clientside
 {
     int i;
 
-    if (GetCVar("dakkabeam_cl_debug") >= 1) { Log(s:"Test (484) - ", f:x, s:", ", f:y, s:", ", f:z); }
-
     // this case gets called first because ACS_ExecuteAlways is LIFO, so reset here
     for (i = 0; i < 9; i++) { Hack_ArgsSet[i] = 0; }
 
@@ -342,7 +356,6 @@ script 486 (int x, int y, int z) clientside
 script 487 (void) clientside
 {
     if (ConsolePlayerNumber() == -1) { terminate; }
-    if (GetCVar("dakkabeam_cl_debug") >= 1) { Log(s:"WE ROLLIN"); }
 
     int i, run = 1;
 
@@ -350,7 +363,6 @@ script 487 (void) clientside
     {
         if (!Hack_ArgsSet[i])
         {
-            if (GetCVar("dakkabeam_cl_debug") == 2) { Log(s:"won't run on ", d:i); }
             run = 0;
             break;
         }
@@ -360,9 +372,8 @@ script 487 (void) clientside
     for (i = 0; i < 9; i++) { Hack_ArgsSet[i] = 0; }
 
     int pln = PlayerNumber();
-    int noeffects = GetCVar("metroid_cl_noeffects");
-    int density   = middle(1, GetCVar("metroid_cl_chromabeamdensity"), 32);
-    int cvarinfo = GetCVar("metroid_info_usescvarinfo") == 420420420; // if we have cvarinfo, the laser went SUPERFAST instantly
+    int noeffects = M_GetCVar("metroid_cl_noeffects");
+    int density   = middle(1, M_GetCVar("metroid_cl_chromabeamdensity"), 32);
 
     int  x  = Hack_StartX,  y  = Hack_StartY,  z  = Hack_StartZ;
     int tx  = Hack_EndX,   ty  = Hack_EndY,   tz  = Hack_EndZ;
@@ -404,7 +415,7 @@ script 487 (void) clientside
     //   and so that velocity doesn't send the beam flying,
     //   which GZDoom does apparently? IUNO
     // If it starts happening in Zandronum too, just remove the if part.
-    if (cvarinfo) { x -= vx1; y -= vy1; z -= vz1; }
+    if (met_cvarinfo()) { x -= vx1; y -= vy1; z -= vz1; }
 
     ticOffset =  Timer() % LASER_ROTATETICS;
     ticOffset *= 1.0;
@@ -477,9 +488,9 @@ script 488 (int which)
 
     switch (which)
     {
-        case 0: ret = TempCoords[pln][0]; break;
-        case 1: ret = TempCoords[pln][1]; break;
-        case 2: ret = TempCoords[pln][2]; break;
+        case 0: ret = CB_TempCoords[pln][0]; break;
+        case 1: ret = CB_TempCoords[pln][1]; break;
+        case 2: ret = CB_TempCoords[pln][2]; break;
     }
 
     SetResultValue(ret);
@@ -503,20 +514,9 @@ script 489 (int x, int y, int z)
 
     for (i = 0; i < magI; i += 16)
     {
-        TempCoords[pln][0] = (vx * i);
-        TempCoords[pln][1] = (vy * i);
-        TempCoords[pln][2] = (vz * i);
+        CB_TempCoords[pln][0] = (vx * i);
+        CB_TempCoords[pln][1] = (vy * i);
+        CB_TempCoords[pln][2] = (vz * i);
         GiveInventory("DBeamLaserItem", 1);
-    }
-}
-
-script 485 open clientside
-{
-    int cvarinfo = GetCVar("metroid_info_usescvarinfo") == 420420420; // I am mature.
-
-    if (!(GetCVar("metroid_cl_chromabeamdensity") || cvarinfo))
-    {
-        ConsoleCommand("set metroid_cl_chromabeamdensity 8");
-        ConsoleCommand("archivecvar metroid_cl_chromabeamdensity");
     }
 }

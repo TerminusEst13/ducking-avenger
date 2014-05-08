@@ -17,6 +17,9 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
+
+    Inventory.Icon "WEAPPLBM"
+
     States
     {
     Spawn:

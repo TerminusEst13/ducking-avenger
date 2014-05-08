@@ -15,6 +15,9 @@ ACTOR "Power Beam" : Weapon
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
+
+    Inventory.Icon "WEAPPWBM"
+
     States
     {
     Spawn:

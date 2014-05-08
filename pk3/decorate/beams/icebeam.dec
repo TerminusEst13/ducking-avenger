@@ -15,6 +15,9 @@ ACTOR "Ice Beam" : Weapon
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
+
+    Inventory.Icon "WEAPICBM"
+
     States
     {
     Spawn:

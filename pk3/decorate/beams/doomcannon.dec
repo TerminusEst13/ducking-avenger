@@ -18,6 +18,9 @@ ACTOR "Doom Cannon" : Weapon
     +NO_AUTO_SWITCH
     +UNDROPPABLE
     Decal Doom_BulletChip
+
+    Inventory.Icon "WEAPDMCN"
+    
     States
     {
     Spawn:

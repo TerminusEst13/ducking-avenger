@@ -16,6 +16,9 @@ ACTOR "Long Beam" : Weapon
     +NO_AUTO_SWITCH
     +UNDROPPABLE
     Decal DoomImpScorch
+
+    Inventory.Icon "WEAPLNBM"
+
     States
     {
     Spawn:
