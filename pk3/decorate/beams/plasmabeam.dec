@@ -398,7 +398,7 @@ actor PlasmaBolt
     +RIPPER
     +ROCKETTRAIL
     Speed 55
-    Damage (70)
+    Damage (60)
     Scale 0.25
     RenderStyle Add
     Alpha 0.95
