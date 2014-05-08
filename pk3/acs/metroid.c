@@ -499,22 +499,23 @@ script METROID_ENTER_CLIENTSIDE ENTER clientside
 
     while(1)
     {
+        if (ConsolePlayerNumber() != PlayerNumber()) { Delay(1); continue; }
 
-    if (ConsolePlayerNumber() != PlayerNumber()) { Delay(1); continue; }
+        oExecInt = execInt;
+        execInt = MetroidClientVars();
 
-            oExecInt = execInt;
-            execInt = MetroidClientVars();
-
-            if (execInt != oExecInt)
+        if (execInt != oExecInt)
+        {
+            if (!IsServer)
             {
                 execStr = StrParam(s:"puke -", d:METROID_PUKE, s:" ", d:execInt, s:" ", d:pln);
                 ConsoleCommand(execStr);
             }
-        //if (M_GetCVar("metroid_cl_doomhealth") == 1) { if (CheckInventory("DoomHealthCounter") == 0) { GiveInventory("DoomHealthCounter",1); }}
-        //else { if (CheckInventory("DoomHealthCounter") == 1) { TakeInventory("DoomHealthCounter",1); }}
-
-        //if (GetCvar("cl_run") == 1) { if (CheckInventory("AlwaysRunIsOn") == 0) { GiveInventory("AlwaysRunIsOn",1); }}
-        //else { if (CheckInventory("AlwaysRunIsOn") == 1) { TakeInventory("AlwaysRunIsOn",1); }}
+            else
+            {
+                ACS_ExecuteWithResult(METROID_PUKE, execInt, pln);
+            }
+        }
 
         delay(1);
     }

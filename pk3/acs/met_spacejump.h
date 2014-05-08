@@ -291,7 +291,6 @@ script METROID_SPACEJUMP_ENTER2 enter clientside
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:METROID_REQUESTDODGE, s:" ", d:-256);
-                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall kick: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
@@ -304,7 +303,6 @@ script METROID_SPACEJUMP_ENTER2 enter clientside
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:METROID_REQUESTDODGE, s:" ", d:-dDirection);
-                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be wall jump: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else
@@ -326,7 +324,6 @@ script METROID_SPACEJUMP_ENTER2 enter clientside
                 if (!IsServer)
                 {
                     pukeStr = StrParam(s:"puke -", d:METROID_REQUESTDODGE, s:" 0 0 1");
-                    if (GetCVar("cyber_cl_debug")) { Print(s:"should be multijump: ", s:pukeStr); }
                     ConsoleCommand(pukeStr);
                 }
                 else if (!DidSpecials[pln] && !grabbing[pln])
@@ -353,11 +350,6 @@ script METROID_SPACEJUMP_ENTER2 enter clientside
 script METROID_REQUESTDODGE (int direction, int hijump, int mjump) net
 {
     int pln = PlayerNumber();
-
-    if (GetCVar("cyber_cl_debug"))
-    {
-        PrintBold(s:"Activator is ", n:0, s:"\c- (idx ", d:pln, s:")\nExecuted on tic ", d:Timer(), s:"\nArgs: ", d:direction, s:", ", d:hijump, s:", ", d:mjump);
-    }
 
     if (isDead(0)) { terminate; }
 
