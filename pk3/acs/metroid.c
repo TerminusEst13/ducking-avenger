@@ -814,6 +814,7 @@ script METROID_DECORATE (int which, int a1, int a2)
 
 script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
 {
+    int inZDoom = met_cvarinfo();  // [ijon] Hack!
     if (ConsolePlayerNumber() != PlayerNumber()) { terminate; }
 
     switch (which)
@@ -836,7 +837,8 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         int pickupMus = BigPickupSounds[a1][0];
         int soundItem = BigPickupSounds[a1][1];
 
-        if(M_GetCVar("metroid_cl_pickupmusic") == 1) { LocalSetMusic(pickupMus); }
+        // [ijon] Sorry, ZDoom. SetMusicVolume doesn't exist yet, so you have to use LocalSetMusic.
+        if (inZDoom || M_GetCVar("metroid_cl_pickupmusic") == 1) { LocalSetMusic(pickupMus); }
         else
         {
             // [ijon] testmusicvol is safer than snd_musicvolume - it does no lasting damage.
@@ -846,7 +848,7 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
         break;
 
       case 4:
-        if(M_GetCVar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
+        if (inZDoom || M_GetCVar("metroid_cl_pickupmusic") == 1) { LocalSetMusic("*"); }
         else { ConsoleCommand("testmusicvol 1"); }
         break;
 
