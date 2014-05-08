@@ -33,8 +33,6 @@ int array_hitindic[PLAYERMAX];
 #include "met_chroma.h"
 
 
-
-
 // CVAR HANDLING SHIT
 // ==================
 

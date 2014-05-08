@@ -8,7 +8,7 @@
 int TrailStarts[TRAILCOUNT]    = {24, 24, 16};
 int TrailDensities[TRAILCOUNT] = {24, 24, 16};
 int TrailModes[PLAYERMAX];
-int TempCoords[PLAYERMAX][3];
+int TempCoordsLong[PLAYERMAX][3];
 
 script METROID_LONG_XYZ (int which, int mode)
 {
@@ -87,9 +87,9 @@ script METROID_LONG_COORDSHIT (int which)
 
     switch (which)
     {
-        case 0: ret = TempCoords[pln][0]; break;
-        case 1: ret = TempCoords[pln][1]; break;
-        case 2: ret = TempCoords[pln][2]; break;
+        case 0: ret = TempCoordsLong[pln][0]; break;
+        case 1: ret = TempCoordsLong[pln][1]; break;
+        case 2: ret = TempCoordsLong[pln][2]; break;
     }
 
     SetResultValue(ftoi(ret));

@@ -161,3 +161,55 @@ int BigPickupMessages[PICKUPTYPES] =
     "CHROMA STORM: ACQUIRED",
 };
 
+#define PARTICLECOUNT 4
+
+int DakkaBeamParticles[PARTICLECOUNT] =
+{
+    "DakkaBeamTrail",
+    "DakkaBeamParticle",
+    "DakkaBeamComboTrail",
+    "DakkaBeamComboParticle",
+};
+
+int DakkaBeamFadeRates[PARTICLECOUNT] = 
+{
+    0.01,
+    0.00,
+    0.01,
+    0.00,
+};
+
+#define CHARGELEVELS 19
+int DakkaBeamFireTimes[CHARGELEVELS] = 
+{
+    9, 8, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2,
+};
+
+// LASERS MOTHERFUCKER
+
+#define LASER_ROTATETICS 72
+#define LASER_NOEFFECTS_FADELENGTH 192
+#define LASER_BASEALPHA 0.5
+
+#define COLORCOUNT 3
+
+int LaserStarts[COLORCOUNT] =
+{
+    "DBeamLaserPuff_Red",
+    "DBeamLaserPuff_Green",
+    "DBeamLaserPuff_Blue",
+};
+
+int LaserMids[COLORCOUNT] =
+{
+    "DBeamLaserParticle_Red",
+    "DBeamLaserParticle_Green",
+    "DBeamLaserParticle_Blue",
+};
+
+int LaserEnds[COLORCOUNT] =
+{
+    "DBeamLaserDeath_Red",
+    "DBeamLaserDeath_Green",
+    "DBeamLaserDeath_Blue",
+};
