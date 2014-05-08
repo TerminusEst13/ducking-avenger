@@ -225,7 +225,7 @@ actor Chroma_Cloud
     States
     {
       Spawn:
-        CCLD ABCDEFG 3 bright A_FadeOut(0.05)
+        CCLD ABCDEFG 2 bright A_FadeOut(0.05)
         loop
     }
 }

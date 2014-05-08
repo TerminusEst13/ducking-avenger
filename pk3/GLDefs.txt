@@ -552,7 +552,7 @@ PulseLight ComboWeaponGlow
     DontLightSelf 1
 }
 
-PointLight ChromaGlow1
+/*PointLight ChromaGlow1
 {
     Color 0.75 0.0 0.0
     Size 35
@@ -638,6 +638,54 @@ PointLight ChromaGlow11
     Size 35
     Offset 0 2 0
     DontLightSelf 1
+}*/
+
+PointLight ChromaRedGlow
+{
+    Color 0.75 0.0 0.0
+    Size 12
+    Offset 0 2 0
+    DontLightSelf 1
+}
+
+PointLight ChromaOrangeGlow
+{
+    Color 0.75 0.375 0.0
+    Size 16
+    Offset 0 2 0
+    DontLightSelf 1
+}
+
+PointLight ChromaYellowGlow
+{
+    Color 0.75 0.75 0.0
+    Size 20
+    Offset 0 2 0
+    DontLightSelf 1
+}
+
+PointLight ChromaGreenGlow
+{
+    Color 0.0 0.75 0.0
+    Size 24
+    Offset 0 2 0
+    DontLightSelf 1
+}
+
+PointLight ChromaCyanGlow
+{
+    Color 0.0 0.375 0.75
+    Size 28
+    Offset 0 2 0
+    DontLightSelf 1
+}
+
+PointLight ChromaBlueGlow
+{
+    Color 0.75 0.0 0.75
+    Size 32
+    Offset 0 2 0
+    DontLightSelf 1
 }
 
 Object Energy10 { Frame NRGA { Light EnergyGlow1 }}
@@ -668,6 +716,47 @@ Object IceBeamPickup { Frame WPPK { Light IceWeaponGlow }}
 Object LongBeamPickup { Frame WPPK { Light LongWeaponGlow }}
 Object ChargeComboPickup { Frame CCMB { Light ComboWeaponGlow }}
 Object RawEnergy { Frame EFLD { Light EnergyGlow4 }}
+
+/*Object ChromaStormTrail1 { Frame CBPKH { Light ChromaGlow1 }
+                           Frame CBPKI { Light ChromaGlow2 }
+                           Frame CBPKJ { Light ChromaGlow3 }
+                           Frame CBPKK { Light ChromaGlow4 }
+                           Frame CBPKL { Light ChromaGlow5 }
+                           Frame CBPKM { Light ChromaGlow6 }
+                           Frame CBPKN { Light ChromaGlow7 }
+                           Frame CBPKO { Light ChromaGlow8 }
+                           Frame CBPKP { Light ChromaGlow9 }
+                           Frame CBPKQ { Light ChromaGlow10 }
+                           Frame CBPKR { Light ChromaGlow11 }}
+Object ChromaStormTrail2 { Frame CBPKH { Light ChromaGlow1 }
+                           Frame CBPKI { Light ChromaGlow2 }
+                           Frame CBPKJ { Light ChromaGlow3 }
+                           Frame CBPKK { Light ChromaGlow4 }
+                           Frame CBPKL { Light ChromaGlow5 }
+                           Frame CBPKM { Light ChromaGlow6 }
+                           Frame CBPKN { Light ChromaGlow7 }
+                           Frame CBPKO { Light ChromaGlow8 }
+                           Frame CBPKP { Light ChromaGlow9 }
+                           Frame CBPKQ { Light ChromaGlow10 }
+                           Frame CBPKR { Light ChromaGlow11 }}
+Object ChromaStormTrail3 { Frame CBPKH { Light ChromaGlow1 }
+                           Frame CBPKI { Light ChromaGlow2 }
+                           Frame CBPKJ { Light ChromaGlow3 }
+                           Frame CBPKK { Light ChromaGlow4 }
+                           Frame CBPKL { Light ChromaGlow5 }
+                           Frame CBPKM { Light ChromaGlow6 }
+                           Frame CBPKN { Light ChromaGlow7 }
+                           Frame CBPKO { Light ChromaGlow8 }
+                           Frame CBPKP { Light ChromaGlow9 }
+                           Frame CBPKQ { Light ChromaGlow10 }
+                           Frame CBPKR { Light ChromaGlow11 }}*/
+Object Chroma_RedCloud { Frame CCLD { Light ChromaRedGlow }}
+Object Chroma_OrangeCloud { Frame CCLD { Light ChromaOrangeGlow }}
+Object Chroma_YellowCloud { Frame CCLD { Light ChromaYellowGlow }}
+Object Chroma_GreenCloud { Frame CCLD { Light ChromaGreenGlow }}
+Object Chroma_CyanCloud { Frame CCLD { Light ChromaCyanGlow }}
+Object Chroma_BlueCloud { Frame CCLD { Light ChromaBlueGlow }}
+
 
 
 // Missiles
