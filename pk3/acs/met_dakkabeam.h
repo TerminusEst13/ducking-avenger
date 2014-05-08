@@ -1,26 +1,3 @@
-#include "zcommon.acs"
-#library "metrood_dakkabeam"
-
-#include "commonFuncs.h"
-
-#define PARTICLECOUNT 4
-
-int DakkaBeamParticles[PARTICLECOUNT] =
-{
-    "DakkaBeamTrail",
-    "DakkaBeamParticle",
-    "DakkaBeamComboTrail",
-    "DakkaBeamComboParticle",
-};
-
-int DakkaBeamFadeRates[PARTICLECOUNT] = 
-{
-    0.01,
-    0.00,
-    0.01,
-    0.00,
-};
-
 script 474 (int which, int transferVelocity, int count) clientside
 {
     if (GetCVar("metroid_cl_noeffects")) { terminate; } // ramon pls
@@ -69,14 +46,6 @@ script 474 (int which, int transferVelocity, int count) clientside
         Delay(1);
     }
 }
-
-#define CHARGELEVELS 19
-int DakkaBeamFireTimes[CHARGELEVELS] = 
-{
-    9, 8, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2,
-};
-
-int SoundSlotIndex[PLAYERMAX];
 
 script 475 (int which, int a1, int a2)
 {
@@ -318,51 +287,6 @@ script 478 enter
     }
 }
 
-
-// LASERS MOTHERFUCKER
-
-int TempCoords[PLAYERMAX][3];
-int TempTrail;
-int TempPuff;
-int TempEnd;
-
-int Hack_ArgsSet[10];
-
-int Hack_StartX;
-int Hack_StartY;
-int Hack_StartZ;
-
-int Hack_EndX;
-int Hack_EndY;
-int Hack_EndZ;
-
-int Hack_VelX;
-int Hack_VelY;
-int Hack_VelZ;
-
-#define COLORCOUNT 3
-
-int LaserStarts[COLORCOUNT] =
-{
-    "DBeamLaserPuff_Red",
-    "DBeamLaserPuff_Green",
-    "DBeamLaserPuff_Blue",
-};
-
-int LaserMids[COLORCOUNT] =
-{
-    "DBeamLaserParticle_Red",
-    "DBeamLaserParticle_Green",
-    "DBeamLaserParticle_Blue",
-};
-
-int LaserEnds[COLORCOUNT] =
-{
-    "DBeamLaserDeath_Red",
-    "DBeamLaserDeath_Green",
-    "DBeamLaserDeath_Blue",
-};
-
 script 484 (int x, int y, int z) clientside
 {
     if (GetCVar("dakkabeam_cl_debug") >= 1) { Log(s:"Test (484) - ", f:x, s:", ", f:y, s:", ", f:z); }
@@ -414,10 +338,6 @@ script 486 (int x, int y, int z) clientside
 
     ACS_ExecuteWithResult(487);
 }
-
-#define LASER_ROTATETICS 72
-#define LASER_NOEFFECTS_FADELENGTH 192
-#define LASER_BASEALPHA 0.5
 
 script 487 (void) clientside
 {

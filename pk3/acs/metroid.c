@@ -30,6 +30,7 @@ int array_hitindic[PLAYERMAX];
 #include "met_funcs.h"
 #include "met_spacejump.h"
 #include "met_longbeam.h"
+#include "met_dakkabeam.h"
 
 
 

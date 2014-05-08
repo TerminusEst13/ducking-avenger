@@ -158,3 +158,76 @@ int BigPickupMessages[PICKUPTYPES] =
     "CHROMA STORM: ACQUIRED",
 };
 
+#define PARTICLECOUNT 4
+
+int DakkaBeamParticles[PARTICLECOUNT] =
+{
+    "DakkaBeamTrail",
+    "DakkaBeamParticle",
+    "DakkaBeamComboTrail",
+    "DakkaBeamComboParticle",
+};
+
+int DakkaBeamFadeRates[PARTICLECOUNT] = 
+{
+    0.01,
+    0.00,
+    0.01,
+    0.00,
+};
+
+#define CHARGELEVELS 19
+int DakkaBeamFireTimes[CHARGELEVELS] = 
+{
+    9, 8, 7, 7, 6, 6, 5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2,
+};
+
+int SoundSlotIndex[PLAYERMAX];
+
+// LASERS MOTHERFUCKER
+
+#define LASER_ROTATETICS 72
+#define LASER_NOEFFECTS_FADELENGTH 192
+#define LASER_BASEALPHA 0.5
+
+int TempCoords[PLAYERMAX][3];
+int TempTrail;
+int TempPuff;
+int TempEnd;
+
+int Hack_ArgsSet[10];
+
+int Hack_StartX;
+int Hack_StartY;
+int Hack_StartZ;
+
+int Hack_EndX;
+int Hack_EndY;
+int Hack_EndZ;
+
+int Hack_VelX;
+int Hack_VelY;
+int Hack_VelZ;
+
+#define COLORCOUNT 3
+
+int LaserStarts[COLORCOUNT] =
+{
+    "DBeamLaserPuff_Red",
+    "DBeamLaserPuff_Green",
+    "DBeamLaserPuff_Blue",
+};
+
+int LaserMids[COLORCOUNT] =
+{
+    "DBeamLaserParticle_Red",
+    "DBeamLaserParticle_Green",
+    "DBeamLaserParticle_Blue",
+};
+
+int LaserEnds[COLORCOUNT] =
+{
+    "DBeamLaserDeath_Red",
+    "DBeamLaserDeath_Green",
+    "DBeamLaserDeath_Blue",
+};
