@@ -97,42 +97,6 @@ script METROID_OPEN_CLIENT OPEN clientside
 // MORPH BALL CAMERA SHIT
 // ========================
 
-/*Script METROID_MORPHCAMERA (int bitches) CLIENTSIDE
-{
-    if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
-    int pNum = PlayerNumber();
-
-    int tid = unusedTID(32000, 42000);
-
-    switch (bitches)
-    {
-    case 0:
-        if (M_GetCVar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
-        { //ConsoleCommand("chase");
-          //ACS_ExecuteAlways(495,0,90,32); TakeInventory("PlayerMorphCamera",1); }
-        while (M_GetCVar("metroid_cl_morphcamera") == 1 && CheckInventory("PlayerMorphCamera") == 0)
-        {
-            SetChasecam(dist, height, tid, 1);
-            Delay(1);
-        }
-        else { ThingRemove(tid); }
-        break;
-
-    case 1:
-        if (M_GetCVar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
-        { //ConsoleCommand("chase");
-          ChangeCamera(0,0,0); GiveInventory("PlayerMorphCamera",1); }
-        break;
-
-    case 2:
-        delay(1);
-        if (CheckInventory("PlayerMorphCamera") == 0)
-        { if (M_GetCVar("metroid_cl_morphcamera") == 1 && !CheckInventory("IsAFuckingSpaceshipBoyeeee"))
-        { ConsoleCommand("chase"); GiveInventory("PlayerMorphCamera",1); } }
-        break;
-    }
-}*/
-
 script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
 {
     if (PlayerNumber() != ConsolePlayerNumber()) { terminate; }
