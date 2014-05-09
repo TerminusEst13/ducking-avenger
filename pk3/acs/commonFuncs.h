@@ -1209,3 +1209,23 @@ function int intcmp(int x, int y)
     if (x > y) { return  1; }
     return 0;
 }
+
+
+function int RaiseAmmoCapacity(int ammoname, int newcapacity, int raiseammo)
+{
+    int ammo = CheckInventory(ammoname);
+    int capacity = GetAmmoCapacity(ammoname);
+
+    if (capacity < newcapacity)
+    {
+        SetAmmoCapacity(ammoname, newcapacity);
+        capacity = newcapacity;
+    }
+
+    if ((ammo < capacity) && raiseammo)
+    {
+        GiveInventory(ammoname, capacity - ammo);
+    }
+    
+    return CheckInventory(ammo);
+}

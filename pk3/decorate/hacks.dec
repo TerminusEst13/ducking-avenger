@@ -5,6 +5,9 @@ actor " ~ JESUS CHRIST EVEN ALTHUD NEEDS HACKS. ~ ": Weapon
     Weapon.AmmoType1 "SuperMissileAmmo"
     Weapon.AmmoType2 "PowerBombAmmo"
 
+    Weapon.AmmoGive1 0
+    Weapon.AmmoGive2 0
+
     +CHEATNOTWEAPON
     +QUIET
 
@@ -35,6 +38,40 @@ actor " ~ JESUS CHRIST EVEN ALTHUD NEEDS HACKS. ~ ": Weapon
 
       Fire:
         TNT1 A 0 A_TakeInventory(" ~ JESUS CHRIST EVEN ALTHUD NEEDS HACKS. ~ ")
+        loop
+    }
+}
+
+actor MetroodIDKFAHack: Weapon
+{
+    Inventory.Icon "TNT1A0"
+    +QUIET
+    Inventory.PickupMessage ""
+    Weapon.SlotNumber 8
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+
+      Select:
+        TNT1 A 0 A_TakeInventory("MetroodIDKFAHack")
+        TNT1 A 1 A_Raise
+        loop
+
+      Deselect:
+        TNT1 A 0 A_TakeInventory("MetroodIDKFAHack")
+        TNT1 A 1 A_Lower
+        loop
+
+      Ready:
+        TNT1 A 0 A_TakeInventory("MetroodIDKFAHack")
+        TNT1 A 1 A_WeaponReady
+        loop
+
+      Fire:
+        TNT1 A 0 A_TakeInventory("MetroodIDKFAHack")
         loop
     }
 }

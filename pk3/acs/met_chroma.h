@@ -227,9 +227,9 @@ script 476 (int begin, int button, int superThreshold)
         // Clear out the trigger if we can hold for super missiles
         // - if we only have normal missiles, this could waste bandwidth
 
-        if (cansuper && CheckInventory("DakkaBeamCanMissile"))
+        if (cansuper && CheckInventory("Metroid_CanMissile"))
         {
-            TakeInventory("DakkaBeamCanMissile", 0x7FFFFFFF);
+            TakeInventory("Metroid_CanMissile", 0x7FFFFFFF);
         }
 
         // chargan
@@ -239,7 +239,7 @@ script 476 (int begin, int button, int superThreshold)
             // Let go of the trigger before charged? fire a normal missile
             if (chargelevel > 0 && canmissile && cansuper && !couldsuper)
             {
-                GiveInventory("DakkaBeamCanMissile", 1);
+                GiveInventory("Metroid_CanMissile", 1);
             }
                 
             chargelevel = 0;
@@ -251,8 +251,8 @@ script 476 (int begin, int button, int superThreshold)
         // Handle no-super-missiles here
         if (!cansuper)
         {
-            if (isfiring && canmissile && !CheckInventory("DakkaBeamCanMissile")) { GiveInventory("DakkaBeamCanMissile", 1); }
-            else if (CheckInventory("DakkaBeamCanMissile")) { TakeInventory("DakkaBeamCanMissile", 0x7FFFFFFF); }
+            if (isfiring && canmissile && !CheckInventory("Metroid_CanMissile")) { GiveInventory("Metroid_CanMissile", 1); }
+            else if (CheckInventory("Metroid_CanMissile")) { TakeInventory("Metroid_CanMissile", 0x7FFFFFFF); }
         }
 
         // LOCKED AND LOADED
@@ -265,30 +265,17 @@ script 476 (int begin, int button, int superThreshold)
         //   (if charged), or clear the signal if there (if not)
         if (!givesuper)
         {
-            if (couldsuper) { GiveInventory("DakkaBeamCanSuper", 1); }
-            else if (CheckInventory("DakkaBeamCanSuper")) { TakeInventory("DakkaBeamCanSuper", 0x7FFFFFFF); }
+            if (couldsuper) { GiveInventory("Metroid_CanSuper", 1); }
+            else if (CheckInventory("Metroid_CanSuper")) { TakeInventory("Metroid_CanSuper", 0x7FFFFFFF); }
         }
 
         couldsuper  = givesuper;
         Delay(1);
     }
+
+    if (CheckInventory("Metroid_CanMissile")) { TakeInventory("Metroid_CanMissile", 0x7FFFFFFF); }
+    if (CheckInventory("Metroid_CanSuper")) { TakeInventory("Metroid_CanSuper", 0x7FFFFFFF); }
 }
-
-script 478 enter
-{
-    int infinite;
-
-    while (!(ClassifyActor(0) & ACTOR_WORLD))
-    {
-        infinite = GetCVar("sv_infiniteammo");
-
-        if (infinite && !CheckInventory("HasInfiniteAmmo")) { GiveInventory("HasInfiniteAmmo", 1); }
-        else if (!infinite && CheckInventory("HasInfiniteAmmo")) { TakeInventory("HasInfiniteAmmo", 0x7FFFFFFF); }
-
-        Delay(1);
-    }
-}
-
 
 // LASERS MOTHERFUCKER
 
