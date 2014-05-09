@@ -15,45 +15,60 @@ ACTOR "Ice Beam" : Weapon
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
-
+    
     Inventory.Icon "WEAPICBM"
-
+    
     States
     {
-    Spawn:
+      Spawn:
         SOUL B -1
         Stop
-    Ready:
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+
+      Ready:
+        IBEM A 0 ACS_ExecuteWithResult(476, 1)
+        goto Ready2
+
+      Ready2:
+        TNT1 A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        TNT1 A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",  1, "D_RUNNIN")
         IBEM A 1 A_WeaponReady
         Loop
-    Select:
+
+      Select:
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
         IBEM A 1 A_Raise
         loop
-    Deselect:
+
+      Deselect:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("beam/deselect","soundslot5")
-    Deselect2:
+
+      Deselect2:
         IBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 A 0 A_JumpIfHealthLower(1, "DeadLower")
         XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
         XBEM A 0 A_Lower
         loop
-    DeadLower:
+
+      DeadLower:
         XBEM A 1 A_Lower
         loop
-    Fire:
+
+      Fire:
+        IBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"FireChilled")
         TNT1 A 0 A_PlayWeaponSound("ibeam/fire")
         TNT1 A 0 A_Recoil(0.05)
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"FireCoop")
         TNT1 A 0 A_FireCustomMissile("IceBolt",0,0,12,-2,0,0)
         goto FireFinish
-    FireCoop:
+
+      FireCoop:
         TNT1 A 0 A_FireCustomMissile("IceBoltCoop",0,0,12,-2,0,0)
-    FireFinish:
+
+      FireFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         IBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -67,15 +82,18 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_Refire
         IBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         Goto Ready
-    FireChilled:
+
+      FireChilled:
         TNT1 A 0 A_PlayWeaponSound("ibeam/fire")
         TNT1 A 0 A_Recoil(0.05)
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"ChilledCoop")
         TNT1 A 0 A_FireCustomMissile("IceBolt",0,0,12,-2,0,0)
         goto ChilledFinish
-    ChilledCoop:
+
+      ChilledCoop:
         TNT1 A 0 A_FireCustomMissile("IceBoltCoop",0,0,12,-2,0,0)
-    ChilledFinish:
+
+      ChilledFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         IBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -89,7 +107,8 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_Refire
         IBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         Goto Ready
-    Hold:
+
+      Hold:
         TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"HoldFinal2")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",26,"Hold7")
@@ -99,13 +118,15 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",6,"Hold3")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",1,"Hold2")
         TNT1 A 0 A_PlaySoundEx("pbeam/charge","soundslot5")
-    Hold2:
+
+      Hold2:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         IBEM KK 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner1",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
-    HoldFire:
+
+      HoldFire:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
@@ -115,9 +136,11 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"UnholdCoop")
         TNT1 A 0 A_FireCustomMissile("IceBolt",0,0,12,-2,0,0)
         goto UnholdFinish
-    UnholdCoop:
+
+      UnholdCoop:
         TNT1 A 0 A_FireCustomMissile("IceBoltCoop",0,0,12,-2,0,0)
-    UnholdFinish:
+
+      UnholdFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         IBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -131,46 +154,53 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_Refire
         IBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         Goto Ready
-    Hold3:
+
+      Hold3:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         IBEM LL 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner2",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold4:
+
+      Hold4:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         IBEM MM 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner3",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold5:
+
+      Hold5:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         IBEM NN 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner4",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold6:
+
+      Hold6:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         IBEM OO 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner5",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold7:
+
+      Hold7:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         IBEM PP 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner6",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    HoldFinal:
+
+      HoldFinal:
         TNT1 A 0
         TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
-    HoldFinal2:
+
+      HoldFinal2:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
@@ -190,9 +220,11 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"HoldCoop")
         TNT1 A 0 A_FireCustomMissile("IceBoltCharged",0,0,12,-2,0,0)
         goto HoldFinish
-    HoldCoop:
+
+      HoldCoop:
         TNT1 A 0 A_FireCustomMissile("IceBoltChargedCoop",0,0,12,-2,0,0)
-    HoldFinish:
+
+      HoldFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         IBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -205,50 +237,51 @@ ACTOR "Ice Beam" : Weapon
         IBEM EEFFFEEGHAAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         IBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         Goto Ready
-    HoldFinal3:
+
+      HoldFinal3:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",99)
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
         goto HoldFinal2
-
-    AltFire:
-        TNT1 A 0 A_Refire
-    AltFire2:
-        TNT1 A 0
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34) // Already done in AltHold, but just in case.
-        TNT1 A 0 A_ClearRefire
-        TNT1 A 0 A_JumpIfNoAmmo("Ready")
-        TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"AltFireChilled")
+        
+      Missile:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        TNT1 A 0 A_TakeInventory("MissileAmmo", 1)
         TNT1 A 0 A_PlayWeaponSound("missile/fire")
-        TNT1 A 0 A_Recoil(2)
+        TNT1 A 0 A_AlertMonsters
+        
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        
+        TNT1 A 0 A_Recoil(2)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
-        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"AltFireCoop")
+        
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"Missile_Coop")
+        goto Missile_DM
+        
+      Missile_DM:
         TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
-        goto AltFireFinish
-    AltFireCoop:
+        goto MissileAnim
+        
+      Missile_Coop:
         TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,1,12,-2,0,0)
-    AltFireFinish:
-        TNT1 A 0 A_AlertMonsters
-        TNT1 A 0 A_Light2
-        IBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        TNT1 A 0 A_Light1
-        TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
-        IBEM J 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        TNT1 A 0 A_Light0
-        TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
-        IBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        IBEM EEFFFEEGGHH 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        IBEM A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        Goto Ready
-    AltFireChilled:
-        TNT1 A 0 A_PlayWeaponSound("missile/fire")
-        TNT1 A 0 A_Recoil(2)
-        TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
-        TNT1 A 0 Radius_Quake(1,8,0,1,0)
-        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
-        TNT1 A 0 A_AlertMonsters
+        goto MissileAnim
+        
+      MissileAnim:
+        IBEM A 0 A_JumpIfInventory("IceBeamChilled", 1, "MissileAnim_Chilled")
+        IBEM A 0 A_Light2
+        IBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light1
+        IBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        IBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 0 A_Light0
+        IBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        IBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM EEFFFEEGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        IBEM A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto Ready
+        
+      MissileAnim_Chilled:
         TNT1 A 0 A_Light2
         IBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
@@ -260,42 +293,31 @@ ACTOR "Ice Beam" : Weapon
         IBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         IBEM A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-    AltHold:
-        TNT1 A 0 A_JumpIfInventory("SuperMissileAmmo",1,2)
-        IBEM A 1
-        goto AltFire2
-        TNT1 A 0 A_JumpIfInventory("MissileCharged",1,"AltHoldFinal2")
-        TNT1 A 0 A_JumpIfInventory("MissileChargeLevel",13,"AltHoldFinal")
-        TNT1 A 0 A_GiveInventory("MissileChargeLevel",1)
-        IBEM AA 1
-        TNT1 A 0 A_Refire
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
-        TNT1 A 0 A_ClearRefire
-        goto AltFire2
-    AltHoldFinal:
-        TNT1 A 0
-        TNT1 A 0 A_GiveInventory("MissileCharged",1)
-        TNT1 A 0 A_PlaySoundEx("supermissile/ready","soundslot7")
-    AltHoldFinal2:
-        TNT1 A 0
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
-        IBEM AA 1
-        TNT1 A 0 A_Refire
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
-        TNT1 A 0 A_ClearRefire
-        TNT1 A 0 A_PlayWeaponSound("supermissile/fire")
-        TNT1 A 0 A_Recoil(5)
-        TNT1 A 0 A_ZoomFactor(0.925,ZOOM_INSTANT)
-        TNT1 A 0 Radius_Quake(2,8,0,1,0)
-        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"SuperCoop")
-        TNT1 A 0 A_FireCustomMissile("SuperMissile",0,0,12,-2,0,0)
-        goto SuperFinish
-    SuperCoop:
-        TNT1 A 0 A_FireCustomMissile("SuperMissileCoop",0,0,12,-2,0,0)
-    SuperFinish:
+        
+      SuperMissile:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
         TNT1 A 0 A_TakeInventory("SuperMissileAmmo",1)
+        TNT1 A 0 A_PlayWeaponSound("supermissile/fire")
+        TNT1 A 0 A_AlertMonsters
+        
+        TNT1 A 0 A_ZoomFactor(0.925,ZOOM_INSTANT)
+        
+        TNT1 A 0 A_Recoil(5)
+        TNT1 A 0 Radius_Quake(2,8,0,1,0)
+        
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"SuperCoop")
+        goto SuperDM
+        
+      SuperDM:
+        TNT1 A 0 A_FireCustomMissile("SuperMissile",0,0,12,-2,0,0)
+        goto SuperAnim
+        
+      SuperCoop:
+        TNT1 A 0 A_FireCustomMissile("SuperMissileCoop",0,0,12,-2,0,0)
+        goto SuperAnim
+        
+      SuperAnim:
         TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))
         TNT1 A 0 A_SetPitch(pitch-(random(300,500)/100.00))
         TNT1 A 0 A_AlertMonsters
@@ -310,8 +332,8 @@ ACTOR "Ice Beam" : Weapon
         IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         IBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-
-    ChargeCombo:
+        
+      ChargeCombo:
         TNT1 A 0 A_JumpIfInventory("MissileAmmo",10,1)
         goto HoldFinal2
         TNT1 A 0
@@ -327,9 +349,11 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"ComboCoop")
         TNT1 A 0 A_FireCustomMissile("IceComboMissile",0,0,12,-2,0,0)
         goto ComboFinish
-    ComboCoop:
+
+      ComboCoop:
         TNT1 A 0 A_FireCustomMissile("IceComboMissileCoop",0,0,12,-2,0,0)
-    ComboFinish:
+
+      ComboFinish:
         TNT1 A 0 A_TakeInventory("MissileAmmo",10)
         TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))
         TNT1 A 0 A_SetPitch(pitch-(random(300,500)/100.00))
@@ -345,9 +369,9 @@ ACTOR "Ice Beam" : Weapon
         IBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         IBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-
-    D_RUNNIN:
-        TNT1 A 0
+        
+      D_RUNNIN:
+        IBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
@@ -366,11 +390,13 @@ ACTOR "Ice Beam" : Weapon
         IBEM A 1 Offset(0,120)
         IBEM A 1 Offset(0,130)
         IBEM A 1 Offset(0,140)
-    IdleLoop:
+
+      IdleLoop:
         TNT1 A 1
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
         goto BackToNormal
-    BackToNormal:
+
+      BackToNormal:
         IBEM A 1 Offset(0,140)
         IBEM A 1 Offset(0,130)
         IBEM A 1 Offset(0,120)
@@ -403,13 +429,14 @@ actor IceBolt
     DamageType "IceBeam"
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 AA 0 A_SpawnItemEx("IceSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_SpawnItemEx("IceTrailFlicker2",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,random(-180,180),160,0)
         ISHT A 1 BRIGHT A_SpawnItemEx("IceTrail",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,random(-100,100)/100.00,0,160,0)
         loop
-    Death:
+
+      Death:
         TNT1 A 0
         TNT1 A 0 A_Stop
         TNT1 A 0 A_SpawnItemEx("IceBoltExplosion",0,0,0,0,0,0,0,32)
@@ -426,16 +453,16 @@ ACTOR IceBoltExplosion
 {
     Radius 1
     Height 1
-	Speed 0
-	DamageType "IceBeamExplode"
+    Speed 0
+    DamageType "IceBeamExplode"
     +NOCLIP
     -SOLID
     Obituary "%k left %o in the cold."
     States
     {
       Spawn:
-		TNT1 A 0
-		TNT1 A 1 A_Explode(32,96,0)
+        TNT1 A 0
+        TNT1 A 1 A_Explode(32,96,0)
         Stop
     }
 }
@@ -447,7 +474,7 @@ actor IceBoltCoop : IceBolt
     +THRUSPECIES    
     States
     {
-    Death:
+      Death:
         TNT1 A 0
         TNT1 A 0 A_Stop
         TNT1 A 0 A_SpawnItemEx("IceBoltExplosionCoop",0,0,0,0,0,0,0,32)
@@ -465,8 +492,8 @@ actor IceBoltExplosionCoop : IceBoltExplosion
     States
     {
       Spawn:
-		TNT1 A 0
-		TNT1 A 1 A_Explode(32,128,0)
+        TNT1 A 0
+        TNT1 A 1 A_Explode(32,128,0)
         Stop
     }
 }
@@ -480,17 +507,19 @@ actor IceTrail
     RenderStyle Add
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
-    Spawn1:
+
+      Spawn1:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         TNT1 AA 0 A_SpawnItemEx("IceSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         FRZS ABCDEFGHIJKLMNO 1 BRIGHT A_SpawnItemEx("IceTrailFlicker",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
         FRZS PQRSTUVWXYZ 1 BRIGHT A_FadeOut(0.05) //A_SpawnItemEx("IceTrailFlicker",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
         stop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
@@ -505,7 +534,7 @@ actor IceBoltPuff
     RenderStyle Add
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         IPFF ABCDEFGHIJKL 2 BRIGHT
         stop
@@ -517,12 +546,13 @@ actor IceTrailFlicker : IceTrail
     Scale 0.02
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         ICHK ABC 2 BRIGHT A_FadeOut(0.15)
         stop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
@@ -533,13 +563,14 @@ actor IceTrailFlicker2 : IceTrail
     Scale 0.1
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         FRZS ACEGIKM 1 BRIGHT A_SpawnItemEx("IceTrailFlicker",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
         FRZS OQSUWY 1 BRIGHT A_FadeOut(0.1)//A_SpawnItemEx("IceTrailFlicker",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
         stop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
@@ -567,19 +598,19 @@ ACTOR IceSpark
     +NOINTERACTION
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         TNT1 A 0 A_Jump(64,3)
         TNT1 A 0 A_Jump(64,1)
         ICHK ABC 2 BRIGHT A_FadeOut(0.1)
         loop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
 }
-
 
 actor IceBeamChargingSpawner1
 {
@@ -592,7 +623,7 @@ actor IceBeamChargingSpawner1
     Speed 24
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging1",-14,0,-3,0,0,0,-270,32)
@@ -604,7 +635,7 @@ actor IceBeamChargingSpawner2 : IceBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging2",-14,0,-3,0,0,0,-270,32)
@@ -616,7 +647,7 @@ actor IceBeamChargingSpawner3 : IceBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging3",-14,0,-3,0,0,0,-270,32)
@@ -628,7 +659,7 @@ actor IceBeamChargingSpawner4 : IceBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging4",-14,0,-3,0,0,0,-270,32)
@@ -640,7 +671,7 @@ actor IceBeamChargingSpawner5 : IceBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging5",-14,0,-3,0,0,0,-270,32)
@@ -652,7 +683,7 @@ actor IceBeamChargingSpawner6 : IceBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging6",-14,0,-3,0,0,0,-270,32)
@@ -664,7 +695,7 @@ actor IceBeamChargingSpawner7 : IceBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("IceBeamCharging7",-14,0,-3,0,0,0,-270,32)
@@ -682,39 +713,48 @@ actor IceBeamCharging1
     +NOTIMEFREEZE
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Simple")
         TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
         TNT1 A 1
         loop
-    Spawn1:
+
+      Spawn1:
         IBCH ABCDA 1 bright A_FadeOut(0.15)
         stop
-    Spawn2:
+
+      Spawn2:
         IBCH BCDAB 1 bright A_FadeOut(0.15)
         stop
-    Spawn3:
+
+      Spawn3:
         IBCH CDABC 1 bright A_FadeOut(0.15)
         stop
-    Spawn4:
+
+      Spawn4:
         IBCH DABCD 1 bright A_FadeOut(0.15)
         stop
-    Simple:
+
+      Simple:
         TNT1 A 0
         TNT1 A 0 A_Jump(256,"Spawn1B","Spawn2B","Spawn3B","Spawn4B")
         TNT1 A 1
         loop
-    Spawn1B:
+
+      Spawn1B:
         IBCH A 2 bright
         stop
-    Spawn2B:
+
+      Spawn2B:
         IBCH B 2 bright
         stop
-    Spawn3B:
+
+      Spawn3B:
         IBCH C 2 bright
         stop
-    Spawn4B:
+
+      Spawn4B:
         IBCH D 2 bright
         stop
     }
@@ -743,12 +783,13 @@ actor IceBoltCharged
     DamageType "IceCharged"
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_SpawnItemEx("IceSpark",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,400)/100.00,random(-180,180),160,0)
         ISHT B 1 BRIGHT A_SpawnItemEx("IceTrailCharged",0,0,0,0,0,0,0,160)
         loop
-    Death:
+
+      Death:
         TNT1 A 0
         TNT1 A 0 A_Stop
         TNT1 A 0 A_SpawnItemEx("IceBoltChargedExplosion",0,0,0,0,0,0,0,32)
@@ -769,7 +810,7 @@ actor IceBoltChargedCoop : IceBoltCharged
     +THRUSPECIES
     States
     {
-    Death:
+      Death:
         TNT1 A 0
         TNT1 A 0 A_Stop
         TNT1 A 0 A_SpawnItemEx("IceBoltChargedExplosionCoop",0,0,0,0,0,0,0,32)
@@ -787,16 +828,16 @@ ACTOR IceBoltChargedExplosion
 {
     Radius 1
     Height 1
-	Speed 0
-	DamageType "IceChargedExplode"
+    Speed 0
+    DamageType "IceChargedExplode"
     +NOCLIP
     -SOLID
     Obituary "%k left %o in the cold."
     States
     {
       Spawn:
-		TNT1 A 0
-		TNT1 A 1 A_Explode(64,112,0)
+        TNT1 A 0
+        TNT1 A 1 A_Explode(64,112,0)
         Stop
     }
 }
@@ -806,8 +847,8 @@ actor IceBoltChargedExplosionCoop : IceBoltChargedExplosion
     States
     {
       Spawn:
-		TNT1 A 0
-		TNT1 A 1 A_Explode(64,192,0)
+        TNT1 A 0
+        TNT1 A 1 A_Explode(64,192,0)
         Stop
     }
 }
@@ -823,7 +864,7 @@ actor IceTrailCharged
     RenderStyle Add
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         ISHT A 2 BRIGHT A_SpawnItemEx("IceTrail",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
@@ -847,7 +888,8 @@ actor IceTrailCharged
         ISHT A 2 BRIGHT //A_SpawnItemEx("IceTrail",0,0,0,random(-200,200)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(-180,180),160,0)
         TNT1 A 0 A_FadeOut(0.1)
         stop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
