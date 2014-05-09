@@ -45,6 +45,7 @@ actor " ~ JESUS CHRIST EVEN ALTHUD NEEDS HACKS. ~ ": Weapon
 actor MetroodIDKFAHack: Weapon
 {
     Inventory.Icon "TNT1A0"
+
     +QUIET
     Inventory.PickupMessage ""
     Weapon.SlotNumber 8
