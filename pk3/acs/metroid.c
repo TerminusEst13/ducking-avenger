@@ -432,6 +432,8 @@ script METROID_ENTER ENTER
 
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
+        if (isDead(0)) { break; }
+
         // Health bar shit
         if (GetActorProperty(0,APROP_Health) > 100) { GiveInventory("HealthOver100",1); } else { if (CheckInventory("HealthOver100") == 1) { TakeInventory("HealthOver100",1); }}
         if (GetActorProperty(0,APROP_Health) > 200) { GiveInventory("HealthOver200",1); } else { if (CheckInventory("HealthOver200") == 1) { TakeInventory("HealthOver200",1); }}
@@ -517,10 +519,21 @@ script METROID_ENTER ENTER
         if (infinite && !CheckInventory("HasInfiniteAmmo")) { GiveInventory("HasInfiniteAmmo", 1); }
         else if (!infinite && CheckInventory("HasInfiniteAmmo")) { TakeInventory("HasInfiniteAmmo", 0x7FFFFFFF); }
 
-        Delay(1);
+        // Did we "give weapons"?
 
-        if (isDead(0)) { terminate; }
-        delay(1);
+        if (CheckInventory("MetroodIDKFAHack"))
+        {
+            RaiseAmmoCapacity("MissileAmmo",      255, 1);
+            RaiseAmmoCapacity("SuperMissileAmmo", 25,  1);
+            RaiseAmmoCapacity("PowerBombAmmo",    5,   1);
+
+            if (!CheckInventory("SuperMissileAcquired")) { GiveInventory("SuperMissileAcquired", 1); }
+            if (!CheckInventory("PowerBombAcquired")) { GiveInventory("PowerBombAcquired", 1); }
+
+            TakeInventory("MetroodIDKFAHack", 0x7FFFFFFF);
+        }
+
+        Delay(1);
     }
 }
 

@@ -1,0 +1,146 @@
+actor Boolean: Inventory
+{
+    Inventory.MaxAmount 1
+    +UNDROPPABLE
+    -INVBAR
+}
+
+actor Counter: Inventory
+{
+    Inventory.MaxAmount 0x7FFFFFFF
+    +UNDROPPABLE
+    -INVBAR
+}
+
+actor Trigger: CustomInventory
+{
+    Inventory.MaxAmount 0
+    +AUTOACTIVATE
+}
+
+actor BlankPuff
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+    +BLOODLESSIMPACT
+
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        stop
+    }
+}
+
+actor EmptyTelefog
+{
+    +NOINTERACTION
+    +CLIENTSIDEONLY
+
+    Radius 1
+    Height 1
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor TranslationHolder
+{
+    +NOINTERACTION
+
+    Radius 1
+    Height 1
+    
+    States
+    {
+      Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
+actor SpaceChecker
+{
+    Radius 20
+    Height 60
+    Mass 100
+    Speed 0
+    -SOLID
+    -SHOOTABLE
+    +NOBLOCKMONST
+    States
+    {
+    Spawn:
+        TNT1 A 1
+        loop
+    }
+}
+
+actor ChasecamChecker
+{
+    Radius 1
+    Height 1
+
+    +SERVERSIDEONLY
+    +NOGRAVITY
+    -SOLID
+    +NOBLOCKMONST
+
+    States
+    {
+      Spawn:
+        TNT1 A 18
+        stop
+    }
+}
+
+actor ChasecamActor
+{
+    Radius 0
+    Height 0
+
+    +NOINTERACTION
+    +NOBLOCKMONST
+    +THRUACTORS
+    +NOGRAVITY
+    +NOTELEPORT
+
+    States
+    {
+      Spawn:
+        TNT1 A -1
+        stop
+    }
+}
+
+actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
+
+#include "decorate/tokens.dec"
+#include "decorate/player.dec"
+#include "decorate/morphball.dec"
+#include "decorate/powerbomb.dec"
+#include "decorate/missile.dec"
+#include "decorate/items.dec"
+#include "decorate/weapons.dec"
+#include "decorate/skulltag.dec"
+#include "decorate/hacks.dec"
+#include "decorate/beams/common.dec"
+#include "decorate/beams/powerbeam.dec"
+#include "decorate/beams/spazerbeam.dec"
+#include "decorate/beams/wavebeam.dec"
+#include "decorate/beams/longbeam.dec"
+#include "decorate/beams/plasmabeam.dec"
+#include "decorate/beams/icebeam.dec"
+#include "decorate/beams/doomcannon.dec"
+#include "decorate/beams/chromastorm.dec"
+#include "decorate/beams/chargecombos.dec"
+#include "decorate/parkmore.dec"
+#include "decorate/speedbooster.dec"
+#include "decorate/gunship.dec"
+#include "decorate/enemies/doom_enemies.dec"
+#include "decorate/enemies/spacepirate.dec"
+#include "decorate/enemies/prince.dec"
