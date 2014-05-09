@@ -13,6 +13,7 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
 
     +NOALERT
     +NOAUTOAIM
+    +NOAUTOFIRE
     +NO_AUTO_SWITCH
     +UNDROPPABLE
 

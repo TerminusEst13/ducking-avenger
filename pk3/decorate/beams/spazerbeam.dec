@@ -13,6 +13,7 @@ ACTOR "Spazer Beam" : Weapon// replaces SuperShotgun
 
     +NOALERT
     +NOAUTOAIM
+    +NOAUTOFIRE
     +NO_AUTO_SWITCH
     +UNDROPPABLE
 
