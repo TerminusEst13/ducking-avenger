@@ -1457,6 +1457,7 @@ actor Metroid_Masterguy : SpiderMastermind replaces SpiderMastermind
     DamageFactor "NoDamage", 0.0
     DamageFactor "SpeedBooster", 0.5
     DamageFactor "PlasmaCombo", 0.375
+    DamageFactor "ChromaCombo", 0.5
     PainChance "IceBeam", 96
     PainChance "IceCharged", 128
     PainChance "IceChargedExplode", 96
