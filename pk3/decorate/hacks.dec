@@ -75,3 +75,29 @@ actor MetroodIDKFAHack: Weapon
         loop
     }
 }
+
+actor GoAwayPistolNoOneLovesYou replaces Pistol
+{
+    +NOINTERACTION
+    +SERVERSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}
+
+actor IDontWantToBeFisted replaces Fist
+{
+    +NOINTERACTION
+    +SERVERSIDEONLY
+
+    States
+    {
+      Spawn:
+        TNT1 A 0
+        stop
+    }
+}

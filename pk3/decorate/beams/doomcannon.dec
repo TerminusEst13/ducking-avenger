@@ -16,6 +16,7 @@ ACTOR "Doom Cannon" : Weapon
     +CHEATNOTWEAPON
     +NOALERT
     +NOAUTOAIM
+    +NOAUTOFIRE
     +NO_AUTO_SWITCH
     +UNDROPPABLE
 

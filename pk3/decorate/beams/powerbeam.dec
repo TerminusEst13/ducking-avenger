@@ -13,6 +13,7 @@ ACTOR "Power Beam" : Weapon
 
     +NOALERT
     +NOAUTOAIM
+    +NOAUTOFIRE
     +NO_AUTO_SWITCH
     +UNDROPPABLE
 
