@@ -6,36 +6,36 @@ ACTOR "Doom Cannon" : Weapon
     Inventory.PickupSound "cannon/get"
     Inventory.PickupMessage "error"
     Obituary "%k doomed %o."
-    Weapon.AmmoType ""
-    Weapon.AmmoUse 0
-    Weapon.AmmoType2 "MissileAmmo"
+    Weapon.AmmoType     "MissileAmmo"
+    Weapon.AmmoType2    "SuperMissileAmmo"
+    Weapon.AmmoUse1     0
+    Weapon.AmmoUse2     0
+
     Weapon.SlotNumber 0
-    Weapon.AmmoUse2 0
-    +AMMO_OPTIONAL
-    +ALT_AMMO_OPTIONAL
-    +NOAUTOFIRE
-    +NOALERT
+
     +CHEATNOTWEAPON
+    +NOALERT
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
+
     Decal Doom_BulletChip
-    
+
     Inventory.Icon "WEAPDMCN"
-    
+
     States
     {
       Spawn:
         DCPK ABCD 5 bright
         DCPK ABCD 5
         loop
-        
+
       Ready:
         TNT1 A 0 A_JumpIfInventory("TheReturnOfSamusReturns",1,"ReadyCombo")
         TNT1 A 0 A_TakeInventory("DCReadyPulse")
         PBEM A 0 ACS_ExecuteWithResult(476, 1)
         goto Ready2
-        
+
       Ready2:
         DCAN A 0 A_GiveInventory("DCReadyPulse")
         TNT1 A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
@@ -94,7 +94,7 @@ ACTOR "Doom Cannon" : Weapon
       ReadyPulse7:
         XBEM A 1 A_WeaponReady
         goto Ready2
-        
+
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         DCAN AAAAAAA 1 A_WeaponReady
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
@@ -123,22 +123,22 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         DCAN WVUTSR 1 A_WeaponReady
         Loop
-        
+
       Select:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("dcann/up","soundslot7",0,0)
-        
+
       Select2:
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
         DCAN A 1 A_Raise
         loop
-        
+
       Deselect:
         PBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("TheReturnOfSamusReturns",1,"DeselectCombo")
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("beam/deselect","soundslot5")
-        
+
       Deselect2:
         DCAN RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 A 0 A_JumpIfHealthLower(1, "DeadLower")
@@ -146,11 +146,11 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
         XBEM A 0 A_Lower
         loop
-        
+
       DeadLower:
         XBEM A 1 A_Lower
         loop
-        
+
       Fire:
         PBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("TheReturnOfSamusReturns",1,"FireCombo")
@@ -176,7 +176,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
         Goto Ready
-        
+
       FireChilled:
         TNT1 A 0 A_PlayWeaponSound("dcann/fire")
         DCAN A 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -199,7 +199,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
         Goto Ready
-        
+
       Hold:
         TNT1 A 0 A_JumpIfInventory("TheReturnOfSamusReturns",1,"HoldCombo")
         TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"HoldFinal2")
@@ -211,14 +211,14 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",3,"Hold3")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",1,"Hold2")
         TNT1 A 0 A_PlaySoundEx("dcann/cock2","soundslot5")
-        
+
       Hold2:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         DCAN KK 1
         TNT1 A 0 A_Refire
-        
+
       HoldFire:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
@@ -244,7 +244,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 6 A_WeaponReady(WRF_NOSWITCH)
         Goto Ready
-        
+
       Hold3:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
@@ -252,7 +252,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN LL 1
         TNT1 A 0 A_Refire
         goto HoldFire
-        
+
       Hold4:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
@@ -260,7 +260,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN MM 1
         TNT1 A 0 A_Refire
         goto HoldFire
-        
+
       Hold5:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
@@ -268,7 +268,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN NN 1
         TNT1 A 0 A_Refire
         goto HoldFire
-        
+
       Hold6:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
@@ -276,7 +276,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN OO 1
         TNT1 A 0 A_Refire
         goto HoldFire
-        
+
       Hold7:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
@@ -284,12 +284,12 @@ ACTOR "Doom Cannon" : Weapon
         DCAN PP 1
         TNT1 A 0 A_Refire
         goto HoldFire
-        
+
       HoldFinal:
         TNT1 A 0
         TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
         TNT1 A 0 A_PlaySoundEx("dcann/cock3","soundslot7")
-        
+
       HoldFinal2:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
@@ -324,30 +324,30 @@ ACTOR "Doom Cannon" : Weapon
         DCAN A 6 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 9 A_WeaponReady(WRF_NOSWITCH)
         goto Ready
-        
+
       Missile:
         TNT1 A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
         TNT1 A 0 A_TakeInventory("MissileAmmo", 1)
         TNT1 A 0 A_PlayWeaponSound("missile/fire")
         TNT1 A 0 A_AlertMonsters
-        
+
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
-        
+
         TNT1 A 0 A_Recoil(2)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
-        
+
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"Missile_Coop")
         goto Missile_DM
-        
+
       Missile_DM:
         TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
         goto MissileAnim
-        
+
       Missile_Coop:
         TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,1,12,-2,0,0)
         goto MissileAnim
-        
+
       MissileAnim:
         DCAN A 0 A_JumpIfInventory("IceBeamChilled", 1, "MissileAnim_Chilled")
         DCAN A 0 A_Light2
@@ -361,7 +361,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN EEFFFEEGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         DCAN A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
         goto Ready
-        
+
       MissileAnim_Chilled:
         TNT1 A 0 A_Light2
         DCAN I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -374,30 +374,30 @@ ACTOR "Doom Cannon" : Weapon
         DCAN EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-        
+
       SuperMissile:
         TNT1 A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
         TNT1 A 0 A_TakeInventory("SuperMissileAmmo",1)
         TNT1 A 0 A_PlayWeaponSound("supermissile/fire")
         TNT1 A 0 A_AlertMonsters
-        
+
         TNT1 A 0 A_ZoomFactor(0.925,ZOOM_INSTANT)
-        
+
         TNT1 A 0 A_Recoil(5)
         TNT1 A 0 Radius_Quake(2,8,0,1,0)
-        
+
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"SuperCoop")
         goto SuperDM
-        
+
       SuperDM:
         TNT1 A 0 A_FireCustomMissile("SuperMissile",0,0,12,-2,0,0)
         goto SuperAnim
-        
+
       SuperCoop:
         TNT1 A 0 A_FireCustomMissile("SuperMissileCoop",0,0,12,-2,0,0)
         goto SuperAnim
-        
+
       SuperAnim:
         TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))
         TNT1 A 0 A_SetPitch(pitch-(random(300,500)/100.00))
@@ -413,7 +413,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         DCAN A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-        
+
       D_RUNNIN:
         TNT1 A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
@@ -434,12 +434,12 @@ ACTOR "Doom Cannon" : Weapon
         DCAN A 1 Offset(0,120)
         DCAN A 1 Offset(0,130)
         DCAN A 1 Offset(0,140)
-        
+
       IdleLoop:
         TNT1 A 1
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
         goto BackToNormal
-        
+
       BackToNormal:
         DCAN A 1 Offset(0,140)
         DCAN A 1 Offset(0,130)
@@ -454,7 +454,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAN A 1 Offset(0,40)
         TNT1 A 0 Offset(0,32)
         Goto Ready
-        
+
       ChargeCombo:
         TNT1 A 0 A_JumpIfInventory("MissileAmmo",10,1)
         goto HoldFinal2
@@ -474,7 +474,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
         SSAW ABABABAABBAABBAABBAAABBB 1 A_WeaponReady
         Goto Ready
-        
+
       ReadyCombo:
         PBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
@@ -482,10 +482,10 @@ ACTOR "Doom Cannon" : Weapon
         SSAW ABAB 3 A_WeaponReady
         SSAW ABAB 3 A_WeaponReady
         Loop
-        
+
       FireCombo:
         SSAW CD 2
-        
+
       HoldCombo:
         TNT1 A 0 A_PlaySoundEx("dchain/use","soundslot5",0,0)
         TNT1 A 0 Radius_Quake(1,10,0,1,0)
@@ -496,18 +496,18 @@ ACTOR "Doom Cannon" : Weapon
         SSAW D 2 A_PlaySoundEx("silence","soundslot5",0,0)
         SSAW C 2 A_ClearRefire
         Goto Ready
-        
+
       AltFireCombo:
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"FireCombo")
         SSAW IJ 2
-        
+
       AltHoldCombo:
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"HoldCombo")
         TNT1 A 5
         TNT1 A 0 A_Jump(224,"AltHold1Combo","AltHold2Combo")
         TNT1 A 2
         loop
-        
+
       AltHold1Combo:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("dchain/swing","soundslot7",0,0)
@@ -529,7 +529,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 7 A_ClearRefire
         SSAW KJ 2
         goto Ready
-        
+
       AltHold2Combo:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("dchain/swing","soundslot7",0,0)
@@ -551,7 +551,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 7 A_ClearRefire
         SSAW JI 2
         goto Ready
-        
+
       DeselectCombo:
         TNT1 A 0 A_PlayWeaponSound("dchain/deselect")
         SSAW A 5
@@ -559,7 +559,7 @@ ACTOR "Doom Cannon" : Weapon
         DCAS HGFEDCBA 2 BRIGHT
         TNT1 A 0 A_TakeInventory("TheReturnOfSamusReturns",1)
         goto Deselect
-        
+
       D_RUNNINCombo:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
@@ -581,13 +581,13 @@ ACTOR "Doom Cannon" : Weapon
         SSAW A 1 Offset(0,120)
         SSAW B 1 Offset(0,130)
         SSAW B 1 Offset(0,140)
-        
+
       IdleLoopCombo:
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
         TNT1 A 10
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoopCombo")
         goto BackToNormalCombo
-        
+
       BackToNormalCombo:
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
         SSAW A 1 Offset(0,140)
@@ -616,23 +616,23 @@ ACTOR "Doom Cannon" : Weapon
       Deselect:
         SSAW AAABBB 1 A_Lower
         Loop
-        
+
       Select:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("dchain/raise","soundslot5",0,0)
-        
+
       Select1:
         SSAW AAABBB 1 A_Raise
         Loop
-        
+
       Ready:
         TNT1 A 0 A_PlayWeaponSound("dchain/idle")
         SSAW ABABABABABAB 3 A_WeaponReady
         Loop
-        
+
       Fire:
         SSAW CD 2
-        
+
       Hold:
         TNT1 A 0 A_PlaySoundEx("dchain/use","soundslot5",0,0)
         TNT1 A 0 Radius_Quake(1,10,0,1,0)
@@ -643,16 +643,16 @@ ACTOR "Doom Cannon" : Weapon
         SSAW D 2 A_PlaySoundEx("silence","soundslot5",0,0)
         SSAW C 2 A_ClearRefire
         Goto Ready
-        
+
       AltFire:
         SSAW IJ 2
-        
+
       AltHold:
         TNT1 A 5
         TNT1 A 0 A_Jump(224,"AltHold1","AltHold2")
         TNT1 A 2
         loop
-        
+
       AltHold1:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("dchain/swing","soundslot7",0,0)
@@ -674,7 +674,7 @@ ACTOR "Doom Cannon" : Weapon
         TNT1 A 7 A_ClearRefire
         SSAW KJ 2
         goto Ready
-        
+
       AltHold2:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("dchain/swing","soundslot7",0,0)
@@ -715,7 +715,7 @@ ACTOR ChainsawShot
     States
     {
       Spawn:
-        TNT1 A 0 
+        TNT1 A 0
         STEL A 1 A_SpawnItemEx("SteelTrailA",0,0,0,0,0,0,0,160,0)
         STEL B 1 A_SpawnItemEx("SteelTrailB",0,0,0,0,0,0,0,160,0)
         STEL C 1 A_SpawnItemEx("SteelTrailC",0,0,0,0,0,0,0,160,0)
@@ -727,7 +727,7 @@ ACTOR ChainsawShot
         STEL A 1 A_SpawnItemEx("SteelTrailA",0,0,0,0,0,0,0,160,0)
         STEL B 1 A_SpawnItemEx("SteelTrailB",0,0,0,0,0,0,0,160,0)
         TNT1 A 0
-        
+
       Death:
         TNT1 A 1
         Stop
@@ -749,7 +749,7 @@ ACTOR SteelTrailA
       Spawn:
         STEL AAAAAAAAAA 1 BRIGHT A_FadeOut(0.05)
         Stop
-        
+
       Death:
         TNT1 A 1
         Stop
@@ -788,7 +788,7 @@ ACTOR SteelTrailD : SteelTrailA
 
 ACTOR DoomBulletPuff : BulletPuff
 {
-    +NOBLOCKMAP 
+    +NOBLOCKMAP
     +NOGRAVITY
     -SOLID
     DamageType "DoomCannon"
@@ -821,7 +821,7 @@ ACTOR DoomBulletPuff : BulletPuff
 
 ACTOR DoomChainsawPuff : BulletPuff
 {
-    +NOBLOCKMAP 
+    +NOBLOCKMAP
     +NOGRAVITY
     -SOLID
     +NOEXTREMEDEATH
@@ -850,7 +850,7 @@ ACTOR DoomChainsawPuff : BulletPuff
         TNT1 AA 0 A_SpawnItemEx("BulletPuff4",0,0,0,random(-250,250)/100.00,random(-250,250)/100.00,random(-250,250)/100.00,random(-180,180),160,0)
         PUFF A 2 Bright
         PUFF B 2
-        
+
       Melee:
         TNT1 AAAAA 0 A_SpawnItemEx("BulletSmokeSmall",0,0,0,random(-150,150)/100.00,random(-150,150)/100.00,random(100,300)/100.00,0,32,64)
         PUFF CD 2
@@ -884,12 +884,12 @@ ACTOR BulletSpark
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         PUFF A 1 BRIGHT
         loop
-        
+
       Death:
         TNT1 A 0
         PUFF AAAAAAAAAA 2 BRIGHT A_FadeOut(0.1)
         stop
-        
+
       Nope:
         TNT1 A 0
         stop
@@ -918,13 +918,13 @@ ACTOR BulletSmoke
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         //PUFF B 1
         PUFF C 1
-        
+
       Spawn3:
         PUFF D 3
         TNT1 A 0 A_Jump(96,"Spawn3")
         PUFF DDDDDDDDDD 1 A_FadeOut(0.1)
         stop
-        
+
       Nope:
         TNT1 A 0
         stop
@@ -954,7 +954,7 @@ ACTOR BulletPuff1
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         PUFF AAAAAAAAAAAA 1 BRIGHT A_FadeOut(0.05)//BBBCCCDDD 1 BRIGHT A_FadeOut(0.05)
         stop
-        
+
       Nope:
         TNT1 A 0
         stop
@@ -972,7 +972,7 @@ ACTOR BulletPuff2 : BulletPuff1
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         PUFF AAAAAAAAAAAA 1 BRIGHT A_FadeOut(0.05)//BBBCCCDDD 1 BRIGHT A_FadeOut(0.05)
         stop
-        
+
       Nope:
         TNT1 A 0
         stop
@@ -990,7 +990,7 @@ ACTOR BulletPuff3 : BulletPuff1
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         PUFF AAAAAAAA 1 bright A_FadeOut(0.1)
         stop
-        
+
       Nope:
         TNT1 A 0
         stop
@@ -1008,7 +1008,7 @@ ACTOR BulletPuff4 : BulletPuff1
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         PUFF AAAAAAAA 1 bright A_FadeOut(0.1)
         stop
-        
+
       Nope:
         TNT1 A 0
         stop

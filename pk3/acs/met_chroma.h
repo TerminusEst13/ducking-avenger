@@ -277,22 +277,6 @@ script 476 (int begin, int button, int superThreshold)
     if (CheckInventory("Metroid_CanSuper")) { TakeInventory("Metroid_CanSuper", 0x7FFFFFFF); }
 }
 
-script 478 enter
-{
-    int infinite;
-
-    while (!(ClassifyActor(0) & ACTOR_WORLD))
-    {
-        infinite = GetCVar("sv_infiniteammo");
-
-        if (infinite && !CheckInventory("HasInfiniteAmmo")) { GiveInventory("HasInfiniteAmmo", 1); }
-        else if (!infinite && CheckInventory("HasInfiniteAmmo")) { TakeInventory("HasInfiniteAmmo", 0x7FFFFFFF); }
-
-        Delay(1);
-    }
-}
-
-
 // LASERS MOTHERFUCKER
 
 int CB_TempCoords[PLAYERMAX][3];

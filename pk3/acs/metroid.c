@@ -327,6 +327,7 @@ script METROID_ENTER ENTER
     int frozen = 0, wasfrozen;
     int jumpz = GetActorProperty(0, APROP_JumpZ);
     int frozenjumpz = FixedDiv(jumpz, sqrt(2.0));
+    int infinite;
     int i;
 
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
@@ -429,7 +430,7 @@ script METROID_ENTER ENTER
     }
     GiveInventory("InGame",1);
 
-    while (1)
+    while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
         // Health bar shit
         if (GetActorProperty(0,APROP_Health) > 100) { GiveInventory("HealthOver100",1); } else { if (CheckInventory("HealthOver100") == 1) { TakeInventory("HealthOver100",1); }}
@@ -509,6 +510,14 @@ script METROID_ENTER ENTER
         }
         // You have no idea how much I'm trying to avoid GotMilk = 1;
         // WAIT SHIT I JUST DID IT
+
+        // Infinite ammo item for DECORATE
+        infinite = GetCVar("sv_infiniteammo");
+
+        if (infinite && !CheckInventory("HasInfiniteAmmo")) { GiveInventory("HasInfiniteAmmo", 1); }
+        else if (!infinite && CheckInventory("HasInfiniteAmmo")) { TakeInventory("HasInfiniteAmmo", 0x7FFFFFFF); }
+
+        Delay(1);
 
         if (isDead(0)) { terminate; }
         delay(1);
