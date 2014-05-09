@@ -15,45 +15,60 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
     +NOAUTOAIM
     +NO_AUTO_SWITCH
     +UNDROPPABLE
-
+    
     Inventory.Icon "WEAPWVBM"
-
+    
     States
     {
-    Spawn:
+      Spawn:
         SOUL A -1
         Stop
-    Ready:
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+
+      Ready:
+        WBEM A 0 ACS_ExecuteWithResult(476, 1)
+        goto Ready2
+
+      Ready2:
+        TNT1 A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
+        TNT1 A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",  1, "D_RUNNIN")
         WBEM A 1 A_WeaponReady
         Loop
-    Select:
+
+      Select:
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Raise
         WBEM A 1 A_Raise
         loop
-    Deselect:
-        TNT1 A 0
+
+      Deselect:
+        WBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_PlaySoundEx("beam/deselect","soundslot5")
-    Deselect2:
+
+      Deselect2:
         WBEM RSTUVW 1 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 A 0 A_JumpIfHealthLower(1, "DeadLower")
         XBEM A 5 A_WeaponReady(WRF_NOFIRE | WRF_NOSWITCH)
         TNT1 AAAAAAAAAAAAAAAAAAAA 0 A_Lower
         TNT1 A 0 A_Lower
         loop
-    DeadLower:
+
+      DeadLower:
         XBEM A 1 A_Lower
         loop
-    Fire:
+
+      Fire:
+        WBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"FireChilled")
         TNT1 A 0 A_PlayWeaponSound("wbeam/fire")
         TNT1 A 0 A_Recoil(0.05)
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"FireCoop")
         TNT1 A 0 A_FireCustomMissile("WaveBolt",random(-200,200)/100.00,0,12,-2,0,random(-50,50)/100.00)
         goto FireFinish
-    FireCoop:
+
+      FireCoop:
         TNT1 A 0 A_FireCustomMissile("WaveBoltCoop",random(-200,200)/100.00,0,12,-2,0,random(-50,50)/100.00)
-    FireFinish:
+
+      FireFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         WBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -66,15 +81,18 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
         Goto Ready
-    FireChilled:
+
+      FireChilled:
         TNT1 A 0 A_PlayWeaponSound("wbeam/fire")
         TNT1 A 0 A_Recoil(0.05)
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"ChilledCoop")
         TNT1 A 0 A_FireCustomMissile("WaveBolt",random(-200,200)/100.00,0,12,-2,0,random(-50,50)/100.00)
         goto ChilledFinish
-    ChilledCoop:
+
+      ChilledCoop:
         TNT1 A 0 A_FireCustomMissile("WaveBoltCoop",random(-200,200)/100.00,0,12,-2,0,random(-50,50)/100.00)
-    ChilledFinish:
+
+      ChilledFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         WBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -86,7 +104,8 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         TNT1 A 0 A_Refire
         Goto Ready
-    Hold:
+
+      Hold:
         TNT1 A 0 A_JumpIfInventory("PowerBeamCharged",1,"HoldFinal2")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",26,"Hold7")
@@ -96,13 +115,15 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",6,"Hold3")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",1,"Hold2")
         TNT1 A 0 A_PlaySoundEx("pbeam/charge","soundslot5")
-    Hold2:
+
+      Hold2:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         WBEM KK 1 BRIGHT A_FireCustomMissile("WaveBeamChargingSpawner1",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
-    HoldFire:
+
+      HoldFire:
         TNT1 A 0
         TNT1 A 0 A_PlaySoundEx("silence","soundslot5")
         TNT1 A 0 A_PlayWeaponSound("wbeam/fire")
@@ -112,9 +133,11 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"UnholdCoop")
         TNT1 A 0 A_FireCustomMissile("WaveBolt",random(-200,200)/100.00,0,12,-2,0,random(-50,50)/100.00)
         goto UnholdFinish
-    UnholdCoop:
+
+      UnholdCoop:
         TNT1 A 0 A_FireCustomMissile("WaveBoltCoop",random(-200,200)/100.00,0,12,-2,0,random(-50,50)/100.00)
-    UnholdFinish:
+
+      UnholdFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         WBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -125,46 +148,53 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         WBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         Goto Ready
-    Hold3:
+
+      Hold3:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         WBEM LL 1 BRIGHT A_FireCustomMissile("WaveBeamChargingSpawner2",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold4:
+
+      Hold4:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         WBEM MM 1 BRIGHT A_FireCustomMissile("WaveBeamChargingSpawner3",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold5:
+
+      Hold5:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         WBEM NN 1 BRIGHT A_FireCustomMissile("WaveBeamChargingSpawner4",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold6:
+
+      Hold6:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         WBEM OO 1 BRIGHT A_FireCustomMissile("WaveBeamChargingSpawner5",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    Hold7:
+
+      Hold7:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
         WBEM PP 1 BRIGHT A_FireCustomMissile("WaveBeamChargingSpawner6",0,0,0,0,0,0)
         TNT1 A 0 A_Refire
         goto HoldFire
-    HoldFinal:
+
+      HoldFinal:
         TNT1 A 0
         TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
-    HoldFinal2:
+
+      HoldFinal2:
         TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
@@ -186,11 +216,13 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         TNT1 A 0 A_FireCustomMissile("WaveBoltCharged2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("WaveBoltCharged3",0,0,12,-2,0,0)
         goto ChargedFinish
-    ChargedCoop:
+
+      ChargedCoop:
         TNT1 A 0 A_FireCustomMissile("WaveBoltChargedCoop",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("WaveBoltCharged2Coop",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("WaveBoltCharged3Coop",0,0,12,-2,0,0)
-    ChargedFinish:
+
+      ChargedFinish:
         TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_Light2
         WBEM B 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
@@ -203,50 +235,51 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM EEFFFEEGHA 1 A_WeaponReady(WRF_NOSWITCH)
         WBEM A 6 A_WeaponReady(WRF_NOSWITCH)
         Goto Ready
-    HoldFinal3:
+
+      HoldFinal3:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",99)
         TNT1 A 0 A_PlaySoundEx("pbeam/idle","soundslot7")
         goto HoldFinal2
-
-    AltFire:
-        TNT1 A 0 A_Refire
-    AltFire2:
-        TNT1 A 0
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34) // Already done in AltHold, but just in case.
-        TNT1 A 0 A_ClearRefire
-        TNT1 A 0 A_JumpIfNoAmmo("Ready")
-        TNT1 A 0 A_JumpIfInventory("IceBeamChilled",1,"AltFireChilled")
+        
+      Missile:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
+        TNT1 A 0 A_TakeInventory("MissileAmmo", 1)
         TNT1 A 0 A_PlayWeaponSound("missile/fire")
-        TNT1 A 0 A_Recoil(2)
+        TNT1 A 0 A_AlertMonsters
+        
         TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
+        
+        TNT1 A 0 A_Recoil(2)
         TNT1 A 0 Radius_Quake(1,8,0,1,0)
-        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"AltFireCoop")
+        
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"Missile_Coop")
+        goto Missile_DM
+        
+      Missile_DM:
         TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
-        goto AltFireFinish
-    AltFireCoop:
+        goto MissileAnim
+        
+      Missile_Coop:
         TNT1 A 0 A_FireCustomMissile("PowerMissileCoop",0,1,12,-2,0,0)
-    AltFireFinish:
-        TNT1 A 0 A_AlertMonsters
-        TNT1 A 0 A_Light2
-        WBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        TNT1 A 0 A_Light1
-        TNT1 A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
-        WBEM J 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        TNT1 A 0 A_Light0
-        TNT1 A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
-        WBEM E 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        WBEM EEFFFEEGGHH 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
-        WBEM A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
-        Goto Ready
-    AltFireChilled:
-        TNT1 A 0 A_PlayWeaponSound("missile/fire")
-        TNT1 A 0 A_Recoil(2)
-        TNT1 A 0 A_ZoomFactor(0.95,ZOOM_INSTANT)
-        TNT1 A 0 Radius_Quake(1,8,0,1,0)
-        TNT1 A 0 A_FireCustomMissile("PowerMissile",0,1,12,-2,0,0)
-        TNT1 A 0 A_AlertMonsters
+        goto MissileAnim
+        
+      MissileAnim:
+        WBEM A 0 A_JumpIfInventory("IceBeamChilled", 1, "MissileAnim_Chilled")
+        WBEM A 0 A_Light2
+        WBEM I 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light1
+        WBEM A 0 A_ZoomFactor(0.975,ZOOM_INSTANT)
+        WBEM J 1 BRIGHT A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 0 A_Light0
+        WBEM A 0 A_ZoomFactor(1.00,ZOOM_INSTANT)
+        WBEM E 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM EEFFFEEGGHH 1 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        WBEM A 2 A_WeaponReady(WRF_NOFIRE|WRF_NOSWITCH)
+        goto Ready
+        
+      MissileAnim_Chilled:
         TNT1 A 0 A_Light2
         WBEM I 1 BRIGHT A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         TNT1 A 0 A_Light1
@@ -258,42 +291,31 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM EEEFFFFEEEGGGHHHAAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         WBEM A 2 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-    AltHold:
-        TNT1 A 0 A_JumpIfInventory("SuperMissileAmmo",1,2)
-        WBEM A 1
-        goto AltFire2
-        TNT1 A 0 A_JumpIfInventory("MissileCharged",1,"AltHoldFinal2")
-        TNT1 A 0 A_JumpIfInventory("MissileChargeLevel",13,"AltHoldFinal")
-        TNT1 A 0 A_GiveInventory("MissileChargeLevel",1)
-        WBEM AA 1
-        TNT1 A 0 A_Refire
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
-        TNT1 A 0 A_ClearRefire
-        goto AltFire2
-    AltHoldFinal:
-        TNT1 A 0
-        TNT1 A 0 A_GiveInventory("MissileCharged",1)
-        TNT1 A 0 A_PlaySoundEx("supermissile/ready","soundslot7")
-    AltHoldFinal2:
-        TNT1 A 0
-        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
-        WBEM AA 1
-        TNT1 A 0 A_Refire
-        TNT1 A 0 A_TakeInventory("MissileCharged",1)
-        TNT1 A 0 A_TakeInventory("MissileChargeLevel",34)
-        TNT1 A 0 A_ClearRefire
-        TNT1 A 0 A_PlayWeaponSound("supermissile/fire")
-        TNT1 A 0 A_Recoil(5)
-        TNT1 A 0 A_ZoomFactor(0.925,ZOOM_INSTANT)
-        TNT1 A 0 Radius_Quake(2,8,0,1,0)
-        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"SuperCoop")
-        TNT1 A 0 A_FireCustomMissile("SuperMissile",0,0,12,-2,0,0)
-        goto SuperFinish
-    SuperCoop:
-        TNT1 A 0 A_FireCustomMissile("SuperMissileCoop",0,0,12,-2,0,0)
-    SuperFinish:
+        
+      SuperMissile:
+        TNT1 A 0 ACS_ExecuteWithResult(476, 0)
+        TNT1 A 0 A_JumpIfInventory("HasInfiniteAmmo", 1, 2)
         TNT1 A 0 A_TakeInventory("SuperMissileAmmo",1)
+        TNT1 A 0 A_PlayWeaponSound("supermissile/fire")
+        TNT1 A 0 A_AlertMonsters
+        
+        TNT1 A 0 A_ZoomFactor(0.925,ZOOM_INSTANT)
+        
+        TNT1 A 0 A_Recoil(5)
+        TNT1 A 0 Radius_Quake(2,8,0,1,0)
+        
+        TNT1 A 0 A_JumpIfInventory("CoopModeOn",1,"SuperCoop")
+        goto SuperDM
+        
+      SuperDM:
+        TNT1 A 0 A_FireCustomMissile("SuperMissile",0,0,12,-2,0,0)
+        goto SuperAnim
+        
+      SuperCoop:
+        TNT1 A 0 A_FireCustomMissile("SuperMissileCoop",0,0,12,-2,0,0)
+        goto SuperAnim
+        
+      SuperAnim:
         TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))
         TNT1 A 0 A_SetPitch(pitch-(random(300,500)/100.00))
         TNT1 A 0 A_AlertMonsters
@@ -308,8 +330,8 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         WBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-
-    ChargeCombo:
+        
+      ChargeCombo:
         TNT1 A 0 A_JumpIfInventory("MissileAmmo",10,1)
         goto HoldFinal2
         TNT1 A 0
@@ -327,11 +349,13 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         TNT1 A 0 A_FireCustomMissile("WaveComboMissile2",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("WaveComboMissile3",0,0,12,-2,0,0)
         goto ComboFinish
-    ComboCoop:
+
+      ComboCoop:
         TNT1 A 0 A_FireCustomMissile("WaveComboMissileCoop",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("WaveComboMissile2Coop",0,0,12,-2,0,0)
         TNT1 A 0 A_FireCustomMissile("WaveComboMissile3Coop",0,0,12,-2,0,0)
-    ComboFinish:
+
+      ComboFinish:
         TNT1 A 0 A_TakeInventory("MissileAmmo",10)
         TNT1 A 0 A_SetAngle(angle+(random(-200,200)/100.00))
         TNT1 A 0 A_SetPitch(pitch-(random(300,500)/100.00))
@@ -347,9 +371,9 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM EEFFFEEGGHHAA 1 A_WeaponReady(WRF_NOSECONDARY|WRF_NOPRIMARY|WRF_NOSWITCH)
         WBEM A 8 A_WeaponReady(WRF_NOSECONDARY|WRF_NOSWITCH)
         Goto Ready
-
-    D_RUNNIN:
-        TNT1 A 0
+        
+      D_RUNNIN:
+        WBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_TakeInventory("PowerBeamCharged",1)
         TNT1 A 0 A_TakeInventory("PowerBeamChargeLevel",34)
         TNT1 A 0 A_TakeInventory("PowerBeamIdle",34)
@@ -368,11 +392,13 @@ ACTOR "Wave Beam" : Weapon// replaces Chaingun
         WBEM A 1 Offset(0,120)
         WBEM A 1 Offset(0,130)
         WBEM A 1 Offset(0,140)
-    IdleLoop:
+
+      IdleLoop:
         TNT1 A 1
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"IdleLoop")
         goto BackToNormal
-    BackToNormal:
+
+      BackToNormal:
         WBEM A 1 Offset(0,140)
         WBEM A 1 Offset(0,130)
         WBEM A 1 Offset(0,120)
@@ -409,13 +435,15 @@ actor WaveBolt //: FastProjectile
     Decal DoomImpScorch
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6")
-    Spawn1:
+
+      Spawn1:
         TNT1 A 1
         WSHT B 3 BRIGHT A_ChangeVelocity(0,-14,0,CVF_RELATIVE)
-    Spawn1B:
+
+      Spawn1B:
         TNT1 A 0
         TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
         WSHT A 1 BRIGHT A_ChangeVelocity(0,30,0,CVF_RELATIVE)
@@ -431,121 +459,131 @@ actor WaveBolt //: FastProjectile
         WSHT A 1 BRIGHT A_Countdown
         TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
         WSHT B 1 BRIGHT A_ChangeVelocity(0,-30,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        loop
-    Spawn2:
-        TNT1 A 1
-        WSHT B 3 BRIGHT A_ChangeVelocity(0,14,0,CVF_RELATIVE)
-    Spawn2B:
-        TNT1 A 0
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,-30,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,30,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,-30,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,30,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        loop
-    Spawn3:
-        TNT1 A 1
-        WSHT B 3 BRIGHT A_ChangeVelocity(0,-7,0,CVF_RELATIVE)
-    Spawn3B:
-        TNT1 A 0
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        loop
-    Spawn4:
-        TNT1 A 1
-        WSHT B 3 BRIGHT A_ChangeVelocity(0,7,0,CVF_RELATIVE)
-    Spawn4B:
-        TNT1 A 0
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        loop
-    Spawn5:
-        TNT1 A 1
-        WSHT B 3 BRIGHT A_ChangeVelocity(0,-10,0,CVF_RELATIVE)
-    Spawn5B:
-        TNT1 A 0
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        loop
-    Spawn6:
-        TNT1 A 1
-        WSHT B 3 BRIGHT A_ChangeVelocity(0,10,0,CVF_RELATIVE)
-    Spawn6B:
-        TNT1 A 0
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT A 1 BRIGHT A_Countdown
-        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
-        WSHT B 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
         TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
         WSHT B 1 BRIGHT A_Countdown
         loop
 
-    Death:
+      Spawn2:
+        TNT1 A 1
+        WSHT B 3 BRIGHT A_ChangeVelocity(0,14,0,CVF_RELATIVE)
+
+      Spawn2B:
+        TNT1 A 0
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,-30,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,30,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,-30,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,30,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        loop
+
+      Spawn3:
+        TNT1 A 1
+        WSHT B 3 BRIGHT A_ChangeVelocity(0,-7,0,CVF_RELATIVE)
+
+      Spawn3B:
+        TNT1 A 0
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        loop
+
+      Spawn4:
+        TNT1 A 1
+        WSHT B 3 BRIGHT A_ChangeVelocity(0,7,0,CVF_RELATIVE)
+
+      Spawn4B:
+        TNT1 A 0
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,-15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,15,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        loop
+
+      Spawn5:
+        TNT1 A 1
+        WSHT B 3 BRIGHT A_ChangeVelocity(0,-10,0,CVF_RELATIVE)
+
+      Spawn5B:
+        TNT1 A 0
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        loop
+
+      Spawn6:
+        TNT1 A 1
+        WSHT B 3 BRIGHT A_ChangeVelocity(0,10,0,CVF_RELATIVE)
+
+      Spawn6B:
+        TNT1 A 0
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_ChangeVelocity(0,-22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT A 1 BRIGHT A_Countdown
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_ChangeVelocity(0,22,0,CVF_RELATIVE)
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        WSHT B 1 BRIGHT A_Countdown
+        loop
+        
+      Death:
         TNT1 A 0
         WTRL A 2 BRIGHT A_Scream
         WTRL BCD 2 BRIGHT 
@@ -564,13 +602,14 @@ actor WaveTrail
     RenderStyle Add
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         WTRL AABB 1 BRIGHT A_CustomMissile("WaveSpark",0,0,Random(-180,180),2,Random(-100,100))
         WTRL CCDD 1 BRIGHT //A_CustomMissile("WaveSpark",0,0,Random(-180,180),2,Random(-100,100))
         stop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
@@ -593,12 +632,13 @@ actor WaveSpark
     +CLIENTSIDEONLY
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         WSPR ABCDE 1 BRIGHT A_FadeOut(0.03)
         loop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
@@ -615,7 +655,7 @@ actor WaveBeamChargingSpawner1
     Speed 24
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging1",-14,0,-3,0,0,0,-270,32)
@@ -627,7 +667,7 @@ actor WaveBeamChargingSpawner2 : WaveBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging2",-14,0,-3,0,0,0,-270,32)
@@ -639,7 +679,7 @@ actor WaveBeamChargingSpawner3 : WaveBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging3",-14,0,-3,0,0,0,-270,32)
@@ -651,7 +691,7 @@ actor WaveBeamChargingSpawner4 : WaveBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging4",-14,0,-3,0,0,0,-270,32)
@@ -663,7 +703,7 @@ actor WaveBeamChargingSpawner5 : WaveBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging5",-14,0,-3,0,0,0,-270,32)
@@ -675,7 +715,7 @@ actor WaveBeamChargingSpawner6 : WaveBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging6",-14,0,-3,0,0,0,-270,32)
@@ -687,7 +727,7 @@ actor WaveBeamChargingSpawner7 : WaveBeamChargingSpawner1
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 1
         TNT1 A 0 A_SpawnItemEx("WaveBeamCharging7",-14,0,-3,0,0,0,-270,32)
@@ -705,39 +745,48 @@ actor WaveBeamCharging1
     +NOTIMEFREEZE
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Simple")
         TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4")
         TNT1 A 1
         loop
-    Spawn1:
+
+      Spawn1:
         WBCH ABCDA 1 bright A_FadeOut(0.15)
         stop
-    Spawn2:
+
+      Spawn2:
         WBCH BCDAB 1 bright A_FadeOut(0.15)
         stop
-    Spawn3:
+
+      Spawn3:
         WBCH CDABC 1 bright A_FadeOut(0.15)
         stop
-    Spawn4:
+
+      Spawn4:
         WBCH DABCD 1 bright A_FadeOut(0.15)
         stop
-    Simple:
+
+      Simple:
         TNT1 A 0
         TNT1 A 0 A_Jump(256,"Spawn1B","Spawn2B","Spawn3B","Spawn4B")
         TNT1 A 1
         loop
-    Spawn1B:
+
+      Spawn1B:
         WBCH A 2 bright
         stop
-    Spawn2B:
+
+      Spawn2B:
         WBCH B 2 bright
         stop
-    Spawn3B:
+
+      Spawn3B:
         WBCH C 2 bright
         stop
-    Spawn4B:
+
+      Spawn4B:
         WBCH D 2 bright
         stop
     }
@@ -770,10 +819,11 @@ ACTOR WaveBoltCharged
     Decal DoomImpScorch
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         goto Spawn1
-    Spawn1:
+
+      Spawn1:
         TNT1 A 0
         TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
         WSHT A 1 BRIGHT A_BishopMissileWeave
@@ -784,7 +834,8 @@ ACTOR WaveBoltCharged
         TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
         WSHT B 1 BRIGHT A_BishopMissileWeave
         loop
-    Death:
+
+      Death:
         TNT1 A 0
         TNT1 AAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
         WTRL A 2 BRIGHT A_Scream
@@ -797,7 +848,7 @@ ACTOR WaveBoltCharged2 : WaveBoltCharged
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 AAAAAAAAAAA 0 A_BishopMissileWeave
         goto Spawn1
@@ -808,7 +859,7 @@ ACTOR WaveBoltCharged3 : WaveBoltCharged
 {
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 AAAAAAAAAAAA 0 A_BishopMissileWeave
         TNT1 AAAAAAAAAA 0 A_BishopMissileWeave
@@ -823,7 +874,7 @@ actor WaveBoltChargedCoop : WaveBoltCharged
     +THRUSPECIES
     States
     {
-    Death:
+      Death:
         TNT1 A 0
         TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
         WTRL A 2 BRIGHT A_Scream
@@ -839,7 +890,7 @@ actor WaveBoltCharged2Coop : WaveBoltCharged2
     +THRUSPECIES
     States
     {
-    Death:
+      Death:
         TNT1 A 0
         TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
         WTRL A 2 BRIGHT A_Scream
@@ -855,7 +906,7 @@ actor WaveBoltCharged3Coop : WaveBoltCharged3
     +THRUSPECIES
     States
     {
-    Death:
+      Death:
         TNT1 A 0
         TNT1 AAAAAAAAAAAAAAA 0 A_CustomMissile("WaveSplatterShot",0,0,random(-180,180),6,random(-45,45))
         WTRL A 2 BRIGHT A_Scream
@@ -879,7 +930,7 @@ actor WaveSplatterShot
     +HEXENBOUNCE
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
         TNT1 A 0 A_CStaffMissileSlither
@@ -889,7 +940,8 @@ actor WaveSplatterShot
         TNT1 A 0 A_CStaffMissileSlither
         WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
         loop
-    Death:
+
+      Death:
         WSHT A 1 BRIGHT A_FadeOut(0.1)
         loop
     }
@@ -906,12 +958,13 @@ actor WaveSplatterTrail
     +NOINTERACTION
     States
     {
-    Spawn:
+      Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,0,0,0) == 1,"Nope")
         WSHT A 1 BRIGHT A_FadeOut(0.1)
         loop
-    Nope:
+
+      Nope:
         TNT1 A 1
         stop
     }
