@@ -128,6 +128,7 @@ actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
 #include "decorate/weapons.dec"
 #include "decorate/skulltag.dec"
 #include "decorate/althudhack.dec"
+#include "decorate/beams/common.dec"
 #include "decorate/beams/powerbeam.dec"
 #include "decorate/beams/spazerbeam.dec"
 #include "decorate/beams/wavebeam.dec"

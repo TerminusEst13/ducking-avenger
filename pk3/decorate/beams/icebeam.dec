@@ -41,7 +41,7 @@ ACTOR "Ice Beam" : Weapon
         loop
 
       Deselect:
-        TNT1 A 0
+        IBEM A 0 ACS_ExecuteWithResult(476, 0)
         TNT1 A 0 A_PlaySoundEx("beam/deselect","soundslot5")
 
       Deselect2:

@@ -1,0 +1,3 @@
+actor HasInfiniteAmmo:          Boolean {}
+actor Metroid_CanMissile:      Boolean {}
+actor Metroid_CanSuper:        Boolean {}

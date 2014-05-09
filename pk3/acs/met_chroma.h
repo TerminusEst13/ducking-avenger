@@ -272,6 +272,9 @@ script 476 (int begin, int button, int superThreshold)
         couldsuper  = givesuper;
         Delay(1);
     }
+
+    if (CheckInventory("Metroid_CanMissile")) { TakeInventory("Metroid_CanMissile", 0x7FFFFFFF); }
+    if (CheckInventory("Metroid_CanSuper")) { TakeInventory("Metroid_CanSuper", 0x7FFFFFFF); }
 }
 
 script 478 enter

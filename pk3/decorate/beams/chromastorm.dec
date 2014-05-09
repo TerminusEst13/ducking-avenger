@@ -1,15 +1,12 @@
 const int BT_ATTACK     = 1;
 const int BT_ALTATTACK  = 32;
 
-actor HasInfiniteAmmo:          Boolean {}
 actor QuitParticlan:            Boolean {}
 
 actor DakkaBeamColor:           Counter {}
 actor DakkaBeamComboLevel:      Counter {}
 actor DakkaShotSprite:          Counter {}
 actor DakkaBeamChargeLevel:     Counter {}
-actor Metroid_CanMissile:      Boolean {}
-actor Metroid_CanSuper:        Boolean {}
 actor DakkaBeamInChargeCombo:   Boolean {}
 actor DakkaBeamComboShotsLeft:  Counter {}
 
