@@ -350,6 +350,7 @@ function int M_DefaultCVar(int var, int val)
 
 function int M_SetCVar(int var, int val)
 {
+    if (GetCVar(var) == val) { return val; }
     if (met_cvarinfo()) { SetCVar(var, val); }
     else { SaveCVar(var, val); }
 
@@ -358,6 +359,7 @@ function int M_SetCVar(int var, int val)
 
 function int M_SetCVar_ZandOnly(int var, int val)
 {
+    if (GetCVar(var) == val) { return val; }
     if (!met_cvarinfo()) { SaveCVar(var, val); }
     return GetCVar(var);
 }

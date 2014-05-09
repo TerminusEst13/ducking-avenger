@@ -116,7 +116,7 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
     while (!fuckyoEVERYTHING)
     {
         fuckyocamera = isDead(0) || !!M_GetCVar("metroid_cl_nomorphcamera");
-        fuckyoEVERYTHING = CheckInventory("PlayerMorphCamera");
+        fuckyoEVERYTHING = CheckInventory("PlayerMorphCamera") || (PlayerNumber() == -1);
 
         if (fuckyocamera || fuckyoEVERYTHING)
         {
@@ -126,6 +126,7 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
         {
             SetChasecam(dist, height, tid, 1);
         }
+
         Delay(1);
     }
 }
