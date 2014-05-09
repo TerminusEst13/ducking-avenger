@@ -529,6 +529,7 @@ script METROID_ENTER ENTER
 
             if (!CheckInventory("SuperMissileAcquired")) { GiveInventory("SuperMissileAcquired", 1); }
             if (!CheckInventory("PowerBombAcquired")) { GiveInventory("PowerBombAcquired", 1); }
+            if (!CheckInventory("ChargeComboAcquired")) { GiveInventory("ChargeComboAcquired", 1); }
 
             TakeInventory("MetroodIDKFAHack", 0x7FFFFFFF);
         }

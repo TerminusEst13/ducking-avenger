@@ -1,3 +1,5 @@
+const int METROID_DECORATE      = 594;
+
 actor Boolean: Inventory
 {
     Inventory.MaxAmount 1
