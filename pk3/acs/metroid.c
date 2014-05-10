@@ -116,7 +116,7 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
     while (!fuckyoEVERYTHING)
     {
         fuckyocamera = isDead(0) || !!M_GetCVar("metroid_cl_nomorphcamera");
-        fuckyoEVERYTHING = CheckInventory("PlayerMorphCamera") || (PlayerNumber() == -1);
+        fuckyoEVERYTHING = !CheckInventory("PlayerMorphCamera") || (PlayerNumber() == -1);
     
         if (fuckyocamera || fuckyoEVERYTHING)
         {
@@ -140,6 +140,7 @@ script METROID_MORPHBALL (int morphshit)
     int pNum = PlayerNumber();
     int CheckerTID = 1500+pNum;
     int velx, vely, velz;
+    int i;
 
     switch (morphshit)
     {
@@ -193,40 +194,60 @@ script METROID_MORPHBALL (int morphshit)
         TakeInventory("MissileCharged",999);
         playerOnFoot[pNum] = 1;
 
-        TakeInventory("PlayerMorphCamera",1);
+        GiveInventory("PlayerMorphCamera", 1);
         ACS_ExecuteAlways(METROID_MORPHCAMERA,0,90,4);
         ACS_ExecuteAlways(METROID_BWEEBWEEMORPH,0);
         break;
 
     case 1:
-        if (Spawn("SpaceChecker", GetActorX(0), GetActorY(0), GetActorZ(0), CheckerTID, GetActorAngle(0) >> 8 ) > 0)
+        if (Spawn("SpaceChecker", GetActorX(0), GetActorY(0), GetActorZ(0), CheckerTID))
         {
-        ActivatorSound("morphball/unmorph", 127);
-        SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
-        velx = GetActorVelX(0);
-        vely = GetActorVelY(0);
-        velz = GetActorVelZ(0);
-        //Thing_Remove(CheckerTID);
-        UnmorphActor(0, 1);
-        SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
-        SetActorProperty(0,APROP_SPEED,1.00);
-        TakeInventory("BorphMallAcquired", 1);
-        TakeInventory("BoostBallCount", 99);
-        TakeInventory("MissileChargeLevel",999);
-        TakeInventory("MissileCharged",999);
-        GiveInventory("MorphBallActivate", 1);
-        TakeInventory("MorphBallDeactivate", 1);
-        TakeInventory("BallBoosting", 1);
-        SetActorVelocity(0, velx,vely,velz, 0,0);
-        playerOnFoot[pNum] = 0;
+            ActivatorSound("morphball/unmorph", 127);
+            SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
+            velx = GetActorVelX(0);
+            vely = GetActorVelY(0);
+            velz = GetActorVelZ(0);
 
-        //ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1);
-        //ACS_ExecuteAlways(495,0,0,0);
-        GiveInventory("PlayerMorphCamera",1);
+            UnmorphActor(0, 1);
+            SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
+            SetActorProperty(0,APROP_SPEED,1.00);
+            TakeInventory("BorphMallAcquired", 1);
+            TakeInventory("BoostBallCount", 99);
+            TakeInventory("MissileChargeLevel",999);
+            TakeInventory("MissileCharged",999);
+            GiveInventory("MorphBallActivate", 1);
+            TakeInventory("MorphBallDeactivate", 1);
+            TakeInventory("BallBoosting", 1);
+            SetActorVelocity(0, velx,vely,velz, 0,0);
+            playerOnFoot[pNum] = 0;
 
-        ACS_ExecuteAlways(352,0,0,0);
-        ACS_ExecuteAlways(351,0,0,0);
-        ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+            TakeInventory("PlayerMorphCamera", 0x7FFFFFFF);
+
+            ACS_ExecuteAlways(352,0,0,0);
+            ACS_ExecuteAlways(351,0,0,0);
+            ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
+
+            // [ijon] Force resync of health count, missile capacity,
+            //  super missile capacity, and power bomb capacity.
+
+            SetActorProperty(0, APROP_SpawnHealth, GetActorProperty(0, APROP_SpawnHealth));
+            SetActorProperty(0, APROP_Health,      GetActorProperty(0, APROP_Health));
+            
+            SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
+            SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
+            SetAmmoCapacity("PowerBombAmmo",    GetAmmoCapacity("PowerBombAmmo"));
+
+            i = CheckInventory("MissileAmmo");
+            TakeInventory("MissileAmmo", 0x7FFFFFFF);
+            GiveInventory("MissileAmmo", i);
+
+            i = CheckInventory("SuperMissileAmmo");
+            TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
+            GiveInventory("SuperMissileAmmo", i);
+
+            i = CheckInventory("PowerBombAmmo");
+            TakeInventory("PowerBombAmmo", 0x7FFFFFFF);
+            GiveInventory("PowerBombAmmo", i);
         }
         else { ActivatorSound("morphball/denied", 127); }
         break;
@@ -304,12 +325,12 @@ script METROID_UNLOADING UNLOADING
     TakeInventory("BallBoosting",1);
 
     GiveInventory("BombCount",999);
-    GiveInventory("PlayerMorphCamera",999);
+    TakeInventory("PlayerMorphCamera", 0x7FFFFFFF);
 }
 
 script METROID_DEATH DEATH
 {
-    if (CheckInventory("BorphMallAcquired")) { GiveInventory("PlayerMorphCamera",999); }//ACS_ExecuteAlways(METROID_MORPHCAMERA,0,1); }
+    if (CheckInventory("BorphMallAcquired")) { TakeInventory("PlayerMorphCamera", 0x7FFFFFFF); }
     ACS_ExecuteAlways(589,0);
 }
 
@@ -336,10 +357,9 @@ script METROID_ENTER ENTER
 
     if (GameType () == GAME_TITLE_MAP) { terminate; }
 
-    if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); GiveInventory("PlayerMorphCamera",1); }
-    //ACS_ExecuteAlways(METROID_MORPHCAMERA,0,2);
+    if (CheckInventory("MorphBallDeactivate") == 1) { GiveInventory("MorphBallActivate", 1); TakeInventory("MorphBallDeactivate", 1); TakeInventory("PlayerMorphCamera", 0x7FFFFFFF); }
 
-    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }//if (M_GetCVar("metroid_startingtanks") == 0) { GiveInventory("EnergyTankAcquired",1); SetActorProperty(0,APROP_SPAWNHEALTH,200); SetActorProperty(0,APROP_HEALTH,200); } }
+    if (isFreeForAll() || isTeamgame()) { SetAmmoCapacity("MissileAmmo",10); GiveInventory("MissileAmmo",5); GiveInventory("MissileTankAcquired",1); }
     if (isSinglePlayer() || isCoop()) { if (CheckInventory("CoopModeOn") == 0) { GiveInventory("CoopModeOn",1); SetActorState(0,"CoopModeOn"); }}
 
     ACS_ExecuteAlways(352,0,0,0); // Activates Space Jump mode.

@@ -48,7 +48,6 @@ actor SamusPlayer : PlayerPawn
     Player.DisplayName "Hunter"
     Player.StartItem "Power Beam"
     Player.StartItem "MorphBallActivate", 1
-    Player.StartItem "PlayerMorphCamera", 1
     Player.StartItem "PowerBeamAcquired", 1
     Player.StartItem "MissileAmmo", 5
     Player.StartItem "BombCount", 3
