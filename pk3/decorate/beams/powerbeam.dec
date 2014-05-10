@@ -30,8 +30,8 @@ ACTOR "Power Beam" : Weapon
         goto Ready2
 
       Ready2:
-        TNT1 A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
-        TNT1 A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(METROID_DECORATE, 28, 0), "Missile")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(METROID_DECORATE, 28, 1), "SuperMissile")
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",  1, "D_RUNNIN")
         PBEM A 1 A_WeaponReady
         Loop

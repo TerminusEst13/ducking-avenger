@@ -39,8 +39,8 @@ ACTOR "Doom Cannon" : Weapon
 
       Ready2:
         DCAN A 0 A_GiveInventory("DCReadyPulse")
-        TNT1 A 0 A_JumpIfInventory("Metroid_CanMissile", 1, "Missile")
-        TNT1 A 0 A_JumpIfInventory("Metroid_CanSuper",   1, "SuperMissile")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(METROID_DECORATE, 28, 0), "Missile")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(METROID_DECORATE, 28, 1), "SuperMissile")
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",  1, "D_RUNNIN")
 
         DCAN A 0 A_JumpIfInventory("DCReadyPulse", 86, "ResetReady")

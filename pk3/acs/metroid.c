@@ -887,6 +887,14 @@ script METROID_DECORATE (int which, int a1, int a2)
         else { SetResultValue(0); }
         break;
     // Chroma Storm probably won't be needed since I assume it'll only spawn on multiplayer maps.
+    
+      case 28:
+        switch (a1)
+        {
+            default: SetResultValue(CheckInventory("Metroid_CanMissile"));  break;
+            case 1:  SetResultValue(CheckInventory("Metroid_CanSuper"));    break;
+        }
+        break;
 
     case 32:
         delay(32);
