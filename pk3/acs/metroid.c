@@ -117,7 +117,7 @@ script METROID_MORPHCAMERA (int dist, int height) CLIENTSIDE
     {
         fuckyocamera = isDead(0) || !!M_GetCVar("metroid_cl_nomorphcamera");
         fuckyoEVERYTHING = CheckInventory("PlayerMorphCamera") || (PlayerNumber() == -1);
-
+    
         if (fuckyocamera || fuckyoEVERYTHING)
         {
             if (ThingCount(0, tid)) { Thing_Remove(tid); }

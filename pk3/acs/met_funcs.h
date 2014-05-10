@@ -342,6 +342,12 @@ function int M_GetCVar(int var)
     return defaultCVar(var, 0);
 }
 
+function int M_GetCVarFixed(int var)
+{
+    if (met_cvarinfo()) { return GetCVar(var); }
+    return Zand_GetCVarFixed(var);
+}
+
 function int M_DefaultCVar(int var, int val)
 {
     if (met_cvarinfo()) { return GetCVar(var); }
