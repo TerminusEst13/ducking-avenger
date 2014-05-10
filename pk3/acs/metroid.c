@@ -4,8 +4,6 @@
 
 world int 0:MaxJumpCount;
 
-int SamusHealth[PLAYERMAX];
-int SamusArmor[PLAYERMAX];
 int playerOnFoot[PLAYERMAX];
 int IsServer;
 
@@ -139,6 +137,7 @@ script METROID_MORPHBALL (int morphshit)
 {
     int pNum = PlayerNumber();
     int CheckerTID = 1500+pNum;
+    int hp, armor;
     int velx, vely, velz;
     int i;
 
@@ -153,8 +152,8 @@ script METROID_MORPHBALL (int morphshit)
         ActivatorSound("morphball/morph", 127);
 
         // Prepare for health transferring from old player to morphed player...
-        SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
-        SamusArmor[pNum] = CheckInventory("Armor");
+        hp    = GetActorProperty(0, APROP_HEALTH);
+        armor = CheckInventory("Armor");
         int newTID = unusedTID(23000, 25000);
         int myTID  = defaultTID(-1);
 
@@ -179,8 +178,8 @@ script METROID_MORPHBALL (int morphshit)
         if (isSinglePlayer() || isCoop()) { SetActorState(0,"CoopModeOn"); }
 
         // Transfer health and give inventory.
-        SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
-        GiveInventory("RawEnergyShield2",SamusArmor[pNum]);
+        SetActorProperty(0, APROP_HEALTH, hp);
+        GiveInventory("RawEnergyShield2", armor);
         GiveInventory("BorphMallAcquired", 1);
         TakeInventory("MorphBallActivate", 1);
         TakeInventory("IceBeamChilled",999);
@@ -197,19 +196,42 @@ script METROID_MORPHBALL (int morphshit)
         GiveInventory("PlayerMorphCamera", 1);
         ACS_ExecuteAlways(METROID_MORPHCAMERA,0,90,4);
         ACS_ExecuteAlways(METROID_BWEEBWEEMORPH,0);
+
+        // [ijon] Force resync of health count, missile capacity,
+        //  super missile capacity, and power bomb capacity.
+        //  Turns out that information gets lost on morph. Who knows why?
+
+        SetActorProperty(0, APROP_SpawnHealth, GetActorProperty(0, APROP_SpawnHealth));
+        SetActorProperty(0, APROP_Health,      GetActorProperty(0, APROP_Health));
+        
+        SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
+        SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
+        SetAmmoCapacity("PowerBombAmmo",    GetAmmoCapacity("PowerBombAmmo"));
+
+        i = CheckInventory("MissileAmmo");
+        TakeInventory("MissileAmmo", 0x7FFFFFFF);
+        GiveInventory("MissileAmmo", i);
+
+        i = CheckInventory("SuperMissileAmmo");
+        TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
+        GiveInventory("SuperMissileAmmo", i);
+
+        i = CheckInventory("PowerBombAmmo");
+        TakeInventory("PowerBombAmmo", 0x7FFFFFFF);
+        GiveInventory("PowerBombAmmo", i);
         break;
 
     case 1:
         if (Spawn("SpaceChecker", GetActorX(0), GetActorY(0), GetActorZ(0), CheckerTID))
         {
             ActivatorSound("morphball/unmorph", 127);
-            SamusHealth[pNum] = GetActorProperty(0, APROP_HEALTH);
+            hp = GetActorProperty(0, APROP_HEALTH);
             velx = GetActorVelX(0);
             vely = GetActorVelY(0);
             velz = GetActorVelZ(0);
 
             UnmorphActor(0, 1);
-            SetActorProperty(0, APROP_HEALTH, SamusHealth[pNum]);
+            SetActorProperty(0, APROP_HEALTH, hp);
             SetActorProperty(0,APROP_SPEED,1.00);
             TakeInventory("BorphMallAcquired", 1);
             TakeInventory("BoostBallCount", 99);
@@ -227,8 +249,7 @@ script METROID_MORPHBALL (int morphshit)
             ACS_ExecuteAlways(351,0,0,0);
             ACS_ExecuteAlways(METROID_BWEEBWEEBWEEBWEE,0);
 
-            // [ijon] Force resync of health count, missile capacity,
-            //  super missile capacity, and power bomb capacity.
+            // [ijon] DO IT HERE TOO
 
             SetActorProperty(0, APROP_SpawnHealth, GetActorProperty(0, APROP_SpawnHealth));
             SetActorProperty(0, APROP_Health,      GetActorProperty(0, APROP_Health));
