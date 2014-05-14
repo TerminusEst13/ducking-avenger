@@ -8,6 +8,7 @@ ACTOR MissileAmmo : Ammo replaces Shell 17520
     Ammo.BackpackMaxAmount 5
     Inventory.Icon "MPKUA0"
     +NOGRAVITY
+    +IGNORESKILL
     States
     {
       Spawn:
