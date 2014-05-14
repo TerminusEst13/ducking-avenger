@@ -210,7 +210,7 @@ script METROID_MORPHBALL (int morphshit)
 
         i = CheckInventory("MissileAmmo");
         TakeInventory("MissileAmmo", 0x7FFFFFFF);
-        GiveInventory("MissileAmmo", i);
+        GiveAmmo("MissileAmmo", i);
 
         i = CheckInventory("SuperMissileAmmo");
         TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
