@@ -54,3 +54,4 @@ POLISH:
 - The Lost Frame's pain frame is now BRIGHT.
 - The main menu now has graphical replacements.
 - Morph Ball bombs and Power Bombs exploding now alert enemies.
+- The beam charge spawns have been changed from an A_FireCustomMissile based system to an A_SpawnItemEx system, which makes them follow the player a lot more closely and doesn't lag behind.
