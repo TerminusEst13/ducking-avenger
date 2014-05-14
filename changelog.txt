@@ -23,7 +23,7 @@ GAMEPLAY:
 - Charging up for Boost Ball now gives you a 2x weakness to everything, due to diverting energy to motion rather than shields.
 - The center bolt of the Spazer is slightly more powerful than the outer bolts.
 - Samus now recoils back slightly on being hit, like in Metroid.
-- For those who aren't sure what's happening in the chaos of PvP, metroid_cl_hitindicator has been added. On activation, whenever you put an opponent in the pain state, they will give you a visual and audio indicator of your hit.
+- If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
@@ -51,4 +51,4 @@ POLISH:
 - The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the "exit level while morphed" glitch.
 - The Lost Frame's pain frame is now BRIGHT.
 - The main menu now has graphical replacements.
-- Morph Ball bombs exploding now alert enemies.
+- Morph Ball bombs and Power Bombs exploding now alert enemies.

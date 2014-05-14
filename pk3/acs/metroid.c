@@ -476,7 +476,6 @@ script METROID_ENTER ENTER
 
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
-        if (isDead(0)) { break; }
 
         // Health bar shit
         if (GetActorProperty(0,APROP_Health) > 100) { GiveInventory("HealthOver100",1); } else { if (CheckInventory("HealthOver100") == 1) { TakeInventory("HealthOver100",1); }}
@@ -495,6 +494,8 @@ script METROID_ENTER ENTER
 
         TakeInventory("PlayerTotalHealth", 0x7FFFFFFF);
         GiveInventory("PlayerTotalHealth", min(barhp, 99));
+
+        if (isDead(0)) { break; }
 
         // Spacejump shit
         if (M_GetCVar("metroid_spacejump") == 1 || CheckInventory("CoopModeOn") == 0) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}
