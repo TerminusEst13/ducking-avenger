@@ -37,6 +37,8 @@ BUGFIXES:
 - Floatbob removed from items to keep them from floating into space.
 - Cacodemon and Lost Soul no longer momentarily turn into a zombieman on freeze.
 - Morph Ball can no longer be triggered on death to leave a dummy Samus.
+- Plasma combo can no longer activate doors or lines, and can no longer teleport.
+- Morph Ball bombs can no longer teleport.
 
 POLISH:
 - Implemented changelog. Neat.

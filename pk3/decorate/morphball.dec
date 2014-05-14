@@ -407,6 +407,7 @@ ACTOR MorphBallBombCharged : MorphBallBomb
     -NOGRAVITY
     -NOCLIP
     -SOLID
+    +NOTELEPORT
     DamageType "Bomb"
     Speed 7
     Damage (15)
