@@ -144,6 +144,7 @@ script METROID_MORPHBALL (int morphshit)
     switch (morphshit)
     {
     case 0:
+        if (isDead(0)) { terminate; }
         if(CheckInventory("PowerInvulnerable") == 1) { ActivatorSound("morphball/denied", 127); Print(s:"Morphing while invulnerable is temporarily disabled due to a bug.\n\nSorry."); terminate; }
         if(CheckInventory("SpeedBoosterActive") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
         if(CheckInventory("RedFlag") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
@@ -224,6 +225,7 @@ script METROID_MORPHBALL (int morphshit)
     case 1:
         if (Spawn("SpaceChecker", GetActorX(0), GetActorY(0), GetActorZ(0), CheckerTID))
         {
+            if (isDead(0)) { terminate; }
             ActivatorSound("morphball/unmorph", 127);
             hp = GetActorProperty(0, APROP_HEALTH);
             velx = GetActorVelX(0);

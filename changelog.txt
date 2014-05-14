@@ -36,6 +36,7 @@ BUGFIXES:
 - MaxArmorBonus and MaxHealthBonus now no longer appear.
 - Floatbob removed from items to keep them from floating into space.
 - Cacodemon and Lost Soul no longer momentarily turn into a zombieman on freeze.
+- Morph Ball can no longer be triggered on death to leave a dummy Samus.
 
 POLISH:
 - Implemented changelog. Neat.
@@ -49,3 +50,4 @@ POLISH:
 - Slightly fewer smoke puffs on the Doom Cannon.
 - The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the "exit level while morphed" glitch.
 - The Lost Frame's pain frame is now BRIGHT.
+- The main menu now has graphical replacements.
