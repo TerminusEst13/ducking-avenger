@@ -356,7 +356,7 @@ ACTOR MorphBallBomb
         MBOM ABCDABCD 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,128,0)
-        //TNT1 A 0 A_GiveToTarget("BombCount",1)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
         TNT1 AA 0 A_SpawnItemEx("BombRingExp1",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
@@ -372,7 +372,7 @@ ACTOR MorphBallBombDM : MorphBallBomb
         MBOM ABCDABCDAB 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,96,0)
-        //TNT1 A 0 A_GiveToTarget("BombCount",1)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
         TNT1 AA 0 A_SpawnItemEx("BombRingExp1",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)

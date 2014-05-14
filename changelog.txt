@@ -51,3 +51,4 @@ POLISH:
 - The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the "exit level while morphed" glitch.
 - The Lost Frame's pain frame is now BRIGHT.
 - The main menu now has graphical replacements.
+- Morph Ball bombs exploding now alert enemies.
