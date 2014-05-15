@@ -253,7 +253,7 @@ script 476 (int begin, int button, int superThreshold)
         // Handle no-super-missiles here
         if (!cansuper)
         {
-            if (isfiring && /*canmissile && */!CheckInventory("Metroid_CanMissile")) { GiveInventory("Metroid_CanMissile", 1); }
+            if (isfiring && canmissile && !CheckInventory("Metroid_CanMissile")) { GiveInventory("Metroid_CanMissile", 1); }
             else if (CheckInventory("Metroid_CanMissile")) { TakeInventory("Metroid_CanMissile", 0x7FFFFFFF); }
         }
 
