@@ -538,6 +538,10 @@ script METROID_ENTER ENTER
         else { TakeInventory("SynthFireRight", 0x7FFFFFFF); }
         }
 
+        // Crouching shit
+        if (keyDown(BT_CROUCH)) { GiveInventory("WhyCantMetroidCrawl",1); }
+        else { TakeInventory("WhyCantMetroidCrawl", 0x7FFFFFFF); }
+
         // FREEZE, MOFUCKA
         wasfrozen = frozen;
         frozen = CheckInventory("IceBeamChilled");
