@@ -83,10 +83,10 @@ actor SuperMissileAmmo_Dropped : CustomInventory
       Spawn:
         TNT1 A 0 A_JumpIfInventory("Health100",70,"RemoveCheck")
         TNT1 A 0 A_GiveInventory("Health100",1)
-        SPKU AAAAAAAAAA 1 BRIGHT A_Look
-        SPKU BBBB 1 BRIGHT A_Look
-        TNT1 A 0 A_Stop
-        TNT1 A 0 A_ClearTarget
+        SPKU AAAAAAAAAA 1 BRIGHT //A_Look
+        SPKU BBBB 1 BRIGHT //A_Look
+        //TNT1 A 0 A_Stop
+        //TNT1 A 0 A_ClearTarget
         loop
 
       RemoveCheck:

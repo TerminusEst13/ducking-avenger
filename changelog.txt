@@ -39,6 +39,9 @@ BUGFIXES:
 - Morph Ball can no longer be triggered on death to leave a dummy Samus.
 - Plasma combo can no longer activate doors or lines, and can no longer teleport.
 - Morph Ball bombs can no longer teleport.
+- Samus' freeze sprite is no longer invisible.
+- Frozen Samus is no longer breakable via ice explosions.
+- Morph Ball is now freezable.
 
 POLISH:
 - Implemented changelog. Neat.
