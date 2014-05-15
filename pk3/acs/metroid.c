@@ -207,18 +207,6 @@ script METROID_MORPHBALL (int morphshit)
         SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
         SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
         SetAmmoCapacity("PowerBombAmmo",    GetAmmoCapacity("PowerBombAmmo"));
-
-        i = CheckInventory("MissileAmmo");
-        TakeInventory("MissileAmmo", 0x7FFFFFFF);
-        GiveInventory("MissileAmmo", i);
-
-        i = CheckInventory("SuperMissileAmmo");
-        TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
-        GiveInventory("SuperMissileAmmo", i);
-
-        i = CheckInventory("PowerBombAmmo");
-        TakeInventory("PowerBombAmmo", 0x7FFFFFFF);
-        GiveInventory("PowerBombAmmo", i);
         break;
 
     case 1:
@@ -257,18 +245,6 @@ script METROID_MORPHBALL (int morphshit)
             SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
             SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
             SetAmmoCapacity("PowerBombAmmo",    GetAmmoCapacity("PowerBombAmmo"));
-
-            i = CheckInventory("MissileAmmo");
-            TakeInventory("MissileAmmo", 0x7FFFFFFF);
-            GiveInventory("MissileAmmo", i);
-
-            i = CheckInventory("SuperMissileAmmo");
-            TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
-            GiveInventory("SuperMissileAmmo", i);
-
-            i = CheckInventory("PowerBombAmmo");
-            TakeInventory("PowerBombAmmo", 0x7FFFFFFF);
-            GiveInventory("PowerBombAmmo", i);
         }
         else { ActivatorSound("morphball/denied", 127); }
         break;
@@ -934,6 +910,17 @@ script METROID_DECORATE (int which, int a1, int a2)
         {
             default: SetResultValue(CheckInventory("Metroid_CanMissile"));  break;
             case 1:  SetResultValue(CheckInventory("Metroid_CanSuper"));    break;
+        }
+        break;
+     
+      case 29:
+        if (GetCVar("sv_infiniteammo")) { break; }
+        a2 = max(a2, 1);
+
+        switch (a1)
+        {
+            default: TakeInventory("MissileAmmo",       a2);  break;
+            case 1:  TakeInventory("SuperMissileAmmo",  a2);  break;
         }
         break;
 
