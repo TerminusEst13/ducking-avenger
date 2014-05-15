@@ -574,6 +574,7 @@ actor Metroid_Spectreguy : Spectre replaces Spectre
 actor Metroid_Cacoguy : Cacodemon replaces Cacodemon
 {
     DamageFactor "NoDamage", 0.0
+    DamageFactor "SpeedBooster", 2.0
     PainChance "IceCombo", 64
     //DropItem "EnemyDropSpawner"
     States

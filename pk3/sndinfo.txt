@@ -7,6 +7,12 @@ system/samusitemunk     JNGLITE3
 system/samusitemskl     JNGLITE4
 system/hitindicator     ENEMYHIT // Taken from Metroid: Zero Mission
 
+$pitchshift system/samusappear 0
+$pitchshift system/samusitem 0
+$pitchshift system/samusitembig 0
+$pitchshift system/samusitemunk 0
+$pitchshift system/samusitemskl 0
+
 menu/activate        MENUUP // Bring up the main menu. - Taken from Metroid Prime 3
 menu/clear           MENUDOWN // Close main menu. - Taken from Metroid Prime 3
 menu/choose          MENUYES // Choose an item on the menu. - Taken from Metroid Prime

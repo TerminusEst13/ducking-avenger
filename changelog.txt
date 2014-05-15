@@ -23,7 +23,7 @@ GAMEPLAY:
 - Charging up for Boost Ball now gives you a 2x weakness to everything, due to diverting energy to motion rather than shields.
 - The center bolt of the Spazer is slightly more powerful than the outer bolts.
 - Samus now recoils back slightly on being hit, like in Metroid.
-- For those who aren't sure what's happening in the chaos of PvP, metroid_cl_hitindicator has been added. On activation, whenever you put an opponent in the pain state, they will give you a visual and audio indicator of your hit.
+- If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
@@ -36,6 +36,12 @@ BUGFIXES:
 - MaxArmorBonus and MaxHealthBonus now no longer appear.
 - Floatbob removed from items to keep them from floating into space.
 - Cacodemon and Lost Soul no longer momentarily turn into a zombieman on freeze.
+- Morph Ball can no longer be triggered on death to leave a dummy Samus.
+- Plasma combo can no longer activate doors or lines, and can no longer teleport.
+- Morph Ball bombs can no longer teleport.
+- Samus' freeze sprite is no longer invisible.
+- Frozen Samus is no longer breakable via ice explosions.
+- Morph Ball is now freezable.
 
 POLISH:
 - Implemented changelog. Neat.
@@ -49,3 +55,6 @@ POLISH:
 - Slightly fewer smoke puffs on the Doom Cannon.
 - The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the "exit level while morphed" glitch.
 - The Lost Frame's pain frame is now BRIGHT.
+- The main menu now has graphical replacements.
+- Morph Ball bombs and Power Bombs exploding now alert enemies.
+- The beam charge spawns have been changed from an A_FireCustomMissile based system to an A_SpawnItemEx system, which makes them follow the player a lot more closely and doesn't lag behind.

@@ -261,13 +261,16 @@ actor SamusFrozen
     +SOLID
     Height 56
     Radius 16
-    Health 4
+    Health 15
     Speed 0
     Mass 0x7fffffff
     YScale 0.85
     //Translation "Ice"
     DamageFactor "NoDamage", 0.0
     DamageFactor "Normal", 0.75
+    DamageFactor "IceBeamExplode", 0.0
+    DamageFactor "IceChargedExplode", 0.0
+    DamageFactor "IceCombo", 0.0
     States
     {
     Spawn:

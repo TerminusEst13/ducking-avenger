@@ -69,12 +69,14 @@ actor SuperMissileAmmo_Dropped : CustomInventory
     Scale 1.1
     +NOGRAVITY
     +IGNORESKILL
-    /*MONSTER          // It would be so nice if this worked.
+    /*MONSTER            // It would be so nice if this worked.
+    +LOOKALLAROUND
     +BLOODLESSIMPACT   // Then I could do what Metroid Prime
     +PAINLESS          // did and turn the Charge Beam into
     -SOLID             // some sort of magnetized item picker-
     -SHOOTABLE         // upper grabby thing.
     -ISMONSTER
+    -COUNTKILL
     +NOCLIP*/
     States
     {
@@ -83,7 +85,8 @@ actor SuperMissileAmmo_Dropped : CustomInventory
         TNT1 A 0 A_GiveInventory("Health100",1)
         SPKU AAAAAAAAAA 1 BRIGHT //A_Look
         SPKU BBBB 1 BRIGHT //A_Look
-        TNT1 A 0 A_Stop
+        //TNT1 A 0 A_Stop
+        //TNT1 A 0 A_ClearTarget
         loop
 
       RemoveCheck:
@@ -97,6 +100,7 @@ actor SuperMissileAmmo_Dropped : CustomInventory
 
       Pickup:
         TNT1 A 0
+        //TNT1 A 0 A_JumpIfInTargetInventory("PowerBeamChargeLevel",1,"PickupFail")
         TNT1 A 0 A_JumpIfInventory("SuperMissileAmmo",0,"PickupFail")
         TNT1 A 0 A_JumpIfInventory("SuperMissileAcquired",1,1)
         goto PickupFail
@@ -107,7 +111,7 @@ actor SuperMissileAmmo_Dropped : CustomInventory
 
       PickupFail:
         TNT1 A 0
-        //SPKU A 1 BRIGHT // This is required, else it'll cause a crash.
+        SPKU A 1 BRIGHT // This is required, else it'll cause a crash.
         fail
         
       /*See:
@@ -130,9 +134,13 @@ actor SuperMissileAmmo_Dropped : CustomInventory
         TNT1 A 0 A_JumpIfInTargetInventory("PowerBeamChargeLevel",10,1)
         Goto See
         TNT1 A 0 A_FaceTarget
+        TNT1 A 0 A_JumpIfCloser(16,"PrepareForPickup")
         SPKU A 1 BRIGHT A_SkullAttack(5)
-        TNT1 A 0 A_JumpIfCloser(16,"Pickup")
-        Goto See*/
+        Goto See
+
+      PrepareForPickup:
+        SPKU A 1 BRIGHT A_Stop
+        goto See*/
     }
 }
 

@@ -144,6 +144,7 @@ script METROID_MORPHBALL (int morphshit)
     switch (morphshit)
     {
     case 0:
+        if (isDead(0)) { terminate; }
         if(CheckInventory("PowerInvulnerable") == 1) { ActivatorSound("morphball/denied", 127); Print(s:"Morphing while invulnerable is temporarily disabled due to a bug.\n\nSorry."); terminate; }
         if(CheckInventory("SpeedBoosterActive") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
         if(CheckInventory("RedFlag") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
@@ -207,11 +208,24 @@ script METROID_MORPHBALL (int morphshit)
         SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
         SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
         SetAmmoCapacity("PowerBombAmmo",    GetAmmoCapacity("PowerBombAmmo"));
+
+        i = CheckInventory("MissileAmmo");
+        TakeInventory("MissileAmmo", 0x7FFFFFFF);
+        GiveAmmo("MissileAmmo", i);
+
+        i = CheckInventory("SuperMissileAmmo");
+        TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
+        GiveAmmo("SuperMissileAmmo", i);
+
+        i = CheckInventory("PowerBombAmmo");
+        TakeInventory("PowerBombAmmo", 0x7FFFFFFF);
+        GiveAmmo("PowerBombAmmo", i);
         break;
 
     case 1:
         if (Spawn("SpaceChecker", GetActorX(0), GetActorY(0), GetActorZ(0), CheckerTID))
         {
+            if (isDead(0)) { terminate; }
             ActivatorSound("morphball/unmorph", 127);
             hp = GetActorProperty(0, APROP_HEALTH);
             velx = GetActorVelX(0);
@@ -245,6 +259,18 @@ script METROID_MORPHBALL (int morphshit)
             SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
             SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
             SetAmmoCapacity("PowerBombAmmo",    GetAmmoCapacity("PowerBombAmmo"));
+
+            i = CheckInventory("MissileAmmo");
+            TakeInventory("MissileAmmo", 0x7FFFFFFF);
+            GiveAmmo("MissileAmmo", i);
+
+            i = CheckInventory("SuperMissileAmmo");
+            TakeInventory("SuperMissileAmmo", 0x7FFFFFFF);
+            GiveAmmo("SuperMissileAmmo", i);
+
+            i = CheckInventory("PowerBombAmmo");
+            TakeInventory("PowerBombAmmo", 0x7FFFFFFF);
+            GiveAmmo("PowerBombAmmo", i);
         }
         else { ActivatorSound("morphball/denied", 127); }
         break;
@@ -450,7 +476,6 @@ script METROID_ENTER ENTER
 
     while (!(ClassifyActor(0) & ACTOR_WORLD))
     {
-        if (isDead(0)) { break; }
 
         // Health bar shit
         if (GetActorProperty(0,APROP_Health) > 100) { GiveInventory("HealthOver100",1); } else { if (CheckInventory("HealthOver100") == 1) { TakeInventory("HealthOver100",1); }}
@@ -469,6 +494,8 @@ script METROID_ENTER ENTER
 
         TakeInventory("PlayerTotalHealth", 0x7FFFFFFF);
         GiveInventory("PlayerTotalHealth", min(barhp, 99));
+
+        if (isDead(0)) { break; }
 
         // Spacejump shit
         if (M_GetCVar("metroid_spacejump") == 1 || CheckInventory("CoopModeOn") == 0) { if (CheckInventory("CanSpaceJump") == 0) { GiveInventory("CanSpaceJump",1); }}

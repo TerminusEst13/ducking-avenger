@@ -96,6 +96,23 @@ actor MorphBallPlayer : PlayerPawn
         TNT1 A 0 A_ChangeFlag("THRUSPECIES",1)
         MARU A 1
         goto Spawn
+
+    Ice:
+    Death.Ice:
+    Death.IceBeam:
+    Death.IceCharged:
+    Death.IceBeamExplode:
+    Death.IceChargedExplode:
+    Death.IceCombo:
+        MARU A 1
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 0 A_PlaySound("misc/freeze")
+        TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        TNT1 A 0 A_SpawnItemEx("MorphBallFrozen",0,0,0,0,0,0,0,32)
+        NOPE A 1
+        NOPE A -1
+        Stop
     }
 }
 
@@ -171,6 +188,44 @@ actor MorphBallPlayerDM : MorphBallPlayer
     DamageFactor "PowerBomb", 0.55
     DamageFactor "SpeedBooster", 0.25
     RadiusDamageFactor 1.1
+}
+
+actor MorphBallFrozen
+{
+    +SHOOTABLE
+    +SOLID
+    Height 10
+    Radius 12
+    XScale 0.8
+    YScale 0.7
+    Health 15
+    Speed 0
+    Mass 0x7fffffff
+    DamageFactor "NoDamage", 0.0
+    DamageFactor "Normal", 0.75
+    DamageFactor "IceBeamExplode", 0.0
+    DamageFactor "IceChargedExplode", 0.0
+    DamageFactor "IceCombo", 0.0
+    States
+    {
+    Spawn:
+        MARU Z 350
+        MARY Z 1 A_Jump(128, "Death")
+        Loop
+    Death:
+        TNT1 A 0
+        TNT1 A 0 A_PlaySound("misc/icebreak")
+        TNT1 A 0 A_PlaySoundEx("ibeam/break","soundslot6")
+        TNT1 AAAA 0 A_SpawnItemEx("IceChunk2",random(-1,1),random(-1,1),random(1,15),random(-2,2),random(-2,2),random(2,9),random(-180,180),160)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(1,15),random(-500,500)/100.00,random(-500,500)/100.00,random(-200,500)/100.00,random(-180,180),161)
+        TNT1 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker",random(-1,1),random(-1,1),random(1,15),random(-500,500)/100.00,random(-500,500)/100.00,random(-200,500)/100.00,random(-180,180),161)
+        TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker3",random(-1,1),random(-1,1),random(1,15),random(-400,400)/100.00,random(-400,400)/100.00,random(10,500)/100.00,random(-180,180),161)
+        TNT1 AAAAAAAAAAAAAAAA 0 A_SpawnItemEx("IceTrailFlicker3",random(-1,1),random(-1,1),random(1,15),random(-400,400)/100.00,random(-400,400)/100.00,random(10,500)/100.00,random(-180,180),161)
+        TNT1 A 0 A_FreezeDeathChunks
+        TNT1 A 0 A_NoBlocking
+        TNT1 A 1
+        Stop
+    }
 }
 
 actor BoostBallDamage
@@ -356,7 +411,7 @@ ACTOR MorphBallBomb
         MBOM ABCDABCD 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,128,0)
-        //TNT1 A 0 A_GiveToTarget("BombCount",1)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
         TNT1 AA 0 A_SpawnItemEx("BombRingExp1",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
@@ -372,7 +427,7 @@ ACTOR MorphBallBombDM : MorphBallBomb
         MBOM ABCDABCDAB 4 BRIGHT
         TNT1 A 0 A_PlaySound("morphball/bombboom")
         TNT1 A 0 A_Explode(96,96,0)
-        //TNT1 A 0 A_GiveToTarget("BombCount",1)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_SpawnItemEx("BombExplode",0,0,0,0,0,0,0,160)
         TNT1 AA 0 A_SpawnItemEx("BombRingExp1",0,0,0,0,0,0,0,160)
         TNT1 A 0 A_SpawnItemEx("DummyExplode",0,0,-32,0,0,0,0,32)
@@ -407,6 +462,7 @@ ACTOR MorphBallBombCharged : MorphBallBomb
     -NOGRAVITY
     -NOCLIP
     -SOLID
+    +NOTELEPORT
     DamageType "Bomb"
     Speed 7
     Damage (15)

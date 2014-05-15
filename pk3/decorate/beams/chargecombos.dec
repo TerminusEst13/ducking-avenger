@@ -850,6 +850,10 @@ actor BigFireSpawner
     +NODAMAGETHRUST
     +BLOODLESSIMPACT
     +PAINLESS
+    -NOTELEPORT
+    -ACTIVATEMCROSS
+    -CANUSEWALLS
+    +NOBLOCKMONST
     states
     {
     Spawn:
