@@ -19,6 +19,7 @@ int DidSpecials[PLAYERMAX];
 
 int ClientEnterLocks[PLAYERMAX];
 
+int array_custmischarg[PLAYERMAX];
 int array_runrunruu[PLAYERMAX];
 int array_doomHealth[PLAYERMAX];
 int array_metpick[PLAYERMAX];
@@ -93,6 +94,7 @@ script METROID_OPEN_CLIENT OPEN clientside
         M_DefaultCVar("metroid_cl_nometroidpickups",    0);
         M_DefaultCVar("metroid_cl_hitindicator",        0);
         M_DefaultCVar("metroid_cl_chromabeamdensity",   0);
+        M_DefaultCvar("metroid_cl_custommissilecharge", 0);
         
         // [ijon] Deprecated CVar, remove from premises
         M_RemoveCVar("metroid_cl_morphcamera");
@@ -506,6 +508,9 @@ script METROID_ENTER ENTER
         else if (M_GetCVar("metroid_nomorph") == 0) { if (CheckInventory("DisableMorph") == 1) { TakeInventory("DisableMorph",1); }}
 
         // Clientside shit
+        if (array_custmischarg[pln]) { GiveInventory("CustomMissileCharge", 1); }
+        else { TakeInventory("CustomMissileCharge", 0x7FFFFFFF); }
+
         if (array_doomHealth[pln]) { GiveInventory("DoomHealthCounter", 1); }
         else { TakeInventory("DoomHealthCounter", 0x7FFFFFFF); }
         
@@ -620,7 +625,7 @@ script METROID_PUKE (int values) net
     array_doomHealth[pln]    = values & 2;
     array_metpick[pln]       = values & 4;
     array_hitindic[pln]      = values & 8;
-    /*array_pickupswitch[pln] = values & 16;*/
+    array_custmischarg[pln]  = values & 16;
 }
 
    // These are stupidly hacky and a wasteful pair of scripts, but I'm

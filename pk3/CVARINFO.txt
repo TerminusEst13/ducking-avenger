@@ -33,3 +33,4 @@ server int metroid_cl_doomhealth = 0;
 server int metroid_cl_nometroidpickups = 0;
 server int metroid_cl_hitindicator = 0;
 server int metroid_cl_chromabeamdensity = 8;
+server int metroid_cl_custommissilecharge = 0;

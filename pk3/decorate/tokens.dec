@@ -40,6 +40,7 @@ actor NoMetroidPickupSystem : Boolean {}
 Actor MetroidHitIndicatorActive : Boolean {}
 Actor MetroidHitOpponent : Boolean {}
 actor WhyCantMetroidCrawl : Boolean {}
+actor CustomMissileCharge : Boolean {}
 
 actor HealthOver100 : Boolean {}
 actor HealthOver200 : Boolean {}

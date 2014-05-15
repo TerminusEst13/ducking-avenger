@@ -125,6 +125,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       Hold2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold2")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold2")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -162,6 +163,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       Hold3:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold3")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold3")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -171,6 +173,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       Hold4:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold4")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold4")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -180,6 +183,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       Hold5:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold5")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold5")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -189,6 +193,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       Hold6:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold6")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold6")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -198,6 +203,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       Hold7:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold7")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold7")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -263,6 +269,59 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
         TNT1 A 0 A_Refire
         goto HoldFinish
 
+    OldHold2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        MBEM KK 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner1",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+
+    OldHold3:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        MBEM LL 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner2",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold4:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        MBEM MM 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner3",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold5:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        MBEM NN 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner4",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold6:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        MBEM OO 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner5",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold7:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        MBEM PP 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner6",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHoldFinal2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
+        TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
+        MBEM QQ 1 BRIGHT A_FireCustomMissile("PlasmaBeamChargingSpawner7",0,0,0,0,0,0)
+        TNT1 A 0 A_JumpIfInventory("SynthFireRight",1,"ChargeCombo")
+        TNT1 A 0 A_Refire
+        goto HoldFinish
+
       HoldFinal:
         TNT1 A 0
         TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
@@ -270,6 +329,7 @@ ACTOR "Plasma Beam" : Weapon// replaces SuperShotgun
 
       HoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHoldFinal2")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHoldFinal2")
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")

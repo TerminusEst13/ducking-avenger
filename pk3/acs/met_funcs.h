@@ -185,13 +185,13 @@ function void Lunge(int force)
 
 function int MetroidClientVars(void)
 {
-    //int switchOnPickup  = !!GetCVar("switchonpickup");
+    int custmischarg      = !!GetCVar("metroid_cl_custommissilecharge");
     int hitindic          = !!GetCVar("metroid_cl_hitindicator");
     int metpick           = !!GetCVar("metroid_cl_nometroidpickups");
     int doomHealth        = !!GetCVar("metroid_cl_doomhealth");
     int runrunruu         = !!GetCVar("cl_run");
 
-    return /*(switchOnPickup << 4) +*/ (hitindic << 3) + (metpick << 2) + (doomHealth << 1) + runrunruu;
+    return (custmischarg << 4) + (hitindic << 3) + (metpick << 2) + (doomHealth << 1) + runrunruu;
 }
 
 function int SetChasecam(int dist, int height, int tid, int withvel)

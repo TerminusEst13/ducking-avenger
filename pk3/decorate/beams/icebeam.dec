@@ -122,6 +122,7 @@ ACTOR "Ice Beam" : Weapon
 
       Hold2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold2")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold2")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -159,6 +160,7 @@ ACTOR "Ice Beam" : Weapon
 
       Hold3:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold3")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold3")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -168,6 +170,7 @@ ACTOR "Ice Beam" : Weapon
 
       Hold4:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold4")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold4")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -177,6 +180,7 @@ ACTOR "Ice Beam" : Weapon
 
       Hold5:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold5")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold5")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -186,6 +190,7 @@ ACTOR "Ice Beam" : Weapon
 
       Hold6:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold6")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold6")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -195,6 +200,7 @@ ACTOR "Ice Beam" : Weapon
 
       Hold7:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHold7")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHold7")
         TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
         TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
@@ -260,6 +266,59 @@ ACTOR "Ice Beam" : Weapon
         TNT1 A 0 A_Refire
         goto HoldFinish
 
+    OldHold2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        IBEM KK 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner1",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+
+    OldHold3:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        IBEM LL 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner2",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold4:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        IBEM MM 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner3",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold5:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        IBEM NN 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner4",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold6:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        IBEM OO 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner5",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHold7:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("PowerBeamChargeLevel",31,"HoldFinal")
+        TNT1 A 0 A_GiveInventory("PowerBeamChargeLevel",1)
+        IBEM PP 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner6",0,0,0,0,0,0)
+        TNT1 A 0 A_Refire
+        goto HoldFire
+    OldHoldFinal2:
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
+        TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
+        TNT1 A 0 A_GiveInventory("PowerBeamIdle",1)
+        IBEM QQ 1 BRIGHT A_FireCustomMissile("IceBeamChargingSpawner7",0,0,0,0,0,0)
+        TNT1 A 0 A_JumpIfInventory("SynthFireRight",1,"ChargeCombo")
+        TNT1 A 0 A_Refire
+        goto HoldFinish
+
       HoldFinal:
         TNT1 A 0
         TNT1 A 0 A_GiveInventory("PowerBeamCharged",1)
@@ -267,6 +326,7 @@ ACTOR "Ice Beam" : Weapon
 
       HoldFinal2:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("CustomMissileCharge",1,"OldHoldFinal2")
         TNT1 A 0 A_JumpIfInventory("WhyCantMetroidCrawl",1,"CrouchHoldFinal2")
         TNT1 A 0 A_JumpIfInventory("SpeedBoosterActive",1,"D_RUNNIN")
         TNT1 A 0 A_JumpIfInventory("PowerBeamIdle",26,"HoldFinal3")
