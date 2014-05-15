@@ -876,6 +876,7 @@ script METROID_DECORATE (int which, int a1, int a2)
                 ACS_ExecuteAlways(METROID_DECORATECLIENT, 0, 4);
 
                 TakeInventory("PowerTimeFreezer",0x7FFFFFFF);
+                GiveInventory("GrossSoundHackStop",1);
                 HudMessage(s:""; HUDMSG_PLAIN, 1, 0, 0.5, 0.5, 0.01);
             }
             else

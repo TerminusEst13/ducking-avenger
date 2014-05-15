@@ -669,7 +669,6 @@ actor RawEnergy : CustomInventory replaces BlueArmor 17532
     RenderStyle Add
     Alpha 0.95
     Scale 0.65
-    +ALWAYSPICKUP
     +AUTOACTIVATE
     +NOGRAVITY
     Inventory.PickupMessage "ACQUIRED: Raw Energy Deposit"
@@ -686,9 +685,14 @@ actor RawEnergy : CustomInventory replaces BlueArmor 17532
 
       Pickup:
         TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("BasicArmor",99,"PickupFail")
         TNT1 A 0 A_SetBlend("White", 0.5, 35)
         TNT1 A 0 A_GiveInventory("RawEnergyShield",1)
         stop
+
+      PickupFail:
+        TNT1 A 0
+        fail
     }
 }
 
