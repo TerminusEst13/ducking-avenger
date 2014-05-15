@@ -95,7 +95,7 @@ actor SamusPlayer : PlayerPawn
     DamageFactor "SuperMissile", 0.45
     DamageFactor "BoostBall", 0.65
     DamageFactor "Bomb", 0.75
-    DamageFactor "PowerBomb", 0.35
+    DamageFactor "PowerBomb", 0.45
     DamageFactor "LittleMacUppercut", 3.0
     DamageFactor "SpeedBooster", 0.6
     RadiusDamageFactor 0.75
