@@ -800,11 +800,11 @@ object PowerMissileCoop { frame PMSL { light Missile }
                           frame TNT1A { light MissileX1 }
                           frame TNT1B { light MissileX2 }
                           frame TNT1C { light MissileX3 }}
-object SuperMissile { frame PMSL { light Missile }
+object SuperMissile { frame SMSL { light Missile }
                       frame TNT1A { light MissileX1 }
                       frame TNT1B { light MissileX2 }
                       frame TNT1C { light MissileX3 }}
-object SuperMissileCoop { frame PMSL { light Missile }
+object SuperMissileCoop { frame SMSL { light Missile }
                           frame TNT1A { light MissileX1 }
                           frame TNT1B { light MissileX2 }
                           frame TNT1C { light MissileX3 }}

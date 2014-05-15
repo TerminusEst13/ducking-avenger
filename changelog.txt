@@ -45,7 +45,7 @@ BUGFIXES:
 
 POLISH:
 - Implemented changelog. Neat.
-- The Morph Ball now has a pretty GLDef, thanks to President People.
+- GLDefs! Fuckin' everywhere! Thanks to PresidentPeople for help.
 - 15/30/100 Energy now have different pickup sprites.
 - ACLO E sprite has been replaced with NOPE A.
 - Rephrased a few lines in the difficulty settings for more clarification.
