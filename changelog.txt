@@ -1,6 +1,7 @@
 From 1.777b to Alpha 2:
 ==========================
 GAMEPLAY:
+- Metroid: Dreadnought is now playable in ZDoom instead of just Zandronum!
 - The Morph Ball no longer allows the player to, well, morph when the flag is held.
 - Speed Booster has a much longer delay after stopping before restarting.
 - Plasma Combo does slightly more damage.
@@ -24,6 +25,7 @@ GAMEPLAY:
 - The center bolt of the Spazer is slightly more powerful than the outer bolts.
 - Samus now recoils back slightly on being hit, like in Metroid.
 - If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.
+- metroid_dropstay now controls whether the dropped items have gravity or not.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
