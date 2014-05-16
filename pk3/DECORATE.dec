@@ -53,6 +53,7 @@ actor EmptyTelefog
 actor TranslationHolder
 {
     +NOINTERACTION
+    +NOBLOCKMONST
 
     Radius 1
     Height 1
