@@ -358,7 +358,7 @@ actor GrossSoundHackStop : CustomInventory
     {
     Pickup:
         TNT1 A 0
-        TNT1 A 0 A_StopSound(CHAN_ITEM | CHAN_UI)
+        TNT1 A 0 A_PlaySound("silence",CHAN_ITEM | CHAN_UI,1.0,0,ATTN_NONE)
         stop
     }
 }
