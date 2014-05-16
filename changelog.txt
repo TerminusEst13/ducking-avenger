@@ -25,7 +25,7 @@ GAMEPLAY:
 - The center bolt of the Spazer is slightly more powerful than the outer bolts.
 - Samus now recoils back slightly on being hit, like in Metroid.
 - If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.
-- metroid_dropstay now controls whether items dropped from enemies have gravity or not.
+- metroid_dropgravity now controls whether items dropped from enemies have gravity or not.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
