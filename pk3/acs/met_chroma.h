@@ -235,7 +235,7 @@ script 476 (int begin, int button, int superThreshold)
         }
 
         // chargan
-        if (isfiring && cansuper) { chargelevel++; }
+        if (isfiring && cansuper && !CheckInventory("BorphMallAcquired") && !CheckInventory("SpeedBoosterActive")) { chargelevel++; }
         else
         {
             // Let go of the trigger before charged? fire a normal missile
@@ -253,7 +253,7 @@ script 476 (int begin, int button, int superThreshold)
         // Handle no-super-missiles here
         if (!cansuper)
         {
-            if (isfiring && canmissile && !CheckInventory("Metroid_CanMissile")) { GiveInventory("Metroid_CanMissile", 1); }
+            if (isfiring && canmissile && !CheckInventory("Metroid_CanMissile") && !CheckInventory("BorphMallAcquired") && !CheckInventory("SpeedBoosterActive")) { GiveInventory("Metroid_CanMissile", 1); }
             else if (CheckInventory("Metroid_CanMissile")) { TakeInventory("Metroid_CanMissile", 0x7FFFFFFF); }
         }
 
