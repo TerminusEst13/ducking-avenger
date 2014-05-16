@@ -26,6 +26,7 @@ GAMEPLAY:
 - Samus now recoils back slightly on being hit, like in Metroid.
 - If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.
 - metroid_dropgravity now controls whether items dropped from enemies have gravity or not.
+- Mook enemies no longer have a chance to drop Power Bombs on death.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
@@ -45,6 +46,7 @@ BUGFIXES:
 - Frozen Samus is no longer breakable via ice explosions.
 - Morph Ball is now freezable.
 - Energy armor is no longer constantly pickuppable as long as your bar is entirely blue.
+- The morph ball should no longer have troubles with the player's translation.
 
 POLISH:
 - Implemented changelog. Neat.
