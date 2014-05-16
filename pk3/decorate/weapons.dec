@@ -209,6 +209,7 @@ ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
         TNT1 A 0 A_JumpIfInventory("MissileTankAcquired",1,"NormalPickup")
         TNT1 A 0 ACS_ExecuteWithResult(594, 20, 11)
         TNT1 A 0 ACS_ExecutewithResult(594, 6)
+        TNT1 A 0 A_GiveInventory("MissileTankAcquired",1)
         TNT1 A 0 A_SetBlend("FF FF FF", 0.75, 35)
         goto CheckStaySuper
 
