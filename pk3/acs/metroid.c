@@ -55,7 +55,7 @@ script METROID_OPEN OPEN
         M_DefaultCVar("metroid_spacejump",          0);
         M_DefaultCVar("metroid_loaded",             0);
         M_DefaultCVar("metroid_startingtanks",      0);
-        M_DefaultCVar("metroid_nolevellimiter",     0);
+        M_DefaultCVar("metroid_nolevellimiter",     1);
         M_DefaultCVar("metroid_jumpcount",          2);
         M_DefaultCVar("metroid_nomorph",            0);
         M_DefaultCVar("metroid_noenemydrops",       0);
