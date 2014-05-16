@@ -19,6 +19,7 @@ server int metroid_nobfg = 0;
 server int metroid_doomcannon = 0;
 server int metroid_dropstay = 0;
 server int metroid_skulltagweapons = 0;
+server int metroid_dropgravity = 0;
 
 // Clientside cvars
 //  Still marked server for CVARINFO, since these are accessed from not-player scripts.

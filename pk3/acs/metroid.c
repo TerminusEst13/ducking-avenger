@@ -65,6 +65,7 @@ script METROID_OPEN OPEN
         M_DefaultCVar("metroid_permabfg",           0);
         M_DefaultCVar("metroid_soultanks",          0);
         M_DefaultCVar("metroid_skulltagweapons",    0);
+        M_DefaultCVar("metroid_dropgravity",        0);
     }
 
     while (1)
@@ -962,7 +963,7 @@ script METROID_DECORATE (int which, int a1, int a2)
         break;
 
     case 30:
-        if (GetCvar("sv_nojump") == 1) { SetActorState(0,"GiveGravity"); }
+        if (GetCvar("metroid_dropgravity") == 1) { SetActorState(0,"GiveGravity"); }
         break;
 
     case 32:
