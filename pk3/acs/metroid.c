@@ -632,7 +632,7 @@ script METROID_PUKE (int values) net
     array_custmischarg[pln]  = values & 16;
 }
 
-   // These are stupidly hacky and a wasteful pair of scripts, but I'm
+   // [TE13] These are stupidly hacky and a wasteful pair of scripts, but I'm
    // really fucking tired of the multi-siren bug.
 script METROID_BWEEBWEEBWEEBWEE ENTER clientside
 {
@@ -904,7 +904,7 @@ script METROID_DECORATE (int which, int a1, int a2)
         }
         break;
 
-    // These are a stupidly hacky and wasteful set of scripts.
+    // [TE13] These are a stupidly hacky and wasteful set of scripts.
     // If I could get GetActorInventory to work fine, they wouldn't be needed!
     case 21:
         if (isSinglePlayer() && GotSpazer == 1) { SetResultValue(1); }
@@ -959,6 +959,10 @@ script METROID_DECORATE (int which, int a1, int a2)
             default: TakeInventory("MissileAmmo",       a2);  break;
             case 1:  TakeInventory("SuperMissileAmmo",  a2);  break;
         }
+        break;
+
+    case 30:
+        if (GetCvar("sv_nojump") == 1) { SetActorState(0,"GiveGravity"); }
         break;
 
     case 32:

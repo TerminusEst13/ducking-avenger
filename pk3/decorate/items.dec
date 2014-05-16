@@ -22,15 +22,24 @@ ACTOR MissileAmmo_Dropped : MissileAmmo
     States
     {
       Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 1 ACS_ExecuteAlways(594,0,30)
+      Spawn1:
         TNT1 A 0 A_JumpIfInventory("Health100",70,"RemoveCheck")
         MPKU A 10 BRIGHT A_GiveInventory("Health100",1)
         MPKU B 4 BRIGHT
         loop
+      GiveGravity:
+        MPKU A 1
+        MPKU A 1 A_ChangeFlag("NOGRAVITY",0)
+        MPKU A 1 A_ChangeFlag("LOWGRAVITY",1)
+        goto Spawn1
 
       RemoveCheck:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("Health100",100)
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn1")
         MPKU A 10 BRIGHT
         MPKU B 4 BRIGHT
         TNT1 A 0
@@ -81,6 +90,10 @@ actor SuperMissileAmmo_Dropped : CustomInventory
     States
     {
       Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 1 ACS_ExecuteAlways(594,0,30)
+      Spawn1:
         TNT1 A 0 A_JumpIfInventory("Health100",70,"RemoveCheck")
         TNT1 A 0 A_GiveInventory("Health100",1)
         SPKU AAAAAAAAAA 1 BRIGHT //A_Look
@@ -88,11 +101,16 @@ actor SuperMissileAmmo_Dropped : CustomInventory
         //TNT1 A 0 A_Stop
         //TNT1 A 0 A_ClearTarget
         loop
+      GiveGravity:
+        SPKU A 1
+        SPKU A 1 A_ChangeFlag("NOGRAVITY",0)
+        SPKU A 1 A_ChangeFlag("LOWGRAVITY",1)
+        goto Spawn1
 
       RemoveCheck:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("Health100",100)
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn1")
         SPKU A 10 BRIGHT
         SPKU B 4 BRIGHT
         TNT1 A 0
@@ -175,15 +193,24 @@ actor PowerBombAmmo_Dropped : CustomInventory
     States
     {
       Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 1 ACS_ExecuteAlways(594,0,30)
+      Spawn1:
         TNT1 A 0 A_JumpIfInventory("Health100",70,"RemoveCheck")
         PBOM D 10 BRIGHT A_GiveInventory("Health100",1)
         PBOM E 4 BRIGHT
         loop
+      GiveGravity:
+        PBOM D 1
+        PBOM D 1 A_ChangeFlag("NOGRAVITY",0)
+        PBOM D 1 A_ChangeFlag("LOWGRAVITY",1)
+        goto Spawn1
 
       RemoveCheck:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("Health100",100)
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn1")
         PBOM D 10 BRIGHT
         PBOM E 4 BRIGHT
         TNT1 A 0
@@ -227,16 +254,25 @@ ACTOR Energy10_Dropped : Energy10
     States
     {
       Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 1 ACS_ExecuteAlways(594,0,30)
+      Spawn1:
         TNT1 A 0 A_JumpIfInventory("Health100",31,"RemoveCheck")
         TNT1 A 0 A_GiveInventory("Health100",1)
         NRGA ABCD 4 BRIGHT
         NRGA ABCD 4
         loop
+      GiveGravity:
+        NRGA A 1
+        NRGA A 1 A_ChangeFlag("NOGRAVITY",0)
+        NRGA A 1 A_ChangeFlag("LOWGRAVITY",1)
+        goto Spawn1
 
       RemoveCheck:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("Health100",100)
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn1")
         NRGA ABCD 4 BRIGHT
         NRGA ABCD 4
         TNT1 A 0
@@ -268,16 +304,25 @@ ACTOR Energy25_Dropped : Energy25
     States
     {
       Spawn:
+        TNT1 A 0
+        TNT1 A 1
+        TNT1 A 1 ACS_ExecuteAlways(594,0,30)
+      Spawn1:
         TNT1 A 0 A_JumpIfInventory("Health100",31,"RemoveCheck")
         TNT1 A 0 A_GiveInventory("Health100",1)
         NRGB ABCD 4 BRIGHT
         NRGB ABCD 4
         loop
+      GiveGravity:
+        NRGB A 1
+        NRGB A 1 A_ChangeFlag("NOGRAVITY",0)
+        NRGB A 1 A_ChangeFlag("LOWGRAVITY",1)
+        goto Spawn1
 
       RemoveCheck:
         TNT1 A 0
         TNT1 A 0 A_TakeInventory("Health100",100)
-        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn")
+        TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,16,0,0) == 1,"Spawn1")
         NRGB ABCD 4 BRIGHT
         NRGB ABCD 4
         TNT1 A 0
