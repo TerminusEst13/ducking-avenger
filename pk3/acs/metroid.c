@@ -521,8 +521,9 @@ script METROID_ENTER ENTER
         if (array_metpick[pln]) { GiveInventory("NoMetroidPickupSystem", 1); }
         else { TakeInventory("NoMetroidPickupSystem", 0x7FFFFFFF); }
         
-        if (array_hitindic[pln]) { GiveInventory("MetroidHitIndicatorActive", 1); }
-        else { TakeInventory("MetroidHitIndicatorActive", 0x7FFFFFFF); }
+        // Doesn't work. Need to figure out why.
+        /*if (array_hitindic[pln]) { GiveInventory("MetroidHitIndicatorActive", 1); }
+        else { TakeInventory("MetroidHitIndicatorActive", 0x7FFFFFFF); }*/
 
         // Armor shit
         oarmor = armor;
