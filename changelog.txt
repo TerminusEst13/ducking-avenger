@@ -47,6 +47,7 @@ BUGFIXES:
 - Morph Ball is now freezable.
 - Energy armor is no longer constantly pickuppable as long as your bar is entirely blue.
 - The morph ball should no longer have troubles with the player's translation.
+- In rare instances, people were starting the game with infinite Power Bombs from the get-go. This has been fixed.
 
 POLISH:
 - Implemented changelog. Neat.
