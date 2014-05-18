@@ -148,7 +148,7 @@ script METROID_MORPHBALL (int morphshit)
     {
     case 0:
         if (isDead(0)) { terminate; }
-        if(CheckInventory("PowerInvulnerable") == 1) { ActivatorSound("morphball/denied", 127); Print(s:"Morphing while invulnerable is temporarily disabled due to a bug.\n\nSorry."); terminate; }
+        if(CheckInventory("PowerInvulnerable") == 1) { ActivatorSound("morphball/denied", 127); /*Print(s:"Morphing while invulnerable is temporarily disabled due to a bug.\n\nSorry.");*/ terminate; } // Temporary my ass.
         if(CheckInventory("SpeedBoosterActive") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
         if(CheckInventory("RedFlag") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
         if(CheckInventory("BlueFlag") == 1) { ActivatorSound("morphball/denied", 127); terminate; }
@@ -586,6 +586,13 @@ script METROID_ENTER ENTER
             if (!CheckInventory("SuperMissileAcquired")) { GiveInventory("SuperMissileAcquired", 1); }
             if (!CheckInventory("PowerBombAcquired")) { GiveInventory("PowerBombAcquired", 1); }
             if (!CheckInventory("ChargeComboAcquired")) { GiveInventory("ChargeComboAcquired", 1); }
+            if (!CheckInventory("SpazerBeamAcquired")) { GiveInventory("SpazerBeamAcquired", 1); }
+            if (!CheckInventory("PlasmaBeamAcquired")) { GiveInventory("PlasmaBeamAcquired", 1); }
+            if (!CheckInventory("WaveBeamAcquired")) { GiveInventory("WaveBeamAcquired", 1); }
+            if (!CheckInventory("IceBeamAcquired")) { GiveInventory("IceBeamAcquired", 1); }
+            if (!CheckInventory("LongBeamAcquired")) { GiveInventory("LongBeamAcquired", 1); }
+
+            Print(s:"You may want to use the metroid_loaded cvar in the future instead, this might break things.");
 
             TakeInventory("MetroodIDKFAHack", 0x7FFFFFFF);
         }

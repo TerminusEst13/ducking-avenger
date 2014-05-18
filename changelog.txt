@@ -27,6 +27,7 @@ GAMEPLAY:
 - If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.
 - metroid_dropgravity now controls whether items dropped from enemies have gravity or not.
 - Mook enemies no longer have a chance to drop Power Bombs on death.
+- Energy Armor now only protects for 125 damage instead of 150 damage.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
@@ -65,3 +66,4 @@ POLISH:
 - Morph Ball bombs and Power Bombs exploding now alert enemies.
 - The beam charge spawns have been changed from an A_FireCustomMissile based system to an A_SpawnItemEx system, which makes them follow the player a lot more closely and doesn't lag behind.
 - The visual intensity of the speed booster is slightly reduced.
+- ZDoom play has a menu in Options for all the cvars.
