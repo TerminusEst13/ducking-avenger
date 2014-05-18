@@ -1,0 +1,75 @@
+    
+
+    OptionMenu "OptionsMenu"
+    {
+            Title "OPTIONS"
+            Submenu "Customize Controls",                   "CustomizeControls"
+            Submenu "Mouse options",                        "MouseOptions"
+            Submenu "Joystick options",                     "JoystickOptions"
+            StaticText " "
+            Submenu "Dreadnought Options",                  "MetroodOptions"
+            StaticText " "
+            Submenu "Player Setup",                         "PlayerMenu"
+            Submenu "Gameplay Options",                     "GameplayOptions"
+            Submenu "Compatibility Options",                "CompatibilityOptions"
+            Submenu "Automap Options",                      "AutomapOptions"
+            Submenu "HUD Options",                          "HUDOptions"
+            Submenu "Miscellaneous Options",                "MiscOptions"
+            Submenu "Sound Options",                        "SoundOptions"
+            Submenu "Display Options",                      "VideoOptions"
+            Submenu "Set video mode",                       "VideoModeMenu"
+            StaticText " "
+            SafeCommand "Reset to defaults",                "reset2defaults"
+            SafeCommand "Reset to last saved",              "reset2saved"
+            Command "Go to console",                        "menuconsole"
+    }
+     
+    OptionMenu "MetroodOptions"
+    {
+    Title "METROID: DREADNOUGHT - OPTIONS"
+            StaticText      ""
+            StaticText      "General Options", 1
+            Option "Doom-style Health Counter",      "metroid_cl_doomhealth", "OnOff"
+            Option "Doom-style Pickup System",       "metroid_cl_nometroidpickups", "OnOff"
+            Option "Projectile-based Beam Charging", "metroid_cl_custommissilecharge", "OnOff"
+            Option "Soulsphere Energy Tanks",        "metroid_soultanks", "OnOff"
+            Option "Enemy Item Drops Stay",          "metroid_dropstay", "OnOff"
+            Option "Enemy Item Drops Gravity",       "metroid_dropgravity", "OnOff"
+            StaticText      ""
+            StaticText      "Removal Options", 1
+            Option "No Particle Effects",            "metroid_cl_noeffects", "OnOff"
+            Option "No Warning Siren",               "metroid_cl_nosiren", "OnOff"
+            Option "No Morph Camera",                "metroid_cl_nomorphcamera", "OnOff"
+            Option "No Air Control",                 "metroid_noaircontrol", "OnOff"
+            Option "No BFG",                         "metroid_nobfg", "OnOff"
+            Option "No Morph Ball",                  "metroid_nomorph", "OnOff"
+            Option "No Enemy Item Drops",            "metroid_noenemydrops", "OnOff"
+            StaticText      ""
+            StaticText      "Cheat Options", 1
+            Option "Start With Space Jump",          "metroid_spacejump", "OnOff"
+            Option "Start With Weapons",             "metroid_loaded", "LoadedOptions"
+            Slider "Start With Energy Tanks",        "metroid_startingtanks", 0, 10, 1
+            Slider "How Many Jumps",                 "metroid_jumpcount", 2, 40, 2
+            StaticText      ""
+            StaticText      "Misc Options", 1
+            Option "Skulltag Weapons",               "metroid_skulltagweapons", "SkulltagOptions"
+            Option "heroes live eternal",         "metroid_doomcannon", "OnOff"
+    }
+     
+    OptionValue LoadedOptions
+    {
+            0, "Nothing"
+            1, "All Weapons"
+            2, "10 Missiles"
+            3, "20 Missiles"
+            4, "Weapons, Missiles"
+            5, "Weapons, Missiles, Bombs"
+            6, "Everything"
+    }
+     
+    OptionValue SkulltagOptions
+    {
+            0, "Nothing Spawns"
+            1, "New Weapons"
+            2, "Equivalent Weapons"
+    }
