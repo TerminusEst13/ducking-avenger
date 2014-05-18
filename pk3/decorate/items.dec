@@ -744,7 +744,7 @@ actor RawEnergy : CustomInventory replaces BlueArmor 17532
 actor RawEnergyShield : BasicArmorPickup
 {
     Armor.SavePercent 100
-    Armor.SaveAmount 150
+    Armor.SaveAmount 125
     DamageFactor "Normal", 0.5 // For PvE.
     DamageFactor "PowerBeam", 0.9
     DamageFactor "PowerCharged", 0.9
