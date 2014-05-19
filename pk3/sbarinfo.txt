@@ -152,6 +152,12 @@ gamemode cooperative, singleplayer
     InInventory BlueSkull, 1 { drawimage "BSKUICON", 294, 11; }
     InInventory YellowSkull, 1 { drawimage "YSKUICON", 292, 17; }
     }}
+
+    GameMode OneFlagCTF, CTF, Skulltag, TeamLMS, TeamPossession
+    {
+        Drawnumber 2, INDEXFON, lightblue, teamscore "Blue", 12, 177;
+        Drawnumber 2, INDEXFON, brick, teamscore "Red", 12, 184;
+    }
 }
 }
 
@@ -159,6 +165,11 @@ statusbar fullscreen, forcescaled
 {
 InInventory InGame, 1
 {
+    GameMode OneFlagCTF, CTF, Skulltag, TeamLMS, TeamPossession
+    {
+        Drawnumber 2, INDEXFON, lightblue, teamscore "Blue", 12, 177;
+        Drawnumber 2, INDEXFON, brick, teamscore "Red", 12, 184;
+    }
     InInventory MetroidHitOpponent, 1 { drawimage "ENEMYHIT", 0, 0; }
     InInventory not DoomHealthCounter, 1 { drawimage "FLSCRBAR", 0, 0; }
     InInventory DoomHealthCounter, 1 { drawimage "FLSCRBA2", 0, 0; }
