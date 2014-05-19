@@ -1,0 +1,118 @@
+ACTOR DeadScientistA 17831
+{
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        SCIE A -1
+        stop
+    }
+}
+
+ACTOR DeadScientistB 17832
+{
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        SCIE B -1
+        stop
+    }
+}
+
+ACTOR DeadScientistC 17833
+{
+    +NOINTERACTION
+    States
+    {
+    Spawn:
+        SCIE C -1
+        stop
+    }
+}
+
+ACTOR DeadScientistD 17834
+{
+    +NOINTERACTION
+    Scale 0.9
+    States
+    {
+    Spawn:
+        SCIE D -1
+        stop
+    }
+}
+
+actor BigFireEnviroSpawner 17835
+{
+    Height 1
+    Radius 1
+    +NOINTERACTION
+    -SOLID
+    states
+    {
+    Spawn:
+        TNT1 A 1
+        TNT1 A 1
+    Spawn1:
+        TNT1 A 0 A_JumpIfInventory("Health200",4,"Spawn2")
+        TNT1 A 2 A_SpawnItemEx("BigFireRise", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(0,100)/100.00, 0, 150)
+        TNT1 A 0 A_SpawnItemEx("BigFireRise5", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 2 A_SpawnItemEx("BigFireRise8", Random(-400,400)/100.00, Random(-600,600)/100.00, Random(-200,400)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 AA 2 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 AA 0 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 2 A_SpawnItemEx("BigFireRise2", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_SpawnItemEx("BigFireRise6", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 AA 2 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 A 2 A_SpawnItemEx("BigFireRise3", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 0 A_SpawnItemEx("BigFireRise7", Random(-200,200)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 A 2 A_SpawnItemEx("BigFireRise9", Random(-600,600)/100.00, Random(-600,600)/100.00, Random(-200,600)/100.00, 0, 0, Random(100,200)/100.00, 0, 150)
+        TNT1 AA 0 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        TNT1 AA 2 A_SpawnItemEx("BigFireRise4", Random(-400,400)/100.00, Random(-400,400)/100.00, Random(0,200)/100.00, 0, 0, Random(100,200)/100.00, 0, 0)
+        //TNT1 A 0 A_Jump(16,"Spawn2")
+        TNT1 A 0 A_GiveInventory("Health200",1)
+        loop
+    Spawn2:
+        TNT1 A 0 
+        TNT1 A 0 A_TakeInventory("Health200",200)//A_SpawnItemEx("BigFireSpawner",0,0,0,random(-100,100)/100.00,random(-100,100)/100.00,0,random(-180,180),48)//A_CustomMissile("BigFireSpawner",0,0,random(-180,180),7,0)
+        goto Spawn
+    }
+}
+
+actor ExplosionProp : MissileExplosionSmall
+{
+    Radius 1
+    Height 1
+    +NOINTERACTION
+    Alpha 0.95
+    Scale 0.85
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 Radius_Quake(1,15,0,8,0)
+        TNT1 A 0 A_PlayWeaponSound("missile/hit")
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
+    }
+}
+
+actor ExplosionProp2 : MissileExplosionSmall
+{
+    Radius 1
+    Height 1
+    +NOINTERACTION
+    Alpha 0.95
+    Scale 0.85
+    States
+    {
+    Spawn:
+        TNT1 A 0
+        TNT1 A 0 Radius_Quake(1,15,0,8,0)
+        TNT1 A 0 A_PlayWeaponSound("supermissile/hit")
+        TNT1 A 0 A_Jump(256,"Spawn1","Spawn2","Spawn3","Spawn4","Spawn5","Spawn6","Spawn7")
+        TNT1 A 1
+        stop
+    }
+}

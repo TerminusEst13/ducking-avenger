@@ -44,6 +44,9 @@ GRAPHICS:
 - Sgt. Shivers (For the Arm Cannon/Chainsaw conversion sprites)
 - Mr. Giga (Base sprites for the Chroma Storm pickup)
 - Batandy (Player skin)
+- Scalliano (The facing-down scientists)
+- Enjay (The lying-upwards scientist)
+- Scuba Steve (The lying-sideways scientist)
 
 SOUNDS:
 =========
@@ -51,6 +54,7 @@ SOUNDS:
 - Hollywood Edge/AudioJungle (Numerous stock sound effects)
 - The General Series 6000 (Numerous stock sound effects)
 - Yoshio Sakamoto (His voice reversed and warped for the Icon of Sin)
+- Waqas Hafiz (Titlescreen music)
 - For info from what specific sound came from where, read through sndinfo.txt!
 
 CODE:

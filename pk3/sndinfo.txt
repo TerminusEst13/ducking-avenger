@@ -122,6 +122,8 @@ miss/hit1               MISSEXP1
 miss/hit2               MISSEXP2
 miss/hit3               MISSEXP3
 
+$limit missile/hit 0
+
 $random supermissile/hit { smiss/hit1 smiss/hit2 smiss/hit3 }
 smiss/hit1              SMISEXP1
 smiss/hit2              SMISEXP2
