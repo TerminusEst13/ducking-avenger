@@ -89,10 +89,11 @@ boostball/hum           BOOSHUM
 
 // Speed Booster
 
-speedboost/start        SPDBSTST
-$random speedboost/loop { speedloop1 speedloop2 }
+speedboost/start        SPDBSTST // Made by Repo Man
+/*$random speedboost/loop { speedloop1 speedloop2 }
 speedloop1              SPDBSTL1
-speedloop2              SPDBSTL2
+speedloop2              SPDBSTL2*/
+speedboost/loop         SPDBSTL1 // Made by Repo Man
 
 $limit speedloop1 0
 $limit speedloop2 0

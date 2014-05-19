@@ -13,6 +13,8 @@ SPECIAL THANKS TO:
  ^- : Reworking the Metroid pickup system
  ^- : The gunship system
  ^- : Redoing the chasecam system
+ ^- : Making this compatible with ZDoom
+ ^- : A whole lot, really...
 
 GRAPHICS:
 =========
@@ -41,16 +43,15 @@ GRAPHICS:
 - Xaser (Chainsaw projectile sprites)
 - Sgt. Shivers (For the Arm Cannon/Chainsaw conversion sprites)
 - Mr. Giga (Base sprites for the Chroma Storm pickup)
+- Batandy (Player skin)
 
 SOUNDS:
 =========
 - Audacity (Incredible amounts of sound editing thanks to this tool)
 - Hollywood Edge/AudioJungle (Numerous stock sound effects)
 - The General Series 6000 (Numerous stock sound effects)
-- Super Smash Bros. Brawl (Samus' hurt, taunt, usefail, and landing sounds)
-- Unreal Championship 2 (Samus' walking sounds)
-- Metroid Prime (Samus' beam charging and charge idle sounds)
 - Yoshio Sakamoto (His voice reversed and warped for the Icon of Sin)
+- For info from what specific sound came from where, read through sndinfo.txt!
 
 CODE:
 =========
