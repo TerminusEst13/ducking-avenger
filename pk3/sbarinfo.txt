@@ -53,21 +53,21 @@ InInventory not BorphMallAcquired, 1
     drawbar "MISBARFL", "MISBAREM", MissileAmmo, vertical, 277, 163, 1;
     drawnumber 3, METHUDF, Untranslated, MissileAmmo, fillzeros, 319, 155;
     InInventory PowerBeamAcquired, 1 { drawimage "PBEAMGET", 14, 168; } // I can't think of a scenario where you WOULDN'T have the Power Beam, but whatever.
-    IsSelected "Power Beam" { drawimage "PBEAMUSE", 14, 168; }
+    IsSelected "Power Beam" { drawimage "PBEAMUSE", 14, 168; InInventory ChargeComboAcquired, 1 { drawimage "CMACPWER", 292, 155; } }
     InInventory SpazerBeamAcquired, 1 { drawimage "SBEAMGET", 20, 166; }
-    IsSelected "Spazer Beam" { drawimage "SBEAMUSE", 20, 166; }
+    IsSelected "Spazer Beam" { drawimage "SBEAMUSE", 20, 166; InInventory ChargeComboAcquired, 1 { drawimage "CMACSPZR", 292, 155; } }
     InInventory PlasmaBeamAcquired, 1 { drawimage "MBEAMGET", 23, 179; }
-    IsSelected "Plasma Beam" { drawimage "MBEAMUSE", 23, 179; }
+    IsSelected "Plasma Beam" { drawimage "MBEAMUSE", 23, 179; InInventory ChargeComboAcquired, 1 { drawimage "CMACPLSM", 292, 155; } }
     InInventory WaveBeamAcquired, 1 { drawimage "WBEAMGET", 29, 177; }
-    IsSelected "Wave Beam" { drawimage "WBEAMUSE", 29, 177; }
+    IsSelected "Wave Beam" { drawimage "WBEAMUSE", 29, 177; InInventory ChargeComboAcquired, 1 { drawimage "CMACWAVE", 292, 155; } }
     InInventory IceBeamAcquired, 1 { drawimage "IBEAMGET", 32, 190; }
-    IsSelected "Ice Beam" { drawimage "IBEAMUSE", 32, 190; }
+    IsSelected "Ice Beam" { drawimage "IBEAMUSE", 32, 190; InInventory ChargeComboAcquired, 1 { drawimage "CMACICEZ", 292, 155; } }
     InInventory LongBeamAcquired, 1 { drawimage "LBEAMGET", 38, 188; }
-    IsSelected "Long Beam" { drawimage "LBEAMUSE", 38, 188; }
+    IsSelected "Long Beam" { drawimage "LBEAMUSE", 38, 188; InInventory ChargeComboAcquired, 1 { drawimage "CMACLONG", 292, 155; } }
     InInventory DoomCannonAcquired, 1 { drawimage "DCANNGET", 4, 150; }
-    IsSelected "Doom Cannon" { drawimage "DCANNUSE", 4, 150; }
+    IsSelected "Doom Cannon" { drawimage "DCANNUSE", 4, 150; InInventory ChargeComboAcquired, 1 { drawimage "CMACDOOM", 292, 155; } }
     InInventory ChromaStormAcquired, 1 { drawimage "CSTRMGET", 26, 164; }
-    IsSelected "Chroma Storm" { drawimage "CSTRMUSE", 26, 164; }
+    IsSelected "Chroma Storm" { drawimage "CSTRMUSE", 26, 164; InInventory ChargeComboAcquired, 1 { drawimage "CMACCHRM", 292, 155; } }
     drawbar "SHLBFULL", "SHLBEMPT", Armor, horizontal, 100, 24;
     InInventory SuperMissileAcquired, 1 { drawimage "SMISSGET", 273, 15; drawnumber 3, METHUDF, Untranslated, SuperMissileAmmo, fillzeros, 318, 14; }
     InInventory PowerBombAcquired, 1 { drawimage "PBOMBGET", 29, 15; drawnumber 3, METHUDF, Untranslated, PowerBombAmmo, fillzeros, 25, 14; }
