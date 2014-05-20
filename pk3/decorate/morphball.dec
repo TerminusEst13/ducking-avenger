@@ -15,7 +15,7 @@ actor MorphBallPlayer : PlayerPawn
     DamageFactor "Normal", 0.85
     RadiusDamageFactor 0.95
     Player.StartItem "BombCount", 3
-    Player.SoundClass "Hunter"
+    Player.SoundClass "MoBall"
     Player.DisplayName "MorphBall"
     Player.MorphWeapon "Bombs"
     Player.ColorRange 16,47

@@ -24,7 +24,7 @@ menu/dismiss         MENUDSMS // Dismiss a prompt. - Taken from Metroid Prime 3
 menu/invalid         MENUFAIL // Menu not available. - Taken from Metroid Prime
 
 // Samus Aran
-$playersound      Hunter   male    *death          SAMDEATH
+$playersound      Hunter   male    *death          SAMDEATH // Taken from Metroid Prime 2
 $playersounddup   Hunter   male    *xdeath         *death
 $playersounddup   Hunter   male    *burndeath      *death
 $playersounddup   Hunter   male    *crazydeath     *death
@@ -39,6 +39,22 @@ $playeralias      Hunter   male    *land           samus/land
 $playersound      Hunter   male    *usefail        SAMNOPE // Taken from Smash Bros. Brawl
 $playersound      Hunter   male    *taunt          SAMTAUNT // Taken from Smash Bros. Brawl
 $playersound      Hunter   male    *jump           QUIET
+
+$playersound      MoBall   male    *death          SAMDEATH
+$playersounddup   MoBall   male    *xdeath         *death
+$playersounddup   MoBall   male    *burndeath      *death
+$playersounddup   MoBall   male    *crazydeath     *death
+$playersounddup   MoBall   male    *wimpydeath     *death
+$playersounddup   MoBall   male    *gibbed         *death
+$playeralias      MoBall   male    *pain100        samus/hurt
+$playersounddup   MoBall   male    *pain75         *pain100
+$playersounddup   MoBall   male    *pain50         *pain100
+$playersounddup   MoBall   male    *pain25         *pain100
+$playersound      MoBall   male    *grunt          QUIET
+$playeralias      MoBall   male    *land           samus/land
+$playersound      MoBall   male    *usefail        BALNOPE // Taken from Smash Bros. Brawl
+$playersound      MoBall   male    *taunt          BALTAUNT // Taken from Smash Bros. Brawl
+$playersound      MoBall   male    *jump           QUIET
 
 $random samus/hurt { sam/hurt1 sam/hurt2 sam/hurt3 sam/hurt4 } // Taken from Smash Bros. Brawl
 sam/hurt1               SAMHURT1
