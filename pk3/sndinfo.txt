@@ -56,6 +56,8 @@ $playersound      MoBall   male    *usefail        BALNOPE // Taken from Smash B
 $playersound      MoBall   male    *taunt          BALTAUNT // Taken from Smash Bros. Brawl
 $playersound      MoBall   male    *jump           QUIET
 
+moball/hurt             BALPAIN
+
 $random samus/hurt { sam/hurt1 sam/hurt2 sam/hurt3 sam/hurt4 } // Taken from Smash Bros. Brawl
 sam/hurt1               SAMHURT1
 sam/hurt2               SAMHURT2
