@@ -55,6 +55,7 @@ SOUNDS:
 - The General Series 6000 (Numerous stock sound effects)
 - Yoshio Sakamoto (His voice reversed and warped for the Icon of Sin)
 - Waqas Hafiz (Titlescreen music)
+- BouncyTEM (Editing the Zero Suit Samus sounds to be more reminiscent of Samus in-suit)
 - For info from what specific sound came from where, read through sndinfo.txt!
 
 CODE:
