@@ -258,6 +258,7 @@ script METROID_MORPHBALL (int morphshit)
 
             SetActorProperty(0, APROP_SpawnHealth, GetActorProperty(0, APROP_SpawnHealth));
             SetActorProperty(0, APROP_Health,      GetActorProperty(0, APROP_Health));
+            SetActorProperty(0, APROP_JumpZ,       9.00); 
             
             SetAmmoCapacity("MissileAmmo",      GetAmmoCapacity("MissileAmmo"));
             SetAmmoCapacity("SuperMissileAmmo", GetAmmoCapacity("SuperMissileAmmo"));
