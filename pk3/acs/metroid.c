@@ -545,11 +545,15 @@ script METROID_ENTER ENTER
         else { TakeInventory("WhyCantMetroidCrawl", 0x7FFFFFFF); }
 
         // FREEZE, MOFUCKA
-        wasfrozen = frozen;
-        frozen = CheckInventory("IceBeamChilled");
+        
+        if (!CheckInventory("BorphMallAcquired"))
+        {
+            wasfrozen = frozen;
+            frozen = CheckInventory("IceBeamChilled");
 
-        if (!wasfrozen && frozen) { SetActorProperty(0, APROP_JumpZ, frozenjumpz); }
-        if (!frozen && wasfrozen) { SetActorProperty(0, APROP_JumpZ, jumpz); }
+            if (!wasfrozen && frozen) { SetActorProperty(0, APROP_JumpZ, frozenjumpz); }
+            if (!frozen && wasfrozen) { SetActorProperty(0, APROP_JumpZ, jumpz); }
+        }
 
         // Clear pickup status
         for (i = 0; i < PICKUPTYPES; i++) { GotBigPickup[pln][i] = 0; }
