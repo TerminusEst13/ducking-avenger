@@ -1,12 +1,12 @@
 // Weapon/item spawners for Skulltag-specific maps. Wahey!
 
-actor MaxArmorBonus: BlankPuff
+actor MaxArmorBonus: BlankPuff 5091
 {
     Game Doom
     SpawnID 167
 }
 
-actor MaxHealthBonus: BlankPuff
+actor MaxHealthBonus: BlankPuff 5090
 {
     Game Doom
     SpawnID 166
