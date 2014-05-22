@@ -11,3 +11,19 @@ pic  2  tics  5
 texture HLASER1
 pic  1  tics  5
 pic  2  tics  5
+
+texture WATER01
+pic 1  tics 10
+pic 2  tics 10
+pic 3  tics 10
+pic 4  tics 10
+pic 5  tics 10
+pic 6  tics 10
+pic 7  tics 10
+pic 8  tics 10
+pic 9  tics 10
+pic 10 tics 10
+pic 11 tics 10
+pic 12 tics 10
+pic 13 tics 10
+pic 14 tics 10

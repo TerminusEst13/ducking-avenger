@@ -19,48 +19,21 @@ MAPS:
 
 TEXTURES:
 ==========
-- BRINROCK (From Super Metroid, enhanced by TerminusEst13)
-- LABFLOOR (From Zero Mission, enhanced by TerminusEst13)
-- BLAKROCK (Metroid Prime)
-- STONBRIK (Metroid Prime)
-- TECHGRID (Metroid Prime: Hunters)
-- GREYROCK (Metroid Prime: Hunters)
-- POREROCK (Metroid Prime: Hunters)
-- BLUEROCK (Metroid Prime: Hunters)
-- GRATEMPT (Metroid Prime)
-- GRATFULL (Metroid Prime)
-- LITEROWS (Metroid Prime)
-- LITEROW2 (Metroid Prime)
-- TEXTMETL (Hi-Res Minecraft Pack by Misa)
-- METMETL1 (Metroid Prime)
-- METMETL2 (Metroid Prime)
-- METMETL3 (Metroid Prime)
-- METMETL4 (Metroid Prime)
-- METMETL5 (Metroid Prime)
-- METMETL6 (Metroid Prime)
-- METMETL7 (Metroid Prime)
-- BLAKROCK (Metroid Prime)
-- ICETOP (Metroid Prime)
-- METDIRT (Metroid Prime)
-- METGRAVL (Metroid Prime)
-- METSAND (Metroid Prime)
-- SANDBLOK (Metroid Prime)
-- SANDBRIK (Metroid Prime)
-- METSNOW (Metroid Prime)
-- STONBLOK (Metroid Prime)
-- HEXSKY1A (Hexen: Beyond Heretic)
-- HEXSKY1B (Hexen: Beyond Heretic)
-- HAZARDVH (Duke Nukem 3D)
-- HAZARDVV (Duke Nukem 3D)
-- COMP_N06
-- COMP_N5C
-- COMP_N5D
-- METAL8
-- TILESIX (Paul/NMN)
-- N_WFAL0X (Nightmare)
-- ALLBLACK
-- Q1EX_026 (Quake)
-- METLDOOR (lihanchi)
-- METLDOO2 (Freedoom)
-- METLDOO3 (Freedoom)
-- METLDOO4 (Freedoom)
+Textures and flats have been assorted in folders based on where they came from,
+for easier crediting. Games and individuals taken from include:
+- Metroid Prime Hunters
+- Metroid Prime
+- Metroid Prime 2
+- Super Smash Bros. Melee
+- Super Smash Bros. Brawl
+- Freedoom
+- Anachronox
+- Alien VS Predator 2
+- Chasm: The Rift
+- Paul/NMN
+- Quake
+- System Shock 2
+- Hexen: Beyond Heretic
+- Nightmare (N_WFAL0X)
+- lihanchi (METLDOOR)
+- Tormentor667 (2mbrown)

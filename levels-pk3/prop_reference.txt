@@ -1,5 +1,10 @@
 PROPS:
 17830 - Samus' Gunship
+17831 - Scientist 1
+17832 - Scientist 2
+17833 - Scientist 3
+17834 - Scientist 4
+17835 - Environmental fire spawner
 
 ENEMIES:
 17010 - "Zebesian" Space Pirate
@@ -25,3 +30,5 @@ ITEMS:
 17537 - Long Beam
 17538 - Doom Cannon
 17539 - Charge Combo
+17540 - Chroma Storm
+17541 - Doom Cannon (Does not need metroid_doomcannon 1 to function)
