@@ -487,6 +487,7 @@ ACTOR "Doom Cannon" : Weapon
 
       HoldCombo:
         TNT1 A 0 A_PlaySoundEx("dchain/use","soundslot5",0,0)
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 Radius_Quake(1,10,0,1,0)
         SSAW EFGH 2 A_Saw("","dchain/hit",5,"DoomChainsawPuff")
         TNT1 A 0 Radius_Quake(1,10,0,1,0)
