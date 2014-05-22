@@ -510,6 +510,7 @@ ACTOR "Doom Cannon" : Weapon
 
       AltHold1Combo:
         TNT1 A 0
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_PlaySoundEx("dchain/swing","soundslot7",0,0)
         SSAW K 1
         TNT1 A 0 A_SetAngle(angle+0.25)
@@ -532,6 +533,7 @@ ACTOR "Doom Cannon" : Weapon
 
       AltHold2Combo:
         TNT1 A 0
+        TNT1 A 0 A_AlertMonsters
         TNT1 A 0 A_PlaySoundEx("dchain/swing","soundslot7",0,0)
         SSAW P 1
         TNT1 A 0 A_SetAngle(angle-0.25)
