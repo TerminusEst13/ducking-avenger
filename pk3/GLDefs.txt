@@ -1431,3 +1431,14 @@ object DoomChainsawPuff { frame PUFFA { light DoomBullet1 }
 // ===================
 
 Object PirateBolt { Frame PSHT { Light PowerChargingGlow4 }}
+
+// Misc
+// ===================
+
+Glow
+{
+    Flats
+    {
+        HPROCRTQ
+    }
+}
