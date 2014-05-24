@@ -147,15 +147,40 @@ ACTOR SpacePirate replaces WolfensteinSS 17010
         goto DeathAnimation
     DeathSuperMissile:
         TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAcquired",1,"DeathBoth")
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAmmo",0,"DeathFullOnSuperMissile")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
         goto DeathAnimation
     DeathPowerBomb:
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAmmo",0,"DeathFullOnPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
         goto DeathAnimation
     DeathBoth:
+        TNT1 A 0 A_JumpIfInTargetInventory("SuperMissileAmmo",0,"DeathBothFullOnSuperMissile")
+        TNT1 A 0 A_JumpIfInTargetInventory("PowerBombAmmo",0,"DeathBothFullOnPowerBomb")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerD",0,0,10,0,0,0,0,32)
+        TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
+        goto DeathAnimation
+
+    DeathFullOnSuperMissile:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
+        goto DeathAnimation
+    DeathFullOnPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
+        goto DeathAnimation
+    DeathBothFullOnSuperMissile:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerC",0,0,10,0,0,0,0,32)
+        TNT1 A 0
+        TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
+        goto DeathAnimation
+    DeathBothFullOnPowerBomb:
+        TNT1 A 0 A_SpawnItemEx("EnemyDropSpawnerB",0,0,10,0,0,0,0,32)
+        TNT1 A 0
         TNT1 A 0 A_JumpIfInventory("EnemyFlyingDeath",1,"DeathMissile3")
         goto DeathAnimation
 
