@@ -52,3 +52,10 @@ map METDM03 "Gettin' Hot, Stayin' Cool" // By TerminusEst13
     music = "M_RDLAIR" // Kuniaki Haishima - VS Ridley
     SmoothLighting
 }
+
+/*map METDM04 "TUUUUUUBES" // By Unholypimpin
+{
+    next = "METDM01"
+    music = "M_PIRAT" // Kenji Yamamoto - VS Dark Samus
+    SmoothLighting
+}*/
