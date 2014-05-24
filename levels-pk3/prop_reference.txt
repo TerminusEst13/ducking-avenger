@@ -5,6 +5,8 @@ PROPS:
 17833 - Scientist 3
 17834 - Scientist 4
 17835 - Environmental fire spawner
+17836 - Rain spawner
+17836 - Rain sound
 
 ENEMIES:
 17010 - "Zebesian" Space Pirate

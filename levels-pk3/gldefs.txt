@@ -1,0 +1,7 @@
+Glow
+{
+	Flats
+	{
+        LAVA01
+	}
+}

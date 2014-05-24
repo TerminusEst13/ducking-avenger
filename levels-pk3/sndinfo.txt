@@ -1,3 +1,7 @@
+ambient/rain	        AMBRAIN
+$rolloff ambient/rain   1024 1536
+$limit ambient/rain     0
+
 $random ambient/thunder { thunder1 thunder2 thunder3 thunder4 thunder5 thunder6 thunder7 }
 thunder1                AMBTHUN1 // Taken from The Ultimate Torment n' Torture
 thunder2                AMBTHUN2 // Taken from The Ultimate Torment n' Torture

@@ -4,6 +4,7 @@ SPECIAL THANKS TO:
 - id Software (For creating Doom and the idtech1 engine)
 - Graf Zahl, Randy Heit (For the ZDoom/GZDoom engine)
 - Torr Samaho and the Zandronum team (For picking up where Skulltag left off)
+- CodeImp / MaxED (For Doombuilder/GZDoomBuilder)
 
 GRAPHICS:
 =========
@@ -37,3 +38,10 @@ for easier crediting. Games and individuals taken from include:
 - Nightmare (N_WFAL0X)
 - lihanchi (METLDOOR)
 - Tormentor667 (2mbrown)
+
+MUSIC:
+==========
+- ChipCat.CAL - Waiting or Progressing (METTEST)
+- Kenji Yamamoto - Hunters (METDM01)
+- Lawrence Schwedler & James Phillipsen - Alinos (METDM02)
+- Kuniaki Haishima - VS Ridley (METDM03)

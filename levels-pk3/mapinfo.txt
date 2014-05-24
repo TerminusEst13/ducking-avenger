@@ -13,10 +13,13 @@ episode METTEST
     name = "Test Map"
 }
 
-map METTEST "Test Map"
+map METTEST "Journey of a Thousand Miles, Etc, Etc" // By TerminusEst13
 {
     next = "METTEST"
-    music = "M_TEST" // Kenji Yamamoto - Brinstar
+    music = "M_TEST" // ChipCat.CAL - Waiting or Progressing
+    SKY1 = "HEXSKY1A", 1.5
+    SKY2 = "HEXSKY1B", 1.5
+    Lightning
 }
 
 map METINTRO "Carcosa Biomedical Research"
@@ -30,7 +33,7 @@ map METINTRO "Carcosa Biomedical Research"
 
 map METDM01 "Treading on Ancient Ground" // By TerminusEst13
 {
-    next = "METDM02"
+    next = "METDM03"
     music = "M_HUNTRS" // Kenji Yamamoto - Hunters
     SKY1 = "METSKY1"
     SmoothLighting
@@ -38,7 +41,14 @@ map METDM01 "Treading on Ancient Ground" // By TerminusEst13
 
 map METDM02 "The Hunt Continues" // By Runsaber
 {
-    next = "METDM02"
+    next = "METDM03"
     music = "M_CBTHAL" // Lawrence Schwedler & James Phillipsen - Alinos
+    SmoothLighting
+}
+
+map METDM03 "Gettin' Hot, Stayin' Cool" // By TerminusEst13
+{
+    next = "METDM01"
+    music = "M_RDLAIR" // Kuniaki Haishima - VS Ridley
     SmoothLighting
 }
