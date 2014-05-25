@@ -124,7 +124,7 @@ ACTOR SpacePirate replaces WolfensteinSS 17010
         TNT1 A 0 ACS_ExecuteAlways(594,0,8,0,0)
         TNT1 A 0 A_GiveInventory("IceBeamChilled",1)
         TNT1 A 0 A_ChangeFlag("PAINLESS",1)
-        PIRT Z 70
+        PIRT F 70
         TNT1 A 0 A_ChangeFlag("PAINLESS",0)
     Pain:
         TNT1 A 0
@@ -184,7 +184,7 @@ ACTOR SpacePirate replaces WolfensteinSS 17010
         TNT1 A 0 A_SpawnItemEx("PirateguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
         TNT1 A 0 ACS_ExecuteAlways(594,0,31)
-        TNT1 A 0
+        NOPE A 5
         Stop
     FrozenNope:
         TNT1 A 0
