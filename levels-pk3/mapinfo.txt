@@ -33,7 +33,7 @@ map METINTRO "Carcosa Biomedical Research"
 
 map METDM01 "Treading on Ancient Ground" // By TerminusEst13
 {
-    next = "METDM03"
+    next = "METDM02"
     music = "M_HUNTRS" // Kenji Yamamoto - Hunters
     SKY1 = "METSKY1"
     SmoothLighting
