@@ -287,5 +287,4 @@ POLISH:\n\
 - Speed Booster now has a non-SNES-style sound, thanks to Repo Man.\n\
 - The Charge Combo now has an indicator on the HUD, when it's in the player's inventory.\n\
 - Thanks to BouncyTEM, Samus' sounds have been edited to be less reminiscent of Zero Suit Samus and more reminiscent of Prime in-suit Samus.\n\
-- The Morph Ball now has its own set of taunt, usefail, and pain sounds.\n\
-- A unique CONFONT has been implemented, thanks to WildWeasel.";
+- The Morph Ball now has its own set of taunt, usefail, and pain sounds.";
