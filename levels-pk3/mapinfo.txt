@@ -10,7 +10,7 @@ episode METDM01
 
 episode METTEST
 {
-    name = "Test Map"
+    name = "Training"
 }
 
 map METTEST "Journey of a Thousand Miles, Etc, Etc" // By TerminusEst13
