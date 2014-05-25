@@ -47,6 +47,7 @@ GRAPHICS:
 - Scalliano (The facing-down scientists)
 - Enjay (The lying-upwards scientist)
 - Scuba Steve (The lying-sideways scientist)
+- WildWeasel (The CONFONT, taken from Agent Diaz: Last Hours of Purity. Thanks a lot!)
 
 SOUNDS:
 =========

@@ -545,15 +545,11 @@ script METROID_ENTER ENTER
         else { TakeInventory("WhyCantMetroidCrawl", 0x7FFFFFFF); }
 
         // FREEZE, MOFUCKA
-        
-        if (!CheckInventory("BorphMallAcquired"))
-        {
-            wasfrozen = frozen;
-            frozen = CheckInventory("IceBeamChilled");
+        wasfrozen = frozen;
+        frozen = CheckInventory("IceBeamChilled");
 
-            if (!wasfrozen && frozen) { SetActorProperty(0, APROP_JumpZ, frozenjumpz); }
-            if (!frozen && wasfrozen) { SetActorProperty(0, APROP_JumpZ, jumpz); }
-        }
+        if (!wasfrozen && frozen) { SetActorProperty(0, APROP_JumpZ, frozenjumpz); }
+        if (!frozen && wasfrozen) { SetActorProperty(0, APROP_JumpZ, jumpz); }
 
         // Clear pickup status
         for (i = 0; i < PICKUPTYPES; i++) { GotBigPickup[pln][i] = 0; }
@@ -1214,5 +1210,16 @@ script METROID_SHIPCONTROLS (void)
             { TakeInventory("GoingForwardCounter",1); TakeInventory("GoingBackwardCounter",1); }
 
         Delay(1);
+    }
+}
+
+// Hey, look at me be lazy and devote a whole script simply for Changelog stuff.
+script METROID_CHANGELOG (int changelogshit) NET CLIENTSIDE
+{
+    switch (changelogshit)
+    {
+        case 1:
+        Log(s:ChangelogString);
+        break;
     }
 }

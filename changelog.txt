@@ -1,4 +1,4 @@
-From 1.777b to Alpha 2:
+From alpha-1.777b to v1:
 ==========================
 GAMEPLAY:
 - Metroid: Dreadnought is now playable in ZDoom instead of just Zandronum!
@@ -58,9 +58,8 @@ POLISH:
 - Rephrased a few lines in the difficulty settings for more clarification.
 - By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.
 - Dying now properly lowers your arm cannon on death.
-- GLDefs have been included.
 - Slightly fewer smoke puffs on the Doom Cannon.
-- The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the "exit level while morphed" glitch.
+- The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the 'exit level while morphed' glitch.
 - The Lost Frame's pain frame is now BRIGHT.
 - The main menu now has graphical replacements.
 - Morph Ball bombs and Power Bombs exploding now alert enemies.
@@ -71,4 +70,4 @@ POLISH:
 - The Charge Combo now has an indicator on the HUD, when it's in the player's inventory.
 - Thanks to BouncyTEM, Samus' sounds have been edited to be less reminiscent of Zero Suit Samus and more reminiscent of Prime in-suit Samus.
 - The Morph Ball now has its own set of taunt, usefail, and pain sounds.
-- All non-Cyberdemon/Spidermind enemies no longer drop Super Missiles/Power Bombs if the player is full on them.
+- A unique CONFONT has been implemented, thanks to WildWeasel.

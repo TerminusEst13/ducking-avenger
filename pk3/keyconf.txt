@@ -12,3 +12,5 @@ addslotdefault 7 "Chroma Storm"
 //addslotdefault 8 "Grenade Launcher Replacement Not In Yet"
 //addslotdefault 9 "Railgun Replacement Not In Yet"
 addslotdefault 0 "Doom Cannon"
+
+alias changelog        "puke -583 1"

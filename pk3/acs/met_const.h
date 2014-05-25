@@ -19,6 +19,7 @@
 #define METROID_LONG_COORDSHIT               468
 
 #define METROID_OPEN_CLIENT                  551
+#define METROID_CHANGELOG                    583
 #define METROID_SHIPCONTROLS                 584
 #define METROID_PUKE                         585
 #define METROID_SPEEDBOOSTER                 586
@@ -213,3 +214,78 @@ int LaserEnds[COLORCOUNT] =
     "DBeamLaserDeath_Green",
     "DBeamLaserDeath_Blue",
 };
+
+int ChangelogString =
+"From alpha-1.777b to v1:\n\
+==========================\n\
+GAMEPLAY:\n\
+- Metroid: Dreadnought is now playable in ZDoom instead of just Zandronum!\n\
+- The Morph Ball no longer allows the player to, well, morph when the flag is held.\n\
+- Speed Booster has a much longer delay after stopping before restarting.\n\
+- Plasma Combo does slightly more damage.\n\
+- Long Combo speeds up by 10% every tic and has double the explosive radius.\n\
+- Plasma and Ice Uncharged and Charged have had their radius and height slightly reduced.\n\
+- Wall jump checks no longer get hung-up on lines that block monsters.\n\
+- After Boost Balling in mid-air, it is no longer possible to boost ball again until you have hit the ground.\n\
+- The Power Bomb's damage arc has been reversed--instead of dealing most of its damage in the center and weakening as it spreads out, it deals most of its damage the farther out it spreads. Due to the sheer amount of actors clustered up in the center, this is barely a noticable damage nerf for the Power Bomb. All it means is that one-shotting Cybers is a bit more difficult, and that enemies two feet out no longer get tickled.\n\
+- The Missiles' rate of fire has been shortened by eight tics.\n\
+- The Speed Booster now replaces the Partial Invisibility sphere rather than the Radsuit.\n\
+- An optional Metroid-style system has been implemented--on picking up a major item, the world freezes, a banner pops up, and the fanfare plays. For those who want nothing to do with this, hit the Use button to break out, or type 'metroid_cl_nometroidpickups 1' in the console.\n\
+- Picking up the Space Jump will give the Morph Ball the ability to jump while morphed. This does not work for metroid_spacejump 1.\n\
+- The Doom Cannon now has its Charge Combo.\n\
+- The Ice Beam's blast radius in co-op is expanded, allowing the player to catch more enemies with one shot. The Ice Beam's blast radius in PvP is ever-so-slightly expanded.\n\
+- All Charged beams aside from Ice have had their damage dramatically increased in co-op, to make charging up more viable.\n\
+- metroid_loaded has changed from activated-whenever to activated-on-first-spawn, and has been expanded on--1 gives you all weapons, 2 gives you more missiles, 3 gives you even more missiles, 4 gives you all weapons and more missiles, 5 gives you weapons/missiles/super missiles/power bombs, 6 gives you weapons/missiles/super missiles/power bombs/charge combo/speed booster.\n\
+- Skulltag weapons now have their replacers, handled by metroid_skulltagweapons. 1 to spawn unique weapons, 2 to spawn normal weapons, 0 to not spawn anything at all.\n\
+- New weapon designed by ijon tichy has been implemented; the Chroma Storm, a rainbow herald of pure dakka!\n\
+- Being chilled now reduces your jump height as well.\n\
+- Charging up for Boost Ball now gives you a 2x weakness to everything, due to diverting energy to motion rather than shields.\n\
+- The center bolt of the Spazer is slightly more powerful than the outer bolts.\n\
+- Samus now recoils back slightly on being hit, like in Metroid.\n\
+- If a player picks up an Energy Converter without having picked up a missile tank before, one will be provided for free.\n\
+- metroid_dropgravity now controls whether items dropped from enemies have gravity or not.\n\
+- Mook enemies no longer have a chance to drop Power Bombs on death.\n\
+- Energy Armor now only protects for 125 damage instead of 150 damage.\n\
+\n\
+BUGFIXES:\n\
+- Player death no longer freezes the life bar.\n\
+- Items should no longer become invisible when metroid_dropstay is on.\n\
+- Charging up the beams while Time Freeze is active no longer causes a massive amount of frozen trails.\n\
+- Put DoomEd numbers on all relevant actors, as per mapper request.\n\
+- The Speed Booster script no longer overflows with copious respawning.\n\
+- The Ice Combo now checks for ten missiles instead of five.\n\
+- The Bomb ammo regeneration has been changed to be work via ACS rather than Decorate, which means that Spread should no longer give infinite bombs and Time Freeze should no longer stop bombs.\n\
+- MaxArmorBonus and MaxHealthBonus now no longer appear.\n\
+- Floatbob removed from items to keep them from floating into space.\n\
+- Cacodemon and Lost Soul no longer momentarily turn into a zombieman on freeze.\n\
+- Morph Ball can no longer be triggered on death to leave a dummy Samus.\n\
+- Plasma combo can no longer activate doors or lines, and can no longer teleport.\n\
+- Morph Ball bombs can no longer teleport.\n\
+- Samus' freeze sprite is no longer invisible.\n\
+- Frozen Samus is no longer breakable via ice explosions.\n\
+- Morph Ball is now freezable.\n\
+- Energy armor is no longer constantly pickuppable as long as your bar is entirely blue.\n\
+- The morph ball should no longer have troubles with the player's translation.\n\
+- In rare instances, people were starting the game with infinite Power Bombs from the get-go. This has been fixed.\n\
+\n\
+POLISH:\n\
+- Implemented changelog. Neat.\n\
+- GLDefs! Fuckin' everywhere! Thanks to PresidentPeople for help.\n\
+- 15/30/100 Energy now have different pickup sprites.\n\
+- ACLO E sprite has been replaced with NOPE A.\n\
+- Rephrased a few lines in the difficulty settings for more clarification.\n\
+- By modder request, the HUD is now based upon whether or not you have PowerBeamAcquired in your inventory.\n\
+- Dying now properly lowers your arm cannon on death.\n\
+- Slightly fewer smoke puffs on the Doom Cannon.\n\
+- The Chasecam system has been entirely redone from the ground up to be ACS-based rather than consolecommand based, which not only allows it to be used in ZDoom but also fixes the 'exit level while morphed' glitch.\n\
+- The Lost Frame's pain frame is now BRIGHT.\n\
+- The main menu now has graphical replacements.\n\
+- Morph Ball bombs and Power Bombs exploding now alert enemies.\n\
+- The beam charge spawns have been changed from an A_FireCustomMissile based system to an A_SpawnItemEx system, which makes them follow the player a lot more closely and doesn't lag behind.\n\
+- The visual intensity of the speed booster is slightly reduced.\n\
+- ZDoom play has a menu in Options for all the cvars.\n\
+- Speed Booster now has a non-SNES-style sound, thanks to Repo Man.\n\
+- The Charge Combo now has an indicator on the HUD, when it's in the player's inventory.\n\
+- Thanks to BouncyTEM, Samus' sounds have been edited to be less reminiscent of Zero Suit Samus and more reminiscent of Prime in-suit Samus.\n\
+- The Morph Ball now has its own set of taunt, usefail, and pain sounds.\n\
+- A unique CONFONT has been implemented, thanks to WildWeasel.";
