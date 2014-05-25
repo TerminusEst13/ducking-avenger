@@ -79,6 +79,7 @@ actor Metroid_Zombieguy : Zombieman replaces Zombieman
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("ZombieguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -156,6 +157,7 @@ actor Metroid_Shotguy : Shotgunguy replaces Shotgunguy
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("ShotguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -233,6 +235,7 @@ actor Metroid_Chainguy : Chaingunguy replaces Chaingunguy
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("ChainguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -309,6 +312,7 @@ actor Metroid_Impguy : DoomImp replaces DoomImp
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("ImpguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -385,6 +389,7 @@ actor Metroid_Demonguy : Demon replaces Demon
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("DemonguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -455,6 +460,7 @@ actor Metroid_Spectreguy : Spectre replaces Spectre
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("DemonguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -513,6 +519,7 @@ actor Metroid_Cacoguy : Cacodemon replaces Cacodemon
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("CacoguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -577,6 +584,7 @@ actor Metroid_Lostguy : LostSoul replaces LostSoul
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("LostguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -652,6 +660,7 @@ actor Metroid_Baronguy : BaronOfHell replaces BaronOfHell
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("BaronguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -728,6 +737,7 @@ actor Metroid_Knightguy : HellKnight replaces HellKnight
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("BaronguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -794,6 +804,7 @@ actor Metroid_Vileguy : Archvile replaces Archvile
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("VileguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -867,6 +878,7 @@ actor Metroid_Spiderguy : Arachnotron replaces Arachnotron
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("SpiderguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -946,6 +958,7 @@ actor Metroid_Fatguy : Fatso replaces Fatso
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("FatguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -1020,6 +1033,7 @@ actor Metroid_Painguy : PainElemental replaces PainElemental
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("PainguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
@@ -1093,6 +1107,7 @@ actor Metroid_Coolguy : Revenant replaces Revenant
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("CoolguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:

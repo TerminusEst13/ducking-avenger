@@ -183,6 +183,7 @@ ACTOR SpacePirate replaces WolfensteinSS 17010
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("PirateguyFrozen",0,0,0,0,0,0,0,32)
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,10,0,0) == 1, "FrozenNope")
+        TNT1 A 0 ACS_ExecuteAlways(594,0,31)
         TNT1 A 0
         Stop
     FrozenNope:
