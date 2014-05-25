@@ -977,6 +977,31 @@ script METROID_DECORATE (int which, int a1, int a2)
         if (GetCvar("metroid_dropgravity") == 1) { SetActorState(0,"GiveGravity"); }
         break;
 
+    case 31:
+        delay(1);
+        int dickheadx = GetActorX(0);
+        int dickheady = GetActorY(0);
+        int dickheadz = GetActorZ(0);
+        int dickheada = GetActorAngle(0);
+        delay(10);
+        SetActivatorToTarget(0);
+        // If you do not have Super Missile or Power Bomb...
+        if (!CheckInventory("SuperMissileAcquired") && !CheckInventory("PowerBombAcquired")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
+        // If you have Super Missile but not Power Bomb...
+        if (CheckInventory("SuperMissileAcquired") && !CheckInventory("PowerBombAcquired"))
+            { if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
+            else { Spawn("EnemyDropSpawnerB",dickheadx,dickheady,dickheadz,0,dickheada); }}
+        // If you do not have Super Missile but have Power Bomb...
+        if (!CheckInventory("SuperMissileAcquired") && CheckInventory("PowerBombAcquired"))
+            { if (CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
+            else { Spawn("EnemyDropSpawnerC",dickheadx,dickheady,dickheadz,0,dickheada); }}
+        // If you have both Super Missile and Power Bomb...
+        if (CheckInventory("SuperMissileAcquired") && CheckInventory("PowerBombAcquired"))
+            { if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
+            if (CheckInventory("SuperMissileAmmo") != GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerB",dickheadx,dickheady,dickheadz,0,dickheada); }
+            if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") != GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerC",dickheadx,dickheady,dickheadz,0,dickheada); }
+            if (CheckInventory("SuperMissileAmmo") != GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") != GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerD",dickheadx,dickheady,dickheadz,0,dickheada); }}
+
     case 32:
         delay(32);
         if (isCoop() || isSinglePlayer()) { GiveInventory("BombCount",1); }

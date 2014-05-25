@@ -600,7 +600,7 @@ ACTOR EnemyDropSpawner3 : RandomSpawner
     DropItem "Energy10_Dropped", 175, 15
     DropItem "Energy25_Dropped", 100, 10
     DropItem "MissileAmmo_Dropped", 150, 5
-    DropItem "PowerBombAmmo_Dropped", 100, 2
+    DropItem "PowerBombAmmo_Dropped", 100, 1
 }
 
 ACTOR EnemyDropSpawner4 : RandomSpawner
@@ -610,7 +610,7 @@ ACTOR EnemyDropSpawner4 : RandomSpawner
     DropItem "Energy25_Dropped", 100, 10
     DropItem "MissileAmmo_Dropped", 150, 5
     DropItem "SuperMissileAmmo_Dropped", 125, 3
-    DropItem "PowerBombAmmo_Dropped", 100, 2
+    DropItem "PowerBombAmmo_Dropped", 100, 1
 }
 
 ACTOR SoulsphereSpawner1 : RandomSpawner // Hack, hack, hack.
