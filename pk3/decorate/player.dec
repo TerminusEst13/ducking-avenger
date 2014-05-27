@@ -196,8 +196,8 @@ actor SamusPlayer : PlayerPawn
         TNT1 AAAA 0 A_SpawnItemEx("MorphBallPart7",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
         TNT1 AAA 0 A_SpawnItemEx("MorphBallPart8",random(-100,100)/100.00,random(-100,100)/100.00,random(400,5100)/100.00,random(-200,200)/100.00,random(-200,200)/100.00,random(500,1000)/100.00,random(-180,180),33,64)
         SAMS KLM 4
-        NOPE A 1
-        NOPE A -1
+        SAMS X 2
+        SAMS X -1
         Stop
 
     Ice:
@@ -213,8 +213,8 @@ actor SamusPlayer : PlayerPawn
         TNT1 A 0 A_PlaySoundEx("ibeam/freeze","soundslot6")
         TNT1 A 0 A_SpawnItemEx("EnemyDropSpawner",0,0,10,0,0,0,0,32)
         TNT1 A 0 A_SpawnItemEx("SamusFrozen",0,0,0,0,0,0,0,32)
-        NOPE A 1
-        NOPE A -1
+        SAMS X 2
+        SAMS X -1
         Stop
 
     CoOpModeOn:
