@@ -43,7 +43,7 @@ GRAPHICS:
 - Xaser (Chainsaw projectile sprites)
 - Sgt. Shivers (For the Arm Cannon/Chainsaw conversion sprites)
 - Mr. Giga (Base sprites for the Chroma Storm pickup)
-- Batandy (Player skin)
+- Sgt. Shivers (Player skin)
 - Scalliano (The facing-down scientists)
 - Enjay (The lying-upwards scientist)
 - Scuba Steve (The lying-sideways scientist)
