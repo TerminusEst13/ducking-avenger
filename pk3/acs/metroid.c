@@ -363,10 +363,10 @@ script METROID_DEATH DEATH
     ACS_ExecuteAlways(589,0);
 }
 
-Script METROID_DISCONNECT (int p_num) DISCONNECT // Guess this isn't really needed anymore, but...
+script METROID_DISCONNECT (int pln) DISCONNECT
 {
-       //cam_mode[p_num] = OFF;
-       //Thing_Remove (C_TID + p_num);
+    // [ijon] This being 1 was causing dudes to not be able to missile on spec/rejoin.
+    MissileCheckStates[pln] = 0;
 }
 
 script METROID_ENTER ENTER
