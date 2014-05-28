@@ -214,13 +214,11 @@ script 476 (int begin, int button, int superThreshold)
     while (MissileCheckStates[pln])
     {
         // There's a dirty joke somewhere in here.
-        // [TE13] Enabling this block meant that, when offline, after unmorph the player wouldn't be able to fire missiles or charge super missiles afterwards.
-        // Hopefully this doesn't break things!
-        /*if (CheckInventory("BorphMallAcquired") || CheckInventory("SpeedBoosterActive"))
+        if (CheckInventory("BorphMallAcquired") || CheckInventory("SpeedBoosterActive"))
         {
             MissileCheckStates[pln] = 0;
             break;
-        }*/
+        }
 
         cansuper    = CheckInventory("SuperMissileAcquired") && (CheckInventory("SuperMissileAmmo") || GetCVar("sv_infiniteammo"));
         canmissile  = CheckInventory("MissileAmmo")      || GetCVar("sv_infiniteammo");

@@ -235,10 +235,14 @@ script METROID_MORPHBALL (int morphshit)
             vely = GetActorVelY(0);
             velz = GetActorVelZ(0);
 
+            // [ijon] Having this after the unmorph line meant that, on unmorph,
+            //  you wouldn't be able to fire missiles until you did something
+            //  weapon-wise. So let's just do this first.
+            TakeInventory("BorphMallAcquired", 1);
             UnmorphActor(0, 1);
+
             SetActorProperty(0, APROP_HEALTH, hp);
             SetActorProperty(0,APROP_SPEED,1.00);
-            TakeInventory("BorphMallAcquired", 1);
             TakeInventory("BoostBallCount", 99);
             TakeInventory("MissileChargeLevel",999);
             TakeInventory("MissileCharged",999);
