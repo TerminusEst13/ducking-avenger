@@ -287,36 +287,39 @@ script METROID_BOOSTBALL (void) NET
     int nx, ny, nz, nmag;
     int rx, ry, rz, rmag;
 
-        vx = GetActorVelX(0); // Checks for the player's X velocity and assigns it to vx
-        vy = GetActorVelY(0); // Same for Y
-        vz = GetActorVelZ(0); // Same for Z
-        angle = GetActorAngle(0); // Checks for the player's angle and assigns it to angle
-        pitch = middle(-0.027, GetActorPitch(0), 0.25); // This checks for the middle ground of the player's pitch, and will register up to a certain height
-        mag = magnitudeThree_f(vx, vy, vz);
+    if (!(isCoop() || isSinglePlayer() || (GetCVar("sv_cheats") > 0) || CheckInventory("BoostReadied"))) { terminate; }
+    TakeInventory("BoostReadied", 0x7FFFFFFF);
 
-        nx = FixedMul(DASH_VEL * cos(angle), cos(pitch));
-        ny = FixedMul(DASH_VEL * sin(angle), cos(pitch));
-        nz = DASH_VEL * -sin(pitch);
-        nmag = magnitudeThree_f(nx, ny, nz);
-        
-        rx = vx + nx; ry = vy + ny; rz = vz + nz;
-        rmag = magnitudeThree_f(rx, ry, rz);
+    vx = GetActorVelX(0); // Checks for the player's X velocity and assigns it to vx
+    vy = GetActorVelY(0); // Same for Y
+    vz = GetActorVelZ(0); // Same for Z
+    angle = GetActorAngle(0); // Checks for the player's angle and assigns it to angle
+    pitch = middle(-0.027, GetActorPitch(0), 0.25); // This checks for the middle ground of the player's pitch, and will register up to a certain height
+    mag = magnitudeThree_f(vx, vy, vz);
 
-        ActivatorSound("boostball/launch",255);
+    nx = FixedMul(DASH_VEL * cos(angle), cos(pitch));
+    ny = FixedMul(DASH_VEL * sin(angle), cos(pitch));
+    nz = DASH_VEL * -sin(pitch);
+    nmag = magnitudeThree_f(nx, ny, nz);
+    
+    rx = vx + nx; ry = vy + ny; rz = vz + nz;
+    rmag = magnitudeThree_f(rx, ry, rz);
 
-        if (rmag < mag)  // if we're making a sharp turn
-        {
-            SetActorVelocity(0, nx, ny, nz, 0,0);
-        }
-        else
-        {
-            mag += (DASH_VEL<<16);
-            SetActorVelocity(0,
-                    FixedMul(FixedMul(mag, cos(angle)), cos(pitch)),
-                    FixedMul(FixedMul(mag, sin(angle)), cos(pitch)),
-                    FixedMul(mag, -sin(pitch)), 0, 0);
-        }
-        SetActorState(0,"BoostBall");
+    ActivatorSound("boostball/launch",255);
+
+    if (rmag < mag)  // if we're making a sharp turn
+    {
+        SetActorVelocity(0, nx, ny, nz, 0,0);
+    }
+    else
+    {
+        mag += (DASH_VEL<<16);
+        SetActorVelocity(0,
+                FixedMul(FixedMul(mag, cos(angle)), cos(pitch)),
+                FixedMul(FixedMul(mag, sin(angle)), cos(pitch)),
+                FixedMul(mag, -sin(pitch)), 0, 0);
+    }
+    SetActorState(0,"BoostBall");
 }
 
 // ENTER EXIT DEATH RESPAWN SHIT

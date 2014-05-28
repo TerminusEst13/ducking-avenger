@@ -104,6 +104,8 @@ boostball/start         BOOSTSTR // Taken from Metroid Prime
 boostball/launch        BOOSTGO
 boostball/humstart      BOOSHUMS
 boostball/hum           BOOSHUM
+boostball/fizzle        sounds/morphball/boost_fizzle.ogg   // UT2k4 lightning gun impact sound
+$volume boostball/fizzle 0.4
 
 // Speed Booster
 
