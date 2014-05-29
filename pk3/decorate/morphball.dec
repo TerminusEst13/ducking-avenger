@@ -240,6 +240,7 @@ actor BoostBallDamage
     +PIERCEARMOR
     +DONTREFLECT
     +NOEXTREMEDEATH
+    +NOTIMEFREEZE
     -SOLID
     Obituary "%k bowled %o over."
     DamageType "BoostBall"
