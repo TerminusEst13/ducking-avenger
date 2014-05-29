@@ -378,6 +378,7 @@ script METROID_ENTER ENTER
     int barhp;
     int oarmor;
     int armor;
+    int israwenergy, wasrawenergy;
     int pln = PlayerNumber();
     int frozen = 0, wasfrozen;
     int jumpz = GetActorProperty(0, APROP_JumpZ);
@@ -536,9 +537,14 @@ script METROID_ENTER ENTER
         oarmor = armor;
         armor = CheckInventory("Armor");
 
-        if (oarmor > armor)
-        { ActivatorSound("rawenergy/shieldhit", 127);
-            FadeRange(255, 255, 255, min(0.5, (oarmor - armor) * 0.015), 0, 0, 0, 0.0, min(35.0, 1.5 * (oarmor - armor)) / 35); }
+        wasrawenergy = israwenergy;
+        israwenergy = !!GetArmorType("RawEnergyShield", pln);
+
+        if ((oarmor > armor) && (wasrawenergy))
+        {
+            ActivatorSound("rawenergy/shieldhit", 127);
+            FadeRange(255, 255, 255, min(0.5, (oarmor - armor) * 0.015), 0, 0, 0, 0.0, min(35.0, 1.5 * (oarmor - armor)) / 35);
+        }
 
         // Charge combo shit
         if (CheckInventory("ChargeComboAcquired") == 1)
@@ -593,6 +599,13 @@ script METROID_ENTER ENTER
             RaiseAmmoCapacity("SuperMissileAmmo", 25,  1);
             RaiseAmmoCapacity("PowerBombAmmo",    5,   1);
 
+            if (CheckInventory("BasicArmor") && CheckInventory("MetroodIDKFAHack_Ammo"))
+            {
+                TakeInventory("BasicArmor", 0x7FFFFFFF);
+                GiveInventory("RawEnergyShield", 1);
+                TakeInventory("MetroodIDKFAHack_Ammo", 0x7FFFFFFF);
+            }
+
             if (!CheckInventory("SuperMissileAcquired")) { GiveInventory("SuperMissileAcquired", 1); }
             if (!CheckInventory("PowerBombAcquired")) { GiveInventory("PowerBombAcquired", 1); }
             if (!CheckInventory("ChargeComboAcquired")) { GiveInventory("ChargeComboAcquired", 1); }
@@ -605,6 +618,11 @@ script METROID_ENTER ENTER
             Print(s:"You may want to use the metroid_loaded cvar in the future instead, this might break things.");
 
             TakeInventory("MetroodIDKFAHack", 0x7FFFFFFF);
+        }
+
+        if (CheckInventory("MetroodIDKFAHack_Ammo"))
+        {
+            TakeInventory("MetroodIDKFAHack_Ammo", 0x7FFFFFFF);
         }
 
         Delay(1);

@@ -77,6 +77,17 @@ actor MetroodIDKFAHack: Weapon
     }
 }
 
+actor MetroodIDKFAHack_Ammo: Ammo
+{
+    Inventory.Amount 0
+    Inventory.MaxAmount 1
+    Ammo.BackpackAmount 0
+    Ammo.BackpackMaxAmount 1
+
+    Inventory.Icon "TNT1A0"
+    +QUIET
+}
+
 actor GoAwayPistolNoOneLovesYou replaces Pistol
 {
     +NOINTERACTION

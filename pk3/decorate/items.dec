@@ -765,6 +765,8 @@ actor RawEnergyShield : BasicArmorPickup
     DamageFactor "BoostBall", 0.9
     DamageFactor "Bomb", 0.9
     DamageFactor "PowerBomb", 0.9 // In PvP, however, it only adds 10% resistance to everything.
+
+    Inventory.Icon "EFLDQ0"
 }
 
 actor RawEnergyShield2 : RawEnergyShield { Armor.SaveAmount 1 }
