@@ -1,3 +1,15 @@
+From v1 to v1.1:
+==========================
+- Players are not allowed to superball unless cheats are explicitly on.
+- If the boost ball is stopped, it now plays a fizzle sound effect.
+- Spectating and rejoining no longer breaks missile firing.
+- No longer does ball-to-body impact have to wait for time to keep flowing.
+- IDKFA now gives raw energy armor.
+- Improved ALTHUD support by adding health icons and new STTNUM numbers.
+- There is now "Press Y to Accept" on the difficulty description text.
+
+
+
 From alpha-1.777b to v1:
 ==========================
 GAMEPLAY:
