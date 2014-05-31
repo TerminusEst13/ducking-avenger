@@ -93,12 +93,14 @@ script METROID_OPEN_CLIENT OPEN clientside
         M_DefaultCVar("metroid_cl_nomorphcamera",       0);
         M_DefaultCVar("metroid_cl_pickupmusic",         0);
         M_DefaultCVar("metroid_cl_nometroidpickups",    0);
-        M_DefaultCVar("metroid_cl_hitindicator",        0);
+        M_DefaultCVar("metroid_cl_doomhealth",          0);
         M_DefaultCVar("metroid_cl_chromabeamdensity",   0);
         M_DefaultCvar("metroid_cl_custommissilecharge", 0);
         
         // [ijon] Deprecated CVar, remove from premises
         M_RemoveCVar("metroid_cl_morphcamera");
+        // [TE13] Doesn't work due to A_GiveToTargetWonkiness, temporarily deprecated.
+        M_RemoveCVar("metroid_cl_hitindicator");
     }
 }
 
