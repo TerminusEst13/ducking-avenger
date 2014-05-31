@@ -716,7 +716,7 @@ actor RawEnergy : CustomInventory replaces BlueArmor 17532
     Scale 0.65
     +AUTOACTIVATE
     +NOGRAVITY
-    Inventory.PickupMessage "ACQUIRED: Raw Energy Deposit"
+    Inventory.PickupMessage "RAW ENERGY DEPOSIT: ACQUIRED"
     Inventory.PickupSound "rawenergy/get"
     States
     {
@@ -765,8 +765,6 @@ actor RawEnergyShield : BasicArmorPickup
     DamageFactor "BoostBall", 0.9
     DamageFactor "Bomb", 0.9
     DamageFactor "PowerBomb", 0.9 // In PvP, however, it only adds 10% resistance to everything.
-
-    Inventory.Icon "EFLDQ0"
 }
 
 actor RawEnergyShield2 : RawEnergyShield { Armor.SaveAmount 1 }
