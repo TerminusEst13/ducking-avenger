@@ -2,6 +2,9 @@ actor WeaponPickup: CustomInventory
 {
     Inventory.MaxAmount 0
     Inventory.PickupSound "silence"
+    Inventory.PickupMessage ""
+    +AUTOACTIVATE
+    +DONTGIB
     States
     {
       CheckStay:
@@ -34,8 +37,6 @@ actor WeaponPickup: CustomInventory
 
 ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun 17533
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     Scale 0.55
     States
     {
@@ -60,8 +61,6 @@ ACTOR SpazerBeamPickup : WeaponPickup replaces Shotgun 17533
 
 ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun 17534
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     Scale 0.55
     States
     {
@@ -86,8 +85,6 @@ ACTOR PlasmaBeamPickup : WeaponPickup replaces SuperShotgun 17534
 
 ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun 17535
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     Scale 0.55
     States
     {
@@ -112,8 +109,6 @@ ACTOR WaveBeamPickup : WeaponPickup replaces Chaingun 17535
 
 ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher 17536
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     Scale 0.55
     States
     {
@@ -138,8 +133,6 @@ ACTOR IceBeamPickup : WeaponPickup replaces RocketLauncher 17536
 
 ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle 17537
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     Scale 0.55
     States
     {
@@ -164,8 +157,6 @@ ACTOR LongBeamPickup : WeaponPickup replaces PlasmaRifle 17537
 
 ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw 17538
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     States
     {
       Spawn:
@@ -189,8 +180,6 @@ ACTOR DoomCannonPickup : WeaponPickup replaces Chainsaw 17538
 
 ACTOR DoomCannonAlwaysPickup : WeaponPickup 17541
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     States
     {
       Spawn:
@@ -214,8 +203,6 @@ ACTOR DoomCannonAlwaysPickup : WeaponPickup 17541
 
 ACTOR ChargeComboPickup : WeaponPickup replaces BFG9000 17539
 {
-    Inventory.PickupMessage ""
-    +AUTOACTIVATE
     +NOGRAVITY
     //+FLOATBOB
     Inventory.RespawnTics 4200
