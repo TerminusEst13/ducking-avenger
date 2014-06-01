@@ -9,6 +9,7 @@ From v1 to v1.1:
 - There is now "Press Y to Accept" on the difficulty description text.
 - Tanks and weapons can no longer be crushed by, well, crushers.
 - Raw Energy Deposit now has a corrected pickup message.
+- metroid_cl_doomhealth was not being properly archived. This has been fixed.
 
 
 
