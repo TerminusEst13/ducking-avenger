@@ -391,6 +391,7 @@ ACTOR EnergyTankPickup : CustomInventory replaces Megasphere 17529
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
     +NOGRAVITY
+    +DONTGIB
     //+FLOATBOB
     States
     {
@@ -429,6 +430,7 @@ ACTOR MissileTankPickup : CustomInventory replaces Backpack 17521
     Inventory.PickupMessage ""
     Inventory.PickupSound "none_at_all"
     +AUTOACTIVATE
+    +DONTGIB
     States
     {
       Spawn:
@@ -454,6 +456,7 @@ ACTOR SuperMissileTankPickup : CustomInventory replaces GreenArmor 17522
     Inventory.PickupSound "the_fun_police_does_not_approve"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
+    +DONTGIB
     States
     {
       Spawn:
@@ -629,6 +632,7 @@ ACTOR SpaceJumpPickup : CustomInventory replaces Allmap 17530
     Inventory.PickupSound "you_are_under_arrest_for_intent_to_enjoy"
     +AUTOACTIVATE
     +NOGRAVITY
+    +DONTGIB
     //+FLOATBOB
     States
     {
@@ -656,6 +660,7 @@ ACTOR SpeedBoosterPickup : CustomInventory replaces BlurSphere 17531
     Inventory.PickupSound "you_have_the_right_to_remain_silent"
     +AUTOACTIVATE
     +NOGRAVITY
+    +DONTGIB
     //+FLOATBOB
     States
     {
@@ -682,6 +687,7 @@ ACTOR PowerBombTankPickup : CustomInventory replaces Berserk 17523
     Inventory.PickupSound "anything_you_say_or_do_will_be_held_against_you_in_a_court_of_law"
     Inventory.RespawnTics 4200
     +AUTOACTIVATE
+    +DONTGIB
     States
     {
       Spawn:
@@ -716,7 +722,7 @@ actor RawEnergy : CustomInventory replaces BlueArmor 17532
     Scale 0.65
     +AUTOACTIVATE
     +NOGRAVITY
-    Inventory.PickupMessage "ACQUIRED: Raw Energy Deposit"
+    Inventory.PickupMessage "RAW ENERGY DEPOSIT: ACQUIRED"
     Inventory.PickupSound "rawenergy/get"
     States
     {
