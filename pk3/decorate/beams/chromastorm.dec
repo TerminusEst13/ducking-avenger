@@ -1407,6 +1407,8 @@ actor DakkaBeamShot
     RenderStyle Add
     Scale 0.35
 
+    DamageType "ChromaStorm"
+
     States
     {
       Spawn:
