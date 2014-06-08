@@ -421,7 +421,7 @@ actor PowerBombShockwave
 
     Speed 12
 
-    Obituary "%k power-blew up %o."  // FUCK ORIGINALITY
+    Obituary "%k vaporized %o."
 
     States
     {
