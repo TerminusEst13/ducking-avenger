@@ -101,6 +101,13 @@ script METROID_SELECT_CLIENT (int onOff) clientside
     int choice_beam1 = -1;
     int choice_beam2 = -1;
 
+    int highlight_beam2 = 0;
+
+    int beamIndex;
+    int beamItem;
+    int beamIcon;
+    int hasBeam;
+
     if (actualBeams > 1)
     {
         Select_Client_InMenu  = 1;
@@ -156,13 +163,30 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                 break;
             }
 
+            if (keyPressed(BT_ATTACK) && whichSpoke != -1)
+            {
+                beamIndex = Select_AvailableBeams[pln][whichSpoke];
+                beamItem  = KnownBeams[beamIndex];
+                hasBeam   = CheckInventory(beamItem);
+
+                if (hasBeam)
+                {
+                    choice_beam2 = beamIndex;
+                    highlight_beam2 = 1;
+                    LocalAmbientSound("select/choose", 127);
+                }
+                else
+                {
+                    LocalAmbientSound("select/badchoose", 127);
+                }
+            }
 
             for (i = 0; i < beams; i++)
             {
-                int beamIndex = Select_AvailableBeams[pln][i];
-                int beamItem  = KnownBeams[beamIndex];
-                int beamIcon  = SM_BeamIcons[beamIndex];
-                int hasBeam = CheckInventory(beamItem);
+                beamIndex = Select_AvailableBeams[pln][i];
+                beamItem  = KnownBeams[beamIndex];
+                beamIcon  = SM_BeamIcons[beamIndex];
+                hasBeam   = CheckInventory(beamItem);
 
                 if (!hasBeam) { continue; }
 
@@ -184,6 +208,18 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                     SetFont("HI1_BEAM");
                     HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 2) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
+
+                if (choice_beam2 == i)
+                {
+                    SetFont("HI2_BEAM");
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 4) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+
+                    if (highlight_beam2)
+                    {
+                        SetFont("HI3_BEAM");
+                        HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 3) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                    }
+                }
             }
 
             SetHudSize(SM_HUDX, SM_HUDY, 1);
@@ -192,6 +228,7 @@ script METROID_SELECT_CLIENT (int onOff) clientside
 
             Delay(1);
 
+            highlight_beam2 = 0;
             spokelength = min(spokelength + 32, maxlen);
             time++;
         }
@@ -226,7 +263,6 @@ script METROID_SELECT_SERVER (int beam1_index, int beam2_index) net
     beam1 = KnownBeams[beam1_index];
     if (!CheckInventory(beam1))
     {
-        Delay(1);
         LocalAmbientSound("select/nobeam", 127);
         terminate;
     }

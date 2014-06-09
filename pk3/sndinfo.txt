@@ -296,6 +296,8 @@ prstep1		            REDSTEP1
 prstep2		            REDSTEP2
 
 select/nobeam           sounds/system/select_nobeam.ogg
+select/choose           sounds/system/select_choose.ogg
+select/badchoose        sounds/system/select_badchoose.ogg
 
 
 // Titlemap
