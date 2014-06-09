@@ -13,4 +13,13 @@ addslotdefault 7 "Chroma Storm"
 //addslotdefault 9 "Railgun Replacement Not In Yet"
 addslotdefault 0 "Doom Cannon"
 
+
+addkeysection Metroid MDreadnought
+
 alias changelog        "puke -583 1"
+
+alias +beamswitch   "puke -552 0"
+alias -beamswitch   "puke -552 1"
+
+addmenukey "Beam selection" +beamswitch
+defaultbind q +beamswitch

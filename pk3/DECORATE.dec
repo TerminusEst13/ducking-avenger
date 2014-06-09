@@ -131,6 +131,8 @@ actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
 #include "decorate/weapons.dec"
 #include "decorate/skulltag.dec"
 #include "decorate/hacks.dec"
+#include "decorate/beamselect.dec"
+
 #include "decorate/beams/common.dec"
 #include "decorate/beams/powerbeam.dec"
 #include "decorate/beams/spazerbeam.dec"
@@ -141,9 +143,11 @@ actor IceChunk2 : IceChunk { Health 1 +CLIENTSIDEONLY -SOLID }
 #include "decorate/beams/doomcannon.dec"
 #include "decorate/beams/chromastorm.dec"
 #include "decorate/beams/chargecombos.dec"
+
 #include "decorate/parkmore.dec"
 #include "decorate/speedbooster.dec"
 #include "decorate/gunship.dec"
+
 #include "decorate/enemies/doom_enemies.dec"
 #include "decorate/enemies/spacepirate.dec"
 #include "decorate/enemies/prince.dec"

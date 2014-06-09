@@ -1,0 +1,25 @@
+actor BeamSelectFreeze: PowerTimeFreezer
+{
+    Powerup.Duration -10
+    +UNDROPPABLE
+}
+
+actor BeamSelectNoGrav: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("NOGRAVITY", 1)
+        stop
+    }
+}
+
+actor BeamSelectYesGrav: Trigger
+{
+    States
+    {
+      Pickup:
+        TNT1 A 0 A_ChangeFlag("NOGRAVITY", 0)
+        stop
+    }
+}

@@ -36,3 +36,5 @@ server int metroid_cl_hitindicator = 0;
 server int metroid_cl_chromabeamdensity = 8;
 server int metroid_cl_custommissilecharge = 0;
 server int metroid_cl_pickupmusic = 0;
+server int metroid_cl_pickupmusic = 0;
+server int metroid_cl_showallbeams = 0;

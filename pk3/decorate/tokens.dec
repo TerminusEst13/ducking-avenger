@@ -75,6 +75,7 @@ actor MissileTankAcquired : Boolean {}
 actor SuperMissileAcquired : Boolean {}
 actor SpaceJumpAcquired : Boolean {}
 actor CanSpaceJump : Boolean {}
+actor CanBeamStack: Boolean {}
 actor PowerBombAcquired : Boolean {}
 actor ChargeComboAcquired : Boolean {}
 actor SpeedBoosterAcquired : Boolean {}

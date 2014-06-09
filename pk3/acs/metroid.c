@@ -30,6 +30,7 @@ int array_hitindic[PLAYERMAX];
 #include "met_spacejump.h"
 #include "met_longbeam.h"
 #include "met_chroma.h"
+#include "met_select.h"
 
 int GotSpazer;
 int GotPlasma;
@@ -96,6 +97,8 @@ script METROID_OPEN_CLIENT OPEN clientside
         M_DefaultCVar("metroid_cl_doomhealth",          0);
         M_DefaultCVar("metroid_cl_chromabeamdensity",   0);
         M_DefaultCvar("metroid_cl_custommissilecharge", 0);
+        M_DefaultCvar("metroid_cl_nospselectfreeze",    0);
+        M_DefaultCvar("metroid_cl_showallbeams",        0);
         
         // [ijon] Deprecated CVar, remove from premises
         M_RemoveCVar("metroid_cl_morphcamera");
@@ -387,6 +390,8 @@ script METROID_ENTER ENTER
     int frozenjumpz = FixedDiv(jumpz, sqrt(2.0));
     int infinite;
     int i;
+
+    Select_InMenu[pln] = 0;
 
     SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
     SetActorProperty(0, APROP_INVULNERABLE, 0);

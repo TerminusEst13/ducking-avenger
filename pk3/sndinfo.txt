@@ -295,6 +295,7 @@ $random prince/step { prstep1 prstep2 }
 prstep1		            REDSTEP1
 prstep2		            REDSTEP2
 
+select/nobeam           sounds/system/select_nobeam.ogg
 
 
 // Titlemap

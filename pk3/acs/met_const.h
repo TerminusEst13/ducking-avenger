@@ -1,41 +1,44 @@
 #define METROID_SV_CVAR_VERSION    2
-#define METROID_CL_CVAR_VERSION    3
+#define METROID_CL_CVAR_VERSION    4
 
-#define METROID_BASE                         354
+#define METROID_BASE                        354
 
-#define METROID_SPACEJUMP_ENTER2             351
-#define METROID_SPACEJUMP_ENTER              352
-#define METROID_OPEN                         353
+#define METROID_SPACEJUMP_ENTER2            351
+#define METROID_SPACEJUMP_ENTER             352
+#define METROID_OPEN                        353
 
-#define METROID_WALLBOUNCE                   364
-#define METROID_REQUESTDODGE                 368
+#define METROID_WALLBOUNCE                  364
+#define METROID_REQUESTDODGE                368
 
-#define METROID_TURN                         385
+#define METROID_TURN                        385
 
-#define METROID_POWERBOMB                    454
-#define METROID_LONG_XYZ                     455
-#define METROID_LONG_BURST                   456
-#define METROID_LONG_TRAIL                   459
-#define METROID_LONG_COORDSHIT               468
+#define METROID_POWERBOMB                   454
+#define METROID_LONG_XYZ                    455
+#define METROID_LONG_BURST                  456
+#define METROID_LONG_TRAIL                  459
+#define METROID_LONG_COORDSHIT              468
 
-#define METROID_OPEN_CLIENT                  551
-#define METROID_CHANGELOG                    583
-#define METROID_SHIPCONTROLS                 584
-#define METROID_PUKE                         585
-#define METROID_SPEEDBOOSTER                 586
-#define METROID_MORPHCAMERA                  587
-#define METROID_MORPHBALL                    588
-#define METROID_UNLOADING                    589
-#define METROID_DEATH                        590
-#define METROID_DISCONNECT                   591
-#define METROID_ENTER                        592
-#define METROID_RESPAWN                      593
-#define METROID_DECORATE                     594
-#define METROID_BOOSTBALL                    595
-#define METROID_DECORATECLIENT               596
-#define METROID_BWEEBWEEBWEEBWEE             597
-#define METROID_BWEEBWEEMORPH                598
-#define METROID_ENTER_CLIENTSIDE             599
+#define METROID_OPEN_CLIENT                 551
+#define METROID_SELECT                      552
+#define METROID_SELECT_CLIENT               553
+#define METROID_SELECT_SERVER               554
+#define METROID_CHANGELOG                   583
+#define METROID_SHIPCONTROLS                584
+#define METROID_PUKE                        585
+#define METROID_SPEEDBOOSTER                586
+#define METROID_MORPHCAMERA                 587
+#define METROID_MORPHBALL                   588
+#define METROID_UNLOADING                   589
+#define METROID_DEATH                       590
+#define METROID_DISCONNECT                  591
+#define METROID_ENTER                       592
+#define METROID_RESPAWN                     593
+#define METROID_DECORATE                    594
+#define METROID_BOOSTBALL                   595
+#define METROID_DECORATECLIENT              596
+#define METROID_BWEEBWEEBWEEBWEE            597
+#define METROID_BWEEBWEEMORPH               598
+#define METROID_ENTER_CLIENTSIDE            599
 
 #define CLOCKWISE           0
 #define COUNTERCLOCKWISE    1
@@ -79,6 +82,21 @@ int AngleOffsets[10] = { 0.5, 0.5, 0.375, 0.25, 0.125, 0, 0.875, 0.75, 0.625, 0 
 #define TRAILCOUNT 3
 
 #define PICKUPTYPES 14
+
+
+#define BEAMCOUNT   8
+
+int KnownBeams[BEAMCOUNT] = 
+{
+    "Power Beam",
+    "Spazer Beam",
+    "Plasma Beam",
+    "Wave Beam",
+    "Ice Beam",
+    "Long Beam",
+    "Chroma Storm",
+    "Doom Cannon",
+};
 
 int GotBigPickup[PLAYERMAX][PICKUPTYPES];
 

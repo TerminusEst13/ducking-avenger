@@ -375,3 +375,9 @@ function void M_RemoveCVar(int var)
     if (met_cvarinfo()) { SetCVar(var, 0); } // can't actually remove cvars in zdoom
     else { ConsoleCommand(StrParam(s:"unset ", s:var)); }
 }
+
+
+function int CanBeamStack(void)
+{
+    return !!CheckInventory("CanBeamStack");
+}
