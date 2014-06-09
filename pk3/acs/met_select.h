@@ -26,8 +26,18 @@ script METROID_SELECT (int onOff) net
 {
     int pln = PlayerNumber();
     int setfreeze = 0;
+    
+    int i, beams;
 
-    if (!(Select_InMenu[pln] || onOff))
+    for (i = 0; i < BEAMCOUNT; i++)
+    {
+        if (CheckInventory(KnownBeams[i]))
+        {
+            beams++;
+        }
+    }
+
+    if (!(Select_InMenu[pln] || onOff) && (beams > 1))
     {
         Select_InMenu[pln] = 1;
         SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
@@ -48,7 +58,14 @@ script METROID_SELECT (int onOff) net
         }
     }
 
-    ACS_ExecuteAlways(METROID_SELECT_CLIENT, 0, !!onOff);
+    if (ConsolePlayerNumber() != -1)
+    {
+        ACS_ExecuteWithResult(METROID_SELECT_CLIENT, !!onOff);
+    }
+    else
+    {
+        ACS_ExecuteAlways(METROID_SELECT_CLIENT, 0, !!onOff);
+    }
 
     if (setfreeze)
     {
@@ -63,7 +80,8 @@ script METROID_SELECT (int onOff) net
 
 script METROID_SELECT_CLIENT (int onOff) clientside
 {
-    int beams = 0;
+    int beams = 0;          // How many beams are on the menu
+    int actualBeams = 0;    // How many beams you actually have
     int pln  = PlayerNumber();
     int cpln = ConsolePlayerNumber();
     int allspokes = GetCvar("metroid_cl_showallbeams");
@@ -89,6 +107,8 @@ script METROID_SELECT_CLIENT (int onOff) clientside
         {
             Select_AvailableBeams[pln][beams++] = i;
         }
+
+        if (CheckInventory(KnownBeams[i])) { actualBeams++; }
     }
 
     int spokeangle = 1.0 / beams;
@@ -106,35 +126,15 @@ script METROID_SELECT_CLIENT (int onOff) clientside
     int choice_beam1 = -1;
     int choice_beam2 = -1;
 
-    if (beams > 1)
+    if (actualBeams > 1)
     {
         Select_Client_InMenu  = 1;
         Select_Client_Turnoff = 0;
 
+        FadeRange(0, 0, 0, 0, 0, 0, 0, 0.35, 0.2);
+
         while (PlayerInGame(pln) && !isDead(0))
         {
-            for (i = 0; i < beams; i++)
-            {
-                int beamIndex = Select_AvailableBeams[pln][i];
-                int beamItem  = KnownBeams[beamIndex];
-                int beamIcon  = SM_BeamIcons[beamIndex];
-                int hasBeam = CheckInventory(beamItem);
-
-                if (!hasBeam) { continue; }
-
-                // Go clockwise, start at top
-                int ang = -spokeAngle * i;
-                ang += 0.25;
-
-                int sx = cx + (spokelength * cos(ang));
-                int sy = cy - (spokelength * sin(ang));
-
-                sx = (sx >> 16) << 16;
-                sy = (sy >> 16) << 16;
-
-                SetFont(beamIcon);
-                HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.25, 0.25);
-            }
 
             int vx  = -GetPlayerInput(-1, INPUT_YAW) * SM_BASEMOUSERES;
             int vy  = -GetPlayerInput(-1, INPUT_PITCH) * SM_BASEMOUSERES;
@@ -159,22 +159,61 @@ script METROID_SELECT_CLIENT (int onOff) clientside
             // right: (1, 0)  becomes (0, 1) which is 90 degrees
             int mouse_ang = VectorAngle(-dy, dx);
 
-            int whichSpoke = (mouse_ang - spokeoffset) * beams;
+            int whichSpoke;
+            
+            if (centerdist >= SM_MINCENTERDIST)
+            {
+                whichSpoke = (mouse_ang - spokeoffset) * beams;
 
-            if (whichSpoke < 0 || whichSpoke > itof(beams - 1)) { whichSpoke = 0; }
-            else { whichSpoke = ceil(whichSpoke); }
+                if (whichSpoke < 0 || whichSpoke > itof(beams - 1)) { whichSpoke = 0; }
+                else { whichSpoke = ceil(whichSpoke); }
+            }
+            else
+            {
+                whichSpoke = -1;
+            }
 
             if (Select_Client_TurnOff)
             {
-                if (centerdist >= SM_MINCENTERDIST)
+                if (whichSpoke != -1)
                 {
                     choice_beam1 = Select_AvailableBeams[pln][whichSpoke];
                 }
                 break;
             }
 
+
+            for (i = 0; i < beams; i++)
+            {
+                int beamIndex = Select_AvailableBeams[pln][i];
+                int beamItem  = KnownBeams[beamIndex];
+                int beamIcon  = SM_BeamIcons[beamIndex];
+                int hasBeam = CheckInventory(beamItem);
+
+                if (!hasBeam) { continue; }
+
+                // Go clockwise, start at top
+                int ang = -spokeAngle * i;
+                ang += 0.25;
+
+                int sx = cx + (spokelength * cos(ang));
+                int sy = cy - (spokelength * sin(ang));
+
+                sx = (sx >> 16) << 16;
+                sy = (sy >> 16) << 16;
+
+                SetFont(beamIcon);
+                HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.25, 0.25);
+
+                if (whichSpoke == i)
+                {
+                    SetFont("HI1_BEAM");
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 2) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                }
+            }
+
             SetHudSize(SM_HUDX, SM_HUDY, 1);
-            SetFont("SMALLFONT");
+            SetFont("SL_XHAIR");
             HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID, CR_WHITE, hx + 0.4, hy, 0.25, 0.25);
 
             Delay(1);
@@ -182,6 +221,7 @@ script METROID_SELECT_CLIENT (int onOff) clientside
             spokelength = min(spokelength + 32, maxlen);
         }
 
+        FadeRange(0, 0, 0, 0.35, 0, 0, 0, 0, 0);
         Select_Client_InMenu = 0;
     }
 
