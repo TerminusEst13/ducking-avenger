@@ -163,22 +163,29 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                 break;
             }
 
-            if (keyPressed(BT_ATTACK) && whichSpoke != -1)
+            if (CanBeamStack())
             {
-                beamIndex = Select_AvailableBeams[pln][whichSpoke];
-                beamItem  = KnownBeams[beamIndex];
-                hasBeam   = CheckInventory(beamItem);
+                if (keyPressed(BT_ATTACK) && whichSpoke != -1)
+                {
+                    beamIndex = Select_AvailableBeams[pln][whichSpoke];
+                    beamItem  = KnownBeams[beamIndex];
+                    hasBeam   = CheckInventory(beamItem);
 
-                if (hasBeam)
-                {
-                    choice_beam2 = beamIndex;
-                    highlight_beam2 = 1;
-                    LocalAmbientSound("select/choose", 127);
+                    if (hasBeam)
+                    {
+                        choice_beam2 = beamIndex;
+                        highlight_beam2 = 1;
+                        LocalAmbientSound("select/choose", 127);
+                    }
+                    else
+                    {
+                        LocalAmbientSound("select/badchoose", 127);
+                    }
                 }
-                else
-                {
-                    LocalAmbientSound("select/badchoose", 127);
-                }
+            }
+            else
+            {
+                choice_beam2 = -1;
             }
 
             for (i = 0; i < beams; i++)
