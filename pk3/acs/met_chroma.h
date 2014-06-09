@@ -222,7 +222,7 @@ script 476 (int begin, int button, int superThreshold)
 
         cansuper    = CheckInventory("SuperMissileAcquired") && (CheckInventory("SuperMissileAmmo") || GetCVar("sv_infiniteammo"));
         canmissile  = CheckInventory("MissileAmmo")      || GetCVar("sv_infiniteammo");
-        isfiring    = keyDown(button);
+        isfiring    = inputDown(button);
 
         // Clear out the trigger if we can hold for super missiles
         // - if we only have normal missiles, this could waste bandwidth
