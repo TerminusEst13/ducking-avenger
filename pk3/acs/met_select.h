@@ -1,5 +1,4 @@
 int Select_AvailableBeams[PLAYERMAX][BEAMCOUNT];
-int Select_SP_PlayerShit[PLAYERMAX][4];
 int Select_InMenu[PLAYERMAX];
 int Select_Client_InMenu;
 int Select_Client_TurnOff;
@@ -25,8 +24,6 @@ int SM_BeamIcons[BEAMCOUNT] =
 script METROID_SELECT (int onOff) net
 {
     int pln = PlayerNumber();
-    int setfreeze = 0;
-    
     int i, beams;
 
     for (i = 0; i < BEAMCOUNT; i++)
@@ -37,25 +34,12 @@ script METROID_SELECT (int onOff) net
         }
     }
 
+    if (!onOff && CheckInventory("BorphMallAcquired")) { terminate; }
+
     if (!(Select_InMenu[pln] || onOff) && (beams > 1))
     {
         Select_InMenu[pln] = 1;
         SetPlayerProperty(0, 1, PROP_TOTALLYFROZEN);
-
-        if (GameType() == GAME_SINGLE_PLAYER && !GetCvar("metroid_cl_nospselectfreeze"))
-        {
-            setfreeze = 1;
-            GiveInventory("BeamSelectNoGrav", 1);
-            
-            int vx = GetActorVelX(0);
-            int vy = GetActorVelY(0);
-            int vz = GetActorVelZ(0);
-            Select_SP_PlayerShit[pln][0] = 1;
-            Select_SP_PlayerShit[pln][1] = vx;
-            Select_SP_PlayerShit[pln][2] = vy;
-            Select_SP_PlayerShit[pln][3] = vz;
-            SetActorVelocity(0, 0,0,0, 0,1);
-        }
     }
 
     if (ConsolePlayerNumber() != -1)
@@ -65,16 +49,6 @@ script METROID_SELECT (int onOff) net
     else
     {
         ACS_ExecuteAlways(METROID_SELECT_CLIENT, 0, !!onOff);
-    }
-
-    if (setfreeze)
-    {
-        while (Select_InMenu[pln])
-        {
-            TakeInventory("BeamSelectFreeze", 0x7FFFFFFF);
-            GiveInventory("BeamSelectFreeze", 1);
-            Delay(35);
-        }
     }
 }
 
@@ -132,7 +106,7 @@ script METROID_SELECT_CLIENT (int onOff) clientside
         Select_Client_InMenu  = 1;
         Select_Client_Turnoff = 0;
 
-        while (PlayerInGame(pln) && !isDead(0))
+        while (PlayerInGame(pln) && !isDead(0) && !CheckInventory("BorphMallAcquired"))
         {
             FadeTo(0, 0, 0, min(0.35, 0.05 * (time + 1)), 0);
 
@@ -240,19 +214,6 @@ script METROID_SELECT_SERVER (int beam1_index, int beam2_index) net
     {
         Select_InMenu[pln] = 0;
         SetPlayerProperty(0, 0, PROP_TOTALLYFROZEN);
-
-        if (Select_SP_PlayerShit[pln][0])
-        {
-            TakeInventory("BeamSelectFreeze", 0x7FFFFFFF);
-            GiveInventory("BeamSelectYesGrav", 1);
-            
-            int vx = Select_SP_PlayerShit[pln][1];
-            int vy = Select_SP_PlayerShit[pln][2];
-            int vz = Select_SP_PlayerShit[pln][3];
-            SetActorVelocity(0, vx,vy,vz, 0,1);
-
-            Select_SP_PlayerShit[pln][0] = 0;
-        }
     }
 
     beam1_index -= 1;

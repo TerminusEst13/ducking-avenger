@@ -97,7 +97,6 @@ script METROID_OPEN_CLIENT OPEN clientside
         M_DefaultCVar("metroid_cl_doomhealth",          0);
         M_DefaultCVar("metroid_cl_chromabeamdensity",   0);
         M_DefaultCvar("metroid_cl_custommissilecharge", 0);
-        M_DefaultCvar("metroid_cl_nospselectfreeze",    0);
         M_DefaultCvar("metroid_cl_showallbeams",        0);
         
         // [ijon] Deprecated CVar, remove from premises
