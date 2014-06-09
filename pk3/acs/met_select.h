@@ -85,6 +85,7 @@ script METROID_SELECT_CLIENT (int onOff) clientside
     int pln  = PlayerNumber();
     int cpln = ConsolePlayerNumber();
     int allspokes = GetCvar("metroid_cl_showallbeams");
+    int time = 0;
     int i;
 
     if (pln != cpln) { terminate; }
@@ -131,10 +132,9 @@ script METROID_SELECT_CLIENT (int onOff) clientside
         Select_Client_InMenu  = 1;
         Select_Client_Turnoff = 0;
 
-        FadeRange(0, 0, 0, 0, 0, 0, 0, 0.35, 0.2);
-
         while (PlayerInGame(pln) && !isDead(0))
         {
+            FadeTo(0, 0, 0, min(0.35, 0.05 * (time + 1)), 0);
 
             int vx  = -GetPlayerInput(-1, INPUT_YAW) * SM_BASEMOUSERES;
             int vy  = -GetPlayerInput(-1, INPUT_PITCH) * SM_BASEMOUSERES;
@@ -203,7 +203,7 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                 sy = (sy >> 16) << 16;
 
                 SetFont(beamIcon);
-                HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.25, 0.25);
+                HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
 
                 if (whichSpoke == i)
                 {
@@ -214,14 +214,15 @@ script METROID_SELECT_CLIENT (int onOff) clientside
 
             SetHudSize(SM_HUDX, SM_HUDY, 1);
             SetFont("SL_XHAIR");
-            HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID, CR_WHITE, hx + 0.4, hy, 0.25, 0.25);
+            HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID, CR_WHITE, hx + 0.4, hy, 0.05, 0.25);
 
             Delay(1);
 
             spokelength = min(spokelength + 32, maxlen);
+            time++;
         }
 
-        FadeRange(0, 0, 0, 0.35, 0, 0, 0, 0, 0);
+        FadeTo(0, 0, 0, 0, 0);
         Select_Client_InMenu = 0;
     }
 
