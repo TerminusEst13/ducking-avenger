@@ -62,7 +62,7 @@ script 475 (int which, int a1, int a2)
     {
       case 0:
         if (!a2) { a2 = BT_ATTACK; }
-        if (!keyDown(a2)) { break; }
+        if (!inputDown(a2)) { break; }
 
         int level = CheckInventory("DakkaBeamChargeLevel");
         int firetime = DakkaBeamFireTimes[middle(0, level, CHARGELEVELS-1)];
