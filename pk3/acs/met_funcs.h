@@ -400,6 +400,7 @@ function int BeamStackIndex(int beam1, int beam2)
 
 function int InBeamStackWith(int base, int check)
 {
+    if (base == -1 || check == -1) { return 0; }
     if (base == check) { return 1; }
     return (BeamStackIndex(base, check) != -1);
 }

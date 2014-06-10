@@ -141,6 +141,7 @@ script METROID_SELECT_CLIENT (int onOff) clientside
             int mouse_ang = VectorAngle(-dy, dx);
 
             int whichSpoke;
+            int spokeBeam;
             
             if (centerdist >= SM_MINCENTERDIST)
             {
@@ -148,10 +149,13 @@ script METROID_SELECT_CLIENT (int onOff) clientside
 
                 if (whichSpoke < 0 || whichSpoke > itof(beams - 1)) { whichSpoke = 0; }
                 else { whichSpoke = ceil(whichSpoke); }
+
+                spokeBeam = Select_AvailableBeams[pln][whichSpoke];
             }
             else
             {
                 whichSpoke = -1;
+                spokeBeam = -1;
             }
 
             if (Select_Client_TurnOff)
@@ -165,15 +169,14 @@ script METROID_SELECT_CLIENT (int onOff) clientside
 
             if (CanBeamStack())
             {
-                if (keyPressed(BT_ATTACK) && whichSpoke != -1)
+                if (keyPressed(BT_ATTACK) && spokeBeam != -1)
                 {
-                    beamIndex = Select_AvailableBeams[pln][whichSpoke];
-                    beamItem  = KnownBeams[beamIndex];
+                    beamItem  = KnownBeams[spokeBeam];
                     hasBeam   = CheckInventory(beamItem);
 
                     if (hasBeam)
                     {
-                        choice_beam2 = beamIndex;
+                        choice_beam2 = spokeBeam;
                         highlight_beam2 = 1;
                         LocalAmbientSound("select/choose", 127);
                     }
@@ -213,21 +216,27 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                 if (whichSpoke == i)
                 {
                     SetFont("HI1_BEAM");
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 2) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 1) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
 
-                if (choice_beam2 == i)
+                if (choice_beam2 == beamIndex)
                 {
                     SetFont("HI2_BEAM");
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 4) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 3) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
-
-                if (CanBeamStack() && InBeamStackWith(choice_beam2, i))
+                else if (InBeamStackWith(choice_beam2, beamIndex))
                 {
                     SetFont("HI3_BEAM");
-                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 5) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 3) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                }
+                else if (InBeamStackWith(spokeBeam, beamIndex))
+                {
+                    SetFont("HI4_BEAM");
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 3) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
             }
+
+            Log(d:choice_beam1, s:", ", d:choice_beam2, s:", ", d:spokeBeam);
 
             SetHudSize(SM_HUDX, SM_HUDY, 1);
             SetFont("SL_XHAIR");
@@ -302,6 +311,8 @@ script METROID_SELECT_SERVER (int beam1_index, int beam2_index) net
     {
         stackwep = BeamStackWeapons[stackwep];
         Print(s:stackwep);
+
+        if (CheckInventory(stackwep)) { terminate; }
 
         GiveInventory(stackwep, 1);
         SetWeapon(stackwep);
