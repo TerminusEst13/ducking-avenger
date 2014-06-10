@@ -219,6 +219,8 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                     HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 1) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
 
+                if (!CanBeamStack()) { continue; }
+
                 if (choice_beam2 == beamIndex)
                 {
                     SetFont("HI2_BEAM");
@@ -235,8 +237,6 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                     HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 3) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
             }
-
-            Log(d:choice_beam1, s:", ", d:choice_beam2, s:", ", d:spokeBeam);
 
             SetHudSize(SM_HUDX, SM_HUDY, 1);
             SetFont("SL_XHAIR");
