@@ -1032,6 +1032,7 @@ script METROID_DECORATE (int which, int a1, int a2)
             if (CheckInventory("SuperMissileAmmo") != GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerB",dickheadx,dickheady,dickheadz,0,dickheada); }
             if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") != GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerC",dickheadx,dickheady,dickheadz,0,dickheada); }
             if (CheckInventory("SuperMissileAmmo") != GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") != GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerD",dickheadx,dickheady,dickheadz,0,dickheada); }}
+        break;
 
     case 32:
         delay(32);
