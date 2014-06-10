@@ -381,3 +381,25 @@ function int CanBeamStack(void)
 {
     return !!CheckInventory("CanBeamStack");
 }
+
+function int BeamStackIndex(int beam1, int beam2)
+{
+    int i;
+
+    for (i = 0; i < STACKPERMUTATIONS; i++)
+    {
+        int bs1 = BeamStackCombinations[i][0];
+        int bs2 = BeamStackCombinations[i][1];
+
+        if ((beam1 == bs1 && beam2 == bs2)
+         || (beam2 == bs1 && beam1 == bs2)) { return i; }
+    }
+
+    return -1;
+}
+
+function int InBeamStackWith(int base, int check)
+{
+    if (base == check) { return 1; }
+    return (BeamStackIndex(base, check) != -1);
+}

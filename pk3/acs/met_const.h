@@ -98,6 +98,25 @@ int KnownBeams[BEAMCOUNT] =
     "Doom Cannon",
 };
 
+#define STACKTYPES 1
+
+int BeamStackWeapons[STACKTYPES] = 
+{
+    "SuperShotgun",
+};
+
+#define STACKPERMUTATIONS   1
+
+// index 0 is beam 1's index (KnownBeams)
+// index 1 is beam 2's index
+// index 2 is the stacked weapon index (BeamStackWeapons)
+// no need to duplicate combos flipped around
+
+int BeamStackCombinations[STACKTYPES][3] =
+{
+    {2, 7, 0},
+};
+
 int GotBigPickup[PLAYERMAX][PICKUPTYPES];
 
 int BigPickupItems[PICKUPTYPES] = 

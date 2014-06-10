@@ -220,12 +220,12 @@ script METROID_SELECT_CLIENT (int onOff) clientside
                 {
                     SetFont("HI2_BEAM");
                     HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 4) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
+                }
 
-                    if (highlight_beam2)
-                    {
-                        SetFont("HI3_BEAM");
-                        HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 3) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
-                    }
+                if (CanBeamStack() && InBeamStackWith(choice_beam2, i))
+                {
+                    SetFont("HI3_BEAM");
+                    HudMessage(s:"A"; HUDMSG_FADEOUT, SM_ID + 1 + (beams * 5) + i, CR_UNTRANSLATED, sx + 0.4, sy, 0.05, 0.25);
                 }
             }
 
@@ -249,6 +249,8 @@ script METROID_SELECT_CLIENT (int onOff) clientside
         ACS_ExecuteAlways(METROID_SELECT_SERVER, 0, choice_beam1+1, choice_beam2+1);
     }
 }
+
+#define SM_SWITCHTOTIME     35
 
 script METROID_SELECT_SERVER (int beam1_index, int beam2_index) net
 {
@@ -291,4 +293,39 @@ script METROID_SELECT_SERVER (int beam1_index, int beam2_index) net
     }
 
     // beam stackan here
+    
+    int i;
+    int usingit = 0;
+    int stackwep = BeamStackIndex(beam1_index, beam2_index);
+
+    if (stackwep != -1)
+    {
+        stackwep = BeamStackWeapons[stackwep];
+        Print(s:stackwep);
+
+        GiveInventory(stackwep, 1);
+        SetWeapon(stackwep);
+
+        for (i = 0; i < SM_SWITCHTOTIME; i++)
+        {
+            if (CheckWeapon(stackwep))
+            {
+                usingit = 1;
+                break;
+            }
+            Delay(1);
+        }
+
+        if (usingit)
+        {
+            while (CheckWeapon(stackwep)) { Delay(1); }
+        }
+        
+        TakeInventory(stackwep, 0x7FFFFFFF);
+    }
+    else
+    {
+        LocalAmbientSound("select/nobeam", 127);
+        SetWeapon(beam2);
+    }
 }
