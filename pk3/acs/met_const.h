@@ -13,10 +13,10 @@
 #define METROID_TURN                        385
 
 #define METROID_POWERBOMB                   454
-#define METROID_LONG_XYZ                    455
-#define METROID_LONG_BURST                  456
-#define METROID_LONG_TRAIL                  459
-#define METROID_LONG_COORDSHIT              468
+#define METROID_LONG_XYZ                    555
+#define METROID_LONG_BURST                  556
+#define METROID_LONG_TRAIL                  559
+#define METROID_LONG_COORDSHIT              568
 
 #define METROID_OPEN_CLIENT                 551
 #define METROID_SELECT                      552

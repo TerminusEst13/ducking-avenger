@@ -4,7 +4,7 @@
 // LONG BEAM SHIT
 // ==================
 
-//int TrailItems[TRAILCOUNT]     = {"LasgunBurstItem", "LascannonBurstItem", "SuperNoclipBurstItem"};
+//int TrailItems[TRAILCOUNT]     = {"LongBeamItem", "LBChargeItem", "SuperNoclipBurstItem"};
 int TrailStarts[TRAILCOUNT]    = {24, 24, 16};
 int TrailDensities[TRAILCOUNT] = {24, 24, 16};
 int TrailModes[PLAYERMAX];
@@ -23,7 +23,7 @@ script METROID_LONG_XYZ (int which, int mode)
     SetActivatorToTarget(0);
     int pln = PlayerNumber();
 
-    which = condFalse(which, 456);
+    which = condFalse(which, METROID_LONG_TRAIL);
     TrailModes[pln] = middle(0, mode, TRAILCOUNT-1);
 
     ACS_ExecuteAlways(which, 0, x,y,z);
@@ -51,7 +51,7 @@ script METROID_LONG_BURST (int tx, int ty, int tz) clientside
 
     for (i = 48; i < magI; i += 24)
     {
-        Spawn("LascannonBurstEffect", x+(vx*i), y+(vy*i), z+(vz*i));
+        Spawn("LBChargeEffect", x+(vx*i), y+(vy*i), z+(vz*i));
     }
 }
 
@@ -76,7 +76,7 @@ script METROID_LONG_TRAIL (int tx, int ty, int tz) clientside
 
     for (i = 48; i < magI; i += 16)
     {
-        Spawn("LasgunTrail", x+(vx*i), y+(vy*i), z+(vz*i));
+        Spawn("LongBeamTrail", x+(vx*i), y+(vy*i), z+(vz*i));
     }
 }
 
