@@ -183,26 +183,6 @@ int BigPickupSounds[PICKUPTYPES][3] =
     {"M_ITMGE4", "GrossSoundHack4", "chroma/get"}, 
 };
 
-int BigPickupMessages[PICKUPTYPES] = 
-{
-    "SUPER MISSILE TANK: ACQUIRED",
-    "MISSILE TANK: ACQUIRED",
-    "POWER BOMB TANK: ACQUIRED",
-    "ENERGY TANK: ACQUIRED",
-    "SPEED BOOSTER: ACQUIRED",
-    "SPACE JUMP: ACQUIRED",
-
-    "SPAZER BEAM: ACQUIRED",
-    "PLASMA BEAM: ACQUIRED",
-    "WAVE BEAM: ACQUIRED",
-    "ICE BEAM: ACQUIRED",
-    "LONG BEAM: ACQUIRED",
-
-    "ENERGY CONVERTER UNIT: ACQUIRED",
-    "\cjdX000FFFsF \cferror",
-    "CHROMA STORM: ACQUIRED",
-};
-
 #define PARTICLECOUNT 4
 
 int DakkaBeamParticles[PARTICLECOUNT] =
