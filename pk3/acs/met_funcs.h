@@ -404,3 +404,35 @@ function int InBeamStackWith(int base, int check)
     if (base == check) { return 1; }
     return (BeamStackIndex(base, check) != -1);
 }
+
+int _tmpMsgs[MSGCOUNT];
+
+function int chooseMessage(int index, int domore)
+{
+    int ret = "";
+    int count = 0;
+    int i, msg;
+
+    if (!GetCVar("metroid_cl_moremessages") || !domore)
+    {
+        int maybeRet = MetroidPickupMessages[index][0];
+        if (StrLen(msg)) { ret = maybeRet; }
+    }
+    else
+    {
+        for (i = 0; i < MSGCOUNT; i++)
+        {
+            msg = MetroidPickupMessages[index][i];
+            if (StrLen(msg) == 0) { continue; }
+
+            _tmpMsgs[count++] = msg;
+        }
+
+        if (count > 0)
+        {
+            ret = _tmpMsgs[random(0, count-1)];
+        }
+    }
+
+    return ret;
+}

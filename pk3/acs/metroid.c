@@ -26,7 +26,10 @@ int array_metpick[PLAYERMAX];
 int array_hitindic[PLAYERMAX];
 
 #include "met_const.h"
+#include "met_msg.h"
+
 #include "met_funcs.h"
+
 #include "met_spacejump.h"
 #include "met_longbeam.h"
 #include "met_chroma.h"
@@ -98,6 +101,7 @@ script METROID_OPEN_CLIENT OPEN clientside
         M_DefaultCVar("metroid_cl_chromabeamdensity",   0);
         M_DefaultCvar("metroid_cl_custommissilecharge", 0);
         M_DefaultCvar("metroid_cl_showallbeams",        0);
+        M_DefaultCvar("metroid_cl_moremessages",        0);
         
         // [ijon] Deprecated CVar, remove from premises
         M_RemoveCVar("metroid_cl_morphcamera");
@@ -1095,8 +1099,9 @@ script METROID_DECORATECLIENT (int which, int a1, int a2) clientside
 
       case 7:
         if (a1 < 0 || a1 >= PICKUPTYPES) { break; }
+        int message = chooseMessage(a1, 1);
         int pickupColor = msgColors[GetCVar("msg0color")];
-        Log(s:pickupColor, s:strstr(BigPickupMessages[a1], "\c-", pickupColor));
+        Log(s:pickupColor, s:strstr(message, "\c-", pickupColor));
         break;
     }
 }

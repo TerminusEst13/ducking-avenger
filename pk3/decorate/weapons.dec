@@ -1,10 +1,9 @@
 actor WeaponPickup: CustomInventory
 {
     Inventory.MaxAmount 0
-    Inventory.PickupSound "silence"
-    Inventory.PickupMessage ""
     +AUTOACTIVATE
     +DONTGIB
+    +QUIET
     States
     {
       CheckStay:

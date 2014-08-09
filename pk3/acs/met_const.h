@@ -1,5 +1,5 @@
 #define METROID_SV_CVAR_VERSION    2
-#define METROID_CL_CVAR_VERSION    4
+#define METROID_CL_CVAR_VERSION    5
 
 #define METROID_BASE                        354
 
