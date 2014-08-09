@@ -1014,28 +1014,91 @@ script METROID_DECORATE (int which, int a1, int a2)
 
     case 31:
         delay(1);
-        int dickheadx = GetActorX(0);
-        int dickheady = GetActorY(0);
-        int dickheadz = GetActorZ(0);
-        int dickheada = GetActorAngle(0);
+        int myx = GetActorX(0);
+        int myy = GetActorY(0);
+        int myz = GetActorZ(0);
         delay(10);
         SetActivatorToTarget(0);
-        // If you do not have Super Missile or Power Bomb...
-        if (!CheckInventory("SuperMissileAcquired") && !CheckInventory("PowerBombAcquired")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
-        // If you have Super Missile but not Power Bomb...
-        if (CheckInventory("SuperMissileAcquired") && !CheckInventory("PowerBombAcquired"))
-            { if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
-            else { Spawn("EnemyDropSpawnerB",dickheadx,dickheady,dickheadz,0,dickheada); }}
-        // If you do not have Super Missile but have Power Bomb...
-        if (!CheckInventory("SuperMissileAcquired") && CheckInventory("PowerBombAcquired"))
-            { if (CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
-            else { Spawn("EnemyDropSpawnerC",dickheadx,dickheady,dickheadz,0,dickheada); }}
-        // If you have both Super Missile and Power Bomb...
-        if (CheckInventory("SuperMissileAcquired") && CheckInventory("PowerBombAcquired"))
-            { if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawner",dickheadx,dickheady,dickheadz,0,dickheada); }
-            if (CheckInventory("SuperMissileAmmo") != GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") == GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerB",dickheadx,dickheady,dickheadz,0,dickheada); }
-            if (CheckInventory("SuperMissileAmmo") == GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") != GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerC",dickheadx,dickheady,dickheadz,0,dickheada); }
-            if (CheckInventory("SuperMissileAmmo") != GetAmmoCapacity("SuperMissileAmmo") && CheckInventory("PowerBombAmmo") != GetAmmoCapacity("PowerBombAmmo")) { Spawn("EnemyDropSpawnerD",dickheadx,dickheady,dickheadz,0,dickheada); }}
+
+        int maxRoll = 0;
+        a1 = max(1, a1);
+
+        // TempDropState is used to tell the shit below
+        //  whether an item can be dropped or not
+        for (i = 0; i < DROPCOUNT; i++)
+        {
+            int checkitem = MonsterDropItems[i][D_CHECKITEM];
+            int checkammo = MonsterDropItems[i][D_CHECKAMMO];
+            TempDropState[i] = 0;
+
+            if (GameType() == GAME_SINGLE_PLAYER)
+            {
+                if (strcmp(checkitem, ""))
+                {
+                    if (!CheckInventory(checkitem)) { continue; }
+                }
+
+                if (!strcmp(checkammo, "Health"))
+                {
+                    if (GetActorProperty(0, APROP_Health) >= getMaxHealth()) { continue; }
+                }
+                else if (strcmp(checkammo, ""))
+                {
+                    if (CheckInventory(checkammo) >= GetAmmoCapacity(checkammo)) { continue; }
+                }
+            }
+        
+            maxRoll += MonsterDropChances[i][DN_PICKCHANCE];
+            TempDropState[i] = 1;
+        }
+
+        maxRoll -= 1; // the range starts from 0, not 1
+
+        if (maxRoll < 0) { break; }
+
+        while (a1-- > 0)
+        {
+            int roll    = random(0, maxRoll);
+            int curstep = 0;
+            int item    = "";
+            
+            for (i = 0; i < DROPCOUNT; i++)
+            {
+                if (!TempDropState[i]) { continue; }
+
+                curstep += MonsterDropChances[i][DN_PICKCHANCE];
+
+                if (roll < curstep)
+                {
+                    if (random(0, 255) >= MonsterDropChances[i][DN_NOSPAWNCHANCE])
+                    {
+                        item = MonsterDropItems[i][D_DROPITEM];
+                    }
+
+                    break;
+                }
+            }
+
+            if (strcmp(item, ""))
+            {
+                int mag   = 16 * a1;
+                int ang, pitch;
+                int nx, ny, nz;
+                i = 0;
+
+                do
+                {
+                    ang   = random(0, 1.0);
+                    pitch = random(-0.25, 0.25);
+
+                    nx = myx + (mag * FixedMul(cos(ang), cos(pitch)));
+                    ny = myy + (mag * FixedMul(sin(ang), cos(pitch)));
+                    nz = myz + (mag * sin(pitch));
+
+                    i++;
+                } while (!Spawn(item, nx, ny, nz) && (i < 16));
+            }
+        }
         break;
 
     case 32:

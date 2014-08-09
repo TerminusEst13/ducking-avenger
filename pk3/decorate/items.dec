@@ -569,14 +569,32 @@ ACTOR SoulsphereSpawner : CustomInventory replaces Soulsphere
       Spawn:
         TNT1 A 0
         TNT1 A 0 A_JumpIf(ACS_ExecuteWithResult(594,11,0,0) == 1, "SpawnDM")
-        TNT1 A 0
-        TNT1 A 0 A_SpawnItemEx("SoulsphereSpawner1",0,0,0,0,0,0,0,32)
+        TNT1 A 0 A_SpawnItemEx("Soul_Energy100")
         stop
 
       SpawnDM:
-        TNT1 A 0
-        TNT1 A 0 A_SpawnItemEx("SoulsphereSpawner2",0,0,0,0,0,0,0,32)
+        TNT1 A 0 A_SpawnItemEx("Soul_EnergyTank",0,0,0,0,0,0,0,32)
         stop
+    }
+}
+
+actor Soul_Energy100: Energy100
+{
+    States
+    {
+      Spawn:  
+        TNT1 AA 0 A_ChangeFlag("DROPPED", 0)
+        goto Super::Spawn
+    }
+}
+
+actor Soul_EnergyTank: EnergyTankPickup
+{
+    States
+    {
+      Spawn:  
+        TNT1 AA 0 A_ChangeFlag("DROPPED", 0)
+        goto Super::Spawn
     }
 }
 

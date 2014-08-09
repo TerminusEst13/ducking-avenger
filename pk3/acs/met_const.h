@@ -121,6 +121,37 @@ int BeamStackCombinations[STACKTYPES][3] =
     {2, 3, 2},
 };
 
+
+#define DROPCOUNT 5
+
+#define D_DROPITEM      0
+#define D_CHECKITEM     1
+#define D_CHECKAMMO     2
+
+#define DN_NOSPAWNCHANCE 0
+#define DN_PICKCHANCE    1
+
+int MonsterDropItems[DROPCOUNT][3] =
+{
+    {"Energy10_Dropped",            "",                     "Health"},
+    {"Energy25_Dropped",            "",                     "Health"},
+    {"MissileAmmo_Dropped",         "",                     "MissileAmmo"},
+    {"SuperMissileAmmo_Dropped",    "SuperMissileAcquired", "SuperMissileAmmo"},
+    {"PowerBombAmmo",               "PowerBombAcquired",    "PowerBombAmmo"},
+};
+
+int MonsterDropChances[DROPCOUNT][2] =
+{
+    {80,  15},
+    {155, 10},
+    {65,  20},
+    {175, 5},
+    {155, 1},
+};
+
+int TempDropState[DROPCOUNT];
+
+
 int GotBigPickup[PLAYERMAX][PICKUPTYPES];
 
 int BigPickupItems[PICKUPTYPES] = 
