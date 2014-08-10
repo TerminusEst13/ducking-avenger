@@ -1,16 +1,22 @@
 From v1 to v1.1:
 ==========================
+- There is now a menu for selecting beams. With the right item, it allows for...
+- Beam stacking! Stick two compatible beams together, get a new beam! Endless possibilities! Or at least more then you'll ever need! Exclamation points!
 - Players are not allowed to superball unless cheats are explicitly on.
 - If the boost ball is stopped, it now plays a fizzle sound effect.
 - Spectating and rejoining no longer breaks missile firing.
 - No longer does ball-to-body impact have to wait for time to keep flowing.
 - IDKFA now gives raw energy armor.
 - Improved ALTHUD support by adding health icons and new STTNUM numbers.
-- There is now "Press Y to Accept" on the difficulty description text.
+- There is now \"Press Y to Accept\" on the difficulty description text.
 - Tanks and weapons can no longer be crushed by, well, crushers.
 - Raw Energy Deposit now has a corrected pickup message.
 - metroid_cl_doomhealth was not being properly archived. This has been fixed.
-
+- No longer does firing a charged Wave beam into a monster's head do 800 damage to that monster. Similarly, wave combos can no longer oneshot Cyberdemons this way.
+- Enemies no longer drop items you have no use for in single player. In multiplayer, any item can drop.
+- The Long Beam no longer conflicts with the Lasgun from Lelweps.
+- Power Bombs now have an obituary.
+- Pickup messages have a lot more to say now, if you inquire.
 
 
 From alpha-1.777b to v1:
@@ -43,6 +49,8 @@ GAMEPLAY:
 - metroid_dropgravity now controls whether items dropped from enemies have gravity or not.
 - Mook enemies no longer have a chance to drop Power Bombs on death.
 - Energy Armor now only protects for 125 damage instead of 150 damage.
+- No longer does firing a charged Wave beam into a monster's head do 800 damage to that monster. Similarly, wave combos can no longer oneshot Cyberdemons this way.
+- Enemies no longer drop items you have no use for in single player. In multiplayer, any item can drop.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
@@ -64,6 +72,8 @@ BUGFIXES:
 - Energy armor is no longer constantly pickuppable as long as your bar is entirely blue.
 - The morph ball should no longer have troubles with the player's translation.
 - In rare instances, people were starting the game with infinite Power Bombs from the get-go. This has been fixed.
+- The Long Beam no longer conflicts with the Lasgun from Lelweps.
+- Power Bombs now have an obituary.
 
 POLISH:
 - Implemented changelog. Neat.
