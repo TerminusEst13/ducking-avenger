@@ -49,8 +49,6 @@ GAMEPLAY:
 - metroid_dropgravity now controls whether items dropped from enemies have gravity or not.
 - Mook enemies no longer have a chance to drop Power Bombs on death.
 - Energy Armor now only protects for 125 damage instead of 150 damage.
-- No longer does firing a charged Wave beam into a monster's head do 800 damage to that monster. Similarly, wave combos can no longer oneshot Cyberdemons this way.
-- Enemies no longer drop items you have no use for in single player. In multiplayer, any item can drop.
 
 BUGFIXES:
 - Player death no longer freezes the life bar.
@@ -72,8 +70,6 @@ BUGFIXES:
 - Energy armor is no longer constantly pickuppable as long as your bar is entirely blue.
 - The morph ball should no longer have troubles with the player's translation.
 - In rare instances, people were starting the game with infinite Power Bombs from the get-go. This has been fixed.
-- The Long Beam no longer conflicts with the Lasgun from Lelweps.
-- Power Bombs now have an obituary.
 
 POLISH:
 - Implemented changelog. Neat.
