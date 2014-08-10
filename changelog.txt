@@ -8,7 +8,7 @@ From v1 to v1.1:
 - No longer does ball-to-body impact have to wait for time to keep flowing.
 - IDKFA now gives raw energy armor.
 - Improved ALTHUD support by adding health icons and new STTNUM numbers.
-- There is now \"Press Y to Accept\" on the difficulty description text.
+- There is now "Press Y to Accept" on the difficulty description text.
 - Tanks and weapons can no longer be crushed by, well, crushers.
 - Raw Energy Deposit now has a corrected pickup message.
 - metroid_cl_doomhealth was not being properly archived. This has been fixed.
