@@ -510,6 +510,7 @@ ACTOR WaveComboMissileMini
     -NOGRAVITY
     +FORCERADIUSDMG
     +HEXENBOUNCE
+    +THRUACTORS
     BounceFactor 1.1
     WallBounceFactor 1.1
     BounceCount 4
@@ -522,7 +523,8 @@ ACTOR WaveComboMissileMini
     States
     {
     Spawn:
-        CWVM A 1 Bright A_CustomMissile("WaveSpark",0,0,Random(-180,180),2,Random(-100,100))
+        CWVM AAAA 1 Bright A_CustomMissile("WaveSpark",0,0,Random(-180,180),2,Random(-100,100))
+        WSHT A 0 A_ChangeFlag("THRUACTORS", 0)
         Loop
     Death:
         TNT1 A 0

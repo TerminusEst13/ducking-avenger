@@ -1053,6 +1053,7 @@ actor WaveSplatterShot
     DamageType "WaveCharged"
     PROJECTILE
     +HEXENBOUNCE
+    +THRUACTORS
     States
     {
       Spawn:
@@ -1064,6 +1065,14 @@ actor WaveSplatterShot
         WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
         TNT1 A 0 A_CStaffMissileSlither
         WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
+        TNT1 A 0 A_CustomMissile("WaveTrail",0,0,0)
+        TNT1 A 0 A_CStaffMissileSlither
+        WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
+        TNT1 A 0 A_CStaffMissileSlither
+        WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
+        TNT1 A 0 A_CStaffMissileSlither
+        WSHT A 1 BRIGHT A_SpawnItem("WaveSplatterTrail")
+        WSHT A 0 A_ChangeFlag("THRUACTORS", 0)
         loop
 
       Death:
